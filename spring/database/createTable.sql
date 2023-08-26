@@ -40,6 +40,20 @@ KEY `FK_1` (`org_id`),
 CONSTRAINT `FK_11` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org_id`)
 );
 
+CREATE TABLE `fundraising`
+(
+ `fndr_id`       int NOT NULL AUTO_INCREMENT COMMENT '모금번호' ,
+ `fndr_info`     varchar(450) NOT NULL COMMENT '모금정보' ,
+ `goal`          int NOT NULL COMMENT '모금 목표액' ,
+ `current`       int NOT NULL DEFAULT 0 COMMENT '현재 모금액' ,
+ `fndr_deadline` date NOT NULL COMMENT '모금 기한' ,
+ `org_id`        int NOT NULL ,
+
+PRIMARY KEY (`fndr_id`),
+KEY `FK_1` (`org_id`),
+CONSTRAINT `FK_5` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org_id`)
+);
+
 CREATE TABLE `fundraising_join_list`
 (
  `fndr_join_id` int NOT NULL AUTO_INCREMENT ,
@@ -64,20 +78,6 @@ KEY `FK_1` (`fndr_id`),
 CONSTRAINT `FK_8_1` FOREIGN KEY `FK_1` (`fndr_id`) REFERENCES `fundraising` (`fndr_id`),
 KEY `FK_2` (`user_id`),
 CONSTRAINT `FK_9_1` FOREIGN KEY `FK_2` (`user_id`) REFERENCES `users` (`user_id`)
-);
-
-CREATE TABLE `fundraising`
-(
- `fndr_id`       int NOT NULL AUTO_INCREMENT COMMENT '모금번호' ,
- `fndr_info`     varchar(450) NOT NULL COMMENT '모금정보' ,
- `goal`          int NOT NULL COMMENT '모금 목표액' ,
- `current`       int NOT NULL DEFAULT 0 COMMENT '현재 모금액' ,
- `fndr_deadline` date NOT NULL COMMENT '모금 기한' ,
- `org_id`        int NOT NULL ,
-
-PRIMARY KEY (`fndr_id`),
-KEY `FK_1` (`org_id`),
-CONSTRAINT `FK_5` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org_id`)
 );
 
 CREATE TABLE `favorites`
@@ -119,9 +119,9 @@ CREATE TABLE `donation`
  `receipt_result`         varchar(45) NOT NULL COMMENT '기부금영수증 발급결과' ,
  `org_id`                 int NOT NULL ,
  `user_id`                int NOT NULL ,
- `payment_type`           varchar(45) NOT NULL ,
- `comment_dnt`            varchar(100) NULL ,
- `is_regulation`          varchar(45) NOT NULL ,
+ `payment_type`           varchar(45) NOT NULL COMMENT '지불수단' ,
+ `comment_dnt`            varchar(100) NULL COMMENT '기부 메세지' ,
+ `is_regulation`          varchar(45) NOT NULL DEFAULT False COMMENT '정기결제 여부' ,
  `comment_dnt_regulation` varchar(100) NULL ,
 
 PRIMARY KEY (`dnt_id`),

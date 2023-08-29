@@ -1,6 +1,6 @@
 package com.givoo.service.serviceImp;
 
-import com.givoo.Entity.Organization;
+import com.givoo.entity.Organization;
 import com.givoo.repository.OrganizationRepository;
 import com.givoo.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;

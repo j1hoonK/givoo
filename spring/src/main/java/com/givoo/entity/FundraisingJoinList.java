@@ -1,4 +1,4 @@
-package com.givoo.Entity;
+package com.givoo.entity;
 
 public class FundraisingJoinList {
 }

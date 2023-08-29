@@ -1,6 +1,6 @@
 package com.givoo.controller;
 
-import com.givoo.Entity.Organization;
+import com.givoo.entity.Organization;
 import com.givoo.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

@@ -1,7 +1,7 @@
 package com.givoo.dto;
 
 
-import com.givoo.Entity.Organization;
+import com.givoo.entity.Organization;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

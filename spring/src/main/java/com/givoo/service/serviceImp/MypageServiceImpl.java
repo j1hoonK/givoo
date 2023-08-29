@@ -19,14 +19,16 @@ public class MypageServiceImpl implements MypageService {
     @Autowired
     FavoritesRepository favoritesRepository;
     @Override
-    public MyDonationDetailDTO myDntDetail(Long dntId) {
-        Donation abc = donationRepository.findById(dntId).get();
+    public Donation myDntDetail(Long dntId) {
+        Donation dnt = donationRepository.findById(dntId).get();
+       /* System.out.println("abc:"+abc);
         MyDonationDetailDTO myDonationDetailDTO = new MyDonationDetailDTO(
                 abc.getOrgId(),abc.getDntDate(),abc.getDntAmount()
                 ,abc.getIsRegulation(),abc.getReceiptResult()
                 ,abc.getTypePayment(),abc.getDntComment(),
                 abc.getDntCommentRegulation(),abc.getDntType());
-        return myDonationDetailDTO;
+        return myDonationDetailDTO;*/
+        return dnt;
     }
 
     @Override

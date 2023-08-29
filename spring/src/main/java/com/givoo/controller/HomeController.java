@@ -1,6 +1,7 @@
 package com.givoo.controller;
 
 import com.givoo.dto.mypage.MyDonationDetailDTO;
+import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
 import com.givoo.service.MypageService;
 import com.givoo.service.OrganizationService;
@@ -30,8 +31,8 @@ public class HomeController {
         return organizationService.findAll();
     }
 
-    @GetMapping("/mypage/dntresult/{userid}/{dntid}")
-    public MyDonationDetailDTO myDonationDetail(@PathVariable("dntid") Long id){
+    @GetMapping("/mypage/dntresult/{dntid}")
+    public Donation myDonationDetail(@PathVariable("dntid") Long id){
         return mypageService.myDntDetail(id);
     }
 

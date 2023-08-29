@@ -30,7 +30,7 @@ CREATE TABLE `organization`
 PRIMARY KEY (`org_id`)
 );
 
-CREATE TABLE `oraganization_notice`
+CREATE TABLE `organization_notice`
 (
  `notice_id`   int NOT NULL AUTO_INCREMENT,
  `subject`     varchar(100) NOT NULL ,

@@ -11,29 +11,39 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Table (name = "organization")  // 테이블 생성시 이름을 지정해줌
 
 public class Organization {
-    @Id @GeneratedValue
-    private Long org_id;
-    private String org_number;
-    private String org_name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
+    private Long orgId;
+    @Column(nullable = false)
+    private String orgNumber;
+    @Column(nullable = false)
+    private String orgName;
+    @Column(nullable = false)
     private String org_address;
-    private double location_lat;
-    private double location_long;
-    private String org_tell;
-    private String org_type;
-    private String org_info;
-    private String org_owner;
-    private Date started_up;
+    @Column(nullable = false)
+    private Long locationLat;
+    @Column(nullable = false)
+    private Long locationLong;
+    @Column(nullable = false)
+    private Long orgTell;
+    @Column(nullable = false)
+    private String orgType;
+    @Column(nullable = false)
+    private String orgInfo;
+    @Column(nullable = false)
+    private String orgOwner;
+    @Column(nullable = false)
+    private Date startedUp;
 
-    public Organization() {}
+    private Long accountNumber; //null 허용
+    @Column(nullable = false)
+    private String imagePath;
+    @Column(nullable = false)
+    private Long totalFavorite;
 
-    public static OrganizationDto jpoOf(Organization organization) {
-        OrganizationDto organizationDto = new OrganizationDto();
-        BeanUtils.copyProperties(organization, organizationDto);
-        return organizationDto;
     }
-}
+

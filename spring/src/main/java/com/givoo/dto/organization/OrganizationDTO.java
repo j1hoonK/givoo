@@ -1,7 +1,7 @@
-package com.givoo.dto;
+package com.givoo.dto.organization;
 
 
-import com.givoo.entity.Organization;
+import com.givoo.entity.organization.Organization;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
-public class OrganizationDto {
+public class OrganizationDTO {
     private Long org_id;
     private String org_number;
     private String org_name;

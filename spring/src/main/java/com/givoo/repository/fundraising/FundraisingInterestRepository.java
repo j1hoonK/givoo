@@ -1,6 +1,6 @@
-package com.givoo.repository;
+package com.givoo.repository.fundraising;
 
-import com.givoo.entity.FundraisingInterest;
+import com.givoo.entity.fundraising.FundraisingInterest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

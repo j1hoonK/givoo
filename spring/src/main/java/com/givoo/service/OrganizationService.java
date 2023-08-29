@@ -1,7 +1,7 @@
 package com.givoo.service;
 
 
-import com.givoo.entity.Organization;
+import com.givoo.entity.organization.Organization;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

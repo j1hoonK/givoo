@@ -1,4 +1,4 @@
-package com.givoo.entity;
+package com.givoo.entity.donation;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,9 +1,7 @@
-package com.givoo.entity;
+package com.givoo.entity.organization;
 
-import com.givoo.dto.OrganizationDto;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;

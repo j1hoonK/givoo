@@ -71,7 +71,7 @@ class _MainScreenState extends State<MainPage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(17, 30, 17, 9),
                 child: Text(
-                  '모금 추천',
+                  '모금 추천...',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,

@@ -20,7 +20,7 @@ public class Organization {
     private Long org_id;
     private String org_number;
     private String org_name;
-    private String org_adress;
+    private String org_address;
     private double location_lat;
     private double location_long;
     private String org_tell;

@@ -5,6 +5,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class MyOrgDTO {
+public class MyOrgDTO { // /mypage?{userid}
     private Long orgId; //favorites
 }

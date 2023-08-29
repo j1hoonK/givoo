@@ -17,7 +17,7 @@ public class Donation {
     @Column(nullable = false)   // null 값 허용 x 기본값 true
     private Long dntId;
     @Column(nullable = false)
-    private Long amount;
+    private Long dntAmount;
     @Column(nullable = false)
     private Date dntDate;
     @Column(nullable = false)

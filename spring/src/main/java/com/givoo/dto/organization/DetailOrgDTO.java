@@ -7,9 +7,10 @@ import java.util.Date;
 
 @Getter
 @AllArgsConstructor
-public class DetailOrgDTO {
+public class DetailOrgDTO {  // /info?{기관아이디}&{유저아이디}
+
     private String orgName;  //organization
-    private String orgAdress; //organization
+    private String orgAddress; //organization
     private Long locationLat; //organization
     private Long locationLong; //organization
     private Long orgTell; //organization

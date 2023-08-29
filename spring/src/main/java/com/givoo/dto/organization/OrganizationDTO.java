@@ -11,19 +11,19 @@ import java.util.Date;
 
 @AllArgsConstructor
 @Getter
-@NoArgsConstructor
 public class OrganizationDTO {
-    private Long org_id;
-    private String org_number;
-    private String org_name;
-    private String org_address;
-    private double location_lat;
-    private double location_long;
-    private String org_tell;
-    private String org_type;
-    private String org_info;
-    private String org_owner;
-    private Date started_up;
+
+    private Long orgId; //organization
+    private String orgNumber; //organization
+    private String orgName; //organization
+    private String orgAddress; //organization
+    private Long locationLat; //organization
+    private Long locationLong; //organization
+    private String orgTell; //organization
+    private String orgType; //organization
+    private String orgInfo; //organization
+    private String orgOwner; //organization
+    private Date startedUp; //organization
 
 
     public Organization asJpo() {

@@ -7,7 +7,9 @@ import java.util.Date;
 
 @Getter
 @AllArgsConstructor
-public class MainPageDTO {
+public class MainPageDTO {  // '/'
+
+
     private String orgName;     //organization
     private String imagePath;   //organization
     private String fndrTitle;   //fundraising

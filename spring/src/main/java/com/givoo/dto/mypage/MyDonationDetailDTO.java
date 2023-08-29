@@ -8,7 +8,7 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 
-public class MyDonationDetailDTO {
+public class MyDonationDetailDTO { // /mypage/dntresult?{userid}&{dntid}
     private Long orgId; //donation
     private Date dntDate; //donation
     private Long dntAmount; //donation

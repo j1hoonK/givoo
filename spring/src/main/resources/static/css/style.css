@@ -113,7 +113,7 @@ body{
     background-color:#f5f5f5;
     position: relative;
     min-height: 100vh;
-    width: calc(100%-240px);
+    width: calc(100%- 240px);
     left: 240px;
     
 }
@@ -163,7 +163,7 @@ nav.search-box input{
 nav .search-box .bx-search{
     position: absolute;
     right: 5px;
-    top: 50%
+    top: 50%;
     transform: translateY(-50%);
     height: 40px;
     width: 40px;

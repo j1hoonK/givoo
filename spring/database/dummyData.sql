@@ -27,7 +27,7 @@ VALUES
     ('890-123-4567', '지역 봉사 단체', '대전시 서구', 36.3519, 127.3886, 1011123456, '사회', '지역사회 봉사 활동을 지원하고 있습니다.', '홍단체장', '2015-06-29', 1234567890123456, '/images/volunteer.jpg');
 
 -- oraganization_notice 테이블에 더미 데이터 10개 삽입
-INSERT INTO oraganization_notice (subject, org_id, contents, notice_date)
+INSERT INTO organization_notice (subject, org_id, contents, notice_date)
 VALUES
     ('공지사항 1', 1, '어린이 병원 공지사항입니다.', '2023-08-18 09:00:00'),
     ('공지사항 2', 1, '어린이 병원 공지사항입니다.', '2023-08-17 10:15:00'),

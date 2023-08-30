@@ -30,7 +30,7 @@ CREATE TABLE `organization`
 PRIMARY KEY (`org_id`)
 );
 
-CREATE TABLE `oraganization_notice`
+CREATE TABLE `organization_notice`
 (
  `notice_id`   int NOT NULL AUTO_INCREMENT,
  `subject`     varchar(100) NOT NULL ,
@@ -122,7 +122,7 @@ CONSTRAINT `FK_4` FOREIGN KEY `FK_2` (`org_id`) REFERENCES `organization` (`org_
 
 CREATE TABLE `donation_regular`
 (
- `dnt_regular_id`     int NOT NULL ,
+ `dnt_regular_id`     int NOT NULL AUTO_INCREMENT,
  `user_id`            int NOT NULL COMMENT '사용자 번호' ,
  `org_id`             int NOT NULL COMMENT '기관번호' ,
  `isusenow`           varchar(45) NOT NULL COMMENT '이용중 여부(Y or N)' ,

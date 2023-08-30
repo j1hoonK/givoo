@@ -3,6 +3,7 @@ package com.givoo.entity.donation;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 
@@ -10,14 +11,14 @@ import java.util.Date;
 @Table(name = "donation")  //매핑할 테이블 명을 지정합니다.
 @Getter
 @Setter
-
+@ToString
 public class Donation {
     @Id //pk 값
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
     @Column(nullable = false)   // null 값 허용 x 기본값 true
     private Long dntId;
     @Column(nullable = false)
-    private Long amount;
+    private Long dntAmount;
     @Column(nullable = false)
     private Date dntDate;
     @Column(nullable = false)

@@ -7,7 +7,8 @@ import java.util.Date;
 
 @Getter
 @AllArgsConstructor
-public class DonationSendDTO {
+public class DonationSendDTO { //  /donation/send
+
     private Long orgId;  //donation
     private Long userId; //donation
     private String dntType; //donation

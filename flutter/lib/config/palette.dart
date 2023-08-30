@@ -1,6 +1,7 @@
 import 'package:flutter/painting.dart';
 
 // 자주쓰는 색상 모음
+
 class Palette {
   static const Color iconColor = Color(0xFFB6C7D1);
   static const Color activeColor = Color(0xFF09126C);

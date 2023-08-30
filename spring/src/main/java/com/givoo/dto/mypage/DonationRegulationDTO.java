@@ -1,4 +1,4 @@
-package com.givoo.dto.donation;
+package com.givoo.dto.mypage;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

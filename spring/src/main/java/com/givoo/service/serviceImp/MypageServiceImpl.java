@@ -1,5 +1,6 @@
 package com.givoo.service.serviceImp;
 
+import com.givoo.dto.mypage.DonationRegulationDTO;
 import com.givoo.dto.mypage.MyDonationDTO;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.donation.Donation;
@@ -43,6 +44,11 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public List<MyOrgDTO> myOrg(Long userId) {
+        return null;
+    }
+
+    @Override
+    public DonationRegulationDTO dntRegulation(Long userId) {
         return null;
     }
 }

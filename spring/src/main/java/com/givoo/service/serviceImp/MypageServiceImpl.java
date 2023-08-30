@@ -10,24 +10,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MypageServiceImpl implements MypageService {
 
+    private final DonationRepository donationRepository;
+    private final FavoritesRepository favoritesRepository;
+
     @Autowired
-    DonationRepository donationRepository;
-    @Autowired
-    FavoritesRepository favoritesRepository;
+    public MypageServiceImpl(DonationRepository donationRepository, FavoritesRepository favoritesRepository) {
+        this.donationRepository = donationRepository;
+        this.favoritesRepository = favoritesRepository;
+    }
 
     @Override
     public Donation myDntDetail(Long dntId) {
-        Donation dnt = donationRepository.findById(dntId).get();
-        return dnt;
+        Optional<Donation> donationOptional = donationRepository.findById(dntId);
+
+        if (donationOptional.isPresent()) {
+            return donationOptional.get();
+        } else {
+            throw new IllegalArgumentException("Donation with ID " + dntId + " not found.");
+        }
     }
 
     @Override
     public List<MyDonationDTO> myDnt(Long userId) {
-
+        favoritesRepository.findById(userId);
         return null;
     }
 

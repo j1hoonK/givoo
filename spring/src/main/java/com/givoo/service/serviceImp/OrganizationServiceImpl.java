@@ -15,31 +15,27 @@ import java.util.Optional;
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
+    private final OrganizationRepository organizationRepo;
+    private final FavoritesRepository favoritesRepository;
+
     @Autowired
-    OrganizationRepository organizationRepo;
-    @Autowired
-    FavoritesRepository favoritesRepository;
+    public OrganizationServiceImpl(OrganizationRepository organizationRepo, FavoritesRepository favoritesRepository) {
+        this.organizationRepo = organizationRepo;
+        this.favoritesRepository = favoritesRepository;
+    }
 
     @Override
     public List<Organization> findAll() {
         return organizationRepo.findAll();
-               /* .stream()
-                .map(Organization::jpoOf)
-                .collect(Collectors.toList());*/
     }
 
     @Override
     public DetailOrgDTO detailOrg(Long orgId, Long userId) {
-        Organization org = organizationRepo.findById(orgId).get();
-        Optional<Favorites> fav = favoritesRepository.findById(userId);
-        DetailOrgDTO detailOrg;
-        if (fav.isEmpty()) {
-            detailOrg = org.converter(0L);
-        } else {
-            detailOrg = org.converter(fav.get().getFavId());
-        }
-        return detailOrg;
-
+        Optional<Organization> orgOptional = organizationRepo.findById(orgId);
+        Optional<Favorites> favOptional = favoritesRepository.findById(userId);
+        if(orgOptional.isPresent()&&favOptional.isPresent()){
+            return orgOptional.get().converter(favOptional.get().getFavId());
+        } else return orgOptional.map(organization -> organization.converter(0L)).orElse(null);
     }
 
     @Override

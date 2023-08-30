@@ -44,12 +44,11 @@ public class Organization {
     @Column(nullable = false)
     private Long totalFavorite;
     public DetailOrgDTO converter(Long favId){
-        DetailOrgDTO detailOrg = new DetailOrgDTO(
+        return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.getLocationLat(),this.getLocationLong(),
                 this.getOrgTell(),this.getOrgInfo(),this.getOrgOwner(),this.getStartedUp(),
                 this.getImagePath(),favId
         );
-        return detailOrg;
     }
 
 

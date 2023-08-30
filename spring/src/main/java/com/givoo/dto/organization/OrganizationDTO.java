@@ -26,9 +26,4 @@ public class OrganizationDTO {
     private Date startedUp; //organization
 
 
-    public Organization asJpo() {
-        Organization Organization = new Organization();
-        BeanUtils.copyProperties(this, Organization);
-        return Organization;
-    }
 }

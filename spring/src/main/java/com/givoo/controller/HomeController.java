@@ -1,12 +1,10 @@
 package com.givoo.controller;
 
-import com.givoo.dto.mypage.MyDonationDetailDTO;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
 import com.givoo.service.MypageService;
 import com.givoo.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,24 +14,24 @@ import java.util.List;
 @RestController
 public class HomeController {
 
-    final OrganizationService organizationService;
-
+    private final OrganizationService organizationService;
+    private final MypageService mypageService;
     @Autowired
-    public HomeController(OrganizationService organizationService) {
+    public HomeController(OrganizationService organizationService, MypageService mypageService) {
         this.organizationService = organizationService;
+        this.mypageService = mypageService;
     }
-    @Autowired
-     MypageService mypageService;
+
+
 
 
     @GetMapping("/org")
-    public List<Organization> findAll(Model model) {
+    public List<Organization> findAll() {
         return organizationService.findAll();
     }
 
     @GetMapping("/mypage/dntresult/{dntid}")
-    public Donation myDonationDetail(@PathVariable("dntid") Long id){
+    public Donation myDonationDetail(@PathVariable("dntid") Long id) {
         return mypageService.myDntDetail(id);
     }
-
 }

@@ -13,6 +13,7 @@ import java.util.Date;
 
 @Service
 public class DonationServiceImpl implements DonationService {
+
     @Autowired
     DonationRepository donationRepository;
     @Autowired
@@ -20,8 +21,7 @@ public class DonationServiceImpl implements DonationService {
 
 
     @Override
-    public DonationDTO dnt(Long orgId,Long userId) {
-
+    public DonationDTO dnt(Long orgId, Long userId) {
         return null;
     }
 
@@ -29,6 +29,7 @@ public class DonationServiceImpl implements DonationService {
     public DonationRegulationDTO dntRegulation(Long userId) {
         return null;
     }
+
     @Override
     public DonationSendDTO dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate) {
         return null;

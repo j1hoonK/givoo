@@ -27,7 +27,7 @@ class _BotNavBarState extends State<BotNavBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.real_estate_agent),
-          label: '나눔추천',
+          label: '나눔 추천',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),

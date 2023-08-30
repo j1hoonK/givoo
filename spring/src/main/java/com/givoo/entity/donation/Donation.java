@@ -7,7 +7,7 @@ import lombok.ToString;
 
 import java.util.Date;
 
-@Entity // Entity클래스임을 명시합니다.
+@Entity // Entity 클래스임을 명시합니다.
 @Table(name = "donation")  //매핑할 테이블 명을 지정합니다.
 @Getter
 @Setter
@@ -29,11 +29,11 @@ public class Donation {
     @Column(nullable = false)
     private String typePayment;
 
-    private String dntComment;  //null값 허용되는 컬럼
+    private String dntComment;  //null 값 허용되는 컬럼
     @Column(nullable = false)
     private String isRegulation;
 
-    private String dntCommentRegulation; //null값 허용되는 컬럼
+    private String dntCommentRegulation; //null 값 허용되는 컬럼
     @Column(nullable = false)
     private String dntType;
 

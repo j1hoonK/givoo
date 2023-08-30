@@ -18,5 +18,6 @@ public class DetailOrgDTO {  // /info/{기관아이디}/{유저아이디}
     private String orgOwner; //organization
     private Date startedUp; //organization
     private String imagePath; //organization
-    private String favId; //favorite
+    private Long favId; //favorite
+
 }

@@ -12,6 +12,6 @@ import java.util.List;
 @Service
 public interface OrganizationService {
     public List<Organization> findAll();
-    public DetailOrgDTO DetailOrg(Long orgId, Long userId);
-    public List<SearchOrgDTO> searchOrg(String orgName);
+    public DetailOrgDTO detailOrg(Long orgId,Long userId);
+    public List<Organization> searchOrg(String orgName);
 }

@@ -1,11 +1,8 @@
 package com.givoo.dto.organization;
 
 
-import com.givoo.entity.organization.Organization;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
 
@@ -26,9 +23,4 @@ public class OrganizationDTO {
     private Date startedUp; //organization
 
 
-    public Organization asJpo() {
-        Organization Organization = new Organization();
-        BeanUtils.copyProperties(this, Organization);
-        return Organization;
-    }
 }

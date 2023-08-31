@@ -23,8 +23,6 @@ public class HomeController {
     }
 
 
-
-
     @GetMapping("/org")
     public List<Organization> findAll() {
         return organizationService.findAll();

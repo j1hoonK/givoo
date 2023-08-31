@@ -1,5 +1,6 @@
 package com.givoo.entity.organization;
 
+import com.givoo.dto.organization.DetailOrgDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,7 +12,7 @@ import java.util.Date;
 @Setter
 @EntityListeners(AuditingEntityListener.class)
 @Table (name = "organization")  // 테이블 생성시 이름을 지정해줌
-
+@ToString
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
@@ -21,7 +22,7 @@ public class Organization {
     @Column(nullable = false)
     private String orgName;
     @Column(nullable = false)
-    private String org_address;
+    private String orgAddress;
     @Column(nullable = false)
     private Long locationLat;
     @Column(nullable = false)
@@ -42,6 +43,14 @@ public class Organization {
     private String imagePath;
     @Column(nullable = false)
     private Long totalFavorite;
+    public DetailOrgDTO converter(Long favId){
+        return new DetailOrgDTO(
+                this.orgName,this.orgAddress,this.getLocationLat(),this.getLocationLong(),
+                this.getOrgTell(),this.getOrgInfo(),this.getOrgOwner(),this.getStartedUp(),
+                this.getImagePath(),favId
+        );
+    }
+
 
     }
 

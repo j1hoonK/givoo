@@ -1,7 +1,7 @@
 package com.givoo.service.serviceImp;
 
 import com.givoo.dto.organization.DetailOrgDTO;
-import com.givoo.dto.organization.SearchOrgDTO;
+import com.givoo.entity.Favorites;
 import com.givoo.entity.organization.Organization;
 import com.givoo.repository.FavoritesRepository;
 import com.givoo.repository.organization.OrganizationRepository;
@@ -10,29 +10,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
+
+    private final OrganizationRepository organizationRepo;
+    private final FavoritesRepository favoritesRepository;
+
     @Autowired
-    OrganizationRepository OrganizationRepo;
-    @Autowired
-    FavoritesRepository favoritesRepository;
+    public OrganizationServiceImpl(OrganizationRepository organizationRepo, FavoritesRepository favoritesRepository) {
+        this.organizationRepo = organizationRepo;
+        this.favoritesRepository = favoritesRepository;
+    }
 
     @Override
     public List<Organization> findAll() {
-        return OrganizationRepo.findAll();
-               /* .stream()
-                .map(Organization::jpoOf)
-                .collect(Collectors.toList());*/
+        return organizationRepo.findAll();
     }
 
     @Override
-    public DetailOrgDTO DetailOrg(Long orgId, Long userId) {
-        return null;
+    public DetailOrgDTO detailOrg(Long orgId, Long userId) {
+        Optional<Organization> orgOptional = organizationRepo.findById(orgId);
+        Optional<Favorites> favOptional = favoritesRepository.findById(userId);
+        if(orgOptional.isPresent()&&favOptional.isPresent()){
+            return orgOptional.get().converter(favOptional.get().getFavId());
+        } else return orgOptional.map(organization -> organization.converter(0L)).orElse(null);
     }
 
     @Override
-    public List<SearchOrgDTO> searchOrg(String orgName) {
-        return null;
+    public List<Organization> searchOrg(String orgName) {
+        return organizationRepo.findAllByOrgName(orgName);
     }
 }

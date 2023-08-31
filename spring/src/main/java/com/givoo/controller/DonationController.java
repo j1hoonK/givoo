@@ -23,10 +23,5 @@ public class DonationController {
         return donationService.dnt(orgid);
     }
 
-    @PostMapping("/send")
-    public String send(Donation dnt){
-    @RequestBody()
-        return donationService.dntSend(dnt);
-    }
 
 }

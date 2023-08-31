@@ -1,5 +1,6 @@
 package com.givoo.controller;
 
+import com.givoo.dto.mypage.MyDonationDetailDTO;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
 import com.givoo.service.MypageService;
@@ -21,8 +22,6 @@ public class HomeController {
         this.organizationService = organizationService;
         this.mypageService = mypageService;
     }
-
-
 
 
     @GetMapping("/org")

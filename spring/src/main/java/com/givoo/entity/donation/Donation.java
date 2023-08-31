@@ -1,6 +1,7 @@
 package com.givoo.entity.donation;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
 public class Donation {
     @Id //pk 값
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
@@ -21,7 +23,7 @@ public class Donation {
     private Long dntAmount;
     @Column(nullable = false)
     private Date dntDate;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "처리중")
     private String receiptResult;
     private Long orgId;
     @Column(nullable = false)
@@ -38,5 +40,8 @@ public class Donation {
     private String dntType;
 
 
+    public Donation() {
+
+    }
 
 }

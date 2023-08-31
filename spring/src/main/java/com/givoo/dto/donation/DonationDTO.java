@@ -7,7 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class DonationDTO {  // /donation/{기관id}/{userId}
 
-    private Long orgId; //donation
-    private Long typeId; //donation
+    private String type; //donation_type
 
 }

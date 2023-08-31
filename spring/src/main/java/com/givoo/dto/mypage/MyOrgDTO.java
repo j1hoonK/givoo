@@ -6,5 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class MyOrgDTO { // /mypage/org/{userid}
-    private Long orgId; //favorites
+    private String orgName; //donation
+    private String imagePath; //donation
+    private String orgType; //donation
 }

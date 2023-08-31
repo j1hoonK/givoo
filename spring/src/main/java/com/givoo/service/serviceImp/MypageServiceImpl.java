@@ -57,4 +57,5 @@ public class MypageServiceImpl implements MypageService {
                 .collect(Collectors.toList());
         return myOrgList;
     }
+
 }

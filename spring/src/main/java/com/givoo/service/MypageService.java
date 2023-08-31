@@ -4,6 +4,7 @@ import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.donation.Donation;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public interface MypageService {

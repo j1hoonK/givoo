@@ -3,7 +3,6 @@ package com.givoo.service.serviceImp;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
 import com.givoo.entity.donation.Donation;
-import com.givoo.entity.organization.Organization;
 import com.givoo.repository.FavoritesRepository;
 import com.givoo.repository.donation.DonationRepository;
 import com.givoo.repository.organization.OrganizationRepository;

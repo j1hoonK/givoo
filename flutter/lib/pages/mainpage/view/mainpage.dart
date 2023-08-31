@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:givoo/component/bottomnavbar.dart';
 
 class ImageGraphCarousel extends StatelessWidget {
   final String imagePath;
@@ -21,20 +22,21 @@ class ImageGraphCarousel extends StatelessWidget {
   }
 }
 
-class MainScreen extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
+class _MainScreenState extends State<MainPage> {
+  //int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       body: _buildMiddle(),
-      bottomNavigationBar: BottomNavigationBar(//바텀 네비게이터
+      bottomNavigationBar: BotNavBar(),
+      /*BottomNavigationBar(//바텀 네비게이터
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -55,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
             label: '마이페이지',
           ),
         ],
-      ),
+      ),*/
     );
   }
 

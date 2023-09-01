@@ -1,20 +1,20 @@
-package com.givoo.entity.donation;
+package com.givoo.donation.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Date;
 
-@Entity // Entity 클래스임을 명시합니다.
-@Table(name = "donation")  //매핑할 테이블 명을 지정합니다.
+@Entity
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
-public class Donation {
+@NoArgsConstructor
+@Table(name = "donation")
+public class DonationEntity {
     @Id //pk 값
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
     @Column(nullable = false)   // null 값 허용 x 기본값 true
@@ -22,11 +22,12 @@ public class Donation {
     @Column(nullable = false)
     private Long dntAmount;
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dntDate;
-    @Column(nullable = false,columnDefinition = "처리중")
+    @Column(nullable = false, length = 45, columnDefinition = "varchar(45) default '대기중'")
     private String receiptResult;
-    private Long orgId;
     @Column(nullable = false)
+    private Long orgId;
     private Long userId;
     @Column(nullable = false)
     private String typePayment;
@@ -38,10 +39,4 @@ public class Donation {
     private String dntCommentRegulation; //null 값 허용되는 컬럼
     @Column(nullable = false)
     private String dntType;
-
-
-    public Donation() {
-
-    }
-
 }

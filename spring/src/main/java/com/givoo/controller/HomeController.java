@@ -16,21 +16,13 @@ import java.util.List;
 public class HomeController {
 
     private final OrganizationService organizationService;
-    private final MypageService mypageService;
     @Autowired
     public HomeController(OrganizationService organizationService, MypageService mypageService) {
         this.organizationService = organizationService;
-        this.mypageService = mypageService;
     }
-
 
     @GetMapping("/org")
     public List<Organization> findAll() {
         return organizationService.findAll();
-    }
-
-    @GetMapping("/mypage/dntresult/{dntid}")
-    public Donation myDonationDetail(@PathVariable("dntid") Long id) {
-        return mypageService.myDntDetail(id);
     }
 }

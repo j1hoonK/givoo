@@ -55,7 +55,9 @@ public class MypageServiceImpl implements MypageService {
         List<MyOrgDTO> myOrgList = favList.stream()
                 .map(fav -> new MyOrgDTO(organizationRepository.findById(fav.getOrgId()).get().getOrgName(),
                         organizationRepository.findById(fav.getOrgId()).get().getImagePath(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgType()))
+                        organizationRepository.findById(fav.getOrgId()).get().getOrgType(),
+                        organizationRepository.findById(fav.getOrgId()).get().getOrgId()
+                        ))
                 .collect(Collectors.toList());
         return myOrgList;
     }

@@ -9,4 +9,5 @@ public class MyOrgDTO { // /mypage/org/{userid}
     private String orgName; //donation
     private String imagePath; //donation
     private String orgType; //donation
+    private Long orgId; //donation
 }

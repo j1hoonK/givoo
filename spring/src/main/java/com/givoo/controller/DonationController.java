@@ -4,6 +4,7 @@ import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationType;
 import com.givoo.service.DonationService;
 import com.givoo.service.OrganizationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

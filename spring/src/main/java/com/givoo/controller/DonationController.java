@@ -3,14 +3,13 @@ package com.givoo.controller;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationType;
 import com.givoo.service.DonationService;
-import com.givoo.service.OrganizationService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/donation")
 public class DonationController {
 
     private final DonationService donationService;
@@ -19,10 +18,13 @@ public class DonationController {
     public DonationController(DonationService donationService) {
         this.donationService = donationService;
     }
-    @GetMapping("/donation/{orgid}")
-    public List<DonationType> dntType(@PathVariable("orgid")Long orgid){
-        return donationService.dnt(orgid);
+    @GetMapping("/{orgid}")     // 후원화면_후원 종류
+    public List<DonationType> findByOrgIdFromDonation(@PathVariable("orgid")Long orgid){
+        return donationService.findByOrgIdFromDonation(orgid);
     }
 
-
+    @PostMapping("/send")       // 후원전송
+    public Donation sendDonation(@RequestBody Donation donation){
+        return donationService.sendDonation(donation);
+    }
 }

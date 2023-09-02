@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/appbar.dart';
+import 'package:givoo/component/noOrgList.dart';
 import 'package:givoo/component/orgList.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:provider/provider.dart';
@@ -67,7 +68,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
                   ),
                 );
               } else {
-                return Text('Press the button to fetch todo');
+                return noOrgList();
               }
             },
           ),

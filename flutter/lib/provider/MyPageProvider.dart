@@ -5,7 +5,7 @@ import 'package:givoo/services/MyPageService.dart';
 
 class MyPageProvider extends ChangeNotifier {
 
-  late List<MyOrgList> _myOrgList = [MyOrgList(orgName: "orgName", imagePath: "", orgType: "",orgId:0 )];
+  List<MyOrgList> _myOrgList= [];
   final MyOrgService _myOrgService  = MyOrgService();
   List<MyOrgList> get myOrgList =>_myOrgList;
   List<List<MyOrgList>> myOrgList2=[];

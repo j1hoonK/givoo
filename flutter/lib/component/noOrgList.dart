@@ -5,6 +5,9 @@ Widget noOrgList(){
     child: Column(
       children: [
         Container(
+          margin: EdgeInsets.only(top: 60),
+          height: 300,
+           width: 300,
            decoration: BoxDecoration(
     image: DecorationImage(
     image: AssetImage('images/person.png'),

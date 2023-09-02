@@ -29,7 +29,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
         children: [
           Consumer<MyPageProvider>(
             builder: (context, myPageProvider, child) {
-              if (myPageProvider.myOrgList != null) {
+              if (!myPageProvider.myOrgList.isEmpty) {
                 return Expanded(
                   child: Container(
                     child: ListView.builder(

@@ -10,8 +10,19 @@ import java.util.Locale;
 public class MainController {
 
 //    임시 컨트롤러
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/user")
     public String main(Locale locale, Model model) {
-        return "main_sidebar";
+        return "main_user";
     }
+
+    @RequestMapping(value = "/organization")
+    public String organization(Locale locale, Model model) {
+        return "organization";
+    }
+
+    @RequestMapping(value = "/donation")
+    public String donation(Locale locale, Model model) {
+        return "donation";
+    }
+
 }

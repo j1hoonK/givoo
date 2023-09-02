@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/mainpage/view/mainpage.dart';
+import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: '기부어때',
       theme: ThemeData(primaryColor: Colors.white),
-      home: MainPage()
+      home: MainMyGroup()
     );
   }
 }

@@ -1,12 +1,11 @@
 package com.givoo.service.serviceImp;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
 import com.givoo.entity.donation.Donation;
-import com.givoo.entity.organization.Organization;
 import com.givoo.repository.FavoritesRepository;
 import com.givoo.repository.donation.DonationRepository;
+import com.givoo.repository.organization.OrganizationRepository;
 import com.givoo.service.MypageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +19,12 @@ public class MypageServiceImpl implements MypageService {
 
     private final DonationRepository donationRepository;
     private final FavoritesRepository favoritesRepository;
-
+    private final OrganizationRepository organizationRepository;
     @Autowired
-    public MypageServiceImpl(DonationRepository donationRepository, FavoritesRepository favoritesRepository) {
+    public MypageServiceImpl(DonationRepository donationRepository, FavoritesRepository favoritesRepository, OrganizationRepository organizationRepository) {
         this.donationRepository = donationRepository;
         this.favoritesRepository = favoritesRepository;
+        this.organizationRepository = organizationRepository;
     }
 
     @Override
@@ -53,9 +53,14 @@ public class MypageServiceImpl implements MypageService {
     public List<MyOrgDTO> myOrg(Long userId) {
         List<Favorites> favList = favoritesRepository.findAllByUserId(userId);
         List<MyOrgDTO> myOrgList = favList.stream()
-                .map(favorites -> new MyOrgDTO(favorites.getOrgId()))
+                .map(fav -> new MyOrgDTO(organizationRepository.findById(fav.getOrgId()).get().getOrgName(),
+                        organizationRepository.findById(fav.getOrgId()).get().getImagePath(),
+                        organizationRepository.findById(fav.getOrgId()).get().getOrgType(),
+                        organizationRepository.findById(fav.getOrgId()).get().getOrgId()
+                        ))
                 .collect(Collectors.toList());
         return myOrgList;
     }
-
 }
+
+

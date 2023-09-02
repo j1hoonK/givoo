@@ -85,16 +85,15 @@ VALUES
 -- favorites 테이블에 더미 데이터 10개 삽입
 INSERT INTO favorites (org_id, user_id)
 VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5),
-    (6, 6),
-    (7, 7),
-    (8, 8),
-    (9, 9),
-    (10, 10);
+    (2, 1),
+    (3, 1),
+    (4, 1),
+    (5, 1),
+    (6, 1),
+    (7, 1),
+    (8, 1),
+    (9, 1),
+    (10, 1);
 
 -- donation 테이블에 더미 데이터 10개 삽입
 INSERT INTO donation (dnt_amount, dnt_date, receipt_result, org_id, user_id, type_payment, dnt_comment, is_regulation, dnt_type)

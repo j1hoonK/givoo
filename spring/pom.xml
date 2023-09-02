@@ -58,6 +58,12 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 
+<!--		스프링부트 시큐리티-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

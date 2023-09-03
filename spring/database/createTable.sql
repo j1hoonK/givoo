@@ -149,3 +149,13 @@ PRIMARY KEY (`type_id`),
 KEY `FK_1` (`org_id`),
 CONSTRAINT `FK_14` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org_id`)
 );
+
+
+# 관리자 로그인용 임시 DB table
+CREATE TABLE `manager`
+(
+    `id`     int NOT NULL AUTO_INCREMENT,
+    `username`  int NOT NULL COMMENT '관리자아이디' ,
+    `password`  int NOT NULL COMMENT '관리자비밀번호' ,
+    PRIMARY KEY (`id`)
+);

@@ -32,21 +32,23 @@ class _MainMyGroupState extends State<MainMyGroup> {
               if (!myPageProvider.myOrgList.isEmpty) {
                 return Expanded(
                   child: Container(
+                    margin: EdgeInsets.all(0),
                     child: ListView.builder(
+                      padding: EdgeInsets.only(bottom: 10),
                       itemCount: myPageProvider.orgTypes.length,
                       itemBuilder: (BuildContext ctx, int idx) {
                         return Card(
-                          margin: EdgeInsets.all(0),
+                          margin: EdgeInsets.only(bottom: 5),
                           child: Column(
                             children: [
                               Container(
-                                margin: EdgeInsets.only(left: 20),
+                                margin: EdgeInsets.all(15),
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   myPageProvider.orgTypes[idx],
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ),
@@ -56,7 +58,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
                                 itemCount: myPageProvider.myOrgList2[idx].length,
                                 itemBuilder: (BuildContext ctx2, int idx2) {
                                   return OrgList(
-                                    myPageProvider.myOrgList2[idx][idx2],
+                                    myOrgList:myPageProvider.myOrgList2[idx][idx2] ,
                                   );
                                 },
                               ),

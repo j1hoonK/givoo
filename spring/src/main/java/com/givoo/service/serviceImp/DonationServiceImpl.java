@@ -1,36 +1,51 @@
 package com.givoo.service.serviceImp;
 
-import com.givoo.dto.donation.DonationDTO;
-import com.givoo.dto.donation.DonationRegulationDTO;
-import com.givoo.dto.donation.DonationSendDTO;
+import com.givoo.entity.donation.Donation;
+import com.givoo.entity.donation.DonationRegular;
+import com.givoo.entity.donation.DonationType;
 import com.givoo.repository.donation.DonationRegularRepository;
 import com.givoo.repository.donation.DonationRepository;
+import com.givoo.repository.donation.DonationTypeRepository;
 import com.givoo.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class DonationServiceImpl implements DonationService {
+
+    private final DonationRegularRepository donationRegularRepository;
+    private final DonationTypeRepository donationTypeRepository;
+    private final DonationRepository donationRepository;
+
     @Autowired
-    DonationRepository donationRepository;
-    @Autowired
-    DonationRegularRepository donationRegularRepository;
+    public DonationServiceImpl(DonationRegularRepository donationRegularRepository, DonationTypeRepository donationTypeRepository, DonationRepository donationRepository) {
+        this.donationRegularRepository = donationRegularRepository;
+        this.donationTypeRepository = donationTypeRepository;
+        this.donationRepository = donationRepository;
+    }
 
 
     @Override
-    public DonationDTO dnt(Long orgId,Long userId) {
-
-        return null;
+    public List<DonationType> findByOrgIdFromDonation(Long orgId) {
+        List<DonationType> dntList= donationTypeRepository.findAllByOrgId(orgId);
+        if(dntList.isEmpty()){
+            return null;
+        }
+        return dntList;
     }
 
     @Override
-    public DonationRegulationDTO dntRegulation(Long userId) {
-        return null;
+    public String dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate,String isRegulation,String dntCommentRegulation){
+        Donation dnt = new Donation(null,dntAmount,dntDate,null
+                ,orgId,userId,typePayment,dntComment,isRegulation,dntCommentRegulation,dntType);
+        donationRepository.save(dnt);
+        return "완료";
     }
     @Override
-    public DonationSendDTO dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate) {
-        return null;
+    public Donation sendDonation(Donation donation){
+        return donationRepository.save(donation);
     }
 }

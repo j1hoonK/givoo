@@ -16,4 +16,5 @@ public class DonationSendDTO { //  /donation/send
     private String typePayment; //donation
     private String dntComment; //donation
     private Date dntDate; //donation
+
 }

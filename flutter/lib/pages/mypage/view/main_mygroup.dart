@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/appbar.dart';
-import 'package:givoo/component/noOrgList.dart';
-import 'package:givoo/component/orgList.dart';
+import 'package:givoo/component/view/appbar.dart';
+import 'package:givoo/component/view/noOrgList.dart';
+import 'package:givoo/component/view/orgList.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:provider/provider.dart';
 class MainMyGroup extends StatefulWidget {

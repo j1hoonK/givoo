@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/loginbutton.dart';
+import 'package:givoo/component/view/loginbutton.dart';
 
 class LogIn extends StatelessWidget {
   const LogIn({Key? key}) : super(key: key);

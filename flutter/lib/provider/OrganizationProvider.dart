@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:givoo/component/gridView.dart';
+import 'package:givoo/component/model/OrgBoxModel.dart';
 import 'package:givoo/services/OrganizationListService.dart';
 
 class MyPageProvider extends ChangeNotifier {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/bottomnavbar.dart';
+import 'package:givoo/component/view/bottomnavbar.dart';
 
 void main() => runApp(MyPage());
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/appbar.dart';
-import 'package:givoo/component/noOrgList.dart';
-import 'package:givoo/component/orgList.dart';
+import 'package:givoo/component/view/appbar.dart';
+import 'package:givoo/component/view/noOrgList.dart';
+import 'package:givoo/component/view/orgList.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:provider/provider.dart';
 class MainMyGroup extends StatefulWidget {
@@ -56,7 +56,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
                                 itemCount: myPageProvider.myOrgList2[idx].length,
                                 itemBuilder: (BuildContext ctx2, int idx2) {
                                   return OrgList(
-                                    myPageProvider.myOrgList2[idx][idx2],
+                                    myOrgList:myPageProvider.myOrgList2[idx][idx2] ,
                                   );
                                 },
                               ),

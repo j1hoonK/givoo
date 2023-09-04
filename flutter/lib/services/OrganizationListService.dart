@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:givoo/component/gridView.dart';
+import 'package:givoo/component/model/OrgBoxModel.dart';
 import 'package:http/http.dart' as http;
 
 class OrganizationListService {

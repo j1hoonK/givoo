@@ -59,10 +59,10 @@
 		</dependency>
 
 <!--		스프링부트 시큐리티-->
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency>-->
 
 	</dependencies>
 

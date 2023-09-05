@@ -13,7 +13,11 @@ class OrgBox extends StatelessWidget {
       child: Column(
         children: [
           Container(
+            decoration: BoxDecoration(
+              border: Border.all(),
+            ),
             height: 50,
+            child: Image.network("http://localhost:1000/images/1.png"),
           ),
           Text(org.orgName),
           Text(org.orgAddress),

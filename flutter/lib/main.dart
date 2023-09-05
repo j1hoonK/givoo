@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/mainpage/view/mainpage.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
-import 'package:givoo/pages/recommend/view/recommend.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
+import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:provider/provider.dart';
@@ -22,9 +21,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       home: ChangeNotifierProvider(
-        create: (context) => OrganizationProvider(),
-        child: Recommend(),
-        create: (context) => MyPageProvider(),
+        create: (context) => DonationProvider(),
         child: DonationHistory(),
       ),
     );

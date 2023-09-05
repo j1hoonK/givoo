@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/component/model/com_dnthistory_model.dart';
+import 'package:intl/intl.dart';
 
 class DntHistory extends StatelessWidget {
-  const DntHistory({super.key, required this.date, required this.type, required this.name, required this.text, });
+  const DntHistory({super.key, required this.dnt});
 
-  final String date;
-  final String type;
-  final String name;
-  final Widget ;
-
+  final Donation dnt;
 
   @override
   Widget build(BuildContext context) {
+
+    final dateForm = DateFormat('yyyy-MM-dd').format(dnt.dntDate);
+    final orgIdForm = dnt.orgId.toString();
+    final amountForm = dnt.dntAmount.toString();
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: Column(
@@ -19,7 +22,7 @@ class DntHistory extends StatelessWidget {
               children: [
                 Text("결제 완료"),
                 SizedBox(width: 20,),
-                Text(dnt.dntDate),
+                Text(dateForm),
               ]
           ),
           SizedBox(
@@ -27,15 +30,13 @@ class DntHistory extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(type),
+                Text(dnt.dntType),
                 SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(name),
-                    Text(name),
-                    text
-
+                    Text(orgIdForm),
+                    Text(amountForm),
                   ],
                 ),
               ],

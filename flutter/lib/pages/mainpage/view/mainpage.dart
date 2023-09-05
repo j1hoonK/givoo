@@ -28,7 +28,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainPage> {
-  //int _currentIndex = 0;
+  //wint _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {

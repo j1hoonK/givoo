@@ -11,7 +11,6 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget{
         elevation: 0.0,        // 앱바 하단 그림자 없애기
         title: Text(title,
           style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold), ),
-        backgroundColor: Colors.white,
       );
   }
    @override

@@ -28,14 +28,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainPage> {
-  //wint _currentIndex = 0;
+  int currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       body: _buildMiddle(),
-      bottomNavigationBar: BotNavBar(),
+      bottomNavigationBar: BotNavBar(currentIndex: 1,),
       /*BottomNavigationBar(//바텀 네비게이터
         currentIndex: _currentIndex,
         onTap: (index) {

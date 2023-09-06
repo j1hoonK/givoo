@@ -14,39 +14,42 @@ class DntHistory extends StatelessWidget {
     final orgIdForm = dnt.orgId.toString();
     final amountForm = dnt.dntAmount.toString();
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-      child: Column(
-        children: [
-          Row(
-              children: [
-                Text("결제 완료"),
-                SizedBox(width: 20,),
-                Text(dateForm),
-              ]
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(dnt.dntType),
-                SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(orgIdForm),
-                    Text(amountForm),
-                  ],
-                ),
-              ],
+    return TextButton(
+      onPressed: (){},
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+        child: Column(
+          children: [
+            Row(
+                children: [
+                  Text("결제 완료"),
+                  SizedBox(width: 20,),
+                  Text(dateForm),
+                ]
             ),
-          ),
-          Divider(
-            height: 20,
-            color: Colors.grey[350],
-          )
-        ],
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(dnt.dntType),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(orgIdForm),
+                      Text(amountForm),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              height: 20,
+              color: Colors.grey[350],
+            )
+          ],
+        ),
       ),
     );
   }

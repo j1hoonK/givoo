@@ -59,6 +59,7 @@
 		</dependency>
 
 <!--		스프링부트 시큐리티-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -80,6 +81,7 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>3.2.1</version>
 		</dependency>
+
 
 	</dependencies>
 

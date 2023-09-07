@@ -40,6 +40,10 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public List<Organization> searchOrg(String orgName) {
-        return organizationRepo.findAllByOrgName(orgName);
+        return organizationRepo.findAllByOrgNameContaining(orgName);
+    }
+    @Override
+    public List<Organization> findType(String orgType){
+        return organizationRepo.findAllByOrgType(orgType);
     }
 }

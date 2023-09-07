@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
 
@@ -8,7 +10,6 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(backgroundColor: Colors.white, elevation: 0, actions: [

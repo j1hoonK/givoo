@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/loginbutton.dart';
+import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 
-class LogIn extends StatelessWidget {
-  const LogIn({Key? key}) : super(key: key);
+class LogIn extends StatefulWidget {
+  LogIn({Key? key}) : super(key: key);
+
+  @override
+  State<LogIn> createState() => _LogInState();
+}
+
+class _LogInState extends State<LogIn> {
+  final viewModel = LoginViewModel(KakaoLogin());
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +37,10 @@ class LogIn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 120,),
-            Image.asset('images/login/logo.png',width: 200,),
+            Image.network(viewModel.user?.kakaoAccount?.profile?.profileImageUrl ?? ''),
+            Text(viewModel.user?.kakaoAccount?.profile?.nickname ?? ''),
+            Text('${viewModel.isLogin}'),
+            //Image.asset('images/login/logo.png',width: 200,),
             SizedBox(height: 170),
             // Google Login
             LoginButton(
@@ -50,7 +62,10 @@ class LogIn extends StatelessWidget {
             LoginButton(
                 color: Color(0xfff8d000),
                 image: Image.asset('images/login/kakao.png', width: 30),
-                onPressed: (){ },
+                onPressed: () async{
+                  await viewModel.login();
+                  print(viewModel.user);
+                },
                 text: Text('Login with kakao',
                     style: TextStyle(color: Colors.black))
             ),

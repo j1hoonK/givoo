@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/mainpage/view/mainpage.dart';
-import 'package:givoo/pages/mypage/view/main_mygroup.dart';
-import 'package:givoo/pages/mypage/view/mypage.dart';
-import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
 
 import 'component/view/bottomnavbar.dart';
 
-void main() => runApp(MyApp());
+
+void main() {
+  KakaoSdk.init(nativeAppKey: 'e61d743ad3d9819502abe521a4b1584b');
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

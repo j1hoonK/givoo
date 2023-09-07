@@ -16,3 +16,6 @@ public class SwaggerConfig {
         return new OpenAPI().info(new Info().title("API 명세서").version("1.0").description("기부플랫폼 API 명세서"));
     }
 }
+
+
+

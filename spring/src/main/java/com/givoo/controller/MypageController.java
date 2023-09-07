@@ -1,5 +1,6 @@
 package com.givoo.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
@@ -50,5 +51,10 @@ public class MypageController {
     public ResponseEntity<String> findByDntRegularId(@PathVariable Long dntRegularId) {
         mypageService.findByDntRegularId(dntRegularId);
         return ResponseEntity.ok("Isusenow 토글 완료");
+    }
+
+    @PostMapping("/fav")
+    public void fav(@RequestParam("orgId") Long orgId, @RequestParam("userId") Long userId) {
+        mypageService.fav(orgId, userId);
     }
 }

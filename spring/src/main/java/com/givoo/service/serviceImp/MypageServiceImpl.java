@@ -12,6 +12,7 @@ import com.givoo.service.MypageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.PublicKey;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -90,9 +91,13 @@ public class MypageServiceImpl implements MypageService {
         return donationRegulars;
     }
 
-
-
-
+    @Override
+    public Favorites fav(Long orgId, Long userId) {
+        Favorites fav = new Favorites(orgId,userId);
+        return favoritesRepository.save(fav);
     }
+
+
+}
 
 

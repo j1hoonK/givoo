@@ -19,4 +19,10 @@ public class Favorites {
     @Column(nullable = false)
     private Long userId;
 
+    public Favorites(Long orgId, Long userId) {
+    }
+
+    public Favorites() {
+
+    }
 }

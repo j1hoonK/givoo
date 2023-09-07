@@ -12,10 +12,8 @@ class DonationHistory extends StatefulWidget {
 }
 
 class _DonationHistoryState extends State<DonationHistory> {
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Provider.of<DonationProvider>(context, listen: false).loadDonation();
   }
@@ -29,13 +27,26 @@ class _DonationHistoryState extends State<DonationHistory> {
       body: Consumer<DonationProvider>(builder: (context, provider, child) {
         if (provider.donation.isNotEmpty) {
           return ListView.builder(
-              itemBuilder: (context, index) {
-                return DntHistory(dnt: provider.donation[index]);
-              },
-              itemCount: provider.donation.length,
-            );
+            itemBuilder: (context, index) {
+              return DntHistory(dnt: provider.donation[index]);
+            },
+            itemCount: provider.donation.length,
+          );
         } else {
-          return Text("data");
+          return Center(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "데이터 조회 실패",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                ),
+              ),
+            ],
+          ));
         }
       }),
     );

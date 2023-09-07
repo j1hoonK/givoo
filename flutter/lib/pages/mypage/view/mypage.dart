@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/view/bottomnavbar.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
 
@@ -9,7 +8,6 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  int arg = ModalRoute.of(context)?.settings.arguments as int;
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -127,7 +125,6 @@ class MyPage extends StatelessWidget {
             ),
           ),
         ]),
-        bottomNavigationBar: BotNavBar(currentIndex: 2,),
 
     );
   }

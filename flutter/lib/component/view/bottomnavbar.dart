@@ -1,54 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/view/login.dart';
+import 'package:givoo/pages/mypage/view/mypage.dart';
 
 import '../../pages/mainpage/view/mainpage.dart';
 
 class BotNavBar extends StatefulWidget {
-  const BotNavBar({super.key, required this.currentIndex});
-  final int currentIndex;
-
-
+  const BotNavBar({super.key});
 
   @override
   State<BotNavBar> createState() => _BotNavBarState();
 }
 
 class _BotNavBarState extends State<BotNavBar> {
-  late final int currentIndex;
-
+  int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      //바텀 네비게이터
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.grey,
-      showUnselectedLabels: true,
-      currentIndex: currentIndex,
-      onTap: (index) {
-        setState(() {
-          currentIndex = index;
-          if(index == 0){
-            Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => MainPage()),(route) => false);
-          }if(index == 1){
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => MainPage()),(route) => false);
-          }if(index == 2){
-            Navigator.pushNamedAndRemoveUntil(context, '/MyPage',arguments: 10, (route) => false);
-        }});
-      },
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: '검색',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.real_estate_agent),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: '마이페이지',
-        ),
-      ],
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+        //indicatorColor: Color(),
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (value) => setState(() {
+          _currentIndex = value;
+        }),
+        destinations: [
+          NavigationDestination(
+            icon: Icon(Icons.manage_search),
+            label: '검색',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.real_estate_agent),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            label: '마이페이지',
+          ),
+        ],
+        animationDuration: Duration(milliseconds: 1000),
+      ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          LogIn(),
+          MainPage(),
+          MyPage()
+        ],
+      ),
+
     );
   }
 }

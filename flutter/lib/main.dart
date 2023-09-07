@@ -8,6 +8,8 @@ import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:provider/provider.dart';
 
+import 'component/view/bottomnavbar.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -31,22 +33,20 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: '기부어때',
           theme: ThemeData(
+            useMaterial3: false,
+            navigationBarTheme: NavigationBarThemeData(
+              backgroundColor: Colors.white,
+            ),
             appBarTheme: AppBarTheme(
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(color: Colors.black),
             ),
             textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(foregroundColor: Colors.black)
-            ),
+                style: TextButton.styleFrom(foregroundColor: Colors.black)),
             scaffoldBackgroundColor: Colors.white,
             primaryColor: Colors.white,
           ),
-          home: MainPage(),
-          routes: {
-            '/home':(context) => MainPage(),
-            '/MyPage':(context) => MyPage(),
-
-          },
+          home: BotNavBar(),
         ));
   }
 }

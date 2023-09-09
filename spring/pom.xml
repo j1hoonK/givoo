@@ -48,17 +48,20 @@
 		</dependency>
 
 		<!--jsp 해석 dependnecy-->
+
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 
-<!--		스프링부트 시큐리티-->
+		<!--      스프링부트 시큐리티-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -81,8 +84,6 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>3.2.1</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>

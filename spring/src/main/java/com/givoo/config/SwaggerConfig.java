@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition
 public class SwaggerConfig {
     @Bean
-    // localhost:xxxx/swagger-ui/index.html#/
+    // localhost:1000/swagger-ui/index.html#/
     public OpenAPI baseOpenAPI(){
         return new OpenAPI().info(new Info().title("API 명세서").version("1.0").description("기부플랫폼 API 명세서"));
     }

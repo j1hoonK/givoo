@@ -53,8 +53,12 @@ public class MypageController {
         return ResponseEntity.ok("Isusenow 토글 완료");
     }
 
-    @PostMapping("/fav")
+    @PostMapping("/fav/apply")
     public void fav(@RequestParam("orgId") Long orgId, @RequestParam("userId") Long userId) {
         mypageService.fav(orgId, userId);
+    }
+    @PostMapping("/fav/del")
+    public void favDel(@RequestParam("favId") Long favId){
+        mypageService.favDel(favId);
     }
 }

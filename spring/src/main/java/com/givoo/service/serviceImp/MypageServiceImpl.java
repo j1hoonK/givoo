@@ -92,9 +92,14 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public Favorites fav(Long orgId, Long userId) {
+    public void fav(Long orgId, Long userId) {
         Favorites fav = new Favorites(orgId,userId);
-        return favoritesRepository.save(fav);
+        favoritesRepository.save(fav);
+    }
+
+    @Override
+    public void favDel(Long favId) {
+        favoritesRepository.deleteById(favId);
     }
 
 

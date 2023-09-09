@@ -23,4 +23,6 @@ public interface MypageService {
     List<DonationRegular> findByDntRegularId(Long dntRegularId);
 
     void fav(Long orgId,Long userId);
+
+    void favDel(Long favId);
 }

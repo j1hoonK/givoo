@@ -7,9 +7,12 @@ import 'package:provider/provider.dart';
 
 import 'component/view/bottomnavbar.dart';
 
-
 void main() {
-  KakaoSdk.init(nativeAppKey: 'e61d743ad3d9819502abe521a4b1584b');
+  WidgetsFlutterBinding.ensureInitialized();
+  KakaoSdk.init(
+      nativeAppKey: 'e61d743ad3d9819502abe521a4b1584b',
+      javaScriptAppKey: 'b922d230ead129047285d1c296c0b597'
+  );
   runApp(MyApp());
 }
 

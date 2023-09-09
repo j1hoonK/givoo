@@ -1,3 +1,4 @@
+/*
 package com.givoo.dto;
 
 import jakarta.validation.constraints.NotEmpty;
@@ -19,3 +20,4 @@ public class ManagerCreateDTO {
 
 
 }
+*/

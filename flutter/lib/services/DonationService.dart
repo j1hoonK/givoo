@@ -9,7 +9,7 @@ class DonationService{
   DonationService(this.userId);
 
   Future<List<Donation>> loadDonation() async {
-    http.Response response = await http.get(Uri.parse("http://localhost:1000/mypage/dntresult/$userId"));
+    http.Response response = await http.get(Uri.parse("http://10.0.2.2:1000/mypage/dntresult/$userId"));
     if(response.statusCode == 200){
       print("OK");
       List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));

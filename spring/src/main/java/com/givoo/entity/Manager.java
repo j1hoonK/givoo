@@ -1,3 +1,4 @@
+/*
 package com.givoo.entity;
 
 import com.givoo.dto.ManagerCreateDTO;
@@ -31,3 +32,4 @@ public class Manager {
 
 }
 
+*/

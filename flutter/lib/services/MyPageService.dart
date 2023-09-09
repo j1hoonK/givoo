@@ -6,7 +6,7 @@ class MyOrgService {
 
   Future<List<MyOrgList>> fetchTodo() async {
     try {
-      var response = await http.get(Uri.parse("http://localhost:1000/mypage/org/1"));
+      var response = await http.get(Uri.parse("http://10.0.2.2:1000/mypage/org/1"));
       print(response.statusCode);
       List<dynamic> _data = json.decode(utf8.decode(response.bodyBytes));
       List<MyOrgList> _result =

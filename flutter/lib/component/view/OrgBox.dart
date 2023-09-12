@@ -14,21 +14,24 @@ class OrgBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        print("바보");
-      },
       child: Card(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               decoration: BoxDecoration(
                 border: Border.all(),
               ),
-              height: 50,
-              child: Image.network("http://localhost:1000/images/1.png"),
+              height: 110,
+              child: Image.network("http://localhost:1000/images/1.png",
+                fit: BoxFit.fill,),
             ),
-            Text(orgName),
-            Text(orgAddress),
+            Text(orgName,
+              style: TextStyle(fontWeight: FontWeight.bold,
+            ),),
+            Text(orgAddress,
+              style: TextStyle(color: Colors.grey,
+                fontSize: 12), ),
           ],
         ),
       ),

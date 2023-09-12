@@ -17,7 +17,7 @@ class OrgBox extends StatelessWidget {
       onTap: (){
         print("바보");
       },
-      child: Container(
+      child: Card(
         child: Column(
           children: [
             Container(

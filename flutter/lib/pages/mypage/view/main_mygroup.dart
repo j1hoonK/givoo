@@ -43,7 +43,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
                           child: Column(
                             children: [
                               Container(
-                                margin: EdgeInsets.all(15),
+                                margin: EdgeInsets.all(20),
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   myPageProvider.orgTypes[idx],

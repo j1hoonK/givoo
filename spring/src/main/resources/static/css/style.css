@@ -1,18 +1,14 @@
-
-  @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Noto+Sans+KR:wght@500&family=Poppins:ital,wght@0,200;1,900&display=swap');
-
 *{
-    
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
+
 body{
     min-height: 100vh;
     width: 100%;
-    
 }
+
 .sidebar{
     position:fixed;
     height: 100%;
@@ -20,15 +16,14 @@ body{
     background: #0A2558;
     
 }
-.sidebar .logo-detils{
+
+.sidebar .logo-details{
     height: 80px;
     width: 100%;
     display: flex;
     align-items: center;
-    margin-top: 50px;
-
-    
 }
+
 .sidebar .logo-details i{ /*손하트 로고*/
     font-size: 28px;
     font-weight: 500;
@@ -51,6 +46,7 @@ body{
 
 .sidebar .nav-links {
     margin-top: 16px;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -59,24 +55,23 @@ body{
     height: 60px;
     width: 100%;
     list-style: none;
-    margin-top: auto; /* 마지막 항목을 아래로 이동 */
 }
 
 .sidebar .nav-links li:last-child {
-    margin-top: 180px; /* 로그아웃 항목의 아래 여백을 조정 */
+    margin: auto; /* 로그아웃 항목의 아래 여백을 조정 */
 }
 
 
-/*.sidebar .nav-links{
+.sidebar .nav-links{
     margin-top: 16px;
-    
+
 }
 
 .sidebar .nav-links li{
-    height: 60px;/*링크 목록 높이(사이)의 값
+    height: 60px; /*링크 목록 높이(사이)의 값*/
      width: 100%;
     list-style: none;
-}*/
+}
 
 .sidebar .nav-links li a{
     height: 100%;
@@ -84,7 +79,7 @@ body{
     display: flex;
     align-items: center;
     text-decoration: none;
-    transition: all 0.4s ease;/*전환효과*/
+    transition: all 0.4s ease; /*전환효과*/
     
 }
 
@@ -143,7 +138,7 @@ body{
 .home-section nav .search-box{
  
  height: 50px;
- width: 550px;
+ width: 400px;
  margin: 0 20px;
 
 }

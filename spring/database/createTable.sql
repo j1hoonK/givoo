@@ -24,7 +24,7 @@ CREATE TABLE `organization`
  `org_owner`      varchar(45) NOT NULL COMMENT '대표자',
  `started_up`     date NOT NULL COMMENT '설립일' ,
  `account_number` bigint NOT NULL COMMENT '계좌번호',
- `image_path`     varchar(45) NOT NULL COMMENT '기관 이미지파일 경로' ,
+ `image_path`     varchar(45) COMMENT '기관 이미지파일 경로' ,
  `total_favorite` int NOT NULL DEFAULT 0 COMMENT '좋아요 수' ,
 
 PRIMARY KEY (`org_id`)
@@ -148,4 +148,14 @@ CREATE TABLE `donation_type`
 PRIMARY KEY (`type_id`),
 KEY `FK_1` (`org_id`),
 CONSTRAINT `FK_14` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org_id`)
+);
+
+
+# 관리자 로그인용 임시 DB table
+CREATE TABLE `manager`
+(
+    `id`     int NOT NULL AUTO_INCREMENT,
+    `username`  int NOT NULL COMMENT '관리자아이디' ,
+    `password`  int NOT NULL COMMENT '관리자비밀번호' ,
+    PRIMARY KEY (`id`)
 );

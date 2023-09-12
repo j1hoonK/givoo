@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/view/bottomnavbar.dart';
+import 'package:givoo/pages/mypage/view/main_mygroup.dart';
+import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
 
-void main() => runApp(MyPage());
 
 class MyPage extends StatelessWidget {
-  const MyPage({super.key});
+  MyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(backgroundColor: Colors.white, elevation: 0, actions: [
           IconButton(
@@ -59,7 +58,9 @@ class MyPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MainMyGroup(),));
+                        },
                         child: Row(
                           children: [
                             Icon(
@@ -78,7 +79,9 @@ class MyPage extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => DonationHistory(),));
+                        },
                         child: Row(
                           children: [
                             Icon(
@@ -122,8 +125,7 @@ class MyPage extends StatelessWidget {
             ),
           ),
         ]),
-        bottomNavigationBar: BotNavBar(),
-      ),
+
     );
   }
 }

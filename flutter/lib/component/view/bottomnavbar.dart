@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/view/login.dart';
+import 'package:givoo/pages/mypage/view/mypage.dart';
+
+import '../../pages/mainpage/view/mainpage.dart';
 
 class BotNavBar extends StatefulWidget {
   const BotNavBar({super.key});
@@ -8,32 +12,42 @@ class BotNavBar extends StatefulWidget {
 }
 
 class _BotNavBarState extends State<BotNavBar> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      //바텀 네비게이터
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: '검색',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.real_estate_agent),
-          label: '나눔 추천',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: '마이페이지',
-        ),
-      ],
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+        //indicatorColor: Color(),
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (value) => setState(() {
+          _currentIndex = value;
+        }),
+        destinations: [
+          NavigationDestination(
+            icon: Icon(Icons.manage_search),
+            label: '검색',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.real_estate_agent),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            label: '마이페이지',
+          ),
+        ],
+        animationDuration: Duration(milliseconds: 1000),
+      ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          LogIn(),
+          MainPage(),
+          MyPage()
+        ],
+      ),
+
     );
   }
 }

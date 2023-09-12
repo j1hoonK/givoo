@@ -28,14 +28,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainPage> {
-  //int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       body: _buildMiddle(),
-      bottomNavigationBar: BotNavBar(),
       /*BottomNavigationBar(//바텀 네비게이터
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -84,7 +82,7 @@ class _MainScreenState extends State<MainPage> {
                   //더보기 눌렀을 때 원하는 곳으로 이동
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
+                  padding: const EdgeInsets.fromLTRB(17, 30, 17, 0),
                   child: Row(
                     children: const [
                       Text(
@@ -151,7 +149,7 @@ class _MainScreenState extends State<MainPage> {
                       //더보기 아이콘 눌렀을 때 동작
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
+                      padding: const EdgeInsets.fromLTRB(17, 30, 17, 0),
                       child: Row(
                         children: const [
                           Text(

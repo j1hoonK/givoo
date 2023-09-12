@@ -30,11 +30,9 @@ public class Donation {
     private Long userId;
     @Column(nullable = false)
     private String typePayment;
-
     private String dntComment;  //null 값 허용되는 컬럼
     @Column(nullable = false)
     private String isRegulation;
-
     private String dntCommentRegulation; //null 값 허용되는 컬럼
     @Column(nullable = false)
     private String dntType;

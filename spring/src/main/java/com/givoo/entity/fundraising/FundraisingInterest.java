@@ -13,8 +13,7 @@ public class FundraisingInterest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
     private Long fndrIntrId;
     @Column(nullable = false)
-    private Long FndrId;
+    private Long fndrId;
     @Column(nullable = false)
     private Long userId;
-
 }

@@ -1,18 +1,32 @@
 import 'package:flutter/services.dart';
 import 'package:givoo/pages/login/viewmodel/social_login.dart';
+import 'package:givoo/services/LoginService.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 class KakaoLogin implements SocialLogin {
+  Map<String, String> kakaoUser = {};
 
   @override
   Future<bool> login() async {
+    // 로그인
+    KakaoService kakaoService = KakaoService();
+
     try {
-      // 카카오톡 실행 가능 여부 확인
       // 카카오톡 실행이 가능하면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
       if (await isKakaoTalkInstalled()) {
         try {
+          User user = await UserApi.instance.me();
           OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
           print('카카오톡으로 로그인 성공_token:${token.accessToken}');
+          var kakaoUser = {
+            // 서버에 전송할 user 정보
+            "login": "kakao",
+            "token": user.id,
+            "user_name": user.kakaoAccount?.profile?.nickname,
+            "user_image": user.kakaoAccount?.profile?.profileImageUrl,
+            "user_email": user.kakaoAccount?.email,
+          };
+          print('user:$kakaoUser');
         } catch (error) {
           print('카카오톡으로 로그인 실패 $error');
 
@@ -32,7 +46,18 @@ class KakaoLogin implements SocialLogin {
       } else {
         try {
           OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
-          print('카카오계정으로 로그인 성공2_token:${token.accessToken}');
+          print('카카오계정으로 로그인 성공2');
+          User user = await UserApi.instance.me();
+          var kakaoUser = {
+            // 서버에 전송할 user 정보
+            "loginType": "kakao",
+            "token": user.id,
+            "userName": user.kakaoAccount?.profile?.nickname,
+            "userImage": user.kakaoAccount?.profile?.profileImageUrl,
+            "userEmail": user.kakaoAccount?.email,
+          };
+          print('Token:${kakaoUser["token"]}');
+          kakaoService.sendKakaoLogin(kakaoUser);
         } catch (error) {
           print('카카오계정으로 로그인 실패2 $error');
         }
@@ -45,6 +70,7 @@ class KakaoLogin implements SocialLogin {
 
   @override
   Future<bool> logout() async {
+    // 로그아웃
     try {
       await UserApi.instance.unlink();
       return true;

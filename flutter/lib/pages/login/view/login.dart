@@ -3,6 +3,8 @@ import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:givoo/component/view/loginbutton.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
+import 'package:givoo/services/LoginService.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:uuid/uuid.dart';
 
 class LogIn extends StatefulWidget {
@@ -86,7 +88,6 @@ class _LogInState extends State<LogIn> {
                 image: Image.asset('images/login/kakao.png', width: 30),
                 onPressed: () async {
                   await viewModel.login().then((value) => setState((){}));
-                  print(viewModel.user);
                 },
                 text: Text('Login with kakao',
                     style: TextStyle(color: Colors.black))),
@@ -96,3 +97,17 @@ class _LogInState extends State<LogIn> {
     );
   }
 }
+
+// void findToken()async{
+//   try {
+//     AccessTokenInfo tokenInfo =
+//     await UserApi.instance.accessTokenInfo();
+//     print('토큰 유효성 체크 성공 AppId: ${tokenInfo.appId}, 회원ID:${tokenInfo.id}, 남은시간: ${tokenInfo.expiresIn}초');
+//   } catch (error) {
+//     if (error is KakaoException && error.isInvalidTokenError()) {
+//       print('토큰 만료 $error');
+//     } else {
+//       print('토큰 정보 조회 실패 $error');
+//     }
+//   }
+// }

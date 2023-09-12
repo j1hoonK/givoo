@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/mainpage/view/mainpage.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/provider/UserProvider.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
 
@@ -32,6 +34,10 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => DonationProvider(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => UserInfoProvider(),
+          ),
+
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

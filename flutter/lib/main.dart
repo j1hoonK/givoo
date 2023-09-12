@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/mainpage/view/mainpage.dart';
+import 'package:givoo/pages/mypage/model/MyOrgList.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
-import 'package:givoo/pages/recommend/view/recommend.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       title: '기부어때',
       theme: ThemeData(primaryColor: Colors.white),
       home: ChangeNotifierProvider(
-        create: (context) => OrganizationProvider(),
-        child: Recommend(),
+        create: (context) => MyPageProvider(),
+        child: MainMyGroup(),
       ),
     );
   }

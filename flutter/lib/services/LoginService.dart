@@ -30,15 +30,16 @@ class FindByToken{
 
   Future<List<KakaoUser>> findUserInfo(tokenId) async {
 
-    print("run");
+    print("[Run] findUserInfo");
     var url = "http://10.0.2.2:1000/login/$tokenId";
     http.Response response = await http.get(Uri.parse(url));
     if(response.statusCode == 200){
-      print("find");
+      print("StatuseCode == 200");
       List<dynamic> userInfo = jsonDecode(utf8.decode(response.bodyBytes));
+      print("userInfo: $userInfo");
       return userInfo.map<KakaoUser>((item) => KakaoUser.fromJson(item)).toList();
     } else {
-      print("fail");
+      print("[Fail] getUserInfo");
       throw Exception("fail to find User Information");
     }
 }

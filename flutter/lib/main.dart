@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/mainpage/view/mainpage.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';

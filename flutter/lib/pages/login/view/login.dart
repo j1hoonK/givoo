@@ -9,11 +9,12 @@ import 'package:uuid/uuid.dart';
 
 class LogIn extends StatefulWidget {
   LogIn({Key? key}) : super(key: key);
+
   @override
-  State<LogIn> createState() => _LogInState();
+  State<LogIn> createState() => LogInState();
 }
 
-class _LogInState extends State<LogIn> {
+class LogInState extends State<LogIn> {
   final viewModel = LoginViewModel(KakaoLogin());
 
   @override
@@ -23,7 +24,7 @@ class _LogInState extends State<LogIn> {
         actions: [
           IconButton(
               onPressed: () async {
-                await viewModel.logout().then((value) => setState((){}));
+                await viewModel.logout().then((value) => setState(() {}));
               },
               icon: Icon(Icons.logout))
         ],

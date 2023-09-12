@@ -22,6 +22,7 @@ class OrgBox extends StatelessWidget {
                 border: Border.all(),
               ),
               height: 110,
+              width: 150,
               child: Image.network("http://localhost:1000/images/1",
                 fit: BoxFit.fill,),
             ),

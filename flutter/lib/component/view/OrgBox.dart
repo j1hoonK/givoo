@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/model/OrgBoxModel.dart';
 
 class OrgBox extends StatelessWidget {
   OrgBox({super.key,
@@ -23,7 +22,7 @@ class OrgBox extends StatelessWidget {
                 border: Border.all(),
               ),
               height: 110,
-              child: Image.network("http://localhost:1000/images/1.png",
+              child: Image.network("http://localhost:1000/images/1",
                 fit: BoxFit.fill,),
             ),
             Text(orgName,

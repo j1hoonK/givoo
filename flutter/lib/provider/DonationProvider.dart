@@ -7,6 +7,7 @@ class DonationProvider with ChangeNotifier{
   List<Donation> _donation = [];
   List<Donation> get donation => _donation;
 
+  // 후원 이력 확인
   loadDonation() async {
     List<Donation> donationList = await _donationService.loadDonation();
     _donation = donationList;

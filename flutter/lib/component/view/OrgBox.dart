@@ -6,14 +6,17 @@ class OrgBox extends StatelessWidget {
   required this.orgAddress,
   required this.orgPath});
 
-  var orgName;
-  var orgAddress;
-  var orgPath;
+
+  final orgName;
+  final orgAddress;
+  final orgPath;
+
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       child: Card(
+        margin: EdgeInsets.only(left: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,14 +27,17 @@ class OrgBox extends StatelessWidget {
               height: 110,
               width: 150,
               child: Image.network("http://localhost:1000/images/1",
-                fit: BoxFit.fill,),
+                fit: BoxFit.fill,
+              ),
             ),
             Text(orgName,
               style: TextStyle(fontWeight: FontWeight.bold,
             ),),
             Text(orgAddress,
               style: TextStyle(color: Colors.grey,
-                fontSize: 12), ),
+                fontSize: 12,
+              ),
+            ),
           ],
         ),
       ),

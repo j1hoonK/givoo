@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/login/view/login.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
+import 'package:givoo/services/TokenService.dart';
 
 import '../../pages/mainpage/view/mainpage.dart';
 
@@ -13,7 +15,6 @@ class BotNavBar extends StatefulWidget {
 
 class _BotNavBarState extends State<BotNavBar> {
   int _currentIndex = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +43,9 @@ class _BotNavBarState extends State<BotNavBar> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          LogIn(),
+          logIn(),
           MainPage(),
-          MyPage()
+          MyPage(),
         ],
       ),
 

@@ -12,7 +12,7 @@ class MyPageProvider extends ChangeNotifier {
   late List<String> _orgTypes =[];
   List<String> get orgTypes =>_orgTypes;
 
-
+  // 내 단체 확인
   Future<void> fetchTodo() async {
     List<MyOrgList>? _data = await _myOrgService.fetchTodo();
     _myOrgList = _data;

@@ -8,7 +8,7 @@ class OrganizationProvider extends ChangeNotifier {
   final OrganizationListService _OrganizationListService  = OrganizationListService();
   List<Organization> get OrgList =>_OrgList;
 
-
+  // 기관 정보 조회
   Future<void> fetchTodo() async {
     List<Organization>? _data = await _OrganizationListService.fetchTodo();
     _OrgList = _data;

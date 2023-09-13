@@ -32,30 +32,7 @@ class _MainScreenState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: _buildMiddle(),
-      /*BottomNavigationBar(//바텀 네비게이터
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: '검색',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.real_estate_agent),
-            label: '기부추천',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: '마이페이지',
-          ),
-        ],
-      ),*/
     );
   }
 

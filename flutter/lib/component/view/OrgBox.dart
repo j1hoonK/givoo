@@ -6,9 +6,11 @@ class OrgBox extends StatelessWidget {
   required this.orgAddress,
   required this.orgPath});
 
+
   final orgName;
   final orgAddress;
   final orgPath;
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/component/view/OrgBox.dart';
 import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/noOrgList.dart';
 import 'package:givoo/component/view/orgList.dart';
@@ -43,7 +44,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
                           child: Column(
                             children: [
                               Container(
-                                margin: EdgeInsets.all(15),
+                                margin: EdgeInsets.all(20),
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   myPageProvider.orgTypes[idx],
@@ -53,14 +54,20 @@ class _MainMyGroupState extends State<MainMyGroup> {
                                   ),
                                 ),
                               ),
-                              ListView.builder(
+                              GridView.builder(
+                                itemCount: myPageProvider.myOrgList2[idx].length, //item 개수
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
+                                  //  childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
+                                  mainAxisSpacing: 10, //수평 Padding
+                                  crossAxisSpacing: 10, //수직 Padding
+                                ),
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
-                                itemCount: myPageProvider.myOrgList2[idx].length,
                                 itemBuilder: (BuildContext ctx2, int idx2) {
-                                  return OrgList(
-                                    myOrgList:myPageProvider.myOrgList2[idx][idx2] ,
-                                  );
+                                  return OrgBox(orgName: myPageProvider.myOrgList2[idx][idx2].orgName,
+                                      orgAddress: myPageProvider.myOrgList2[idx][idx2].orgAddress,
+                                      orgPath: myPageProvider.myOrgList2[idx][idx2].imagePath);
                                 },
                               ),
                             ],

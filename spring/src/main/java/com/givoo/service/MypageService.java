@@ -21,4 +21,8 @@ public interface MypageService {
     List<DonationRegular> findByIsusenowAndDntRegularId(String isusenow, Long dntRegularId);
 
     List<DonationRegular> findByDntRegularId(Long dntRegularId);
+
+    void fav(Long orgId,Long userId);
+
+    void favDel(Long favId);
 }

@@ -9,12 +9,14 @@ class MyOrgList {
   String imagePath;
   String orgType;
   var orgId;
+  String orgAddress;
 
   MyOrgList({
     required this.orgName,
     required this.imagePath,
     required this.orgType,
     required this.orgId,
+    required this.orgAddress,
   });
 
   factory MyOrgList.fromJson(Map<String, dynamic> json) => MyOrgList(
@@ -22,6 +24,7 @@ class MyOrgList {
     imagePath: json["imagePath"],
     orgType: json["orgType"],
     orgId: json["orgId"],
+    orgAddress: json["orgAddress"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -29,9 +32,10 @@ class MyOrgList {
     "imagePath": imagePath,
     "orgType": orgType,
     "orgId": orgId,
+    "orgAddress" :orgAddress,
   };
 
   String toString() {
-    return 'MyOrgList{orgName: $orgName, imagePath: $imagePath, orgType: $orgType, orgId: $orgId}';
+    return 'MyOrgList{orgName: $orgName, imagePath: $imagePath, orgType: $orgType, orgId: $orgId, orgAddress:$orgAddress}';
   }
 }

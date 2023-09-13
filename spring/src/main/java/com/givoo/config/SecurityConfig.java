@@ -26,6 +26,9 @@ public class SecurityConfig {
 
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
+       AuthenticationManagerBuilder authManager =http.getSharedObject(AuthenticationManagerBuilder.class);
+       authManager.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+
         http.formLogin((formLogin) ->
                         formLogin.loginPage("/members/login")
                                 .defaultSuccessUrl("/")
@@ -44,13 +47,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
-
-    //이거 고치면 돼@@@@@@@@@@@@@@@@@@@@@@@@@@
- /*  @Bean
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
-    }*/
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(MvcRequestMatcher.Builder mvc){

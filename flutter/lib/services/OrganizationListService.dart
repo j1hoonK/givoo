@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 class OrganizationListService {
 
+  // 기관 정보 조회
   Future<List<Organization>> fetchTodo() async {
     try {
       var response = await http.get(Uri.parse("http://localhost:1000/org"));

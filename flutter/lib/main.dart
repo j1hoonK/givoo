@@ -27,31 +27,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(
+          ChangeNotifierProvider(   // 내 단체 확인
             create: (context) => MyPageProvider(),
           ),
-          ChangeNotifierProvider(
+          ChangeNotifierProvider(   // 기관 정보 확인
             create: (context) => OrganizationProvider(),
           ),
-          ChangeNotifierProvider(
+          ChangeNotifierProvider(   // 후원 이력 확인
             create: (context) => DonationProvider(),
           ),
-          ChangeNotifierProvider(
+          ChangeNotifierProvider(   // 유저정보 확인
             create: (context) => UserInfoProvider(),
           ),
-          FutureProvider<bool>(
-            create: (context) async {
-              bool isLogin = false;
-            },
+          ChangeNotifierProvider(   // 로그인 확인
+              create: (context) => LoginViewModel(KakaoLogin()),
           )
-          /*ChangeNotifierProvider(
-            create: (context) => LoginViewModel(KakaoLogin()),
-          ),*/
+
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: '기부어때',
           theme: ThemeData(
+            //TODO: 다크모드 설정하기
             useMaterial3: false,
             navigationBarTheme: NavigationBarThemeData(
               backgroundColor: Colors.white,

@@ -11,8 +11,6 @@ class KakaoService {
   // 회원가입
   Future<void> sendKakaoLogin(kakaoUserData) async {
     var url = "http://10.0.2.2:1000/login/kakao/${kakaoUserData["token"]}";
-    print('url: $url');
-    print('전송요청 >> KakaoUser:$kakaoUserData');
     http.Response response = await http.post(
       Uri.parse(url),
       headers: {"Content-Type": 'application/json'},
@@ -31,18 +29,15 @@ class KakaoService {
 class FindByToken {
   // 회원정보 조회
   Future<List<KakaoUser>> findUserInfo(tokenId) async {
-    print("[Run] findUserInfo");
     var url = "http://10.0.2.2:1000/login/$tokenId";
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      print("StatuseCode == 200");
       List<dynamic> userInfo = jsonDecode(utf8.decode(response.bodyBytes));
-      print("userInfo: $userInfo");
+      print("userInfo == $userInfo");
       return userInfo
           .map<KakaoUser>((item) => KakaoUser.fromJson(item))
           .toList();
     } else {
-      print("[Fail] getUserInfo");
       throw Exception("fail to find User Information");
     }
   }

@@ -3,6 +3,7 @@ import 'package:givoo/pages/login/viewmodel/social_login.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
+// 카카오 로그인
 class KakaoLogin implements SocialLogin {
   Map<String, String> kakaoUser = {};
 

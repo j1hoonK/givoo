@@ -43,8 +43,7 @@ class _BotNavBarState extends State<BotNavBar> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          LogIn(),
-          //MainPage(),
+          logIn(),
           MainPage(),
           MyPage(),
         ],

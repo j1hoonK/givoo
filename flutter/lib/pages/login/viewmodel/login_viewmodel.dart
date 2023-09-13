@@ -11,21 +11,18 @@ class LoginViewModel with ChangeNotifier{
   bool get isLogin => _isLogin;
 
 
-
+  // 로그인 완료 => isLogin = true
   Future login() async {
-    print("isLogin == $isLogin");
     _isLogin = await _socialLogin.login();
     user = await UserApi.instance.me();
-    print("isLogin == $_isLogin");
     notifyListeners();
-    print("isLogin == $isLogin");
   }
 
+  // 로그아웃 완료 => isLogin = false
   Future logout() async {
     await _socialLogin.logout();
     _isLogin = false;
     user = null;
-    print("isLogin == $_isLogin");
     notifyListeners();
   }
 }

@@ -2,6 +2,7 @@ package com.givoo.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -10,6 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Favorites {
     @Id //pk 값
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
@@ -18,5 +20,10 @@ public class Favorites {
     private Long orgId;
     @Column(nullable = false)
     private Long userId;
+
+    public Favorites(Long orgId, Long userId) {
+        this.orgId =orgId;
+        this.userId =userId;
+    }
 
 }

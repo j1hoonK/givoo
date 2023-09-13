@@ -10,4 +10,5 @@ public class MyOrgDTO { // /mypage/org/{userid}
     private String imagePath; //donation
     private String orgType; //donation
     private Long orgId; //donation
+    private String orgAddress; //donation
 }

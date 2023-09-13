@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
+import 'package:givoo/pages/recommend/view/recommend.dart';
 
 import '../../pages/mainpage/view/mainpage.dart';
 
@@ -44,6 +45,7 @@ class _BotNavBarState extends State<BotNavBar> {
         children: [
           LogIn(),
           MainPage(),
+          //Recommend()
           MyPage()
         ],
       ),

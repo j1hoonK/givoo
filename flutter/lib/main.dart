@@ -4,9 +4,11 @@ import 'package:givoo/pages/mypage/model/MyOrgList.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
+import 'package:givoo/pages/recommend/view/recommend.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
 
 import 'component/view/bottomnavbar.dart';
@@ -28,6 +30,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => DonationProvider(),
+          ),
+          ChangeNotifierProvider(
+              create:(context)=> RecommendMoreProvider(),
           ),
         ],
         child: MaterialApp(

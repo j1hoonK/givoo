@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/OrgBox.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
 
 class Recommend extends StatefulWidget {
@@ -12,16 +13,15 @@ class _RecommendState extends State<Recommend> {
   @override
   void initState(){
     super.initState();
-    Provider.of<OrganizationProvider>(context, listen: false).fetchTodo();
+    Provider.of<RecommendMoreProvider>(context, listen: false).fetchApi();
   }
   @override
   Widget build(BuildContext context) {
-    final organizationProvider = Provider.of<OrganizationProvider>(context);
     return Scaffold(
-      body: Consumer<OrganizationProvider>(
-        builder: (context,organizationProvider,child){
+      body: Consumer<RecommendMoreProvider>(
+        builder: (context,provider,child){
           return GridView.builder(
-              itemCount: organizationProvider.OrgList.length,
+              itemCount: provider.orgList.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
               childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
@@ -29,9 +29,10 @@ class _RecommendState extends State<Recommend> {
               crossAxisSpacing: 10, //수직 Padding
             ),
           itemBuilder: (BuildContext context, int idx){
-                return OrgBox(orgName: organizationProvider.OrgList[idx].orgName,
-                  orgAddress: organizationProvider.OrgList[idx].orgAddress,
-                orgPath: organizationProvider.OrgList[idx].imagePath,);
+                print("${provider.orgList.length}");
+                return OrgBox(orgName: provider.orgList[idx].orgName,
+                  orgAddress: provider.orgList[idx].orgAddress,
+                orgPath: provider.orgList[idx].imagePath,);
           }
           );
         },

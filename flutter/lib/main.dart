@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/mainpage/view/mainpage.dart';
+import 'package:givoo/pages/mypage/model/MyOrgList.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';

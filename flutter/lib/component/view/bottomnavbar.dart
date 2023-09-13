@@ -44,6 +44,7 @@ class _BotNavBarState extends State<BotNavBar> {
         index: _currentIndex,
         children: [
           LogIn(),
+          //MainPage(),
           MainPage(),
           MyPage(),
         ],

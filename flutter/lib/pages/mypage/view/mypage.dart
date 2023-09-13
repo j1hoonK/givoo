@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/view/bottomnavbar.dart';
 import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
+import 'package:givoo/pages/login/viewmodel/social_login.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
 import 'package:givoo/provider/UserProvider.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
+
 
 class MyPage extends StatefulWidget {
   MyPage({super.key});
@@ -42,21 +43,26 @@ class _MyPageState extends State<MyPage> {
     }
   }
 
-  final viewModel = LoginViewModel(KakaoLogin());
-
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<LoginViewModel>(context);
+    final viewModel = LoginViewModel(KakaoLogin());
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
-   // tokenFind();
+   tokenFind();
 
-    return Scaffold(
+    return
+
+
+      Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(backgroundColor: Colors.white, elevation: 0, actions: [
         Padding(
           padding: const EdgeInsets.only(right: 8),
           child: IconButton(
-              onPressed: () {},
+              onPressed: () {setState(() {
+
+              });},
               icon: Icon(
                 Icons.settings,
                 color: Colors.black,
@@ -75,21 +81,21 @@ class _MyPageState extends State<MyPage> {
                       SizedBox(
                         height: mHeight * 2,
                       ),
-                      ClipRRect(
+                  /*    ClipRRect(
                         borderRadius: BorderRadius.circular(90),
                         child: Image.network(
-                          provider.kakaoUser[0].userImage,
+                          //provider.kakaoUser[0].userImage,
                           width: mSize * 15,
                           height: mSize * 15,
                           fit: BoxFit.contain,
-
                         ),
-                      ),
+                      ),*/
                       SizedBox(
                         height: mHeight * 2,
                       ),
-                      Text(provider.kakaoUser[0].userEmail),
-                      Text(provider.kakaoUser[0].userName),
+                      //Text(provider.kakaoUser[0].userEmail),
+                      //Text(provider.kakaoUser[0].userName),
+                      Text('data:${data.isLogin}'),
                       SizedBox(
                         height: mHeight * 5,
                       ),
@@ -190,8 +196,8 @@ class _MyPageState extends State<MyPage> {
                         height: mSize * 1,
                       ),
                       TextButton(
-                        onPressed: () {
-                          viewModel.logout().then((value) => setState((){}));
+                        onPressed: () async{
+                         await viewModel.logout().then((value) => setState((){}));
                         },
                         child: Row(
                           children: [

@@ -27,6 +27,7 @@ class KakaoLogin implements SocialLogin {
             "user_email": user.kakaoAccount?.email,
           };
           print('user:$kakaoUser');
+          return true;
         } catch (error) {
           print('카카오톡으로 로그인 실패 $error');
 
@@ -39,8 +40,10 @@ class KakaoLogin implements SocialLogin {
           try {
             OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
             print('카카오계정으로 로그인 성공_token:${token.accessToken}');
+            return true;
           } catch (error) {
             print('카카오계정으로 로그인 실패 $error');
+            return false;
           }
         }
       } else {
@@ -58,12 +61,14 @@ class KakaoLogin implements SocialLogin {
           };
           print('Token:${kakaoUser["token"]}');
           kakaoService.sendKakaoLogin(kakaoUser);
+          return true;
         } catch (error) {
           print('카카오계정으로 로그인 실패2 $error');
+          return false;
         }
       }
-      return true;
     } on Exception catch (e) {
+      print(e);
       return false;
     }
   }
@@ -73,7 +78,7 @@ class KakaoLogin implements SocialLogin {
     // 로그아웃
     try {
       await UserApi.instance.unlink();
-      return true;
+      return false;
     } on Exception catch (e) {
       return false;
     }

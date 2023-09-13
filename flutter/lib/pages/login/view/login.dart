@@ -5,6 +5,7 @@ import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class LogIn extends StatefulWidget {
@@ -30,11 +31,12 @@ class LogInState extends State<LogIn> {
         ],
       ),
       backgroundColor: Colors.white,
-      body: _buildButton(),
+      body: _buildButton()
     );
   }
 
   Widget _buildButton() {
+    var provider = Provider.of<LoginViewModel>(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       // 로그인버튼 테마
@@ -57,6 +59,7 @@ class LogInState extends State<LogIn> {
                 viewModel.user?.kakaoAccount?.profile?.profileImageUrl ?? ''),
             Text(viewModel.user?.kakaoAccount?.profile?.nickname ?? ''),
             Text('${viewModel.isLogin}'),
+            Text(provider.isLogin.toString()),
             //Image.asset('images/login/logo.png',width: 200,),
             SizedBox(height: 170),
             // Google Login

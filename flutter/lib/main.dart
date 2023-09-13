@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
+import 'package:givoo/pages/login/viewmodel/social_login.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
@@ -36,7 +39,14 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => UserInfoProvider(),
           ),
-
+          FutureProvider<bool>(
+            create: (context) async {
+              bool isLogin = false;
+            },
+          )
+          /*ChangeNotifierProvider(
+            create: (context) => LoginViewModel(KakaoLogin()),
+          ),*/
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

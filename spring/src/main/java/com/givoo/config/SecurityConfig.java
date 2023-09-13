@@ -9,7 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 
 @Configuration
@@ -17,10 +19,13 @@ public class SecurityConfig {
 
     @Autowired
     MemberService memberService;
+    @Bean
+    MvcRequestMatcher.Builder mvc() {
+        return new MvcRequestMatcher.Builder(new HandlerMappingIntrospector());
+    }
 
     @Bean
-    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
+    protected SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         http.formLogin((formLogin) ->
                         formLogin.loginPage("/members/login")
                                 .defaultSuccessUrl("/")
@@ -30,10 +35,9 @@ public class SecurityConfig {
                 .logout((logout) ->
                         logout.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
                                 .logoutSuccessUrl("/"))
-                .authorizeHttpRequests((auth) ->
-                        auth.requestMatchers("/", "/members/**", "/item/**", "/images/**")
+                .authorizeHttpRequests((auth) ->auth.requestMatchers(mvc.pattern("/"),mvc.pattern("/members/**"),mvc.pattern("/item/**"),mvc.pattern( "/images/**"))
                                 .permitAll()
-                                .requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated());
+                                .requestMatchers(mvc.pattern("/admin/**")).hasRole("ADMIN").anyRequest().authenticated());
         return http.build();
     }
     @Bean
@@ -41,13 +45,16 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+
+    //이거 고치면 돼@@@@@@@@@@@@@@@@@@@@@@@@@@
+ /*  @Bean
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
-    }
+    }*/
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
-        return (web -> web.ignoring().requestMatchers("/css/**","/js/**","/img/**"));
+    public WebSecurityCustomizer webSecurityCustomizer(MvcRequestMatcher.Builder mvc){
+        return (web -> web.ignoring().
+                requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**")));
     }
 }

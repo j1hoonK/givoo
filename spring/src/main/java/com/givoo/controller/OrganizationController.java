@@ -29,7 +29,7 @@ public class OrganizationController {
     public List<Organization> searchOrg(@PathVariable("orgname") String orgname){
         return organizationService.searchOrg(orgname);
     }
-    @GetMapping("info/orgtype/{orgtype}")
+    @GetMapping("/info/orgtype/{orgtype}")
     public List<Organization> orgType(@PathVariable("orgtype") String orgType){
         return organizationService.findType(orgType);
     }

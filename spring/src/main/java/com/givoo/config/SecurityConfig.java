@@ -51,6 +51,6 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(MvcRequestMatcher.Builder mvc){
         return (web -> web.ignoring().
-                requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**")));
+                requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**"),mvc.pattern("/**")));
     }
 }

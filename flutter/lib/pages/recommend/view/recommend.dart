@@ -31,7 +31,7 @@ class _RecommendState extends State<Recommend> {
           itemBuilder: (BuildContext context, int idx){
                 return OrgBox(orgName: organizationProvider.OrgList[idx].orgName,
                   orgAddress: organizationProvider.OrgList[idx].orgAddress,
-                orgPath: organizationProvider.OrgList[idx].imagePath,);
+                  imagePath: organizationProvider.OrgList[idx].imagePath,);
           }
           );
         },

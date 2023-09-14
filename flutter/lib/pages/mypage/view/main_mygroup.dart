@@ -67,7 +67,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
                                 itemBuilder: (BuildContext ctx2, int idx2) {
                                   return OrgBox(orgName: myPageProvider.myOrgList2[idx][idx2].orgName,
                                       orgAddress: myPageProvider.myOrgList2[idx][idx2].orgAddress,
-                                      orgPath: myPageProvider.myOrgList2[idx][idx2].imagePath);
+                                      imagePath: myPageProvider.myOrgList2[idx][idx2].imagePath);
                                 },
                               ),
                             ],

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
-class OrgBox extends StatelessWidget {
-  OrgBox({super.key,
+class MainPageOrgBox extends StatelessWidget {
+  MainPageOrgBox({super.key,
   required this.orgName,
-  required this.orgAddress,
-  required this.imagePath});
+  required this.imagePath
+  });
 
 
   final orgName;
-  final orgAddress;
   final imagePath;
 
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Container(
+      child: SizedBox(
         height: 150,
         child: Card(
           margin: EdgeInsets.only(left: 8),
@@ -28,18 +27,13 @@ class OrgBox extends StatelessWidget {
                 ),
                 height: 110,
                 width: 150,
-                child: Image.network(imagePath,
+                child: Image.asset(imagePath,
                   fit: BoxFit.fill,
                 ),
               ),
               Text(orgName,
                 style: TextStyle(fontWeight: FontWeight.bold,
               ),),
-              Text(orgAddress,
-                style: TextStyle(color: Colors.grey,
-                  fontSize: 12,
-                ),
-              ),
             ],
           ),
         ),

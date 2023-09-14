@@ -15,7 +15,7 @@ class OrgBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Container(
+      child: SizedBox(
         height: 150,
         child: Card(
           margin: EdgeInsets.only(left: 8),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
+import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
@@ -42,10 +43,11 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(   // 로그인 확인
               create: (context) => LoginViewModel(KakaoLogin()),
           ),
-          ChangeNotifierProvider(create:(context)=>PayCategoryProvider()),
-
-          ChangeNotifierProvider(
-              create:(context)=> RecommendMoreProvider(),
+          ChangeNotifierProvider(   //
+              create: (context) => PayCategoryProvider()
+          ),
+          ChangeNotifierProvider(   //
+              create: (context) => RecommendMoreProvider(),
           ),
         ],
         child: MaterialApp(
@@ -66,8 +68,8 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             primaryColor: Colors.white,
           ),
-          home: Pay(),
-          //home: Loading(),
+          //home: Pay(),
+          home: Loading(),
         ));
   }
 }

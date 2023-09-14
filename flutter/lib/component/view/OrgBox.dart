@@ -13,30 +13,33 @@ class OrgBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Card(
-        margin: EdgeInsets.only(left: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(),
+      child: Container(
+        height: 150,
+        child: Card(
+          margin: EdgeInsets.only(left: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                ),
+                height: 110,
+                width: 150,
+                child: Image.network("http://10.0.2.2:1000/images/1",
+                  fit: BoxFit.fill,
+                ),
               ),
-              height: 110,
-              width: 150,
-              child: Image.network("http://localhost:1000/images/1",
-                fit: BoxFit.fill,
+              Text(orgName,
+                style: TextStyle(fontWeight: FontWeight.bold,
+              ),),
+              Text(orgAddress,
+                style: TextStyle(color: Colors.grey,
+                  fontSize: 12,
+                ),
               ),
-            ),
-            Text(orgName,
-              style: TextStyle(fontWeight: FontWeight.bold,
-            ),),
-            Text(orgAddress,
-              style: TextStyle(color: Colors.grey,
-                fontSize: 12,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

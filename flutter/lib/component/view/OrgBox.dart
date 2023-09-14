@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class OrgBox extends StatelessWidget {
   OrgBox({super.key,
-  required this.orgName,
-  required this.orgAddress,
-  required this.orgPath});
+    required this.orgName,
+    required this.orgAddress,
+    required this.orgPath});
 
   final orgName;
   final orgAddress;
@@ -13,10 +13,9 @@ class OrgBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Container(
+      child: SizedBox(
         height: 150,
         child: Card(
-          margin: EdgeInsets.only(left: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,7 +31,7 @@ class OrgBox extends StatelessWidget {
               ),
               Text(orgName,
                 style: TextStyle(fontWeight: FontWeight.bold,
-              ),),
+                ),),
               Text(orgAddress,
                 style: TextStyle(color: Colors.grey,
                   fontSize: 12,

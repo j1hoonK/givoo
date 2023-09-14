@@ -5,6 +5,7 @@ import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:givoo/provider/UserProvider.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:givoo/provider/RecommendMoreProvider.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(   // 로그인 확인
               create: (context) => LoginViewModel(KakaoLogin()),
           ),
+          ChangeNotifierProvider(create:(context)=>PayCategoryProvider()),
 
           ChangeNotifierProvider(
               create:(context)=> RecommendMoreProvider(),
@@ -64,7 +66,8 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             primaryColor: Colors.white,
           ),
-          home: Loading(),
+          home: Pay(),
+          //home: Loading(),
         ));
   }
 }

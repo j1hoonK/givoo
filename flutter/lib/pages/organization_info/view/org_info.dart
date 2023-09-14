@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/config/palette.dart';
-import 'package:kakao_map_plugin/kakao_map_plugin.dart';
+import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,7 +32,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    Set<Marker> markers = {}; // 마커 변수
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
@@ -59,10 +58,9 @@ class _MainPageState extends State<MainPage> {
                   width: MediaQuery.of(context).size.width,
                   height: mHeight * 28,
                   decoration: BoxDecoration(
-                    color: Colors.orange,
                     image: DecorationImage(
-                      image: AssetImage('images/login/logo.png'), // 이미지 파일 경로
-                      fit: BoxFit.cover,
+                      image: AssetImage('images/org/whb.png'), // 이미지 파일 경로
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -212,9 +210,9 @@ class _MainPageState extends State<MainPage> {
             ),
             Container(
               width: double.infinity,
-              height: mHeight * 20,
+              height: mHeight * 25,
               color: Colors.grey,
-             // child:
+            child:NowGoogleMapView(latitude: 37.412075,longitude: 127.124571, orgName: "사단법인 월드휴먼브리지"),
             ),
           ],
         ),

@@ -1,38 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/OrgBox.dart';
-import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/component/view/appbar.dart';
+import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
 
 class Recommend extends StatefulWidget {
   const Recommend({super.key});
+
   @override
   State<Recommend> createState() => _RecommendState();
 }
+
 class _RecommendState extends State<Recommend> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Provider.of<OrganizationProvider>(context, listen: false).fetchTodo();
+    Provider.of<RecommendMoreProvider>(context, listen: false).fetchApi();
   }
+
   @override
   Widget build(BuildContext context) {
-    final organizationProvider = Provider.of<OrganizationProvider>(context);
     return Scaffold(
-      body: Consumer<OrganizationProvider>(
-        builder: (context,organizationProvider,child){
-          return GridView.builder(
-              itemCount: organizationProvider.OrgList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-              childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
-              mainAxisSpacing: 10, //수평 Padding
-              crossAxisSpacing: 10, //수직 Padding
+      appBar: BaseAppbar(title: "종교단체"),   // 저기 타이틀 종교단체 변수로 받아와야합니당
+      body: Consumer<RecommendMoreProvider>(
+        builder: (context, provider, child) {
+          return Container(
+            margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+            child: Column(
+              children: [
+                Container(
+                  height: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 10),
+                        child: Text(
+                          "총 ${provider.orgList.length}개의 단체",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 550,
+                  child: GridView.builder(
+                      itemCount: provider.orgList.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
+                        childAspectRatio: 1 / 1.23, //item 의 가로 1, 세로 2 의 비율
+                        mainAxisSpacing: 10, //수평 Padding
+                      ),
+                      itemBuilder: (BuildContext context, int idx) {
+                        print("${provider.orgList.length}");
+                        return OrgBox(
+                          orgName: provider.orgList[idx].orgName,
+                          orgAddress: provider.orgList[idx].orgAddress,
+                          orgPath: provider.orgList[idx].imagePath,
+                        );
+                      }),
+                ),
+              ],
             ),
-          itemBuilder: (BuildContext context, int idx){
-                return OrgBox(orgName: organizationProvider.OrgList[idx].orgName,
-                  orgAddress: organizationProvider.OrgList[idx].orgAddress,
-                orgPath: organizationProvider.OrgList[idx].imagePath,);
-          }
           );
         },
       ),

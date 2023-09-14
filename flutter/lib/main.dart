@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/login/viewmodel/social_login.dart';
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             primaryColor: Colors.white,
           ),
-          home: BotNavBar(),
+          home: Loading(),
         ));
   }
 }

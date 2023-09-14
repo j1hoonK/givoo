@@ -1,17 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-//https://www.youtube.com/watch?v=jFHSkfjN96I 참고
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SearchPage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key});
   @override
@@ -19,7 +7,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  var _controller = TextEditingController();
+  final _controller = TextEditingController();
   bool _isClearButtonVisible = false;
   bool _isSearchIconVisible = true;
 

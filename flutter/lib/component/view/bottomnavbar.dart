@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/login/view/login.dart';
-import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
-import 'package:givoo/services/TokenService.dart';
-
+import 'package:givoo/pages/search/view/search.dart';
 import '../../pages/mainpage/view/mainpage.dart';
 
 class BotNavBar extends StatefulWidget {
@@ -43,7 +40,7 @@ class _BotNavBarState extends State<BotNavBar> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          logIn(),
+          SearchPage(),
           MainPage(),
           MyPage(),
         ],

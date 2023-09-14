@@ -4,11 +4,10 @@ import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:provider/provider.dart';
 
 class Pay extends StatelessWidget {
-  const Pay({super.key});
-
+  Pay({super.key});
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: BaseAppbar(

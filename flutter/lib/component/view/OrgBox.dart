@@ -20,13 +20,14 @@ class OrgBox extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return InkWell(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        final result = await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context)=> OrgInfoPage(orgId)
           ),
         );
+        print("result == $result");
       },
       child: SizedBox(
         height: height * 0.16,

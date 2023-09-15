@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/config/palette.dart';
 import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
@@ -32,6 +33,12 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white),
+      ),
+      extendBodyBehindAppBar: true,
       bottomNavigationBar: Container(
         width: double.infinity,
         height: mHeight * 4.3,
@@ -50,7 +57,6 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
           builder: (context, provider, child) {
             return Column(
               children: [
-                SizedBox(height: MediaQuery.of(context).padding.top),
                 Stack(
                   children: [
                     Container(

@@ -43,6 +43,7 @@ class _MyPageState extends State<MyPage> {
               await UserApi.instance.accessTokenInfo(); // 토큰정보 확인
           print("Token Information == $tokenInfo");
           FindByToken findByToken = FindByToken(); // 확인된 토큰ID로 회원정보 조회
+          var userId = await findByToken.findUserInfo(tokenInfo.id);
           return await findByToken.findUserInfo(tokenInfo.id);
         } catch (e) {
           print("Error = $e");

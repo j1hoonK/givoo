@@ -14,11 +14,13 @@ class OrgBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return InkWell(
       child: SizedBox(
-        height: 150,
+        height: height *0.16,
+        width: width*0.3,
         child: Card(
-          margin: EdgeInsets.only(left: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -26,8 +28,8 @@ class OrgBox extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(),
                 ),
-                height: 110,
-                width: 150,
+                height: height*0.1,
+                width: width*0.3,
                 child: Image.network(imagePath,
                   fit: BoxFit.fill,
                 ),

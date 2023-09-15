@@ -15,7 +15,7 @@ class Search extends StatelessWidget {
         ),
         body: Consumer<OrganizationProvider>(
           builder: (context, provider, child) {
-            return Column(
+            return  Column(
               children: [
                 SizedBox(
                   height: 30,
@@ -87,7 +87,7 @@ class Search extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 20.0,
-                ), GridView.builder(
+                ),provider.OrgList.length!=0 ? GridView.builder(
                   itemCount: provider.OrgList.length, //item 개수
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
@@ -102,7 +102,12 @@ class Search extends StatelessWidget {
                         orgAddress: provider.OrgList[idx].orgAddress,
                         imagePath:provider.OrgList[idx].imagePath);
                   },
-                ),
+                ) : Container(
+                  height: 500,
+                  child: Center(
+                    child: Text("검색하신 결과가 없습니다."),
+            ),
+                )
               ],
             );
           },

@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).padding.top,),
-            /*SizedBox(
+            SizedBox(
               height: mHeight * 24,
               width: MediaQuery.of(context).size.width,
               child: PageView(
@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
                   BannerImage(imagePath: "images/main/main3.jpg"),
                 ],
               ),
-            ),*/
+            ),
             SizedBox(height: mHeight * 2,),
             Row(
               children: [

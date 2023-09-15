@@ -2,10 +2,14 @@
           package="com.example.givoo">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
             android:label="기부어때"
             android:name="${applicationName}"
-            android:icon="@mipmap/ic_launcher">
+            android:icon="@mipmap/ic_launcher"
+            android:usesCleartextTraffic="true">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="AIzaSyA85AvjhXtt5jztT-bCcI_VWx0GqoRCUNU"/>
         <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">
             <intent-filter android:label="flutter_web_auth">
                 <action android:name="android.intent.action.VIEW"/>

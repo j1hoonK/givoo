@@ -65,18 +65,7 @@ void initState() {
       return Scaffold(
             backgroundColor: Colors.white,
             appBar:
-                AppBar(backgroundColor: Colors.white, elevation: 0, actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.settings,
-                      color: Colors.black,
-                      size: mHeight * 3,
-                    )),
-              )
-            ]),
+                AppBar(backgroundColor: Colors.white, elevation: 0,),
             body: Column(
                 children: [
                   Center(

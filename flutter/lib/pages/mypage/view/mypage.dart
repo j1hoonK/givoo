@@ -57,11 +57,10 @@ class _MyPageState extends State<MyPage> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.white
-          ),
+          systemOverlayStyle:
+              SystemUiOverlayStyle(statusBarColor: Colors.white),
           elevation: 0,
-          toolbarHeight: mHeight * 3,
+          toolbarHeight: mHeight * 2.1,
         ),
         body: SingleChildScrollView(
           child: Column(children: [
@@ -73,8 +72,8 @@ class _MyPageState extends State<MyPage> {
                     borderRadius: BorderRadius.circular(90),
                     child: Image.network(
                       userInfo.kakaoUser[0].userImage,
-                      width: mSize * 10,
-                      height: mSize * 10,
+                      width: mSize * 12,
+                      height: mSize * 12,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -93,7 +92,7 @@ class _MyPageState extends State<MyPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: mHeight * 3,
+                    height: mHeight * 4,
                   ),
                 ],
               ),
@@ -106,7 +105,7 @@ class _MyPageState extends State<MyPage> {
                 children: [
                   Text(
                     '나의 활동',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: mSize * 1,
@@ -114,8 +113,8 @@ class _MyPageState extends State<MyPage> {
                   TextButtonTheme(
                     data: TextButtonThemeData(
                       style: TextButton.styleFrom(
-                        foregroundColor: Colors.black,
-                      ),
+                          foregroundColor: Colors.black,
+                          textStyle: TextStyle(fontSize: 20)),
                     ),
                     child: Column(
                       children: [
@@ -131,16 +130,11 @@ class _MyPageState extends State<MyPage> {
                             children: [
                               Icon(
                                 Icons.favorite_border,
-                                size: mSize * 3,
                               ),
                               SizedBox(
                                 width: mSize * 2,
                               ),
-                              Text(
-                                '내 단체',
-                                style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold),
-                              ),
+                              Text('내 단체'),
                             ],
                           ),
                         ),
@@ -156,16 +150,9 @@ class _MyPageState extends State<MyPage> {
                             children: [
                               Icon(
                                 Icons.history_edu,
-                                size: 30,
                               ),
-                              SizedBox(
-                                width: mSize * 2,
-                              ),
-                              Text(
-                                '기부 이력 확인',
-                                style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold),
-                              ),
+                              SizedBox(width: mSize * 2),
+                              Text('기부 이력 확인'),
                             ],
                           ),
                         ),
@@ -200,7 +187,7 @@ class _MyPageState extends State<MyPage> {
                       Text(
                         '기타 설정',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: mSize * 1,
@@ -209,29 +196,22 @@ class _MyPageState extends State<MyPage> {
                         data: TextButtonThemeData(
                           style: TextButton.styleFrom(
                             foregroundColor: Colors.black,
+                            textStyle: TextStyle(
+                              fontSize: 20
+                            )
                           ),
                         ),
                         child: Column(
                           children: [
                             TextButton(
-                              onPressed: () async {
-                                await isLoginNow.logout();
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   Icon(
                                     Icons.announcement_outlined,
-                                    size: 30,
                                   ),
-                                  SizedBox(
-                                    width: mSize * 2,
-                                  ),
-                                  Text(
-                                    '공지사항',
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  SizedBox(width: mSize * 2),
+                                  Text('공지사항'),
                                 ],
                               ),
                             ),
@@ -243,39 +223,25 @@ class _MyPageState extends State<MyPage> {
                                 children: [
                                   Icon(
                                     Icons.question_answer_outlined,
-                                    size: 30,
                                   ),
                                   SizedBox(
                                     width: mSize * 2,
                                   ),
-                                  Text(
-                                    'Q&A',
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  Text('Q&A'),
                                 ],
                               ),
                             ),
                             TextButton(
-                              onPressed: () async {
-                                await isLoginNow.logout();
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   Icon(
                                     Icons.menu_book_outlined,
-                                    size: 30,
                                   ),
                                   SizedBox(
                                     width: mSize * 2,
                                   ),
-                                  Text(
-                                    '약관 및 정책',
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  Text('약관 및 정책'),
                                 ],
                               ),
                             ),
@@ -287,39 +253,25 @@ class _MyPageState extends State<MyPage> {
                                 children: [
                                   Icon(
                                     Icons.logout,
-                                    size: 30,
                                   ),
                                   SizedBox(
                                     width: mSize * 2,
                                   ),
-                                  Text(
-                                    '로그아웃',
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  Text('로그아웃'),
                                 ],
                               ),
                             ),
                             TextButton(
-                              onPressed: () async {
-                                await isLoginNow.logout();
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   Icon(
                                     Icons.highlight_off,
-                                    size: 30,
                                   ),
                                   SizedBox(
                                     width: mSize * 2,
                                   ),
-                                  Text(
-                                    '회원 탈퇴',
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  Text('회원 탈퇴'),
                                 ],
                               ),
                             ),

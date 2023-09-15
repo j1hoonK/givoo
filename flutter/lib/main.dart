@@ -63,8 +63,6 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(color: Colors.black),
             ),
-            textButtonTheme: TextButtonThemeData(
-                style: TextButton.styleFrom(foregroundColor: Colors.black)),
             scaffoldBackgroundColor: Colors.white,
             primaryColor: Colors.white,
           ),

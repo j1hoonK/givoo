@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
@@ -9,16 +10,6 @@ import 'package:givoo/services/LoginService.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
 
-/*class MyPage extends StatefulWidget {
-  MyPage({super.key});
-
-  @override
-  State<MyPage> createState() => _MyPageState();
-}
-
-class _MyPageState extends State<MyPage> {*/
-
-
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
 
@@ -27,11 +18,13 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-@override
-void initState() {
-  super.initState();
-  Provider.of<UserInfoProvider>(context, listen: false).loadUserInfo();           // 로그인한 유저정보 조회
-}
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<UserInfoProvider>(context, listen: false)
+        .loadUserInfo(); // 로그인한 유저정보 조회
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: 전체 페이지 MediaQuery 통일(mSize, mHight 각각 약 10px에 해당함)
@@ -41,14 +34,15 @@ void initState() {
     final isLoginNow = Provider.of<LoginViewModel>(context);
     final userInfo = Provider.of<UserInfoProvider>(context);
 
-  // 로그인된 사용자 정보 확인
+    // 로그인된 사용자 정보 확인
     findUserData() async {
       // 로그인여부 확인_ 로그인됨: true, 로그아웃됨: false
       if (isLoginNow.isLogin) {
         try {
-          AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();   // 토큰정보 확인
+          AccessTokenInfo tokenInfo =
+              await UserApi.instance.accessTokenInfo(); // 토큰정보 확인
           print("Token Information == $tokenInfo");
-          FindByToken findByToken = FindByToken();                                // 확인된 토큰ID로 회원정보 조회
+          FindByToken findByToken = FindByToken(); // 확인된 토큰ID로 회원정보 조회
           return await findByToken.findUserInfo(tokenInfo.id);
         } catch (e) {
           print("Error = $e");
@@ -56,183 +50,292 @@ void initState() {
       }
     }
 
-
-
     findUserData();
     print('isLoginNow?? == ${isLoginNow.isLogin}');
     // 로그인 완료 => MyPage, 로그인 미완료 => LoginPage
     if (isLoginNow.isLogin) {
       return Scaffold(
-            backgroundColor: Colors.white,
-            appBar:
-                AppBar(backgroundColor: Colors.white, elevation: 0, actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.settings,
-                      color: Colors.black,
-                      size: mHeight * 3,
-                    )),
-              )
-            ]),
-            body: Column(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.white
+          ),
+          elevation: 0,
+          toolbarHeight: mHeight * 3,
+        ),
+        body: SingleChildScrollView(
+          child: Column(children: [
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Center(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: mHeight * 2,
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(90),
-                            child: Image.network(
-                              userInfo.kakaoUser[0].userImage,
-                              width: mSize * 15,
-                              height: mSize * 15,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          SizedBox(
-                            height: mHeight * 2,
-                          ),
-                          Text(userInfo.kakaoUser[0].userEmail),
-                          Text(userInfo.kakaoUser[0].userName),
-                          SizedBox(
-                            height: mHeight * 5,
-                          ),
-                        ],
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(90),
+                    child: Image.network(
+                      userInfo.kakaoUser[0].userImage,
+                      width: mSize * 10,
+                      height: mSize * 10,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  SizedBox(
+                    height: mHeight * 1,
+                  ),
+                  Text(
+                    userInfo.kakaoUser[0].userEmail,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: mHeight * 0.5,
+                  ),
+                  Text(
+                    userInfo.kakaoUser[0].userName,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: mHeight * 3,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.only(left: mSize * 2),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '나의 활동',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: mSize * 1,
+                  ),
+                  TextButtonTheme(
+                    data: TextButtonThemeData(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
                       ),
                     ),
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.only(left: mSize * 2),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('나의 활동'),
-                        SizedBox(
-                          height: mSize * 2.5,
-                        ),
-                        TextButtonTheme(
-                          data: TextButtonThemeData(),
-                          child: Column(
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MainMyGroup(),
+                                ));
+                          },
+                          child: Row(
                             children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => MainMyGroup(),
-                                      ));
-                                },
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.favorite_border,
-                                      size: mSize * 3,
-                                    ),
-                                    SizedBox(
-                                      width: mSize * 2,
-                                    ),
-                                    Text(
-                                      '내 단체',
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
+                              Icon(
+                                Icons.favorite_border,
+                                size: mSize * 3,
                               ),
                               SizedBox(
-                                height: mSize * 1,
+                                width: mSize * 2,
                               ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => DonationHistory(),
-                                      ));
-                                },
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.favorite_border,
-                                      size: 30,
-                                    ),
-                                    SizedBox(
-                                      width: mSize * 2,
-                                    ),
-                                    Text(
-                                      '기부 이력 확인',
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: mSize * 1),
-                              TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.favorite_border,
-                                      size: 30,
-                                    ),
-                                    SizedBox(
-                                      width: mSize * 2,
-                                    ),
-                                    Text(
-                                      '정기 기부 관리',
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: mSize * 1,
-                              ),
-                              TextButton(
-                                onPressed: () async {
-                                  await isLoginNow.logout();
-                                },
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.logout,
-                                      size: 30,
-                                    ),
-                                    SizedBox(
-                                      width: mSize * 2,
-                                    ),
-                                    Text(
-                                      '로그아웃',
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
+                              Text(
+                                '내 단체',
+                                style: TextStyle(
+                                    fontSize: 25, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                         ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DonationHistory(),
+                                ));
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.history_edu,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                width: mSize * 2,
+                              ),
+                              Text(
+                                '기부 이력 확인',
+                                style: TextStyle(
+                                    fontSize: 25, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                        /*TextButton(
+                          onPressed: () {},
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.favorite_border,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                width: mSize * 2,
+                              ),
+                              Text(
+                                '정기 기부 관리',
+                                style: TextStyle(
+                                    fontSize: 25, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),*/
                       ],
                     ),
                   ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: mSize * 2,
+                      ),
+                      Text(
+                        '기타 설정',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: mSize * 1,
+                      ),
+                      TextButtonTheme(
+                        data: TextButtonThemeData(
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            TextButton(
+                              onPressed: () async {
+                                await isLoginNow.logout();
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.announcement_outlined,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: mSize * 2,
+                                  ),
+                                  Text(
+                                    '공지사항',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await isLoginNow.logout();
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.question_answer_outlined,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: mSize * 2,
+                                  ),
+                                  Text(
+                                    'Q&A',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await isLoginNow.logout();
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.menu_book_outlined,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: mSize * 2,
+                                  ),
+                                  Text(
+                                    '약관 및 정책',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await isLoginNow.logout();
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.logout,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: mSize * 2,
+                                  ),
+                                  Text(
+                                    '로그아웃',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await isLoginNow.logout();
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.highlight_off,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: mSize * 2,
+                                  ),
+                                  Text(
+                                    '회원 탈퇴',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
-            );
+            ),
+          ]),
+        ),
+      );
     } else {
       return logIn();
     }
-
   }
 }

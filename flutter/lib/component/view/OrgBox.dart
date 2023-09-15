@@ -1,27 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/component/model/OrgBoxModel.dart';
 
 class OrgBox extends StatelessWidget {
-  const OrgBox({super.key,
-  required this.org});
+  OrgBox({super.key,
+  required this.orgName,
+  required this.orgAddress,
+  required this.imagePath});
 
-  final Organization org;
+
+  final orgName;
+  final orgAddress;
+  final imagePath;
+
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(),
-            ),
-            height: 50,
-            child: Image.network("http://localhost:1000/images/1.png"),
+    return InkWell(
+      child: SizedBox(
+        height: 150,
+        child: Card(
+          margin: EdgeInsets.only(left: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                ),
+                height: 110,
+                width: 150,
+                child: Image.network(imagePath,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Text(orgName,
+                style: TextStyle(fontWeight: FontWeight.bold,
+              ),),
+              Text(orgAddress,
+                style: TextStyle(color: Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+            ],
           ),
-          Text(org.orgName),
-          Text(org.orgAddress),
-        ],
+        ),
       ),
     );
   }

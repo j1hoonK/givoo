@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
-
-import '../../pages/mainpage/view/mainpage.dart';
+import '../../pages/mainpage/view/main_page.dart';
+import '../../pages/search/view/search.dart';
 
 class BotNavBar extends StatefulWidget {
   const BotNavBar({super.key});
@@ -42,9 +41,9 @@ class _BotNavBarState extends State<BotNavBar> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          LogIn(),
+          SearchPage(),
           MainPage(),
-          MyPage()
+          MyPage(),
         ],
       ),
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
-    List<Organization> findAllByOrgName(String orgName);
+    List<Organization> findAllByOrgNameContaining(String orgName);
+    List<Organization> findAllByOrgType(String orgType);
 
 }

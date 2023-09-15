@@ -43,7 +43,6 @@ dependencies:
   uuid: ^4.0.0
   flutter_web_auth: ^0.5.0
   geolocator: ^10.0.1
-  kakao_map_plugin: ^0.2.1
   google_maps_flutter: ^2.5.0
 
 dev_dependencies:

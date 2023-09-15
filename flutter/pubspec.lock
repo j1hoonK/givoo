@@ -408,14 +408,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  kakao_map_plugin:
-    dependency: "direct main"
-    description:
-      name: kakao_map_plugin
-      sha256: "4e1b5619be16b20fc6c1d998202a8cbf7ee4d4dd5ff660a244ddc20e21796cb7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.1"
   lints:
     dependency: transitive
     description:

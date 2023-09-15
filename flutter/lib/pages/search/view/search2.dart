@@ -100,7 +100,7 @@ class Search extends StatelessWidget {
                   itemBuilder: (BuildContext ctx2, int idx) {
                     return OrgBox(orgName: provider.OrgList[idx].orgName,
                         orgAddress: provider.OrgList[idx].orgAddress,
-                        imagePath:provider.OrgList[idx].imagePath);
+                        imagePath:provider.OrgList[idx].imagePath, orgId: provider.OrgList[idx].orgId,);
                   },
                 ) : Container(
                   height: 500,

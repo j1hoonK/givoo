@@ -17,4 +17,14 @@ class OrganizationListService {
       throw Exception('Failed to load todo');
     }
   }
+  Future<Map<String, dynamic>> fetchOrgInfo(orgId,userId) async {
+    try {
+      var response = await http.get(Uri.parse("http://10.0.2.2:1000/info/${orgId}/${userId}"));
+      print(response.statusCode);
+      Map<String,dynamic> _data = json.decode(utf8.decode(response.bodyBytes));
+      return _data;
+    } catch (error) {
+      throw Exception('Failed to load todo');
+    }
+  }
 }

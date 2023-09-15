@@ -1,26 +1,27 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:givoo/component/model/OrgBoxModel.dart';
 import 'package:givoo/services/OrganizationListService.dart';
 import 'package:givoo/services/SearchService.dart';
 
 class OrganizationProvider extends ChangeNotifier {
-
-
-  final OrganizationListService _OrganizationListService  = OrganizationListService();
+  final OrganizationListService _OrganizationListService =
+      OrganizationListService();
   final SearchService _searchService = SearchService();
-  List<Organization> _OrgList= [];
-  List<Organization> get OrgList =>_OrgList;
+  List<Organization> _OrgList = [];
+
+  List<Organization> get OrgList => _OrgList;
   var _controller = TextEditingController();
   bool _isClearButtonVisible = false;
   bool _isSearchIconVisible = true;
   var _searchValue = "";
-
-
   get controller => _controller;
-  bool get isClearButtonVisible =>_isClearButtonVisible;
+  bool get isClearButtonVisible => _isClearButtonVisible;
   bool get isSearchIconVisible => _isSearchIconVisible;
-  get searchValue =>_searchValue;
+  get searchValue => _searchValue;
+
+
+  Map<String,dynamic> _orgInfodata ={};
+  Map<String,dynamic> get orgInfodata =>_orgInfodata;
 
 
   // 기관 정보 조회
@@ -29,28 +30,36 @@ class OrganizationProvider extends ChangeNotifier {
     _OrgList = _data;
     notifyListeners();
   }
-  Future<void> searchOrg(String searchValue)async{
+
+  Future<void> searchOrg(String searchValue) async {
     List<Organization>? _data = await _searchService.fetchApi(searchValue);
-    _OrgList=_data;
+    _OrgList = _data;
     print("orgList: ${OrgList}");
     notifyListeners();
   }
 
-  void listener(value){
-    _searchValue=value;
-    if(value==""){
+  void listener(value) {
+    _searchValue = value;
+    if (value == "") {
       _isClearButtonVisible = false;
       _isSearchIconVisible = true;
-    }else{
+    } else {
       _isClearButtonVisible = true;
       _isSearchIconVisible = false;
     }
-      print("_isClearButtonVisible: ${_isClearButtonVisible}" );
-      print("_isSearchIconVisible: ${_isSearchIconVisible}" );
-      notifyListeners();
+    print("_isClearButtonVisible: ${_isClearButtonVisible}");
+    print("_isSearchIconVisible: ${_isSearchIconVisible}");
+    notifyListeners();
   }
-  void clear(){
+
+  void clear() {
     _controller.clear();
+    notifyListeners();
+  }
+
+  Future<void> orgInfo(orgId,userId) async {
+    Map<String,dynamic>? _data = await _OrganizationListService.fetchOrgInfo(orgId, userId);
+    _orgInfodata = _data;
     notifyListeners();
   }
 }

@@ -63,7 +63,7 @@ class _RecommendState extends State<Recommend> {
                         return OrgBox(
                           orgName: provider.orgList[idx].orgName,
                           orgAddress: provider.orgList[idx].orgAddress,
-                          imagePath: provider.orgList[idx].imagePath,
+                          imagePath: provider.orgList[idx].imagePath, orgId: provider.orgList[idx].orgId,
                         );
                       }),
                 ),

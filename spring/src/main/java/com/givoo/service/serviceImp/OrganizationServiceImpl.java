@@ -46,4 +46,10 @@ public class OrganizationServiceImpl implements OrganizationService {
     public List<Organization> findType(String orgType){
         return organizationRepo.findAllByOrgType(orgType);
     }
+
+    @Override
+    public String getOrgNameById(Long orgId){
+         List<Organization> organization = organizationRepo.findByOrgId(orgId);
+        return organization.get(0).getOrgName();
+    }
 }

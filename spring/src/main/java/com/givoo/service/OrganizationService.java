@@ -15,4 +15,6 @@ public interface OrganizationService {
     public DetailOrgDTO detailOrg(Long orgId,Long userId);
     public List<Organization> searchOrg(String orgName);
     public List<Organization> findType(String orgType);
+    String getOrgNameById(Long orgId);
 }
+

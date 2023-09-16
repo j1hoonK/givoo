@@ -1,6 +1,7 @@
 package com.givoo.controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
+import com.givoo.dto.donation.DonationDTO;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
@@ -22,10 +23,11 @@ public class MypageController {
         this.mypageService = mypageService;
     }
 
-    @GetMapping("/dntresult/{userid}")  // 기부 이력 확인
-    public List<Donation> myDnt(@PathVariable("userid") Long userid) {
-        return mypageService.myDnt(userid);
+    @GetMapping("/dntresult/{userId}")  // 기부 이력 확인
+    public List<DonationDTO> getDonationsByUserId(@PathVariable Long userId) {
+        return mypageService.getDonationsByUserId(userId);
     }
+
 
     @GetMapping("/mypage/dntresult/{dntid}")    // 세부 기부 이력 확인
     public Donation myDonationDetail(@PathVariable("dntid") Long id) {

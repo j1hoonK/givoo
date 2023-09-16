@@ -16,6 +16,7 @@ class DntHistory extends StatelessWidget {
     final dateForm = DateFormat('yyyy-MM-dd').format(dnt.dntDate);
     final orgIdForm = dnt.orgId.toString();
     final amountForm = dnt.dntAmount.toString();
+    final orgName = dnt.orgName.toString();
 
     return TextButton(
       onPressed: () {},
@@ -53,7 +54,7 @@ class DntHistory extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        orgIdForm,
+                        dnt.orgName,
                         style: TextStyle(color: Palette.textColor1),
                       ),
                       Text(

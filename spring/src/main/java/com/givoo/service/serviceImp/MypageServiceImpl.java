@@ -1,5 +1,6 @@
 package com.givoo.service.serviceImp;
 
+import com.givoo.dto.donation.DonationDTO;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
 import com.givoo.entity.donation.Donation;
@@ -9,10 +10,10 @@ import com.givoo.repository.donation.DonationRegularRepository;
 import com.givoo.repository.donation.DonationRepository;
 import com.givoo.repository.organization.OrganizationRepository;
 import com.givoo.service.MypageService;
+import com.givoo.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.PublicKey;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,12 +25,14 @@ public class MypageServiceImpl implements MypageService {
     private final DonationRegularRepository donationRegularRepository;
     private final FavoritesRepository favoritesRepository;
     private final OrganizationRepository organizationRepository;
+    private final OrganizationService organizationService;
     @Autowired
-    public MypageServiceImpl(DonationRepository donationRepository, DonationRegularRepository donationRegularRepository, FavoritesRepository favoritesRepository, OrganizationRepository organizationRepository) {
+    public MypageServiceImpl(DonationRepository donationRepository, DonationRegularRepository donationRegularRepository, FavoritesRepository favoritesRepository, OrganizationRepository organizationRepository, OrganizationService organizationService) {
         this.donationRepository = donationRepository;
         this.donationRegularRepository = donationRegularRepository;
         this.favoritesRepository = favoritesRepository;
         this.organizationRepository = organizationRepository;
+        this.organizationService = organizationService;
     }
 
     @Override
@@ -43,15 +46,32 @@ public class MypageServiceImpl implements MypageService {
         }
     }
 
-    @Override   // 기부이력 확인
-    public List<Donation> myDnt(Long userId) {
-        List<Donation> dntList = donationRepository.findAllByUserId(userId);
-        System.out.println("dntList: "+ dntList);
-        if(dntList.isEmpty()){
-            return null;
-        }else{
-            return dntList;
-        }
+    @Override
+    public List<DonationDTO> getDonationsByUserId(Long userId) {
+        List<Donation> donations = donationRepository.findAllByUserIdOrderByDntDateDesc(userId);
+
+        return donations.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private DonationDTO convertToDTO(Donation donation) {
+        String orgName = organizationService.getOrgNameById(donation.getOrgId());
+
+        return new DonationDTO(
+                donation.getDntId(),
+                donation.getDntAmount(),
+                donation.getDntDate(),
+                donation.getReceiptResult(),
+                donation.getOrgId(),
+                donation.getUserId(),
+                donation.getTypePayment(),
+                donation.getDntComment(),
+                donation.getIsRegulation(),
+                donation.getDntCommentRegulation(),
+                donation.getDntType(),
+                orgName
+        );
     }
 
     @Override   // 내 단체

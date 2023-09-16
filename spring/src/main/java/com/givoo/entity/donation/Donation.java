@@ -1,10 +1,8 @@
 package com.givoo.entity.donation;
 
+import com.givoo.dto.donation.DonationDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
@@ -14,6 +12,7 @@ import java.util.Date;
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class Donation {
     @Id //pk 값
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
@@ -23,7 +22,7 @@ public class Donation {
     private Long dntAmount;
     @Column(nullable = false)
     private Date dntDate;
-    @Column(nullable = false,columnDefinition = "처리중")
+    @Column(nullable = false, columnDefinition = "처리중")
     private String receiptResult;
     private Long orgId;
     @Column(nullable = false)
@@ -37,9 +36,11 @@ public class Donation {
     @Column(nullable = false)
     private String dntType;
 
-
-    public Donation() {
-
-    }
-
+//    public DonationDTO converter(String orgName) {
+//        return new DonationDTO(
+//                this.dntId, this.dntAmount, this.dntDate, this.receiptResult, this.orgId, this.userId,
+//                this.typePayment, this.dntComment, this.isRegulation, this.dntCommentRegulation,
+//                this.dntType, orgName
+//        );
+//    }
 }

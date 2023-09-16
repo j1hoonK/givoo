@@ -13,6 +13,7 @@ class DonationService{
     if(response.statusCode == 200){
       print("OK");
       List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
+      print(body);
       return body.map<Donation>((item) => Donation.fromJson(item)).toList();
     }else{
       print("NG");

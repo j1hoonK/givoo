@@ -1,5 +1,6 @@
 package com.givoo.repository.donation;
 
+import com.givoo.dto.donation.DonationDTO;
 import com.givoo.dto.donation.DonationSendDTO;
 import com.givoo.entity.donation.Donation;
 
@@ -11,5 +12,6 @@ import java.util.List;
 
 @Repository
 public interface DonationRepository extends JpaRepository<Donation,Long> {
-    List<Donation> findAllByUserId(Long userId);
+    List<Donation> findAllByUserIdOrderByDntDateDesc(Long userId);
+
 }

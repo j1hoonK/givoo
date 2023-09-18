@@ -11,8 +11,8 @@ public class DetailOrgDTO {  // /info/{기관아이디}/{유저아이디}
 
     private String orgName;  //organization
     private String orgAddress; //organization
-    private Long locationLat; //organization
-    private Long locationLong; //organization
+    private Double locationLat; //organization
+    private Double locationLong; //organization
     private Long orgTell; //organization
     private String orgInfo; //organization
     private String orgOwner; //organization

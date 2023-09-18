@@ -6,14 +6,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "fundraising_Longerest")
+@Table(name = "fundraising_interest")
 @Getter
 @Setter
-public class FundraisingLongerest {
+public class FundraisingInterest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "fndr_Longr_id")
-    private Long fndrLongrId;
+    @Column(name = "fndr_intr_id")
+    private Long fndrIntrId;
 
     @ManyToOne
     @JoinColumn(name = "fndr_id", nullable = false)

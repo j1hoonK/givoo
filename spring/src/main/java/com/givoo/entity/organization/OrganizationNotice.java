@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity // Entity 클래스임을 명시합니다.
@@ -11,15 +12,21 @@ import java.util.Date;
 @Getter
 @Setter
 public class OrganizationNotice {
-    @Id //pk 값
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "notice_id")
     private Long noticeId;
-    @Column(nullable = false)
+
+    @Column(name = "subject", nullable = false)
     private String subject;
-    @Column(nullable = false)
-    private Long orgId;
-    @Column(nullable = false)
+
+    @ManyToOne
+    @JoinColumn(name = "org_id", nullable = false)
+    private Organization organization;
+
+    @Column(name = "contents", nullable = false)
     private String contents;
-    @Column(nullable = false)
-    private Date noticeDate;
+
+    @Column(name = "notice_date", nullable = false)
+    private Timestamp noticeDate;
 }

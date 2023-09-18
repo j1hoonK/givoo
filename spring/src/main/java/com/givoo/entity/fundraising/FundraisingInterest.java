@@ -1,19 +1,25 @@
 package com.givoo.entity.fundraising;
 
+import com.givoo.entity.Users;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity // Entity 클래스임을 명시합니다.
-@Table(name = "fundraising_interest")  //매핑할 테이블 명을 지정합니다.
+@Entity
+@Table(name = "fundraising_Longerest")
 @Getter
 @Setter
-public class FundraisingInterest {
-    @Id //pk 값
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
-    private Long fndrIntrId;
-    @Column(nullable = false)
-    private Long fndrId;
-    @Column(nullable = false)
-    private Long userId;
+public class FundraisingLongerest {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "fndr_Longr_id")
+    private Long fndrLongrId;
+
+    @ManyToOne
+    @JoinColumn(name = "fndr_id", nullable = false)
+    private Fundraising fundraising;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users users;
 }

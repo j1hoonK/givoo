@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
-import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
@@ -27,47 +26,48 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(   // 내 단체 확인
-            create: (context) => MyPageProvider(),
+      providers: [
+        ChangeNotifierProvider( // 내 단체 확인
+          create: (context) => MyPageProvider(),
+        ),
+        ChangeNotifierProvider( // 기관 정보 확인
+          create: (context) => OrganizationProvider(),
+        ),
+        ChangeNotifierProvider( // 후원 이력 확인
+          create: (context) => DonationProvider(),
+        ),
+        ChangeNotifierProvider( // 유저정보 확인
+          create: (context) => UserInfoProvider(),
+        ),
+        ChangeNotifierProvider( // 로그인 확인
+          create: (context) => LoginViewModel(KakaoLogin()),
+        ),
+        ChangeNotifierProvider( //
+            create: (context) => PayCategoryProvider()
+        ),
+        ChangeNotifierProvider( //
+          create: (context) => RecommendMoreProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: '기부어때',
+        theme: ThemeData(
+          //TODO: 다크모드 설정하기
+          useMaterial3: false,
+          navigationBarTheme: NavigationBarThemeData(
+            backgroundColor: Colors.white,
           ),
-          ChangeNotifierProvider(   // 기관 정보 확인
-            create: (context) => OrganizationProvider(),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white,
+            iconTheme: IconThemeData(color: Colors.black),
           ),
-          ChangeNotifierProvider(   // 후원 이력 확인
-            create: (context) => DonationProvider(),
-          ),
-          ChangeNotifierProvider(   // 유저정보 확인
-            create: (context) => UserInfoProvider(),
-          ),
-          ChangeNotifierProvider(   // 로그인 확인
-              create: (context) => LoginViewModel(KakaoLogin()),
-          ),
-          ChangeNotifierProvider(   //
-              create: (context) => PayCategoryProvider()
-          ),
-          ChangeNotifierProvider(   //
-              create: (context) => RecommendMoreProvider(),
-          ),
-        ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: '기부어때',
-          theme: ThemeData(
-            //TODO: 다크모드 설정하기
-            useMaterial3: false,
-            navigationBarTheme: NavigationBarThemeData(
-              backgroundColor: Colors.white,
-            ),
-            appBarTheme: AppBarTheme(
-              backgroundColor: Colors.white,
-              iconTheme: IconThemeData(color: Colors.black),
-            ),
-            scaffoldBackgroundColor: Colors.white,
-            primaryColor: Colors.white,
-          ),
-          //home: Pay(),
-          home: Loading(),
-        ));
+          scaffoldBackgroundColor: Colors.white,
+          primaryColor: Colors.white,
+        ),
+        //home: Pay(),
+        home: Loading(),
+      ),
+    );
   }
 }

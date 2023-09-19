@@ -8,6 +8,8 @@ import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:givoo/provider/UserProvider.dart';
+import 'package:givoo/routes/routes.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
@@ -22,8 +24,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final GoRouter _router = GivooRouter.router;
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -41,16 +43,16 @@ class MyApp extends StatelessWidget {
             create: (context) => UserInfoProvider(),
           ),
           ChangeNotifierProvider(   // 로그인 확인
-              create: (context) => LoginViewModel(KakaoLogin()),
+            create: (context) => LoginViewModel(KakaoLogin()),
           ),
           ChangeNotifierProvider(   //
               create: (context) => PayCategoryProvider()
           ),
           ChangeNotifierProvider(   //
-              create: (context) => RecommendMoreProvider(),
+            create: (context) => RecommendMoreProvider(),
           ),
         ],
-        child: MaterialApp(
+        child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: '기부어때',
           theme: ThemeData(
@@ -66,8 +68,9 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             primaryColor: Colors.white,
           ),
+          routerConfig: _router,
           //home: Pay(),
-          home: Loading(),
+          // home: Loading(),
         ));
   }
 }

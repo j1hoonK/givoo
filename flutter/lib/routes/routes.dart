@@ -19,9 +19,10 @@ class GivooRouter {
           return const Loading();
         },
       ), GoRoute(
-        path: '/pay',
+        path: '/pay/:orgId',
         builder: (BuildContext context, GoRouterState state) {
-          return Pay();
+          final orgId = int.parse(state.pathParameters['orgId']!) ?? '-1';
+          return Pay(orgId: orgId.toString());
         },
       ),GoRoute(
         path: '/Recommend',
@@ -41,7 +42,7 @@ class GivooRouter {
         },
       ),
       GoRoute(
-        path: '/mypage/org',
+        path: '/mypage/org/',
         builder: (BuildContext context, GoRouterState state) {
           return const MainMyGroup();
         },

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/config/palette.dart';
 import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class OrgInfoPage extends StatefulWidget {
-  final String orgId;
+  final orgId;
 
   OrgInfoPage({super.key,required this.orgId});
 
@@ -36,13 +38,16 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
+      appBar: BaseAppbar(title: "상세정보",),
       bottomNavigationBar: Container(
         width: double.infinity,
         height: mHeight * 4.3,
         color: Palette.mainColor,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Palette.mainColor),
-            onPressed: () {},
+            onPressed: () {
+              context.push("/pay/${widget.orgId}");
+            },
             child: Text(
               "후원하기",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

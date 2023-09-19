@@ -42,7 +42,7 @@ class GivooRouter {
         },
       ),
       GoRoute(
-        path: '/mypage/org/',
+        path: '/mypage/org',
         builder: (BuildContext context, GoRouterState state) {
           return const MainMyGroup();
         },

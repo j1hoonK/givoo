@@ -12,9 +12,9 @@ public class Users {
     @Id //pk 값
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
     private int userId;
-    @Column(nullable = false)
+    @Column
     private String userName;
-    @Column(nullable = false)
+    @Column
     private String userEmail;
     @Column
     private Long userTell;
@@ -26,6 +26,11 @@ public class Users {
     private String userImage;
     @Column(nullable = false)
     private String loginType;
-    @Column
+    @Column(nullable = false)
     private String token;
+    @Column
+    private Long userNumberFirst;
+    @Column
+    private Long userNumberSecond;
+
 }

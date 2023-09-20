@@ -41,16 +41,28 @@ class _FirstLoginState extends State<FirstLogin> {
   bool _isClearButtonVisible = false;
   bool _isClearButtonVisible1 = false;
   bool _isClearButtonVisible2 = false;
-  String address1 = '-';
-
+  String address = '';
 
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {setState(() {_isClearButtonVisible = _controller.text.isNotEmpty;});});
-    _controller1.addListener(() {setState(() {_isClearButtonVisible1 = _controller1.text.isNotEmpty;});});
-    _controller2.addListener(() {setState(() {_isClearButtonVisible2 = _controller2.text.isNotEmpty;});});
+    _controller.addListener(() {
+      setState(() {
+        _isClearButtonVisible = _controller.text.isNotEmpty;
+      });
+    });
+    _controller1.addListener(() {
+      setState(() {
+        _isClearButtonVisible1 = _controller1.text.isNotEmpty;
+      });
+    });
+    _controller2.addListener(() {
+      setState(() {
+        _isClearButtonVisible2 = _controller2.text.isNotEmpty;
+      });
+    });
   }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -91,16 +103,15 @@ class _FirstLoginState extends State<FirstLogin> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Center(
                           child: Text(
                             ' 필수정보 입력 ',
                             style: TextStyle(
                                 color: Color(0xFFFF466E),
-                                fontSize: 23, fontWeight: FontWeight.bold),
+                                fontSize: 23,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
-
                         SizedBox(
                           height: mHeight * 0.035,
                         ),
@@ -133,25 +144,27 @@ class _FirstLoginState extends State<FirstLogin> {
                                     ),
                                   ),
                                 ),
-                                ElevatedButton(onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => KpostalView(
-                                        useLocalServer: true,
-                                        localPort: 1024,
-                                        // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
-                                        callback: (Kpostal result) {
-                                          print('result == $result');
-                                          print('adress == ${result.address}');
-                                          setState(() {
-                                            address1 = result.address;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                },
+                                ElevatedButton(
+                                    onPressed: () async {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => KpostalView(
+                                            useLocalServer: true,
+                                            localPort: 1024,
+                                            // kakaoKey: '{Add your KAKAO DEVELOPERS JS KEY}',
+                                            callback: (Kpostal result) {
+                                              print('result == $result');
+                                              print(
+                                                  'adress == ${result.address}');
+                                              setState(() {
+                                                address = result.address;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
                                     child: Text('주소검색'))
                               ],
                             ),
@@ -160,18 +173,25 @@ class _FirstLoginState extends State<FirstLogin> {
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                border: Border(bottom: BorderSide(color: Palette.textColor2, width: 1)),
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Palette.textColor2, width: 1)),
                               ),
                               height: mHeight * 0.05,
                               width: double.infinity,
                               child: Row(
                                 children: [
-                                  SizedBox(width: mSize * 0.02,),
-                                  Icon(Icons.home,
-                                  color: Palette.textColor2,
+                                  SizedBox(
+                                    width: mSize * 0.02,
                                   ),
-                                  SizedBox(width: mSize * 0.02,),
-                                  Text(address1),
+                                  Icon(
+                                    Icons.home,
+                                    color: Palette.textColor2,
+                                  ),
+                                  SizedBox(
+                                    width: mSize * 0.02,
+                                  ),
+                                  Text(address),
                                 ],
                               ),
                             ),
@@ -336,30 +356,43 @@ class _FirstLoginState extends State<FirstLogin> {
                       ],
                     )),
                 LoginSignupScreen(),
-                SizedBox(height: mHeight * 0.02,),
+                /*SizedBox(
+                  height: mHeight * 0.02,
+                ),
                 Container(
                   width: double.infinity,
                   height: mHeight * 0.08,
-                  color:  (allB && allC) || (!allA && !allB && !allC) ? Color(0xFFFF466E) : Colors.grey, // 버튼 활성/비활성 상태에 따라 색상 변경
+                  color: (allB && allC) || (!allA && !allB && !allC)
+                      ? Color(0xFFFF466E)
+                      : Colors.grey, // 버튼 활성/비활성 상태에 따라 색상 변경
 
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFFF466E),
                     ),
-                    onPressed:
-                    (allB && allC) || (!allA && !allB && !allC) ? () {} : null, // allB와 allC가 모두 체크되어야 클릭 가능, 아무 것도 체크하지 않았을 때도 클릭 가능
+                    onPressed: (allB && allC) || (!allA && !allB && !allC)
+                        ? () {
+                      print('allA == $allA / allB == $allB / allC == $allC');
+                    }
+                        : () {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('필수 약관을 모두 체크해주세요'),
+                              action: SnackBarAction(label: "닫기", onPressed: (){}),
+                            ));
+                          },
+                    // allB와 allC가 모두 체크되어야 클릭 가능, 아무 것도 체크하지 않았을 때도 클릭 가능
                     child: Text(
                       "완료",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
-                )
+                )*/
               ],
             ),
           ),
         ),
       ),
-
     );
   }
 }

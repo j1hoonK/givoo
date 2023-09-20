@@ -31,7 +31,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ),
             ),
           ),
-          SizedBox(height: mHeight * 0.03), // 간격 추가
+          SizedBox(height: mHeight * 0.015), // 간격 추가
 
           // 체크박스 및 텍스트 입력란 추가
           Column(
@@ -53,7 +53,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 title: Text(
                   '모두 동의합니다',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     color: Colors.black,
                   ),
                 ),
@@ -70,10 +70,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 leading: Checkbox(
                   value: allA, // 체크 상태 설정
                   onChanged: (bool? value) {
-                    setState(() {
-                      allA = value ?? false; // 체크 상태 업데이트
-                    });
-                    // 체크 상태 변경 시 동작
+                    allA == false && allB == true && allC == true
+                        ? setState((){allAgreed = true; allA = value ?? false;})
+                        : setState((){allA = value ?? false;});
                   },
                   activeColor: Color(0xFFFF466E), // 체크된 상태일 때의 색상
                   checkColor: Colors.white,
@@ -81,7 +80,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 title: Text(
                   '만 14세 이상입니다',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     color: Colors.black,
                   ),
                 ),
@@ -91,10 +90,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 leading: Checkbox(
                   value: allB, // 체크 상태 설정
                   onChanged: (bool? value) {
-                    setState(() {
-                      allB = value ?? false; // 체크 상태 업데이트
-                    });
-                    // 체크 상태 변경 시 동작
+                    allA == true && allB == false && allC == true
+                        ? setState((){allAgreed = true; allB = value ?? false;})
+                        : setState((){allB = value ?? false;});
                   },
                   activeColor: Color(0xFFFF466E), // 체크된 상태일 때의 색상
                   checkColor: Colors.white,
@@ -102,7 +100,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 title: Text(
                   '[필수] 기부어때 이용약관 동의',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     color: Colors.black,
                   ),
                 ),
@@ -117,10 +115,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 leading: Checkbox(
                   value: allC, // 체크 상태 설정
                   onChanged: (bool? value) {
-                    setState(() {
-                      allC = value ?? false; // 체크 상태 업데이트
-                    });
-                    // 체크 상태 변경 시 동작
+                    allA == true && allB == true && allC == false
+                        ? setState((){allAgreed = true; allC = value ?? false;})
+                        : setState((){allC = value ?? false;});
                   },
                   activeColor: Color(0xFFFF466E), // 체크된 상태일 때의 색상
                   checkColor: Colors.white,
@@ -128,7 +125,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 title: Text(
                   '[필수] 기부어때 이용약관 동의',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     color: Colors.black,
                   ),
                 ),
@@ -141,6 +138,38 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ),
             ],
           ),
+          SizedBox(
+            height: mHeight * 0.02,
+          ),
+          Container(
+            width: double.infinity,
+            height: mHeight * 0.08,
+            color: (allB && allC) || (!allA && !allB && !allC)
+                ? Color(0xFFFF466E)
+                : Colors.grey, // 버튼 활성/비활성 상태에 따라 색상 변경
+
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFFFF466E),
+              ),
+              onPressed: (allB == true && allC == true) || (allB == true && allC == true && allC == true)
+                  ? () {
+                print('allA == $allA / allB == $allB / allC == $allC');
+              }
+                  : () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('필수 약관을 모두 체크해주세요'),
+                  action: SnackBarAction(label: "닫기", onPressed: (){}),
+                ));
+              },
+              // allB와 allC가 모두 체크되어야 클릭 가능
+              child: Text(
+                "완료",
+                style:
+                TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+          )
         ],
       ),
     );

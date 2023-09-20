@@ -13,6 +13,8 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Table (name = "organization")  // 테이블 생성시 이름을 지정해줌
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
@@ -43,6 +45,7 @@ public class Organization {
     private String imagePath;
     @Column(nullable = false)
     private Long totalFavorite;
+    
     public DetailOrgDTO converter(Long favId){
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.getLocationLat(),this.getLocationLong(),
@@ -52,5 +55,4 @@ public class Organization {
     }
 
 
-    }
-
+}

@@ -33,5 +33,11 @@ public class OrganizationController {
     public List<Organization> orgType(@PathVariable("orgtype") String orgType){
         return organizationService.findType(orgType);
     }
+    @GetMapping("/mainpage")
+    public List<Organization> ranOrg(){
+        return organizationService.randomOrg();
+
+    }
+
 
 }

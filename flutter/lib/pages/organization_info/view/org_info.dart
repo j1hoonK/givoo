@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/config/palette.dart';
 import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class OrgInfoPage extends StatefulWidget {
-  OrgInfoPage(var orgId, {super.key});
+  final orgId;
+
+  OrgInfoPage({super.key,required this.orgId});
 
   @override
   State<OrgInfoPage> createState() => _OrgInfoPageState();
 }
 
 class _OrgInfoPageState extends State<OrgInfoPage> {
+
   bool isFollowSelected = false; // 'follow_n.png' 이미지 상태를 나타내는 변수
   @override
   void initState(){
     super.initState();
-    Provider.of<OrganizationProvider>(context, listen: false).orgInfo(1, 1);
+    var orgId = widget.orgId;
+    Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
     print("orgInfoData: ${OrganizationProvider().orgInfodata}");
   }
   // 'follow_n.png' 이미지를 토글(바꾸는)하는 함수
@@ -32,13 +38,16 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
+      appBar: BaseAppbar(title: "상세정보",),
       bottomNavigationBar: Container(
         width: double.infinity,
         height: mHeight * 4.3,
         color: Palette.mainColor,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Palette.mainColor),
-            onPressed: () {},
+            onPressed: () {
+              context.push("/pay/${widget.orgId}");
+            },
             child: Text(
               "후원하기",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -70,7 +79,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                         padding: EdgeInsets.all(mSize * 2.1),
                         color: Colors.black12.withOpacity(0), // 투명도 설정
                         child: Text(
-                          '${provider.orgInfodata}',
+                          '${provider.orgInfodata['orgName']}',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18.0,
@@ -135,7 +144,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "단체 정보",
+                              "${provider.orgInfodata['orgInfo']}",
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
@@ -144,7 +153,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                             ),
                             Column(
                               children: [
-                                SubTitle(title1: "대표자", title2: "고유번호"),
+                                SubTitle(title1:  "${provider.orgInfodata['orgOwner']}", title2: "${provider.orgInfodata['orgOwner']}"),
                                 SizedBox(height: mHeight * 0.3,),
                                 SubSentence(sentence1: "김병삼", sentence2: "201-82-06694")
                               ],
@@ -152,7 +161,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                             SizedBox(height: mHeight * 1),
                             Column(
                               children: [
-                                SubTitle(title1: "공익사업유형", title2: "설립일"),
+                                SubTitle(title1: "공익사업유형", title2: "${provider.orgInfodata['startedUp']}"),
                                 SizedBox(height: mHeight * 0.3,),
                                 SubSentence(sentence1: "사회복지", sentence2: "2009-04-17"),
                               ],

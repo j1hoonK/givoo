@@ -16,12 +16,13 @@ class KakaoService {
       headers: {"Content-Type": 'application/json'},
       body: json.encode(kakaoUserData),
     );
+      print("(LoginService.dart)UserData: ${json.encode(kakaoUserData)}");
 
     if (response.statusCode == 200) {
-      print("OK: ${response.body}");
+      print("(LoginService.dart)OK: ${response.body}");
     } else {
-      print("NG: ${response.statusCode}");
-      print("Messege: ${response.body}");
+      print("(LoginService.dart)NG: ${response.statusCode}");
+      print("(LoginService.dart)Messege: ${response.body}");
     }
   }
 }
@@ -33,7 +34,7 @@ class FindByToken {
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       List<dynamic> userInfo = jsonDecode(utf8.decode(response.bodyBytes));
-      print("userInfo == $userInfo");
+      print("(LoginService.dart)userInfo == $userInfo");
       return userInfo
           .map<KakaoUser>((item) => KakaoUser.fromJson(item))
           .toList();

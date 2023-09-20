@@ -45,7 +45,7 @@ public class Organization {
     private String imagePath;
     @Column(nullable = false)
     private Long totalFavorite;
-    
+
     public DetailOrgDTO converter(Long favId){
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.getLocationLat(),this.getLocationLong(),

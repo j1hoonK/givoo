@@ -51,8 +51,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     public List<Organization> randomOrg() {
         Long count = organizationRepo.countBy();
         if(count < 3) {
-            List<Organization> ranOrg = organizationRepo.randomOrg();
-            return ranOrg.stream().map(Organization::new).collect(Collectors.toList());
+            return organizationRepo.findAll();
         }
         return organizationRepo.randomOrg();
     }

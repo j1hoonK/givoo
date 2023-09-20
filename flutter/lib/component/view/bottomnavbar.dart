@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/mainpage/view/mainPage2.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/search/view/search2.dart';
+import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:provider/provider.dart';
 import '../../pages/mainpage/view/main_page.dart';
 import '../../pages/search/view/search.dart';
 
@@ -13,7 +16,12 @@ class BotNavBar extends StatefulWidget {
 
 class _BotNavBarState extends State<BotNavBar> {
   int _currentIndex = 1;
+  @override
+  void initState(){
+    super.initState();
+    Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +30,9 @@ class _BotNavBarState extends State<BotNavBar> {
         selectedIndex: _currentIndex,
         onDestinationSelected: (value) => setState(() {
           _currentIndex = value;
+          if(value==1){
+            Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
+          }
         }),
         destinations: [
           NavigationDestination(
@@ -43,7 +54,7 @@ class _BotNavBarState extends State<BotNavBar> {
         index: _currentIndex,
         children: [
           Search(),
-          MainPage(),
+          MainPage2(),
           MyPage(),
         ],
       ),

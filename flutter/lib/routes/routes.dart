@@ -27,7 +27,8 @@ class GivooRouter {
       ),GoRoute(
         path: '/Recommend',
         builder: (BuildContext context, GoRouterState state) {
-          return const Recommend();
+          final orgType = state.extra;
+          return  Recommend(orgType: orgType.toString(),);
         },
       ), GoRoute(
         path: '/Search',

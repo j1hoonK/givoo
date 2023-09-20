@@ -25,7 +25,7 @@ class OrgBox extends StatelessWidget {
           context.push('/orginfo/$orgId',extra: orgId);
       },
       child: SizedBox(
-        height: height * 0.16,
+        height: height * 0.25,
         width: width * 0.3,
         child: Card(
           child: Column(
@@ -42,17 +42,23 @@ class OrgBox extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
               ),
-              Text(
-                orgName,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+              SizedBox(
+                height: height*0.023,
+                child: Text(
+                  orgName,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              Text(
-                orgAddress,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
+              SizedBox(
+                height: height*0.015,
+                child: Text(
+                  orgAddress,
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ],

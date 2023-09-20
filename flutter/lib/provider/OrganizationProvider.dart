@@ -8,7 +8,6 @@ class OrganizationProvider extends ChangeNotifier {
       OrganizationListService();
   final SearchService _searchService = SearchService();
   List<Organization> _OrgList = [];
-
   List<Organization> get OrgList => _OrgList;
   var _controller = TextEditingController();
   bool _isClearButtonVisible = false;
@@ -18,7 +17,6 @@ class OrganizationProvider extends ChangeNotifier {
   bool get isClearButtonVisible => _isClearButtonVisible;
   bool get isSearchIconVisible => _isSearchIconVisible;
   get searchValue => _searchValue;
-
 
   Map<String,dynamic> _orgInfodata ={};
   Map<String,dynamic> get orgInfodata =>_orgInfodata;
@@ -47,8 +45,6 @@ class OrganizationProvider extends ChangeNotifier {
       _isClearButtonVisible = true;
       _isSearchIconVisible = false;
     }
-    print("_isClearButtonVisible: ${_isClearButtonVisible}");
-    print("_isSearchIconVisible: ${_isSearchIconVisible}");
     notifyListeners();
   }
 
@@ -60,6 +56,12 @@ class OrganizationProvider extends ChangeNotifier {
   Future<void> orgInfo(orgId,userId) async {
     Map<String,dynamic>? _data = await _OrganizationListService.fetchOrgInfo(orgId, userId);
     _orgInfodata = _data;
+    notifyListeners();
+  }
+
+  Future<void> randomOrg()async{
+    List<Organization>? _data = await _OrganizationListService.randomOrg();
+    _OrgList =_data;
     notifyListeners();
   }
 }

@@ -9,28 +9,38 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Users {
-    @Id //pk 값
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int userId;
-    @Column
-    private String userName;
-    @Column
-    private String userEmail;
-    @Column
-    private Long userTell;
-    @Column
-    private String userAddress;
-    @Column
-    private String userNname;
-    @Column
-    private String userImage;
-    @Column(nullable = false)
-    private String loginType;
-    @Column(nullable = false)
-    private String token;
-    @Column
-    private Long userNumberFirst;
-    @Column
-    private Long userNumberSecond;
 
+    @Column(name = "user_name", nullable = false)
+    private String userName;
+
+    @Column(name = "user_email", nullable = false)
+    private String userEmail;
+
+    @Column(name = "user_tell")
+    private Long userTell;
+
+    @Column(name = "user_address")
+    private String userAddress;
+
+    @Column(name = "user_nname")
+    private String userNname;
+
+    @Column(name = "user_number_first")
+    private Integer userNumberFirst;
+
+    @Column(name = "user_number_second")
+    private Integer userNumberSecond;
+
+    @Column(name = "token", nullable = false)
+    private String token;
+  
+    @Column(name = "user_image")
+    private String userImage;
+  
+    @Column(name = "login_type", nullable = false)
+    private String loginType;
 }

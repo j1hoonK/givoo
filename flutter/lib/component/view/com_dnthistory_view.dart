@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/model/com_dnthistory_model.dart';
+import 'package:givoo/config/palette.dart';
 import 'package:intl/intl.dart';
 
 class DntHistory extends StatelessWidget {
@@ -9,36 +10,56 @@ class DntHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mSize = MediaQuery.of(context).size.width * 0.025;
+    var mHeight = MediaQuery.of(context).size.height * 0.013;
 
     final dateForm = DateFormat('yyyy-MM-dd').format(dnt.dntDate);
     final orgIdForm = dnt.orgId.toString();
     final amountForm = dnt.dntAmount.toString();
 
     return TextButton(
-      onPressed: (){},
+      onPressed: () {},
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(
           children: [
-            Row(
-                children: [
-                  Text("결제 완료"),
-                  SizedBox(width: 20,),
-                  Text(dateForm),
-                ]
+            Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              Text(
+                "결제 완료",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Palette.textColor1),
+              ),
+              SizedBox(
+                width: mSize * 2,
+              ),
+              Text(dateForm, style: TextStyle(color: Palette.textColor2)),
+            ]),
+            SizedBox(
+              height: mHeight * 0.3,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(dnt.dntType),
-                  SizedBox(height: 20,),
+                  Text(dnt.dntType,
+                      style: TextStyle(color: Palette.textColor2)),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(orgIdForm),
-                      Text(amountForm),
+                      Text(
+                        orgIdForm,
+                        style: TextStyle(color: Palette.textColor1),
+                      ),
+                      Text(
+                        "$amountForm 원",
+                        style: TextStyle(color: Palette.textColor1),
+                      ),
                     ],
                   ),
                 ],
@@ -46,7 +67,7 @@ class DntHistory extends StatelessWidget {
             ),
             Divider(
               height: 20,
-              color: Colors.grey[350],
+              color: Colors.grey,
             )
           ],
         ),

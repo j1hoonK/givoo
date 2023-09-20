@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
-import 'package:givoo/pages/login/viewmodel/social_login.dart';
+import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:givoo/provider/UserProvider.dart';
+import 'package:givoo/routes/routes.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
-
-import 'component/view/bottomnavbar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +24,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final GoRouter _router = GivooRouter.router;
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -41,11 +43,16 @@ class MyApp extends StatelessWidget {
             create: (context) => UserInfoProvider(),
           ),
           ChangeNotifierProvider(   // 로그인 확인
-              create: (context) => LoginViewModel(KakaoLogin()),
-          )
-
+            create: (context) => LoginViewModel(KakaoLogin()),
+          ),
+          ChangeNotifierProvider(   //
+              create: (context) => PayCategoryProvider()
+          ),
+          ChangeNotifierProvider(   //
+            create: (context) => RecommendMoreProvider(),
+          ),
         ],
-        child: MaterialApp(
+        child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: '기부어때',
           theme: ThemeData(
@@ -58,12 +65,12 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(color: Colors.black),
             ),
-            textButtonTheme: TextButtonThemeData(
-                style: TextButton.styleFrom(foregroundColor: Colors.black)),
             scaffoldBackgroundColor: Colors.white,
             primaryColor: Colors.white,
           ),
-          home: Loading(),
+          routerConfig: _router,
+          //home: Pay(),
+          // home: Loading(),
         ));
   }
 }

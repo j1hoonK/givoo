@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
-import 'package:givoo/pages/search/view/search.dart';
+import 'package:givoo/pages/search/view/search2.dart';
 import '../../pages/mainpage/view/main_page.dart';
-import '../../pages/mainpage/view/mainpage.dart';
+import '../../pages/search/view/search.dart';
 
 class BotNavBar extends StatefulWidget {
   const BotNavBar({super.key});
@@ -13,6 +13,7 @@ class BotNavBar extends StatefulWidget {
 
 class _BotNavBarState extends State<BotNavBar> {
   int _currentIndex = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,7 @@ class _BotNavBarState extends State<BotNavBar> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          SearchPage(),
+          Search(),
           MainPage(),
           MyPage(),
         ],

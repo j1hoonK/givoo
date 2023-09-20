@@ -152,7 +152,7 @@ CONSTRAINT `FK_14` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org
 
 
 # 관리자 로그인용 임시 DB table
-CREATE TABLE `manager`
+CREATE TABLE `member`
 (
     `id`     int NOT NULL AUTO_INCREMENT,
     `username`  int NOT NULL COMMENT '관리자아이디' ,

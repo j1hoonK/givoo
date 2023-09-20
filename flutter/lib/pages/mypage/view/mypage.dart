@@ -7,6 +7,7 @@ import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
 import 'package:givoo/provider/UserProvider.dart';
 import 'package:givoo/services/LoginService.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +29,7 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: 전체 페이지 MediaQuery 통일(mSize, mHight 각각 약 10px에 해당함)
-    var mSize = MediaQuery.of(context).size.width * 0.025;
+    var mSize =  MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
 
     final isLoginNow = Provider.of<LoginViewModel>(context);
@@ -120,11 +121,7 @@ class _MyPageState extends State<MyPage> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MainMyGroup(),
-                                ));
+                            context.push("/mypage/org");
                           },
                           child: Row(
                             children: [
@@ -140,11 +137,7 @@ class _MyPageState extends State<MyPage> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DonationHistory(),
-                                ));
+                          context.push("/mypage/dnthistory");
                           },
                           child: Row(
                             children: [

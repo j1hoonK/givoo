@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:go_router/go_router.dart';
 
 class OrgBox extends StatelessWidget {
   OrgBox(
@@ -21,12 +22,7 @@ class OrgBox extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context)=> OrgInfoPage(orgId)
-          ),
-        );
+          context.push('/orginfo/$orgId',extra: orgId);
       },
       child: SizedBox(
         height: height * 0.16,

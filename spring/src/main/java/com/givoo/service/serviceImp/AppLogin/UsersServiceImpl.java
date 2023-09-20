@@ -23,7 +23,7 @@ public class UsersServiceImpl implements UsersService {
         if (findUser.isEmpty()) {
             return usersRepository.save(users);
         } else {
-            return (Users) findUser;
+            return findUser.get(0);
         }
     }
 

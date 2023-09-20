@@ -15,33 +15,59 @@ import java.util.Date;
 @ToString
 public class Organization {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "org_id")
     private Long orgId;
-    @Column(nullable = false)
-    private String orgNumber;
-    @Column(nullable = false)
+
+    @Column(name = "org_name", nullable = false)
     private String orgName;
-    @Column(nullable = false)
+
+    @Column(name = "org_ownnumber")
+    private Long orgOwnnumber;
+
+    @Column(name = "org_number", nullable = false)
+    private Long orgNumber;
+
+    @Column(name = "org_address", nullable = false)
     private String orgAddress;
-    @Column(nullable = false)
-    private Long locationLat;
-    @Column(nullable = false)
-    private Long locationLong;
-    @Column(nullable = false)
+
+    @Column(name = "zip")
+    private Long zip;
+
+    @Column(name = "location_lat", nullable = false)
+    private Double locationLat;
+
+    @Column(name = "location_long", nullable = false)
+    private Double locationLong;
+
+    @Column(name = "org_tell", nullable = false)
     private Long orgTell;
-    @Column(nullable = false)
+
+    @Column(name = "org_type", nullable = false)
     private String orgType;
-    @Column(nullable = false)
+
+    @Column(name = "org_info")
     private String orgInfo;
-    @Column(nullable = false)
+
+    @Column(name = "org_notice")
+    private String orgNotice;
+
+    @Column(name = "org_owner", nullable = false)
     private String orgOwner;
-    @Column(nullable = false)
+
+    @Column(name = "started_up", nullable = false)
     private Date startedUp;
 
-    private Long accountNumber; //null 허용
-    @Column(nullable = false)
+    @Column(name = "account_number")
+    private Long accountNumber;
+
+    @Column(name = "image_path")
     private String imagePath;
-    @Column(nullable = false)
+
+    @Column(name = "homepage")
+    private String homepage;
+
+    @Column(name = "total_favorite", nullable = false)
     private Long totalFavorite;
     public DetailOrgDTO converter(Long favId){
         return new DetailOrgDTO(

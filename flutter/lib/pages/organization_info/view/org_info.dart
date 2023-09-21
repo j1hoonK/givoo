@@ -4,8 +4,10 @@ import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/config/palette.dart';
 import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/services/LaunchUrlService.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OrgInfoPage extends StatefulWidget {
   final orgId;
@@ -23,9 +25,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
   void initState(){
     super.initState();
     var orgId = widget.orgId;
-    print("orgId : ${orgId}@@@@@@@@@@@@@@@@@@@@@@@@@!!!!@@####");
     Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
-    print("orgInfoData: ${OrganizationProvider().orgInfodata}");
   }
   // 'follow_n.png' 이미지를 토글(바꾸는)하는 함수
   void toggleFollow() {
@@ -108,7 +108,8 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                               },
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                              },
                               child: Image.asset(
                                 'images/group/globe.png',
                                 width: 24.0,
@@ -221,7 +222,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                   width: double.infinity,
                   height: mHeight * 25,
                   color: Colors.grey,
-                child:NowGoogleMapView(latitude: 37.412075,longitude: 127.124571, orgName: "사단법인 월드휴먼브리지"),
+                child:NowGoogleMapView(latitude: provider.orgInfodata['locationLat'],longitude: provider.orgInfodata['locationLong'], orgName: "${provider.orgInfodata['orgName']}"),
                 ),
               ],
             );

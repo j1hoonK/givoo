@@ -26,9 +26,7 @@ class LoginViewModel with ChangeNotifier{
     List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
     // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
-    Future.delayed(const Duration(milliseconds: 5000), () {
-      print('Hello, world');
-    });
+
     notifyListeners();
   }
 

@@ -19,8 +19,7 @@ void main() {
   KakaoSdk.init(
       nativeAppKey: 'e61d743ad3d9819502abe521a4b1584b',
       javaScriptAppKey: 'b922d230ead129047285d1c296c0b597'
-  );
-  initializeDateFormatting("ko_KR", null.toString()); //요일 한국어 입력
+  ); //요일 한국어 입력
   runApp(MyApp());
 }
 

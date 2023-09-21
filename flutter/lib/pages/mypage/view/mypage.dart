@@ -139,7 +139,9 @@ class MyPage extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       TextButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          context.push('/mypage/announce');
+                                        },
                                         child: Row(
                                           children: [
                                             Icon(

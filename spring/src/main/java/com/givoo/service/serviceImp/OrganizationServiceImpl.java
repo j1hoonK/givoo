@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
@@ -31,12 +32,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public DetailOrgDTO detailOrg(Long orgId, Long userId) {
-//        Optional<Organization> orgOptional = organizationRepo.findById(orgId);
-//        Optional<Favorites> favOptional = favoritesRepository.findById(userId);
-//        if(orgOptional.isPresent()&&favOptional.isPresent()){
-//            return orgOptional.get().converter(favOptional.get().getFavId());
-//        } else return orgOptional.map(organization -> organization.converter(0L)).orElse(null);
-        return null;
+        Optional<Organization> orgOptional = organizationRepo.findById(orgId);
+        Optional<Favorites> favOptional = favoritesRepository.findById(userId);
+        if(orgOptional.isPresent()&&favOptional.isPresent()){
+            return orgOptional.get().converter(favOptional.get().getFavId());
+        } else return orgOptional.map(organization -> organization.converter(0L)).orElse(null);
+
     }
 
     @Override
@@ -46,5 +47,13 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public List<Organization> findType(String orgType){
         return organizationRepo.findAllByOrgType(orgType);
+    }
+    @Override
+    public List<Organization> randomOrg() {
+        Long count = organizationRepo.countBy();
+        if(count < 3) {
+            return organizationRepo.findAll();
+        }
+        return organizationRepo.randomOrg();
     }
 }

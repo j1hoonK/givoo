@@ -13,6 +13,8 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Table (name = "organization")  // 테이블 생성시 이름을 지정해줌
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,6 +73,7 @@ public class Organization {
 
     @Column(name = "total_favorite", nullable = false)
     private Long totalFavorite;
+
     public DetailOrgDTO converter(Long favId){
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.getLocationLat(),this.getLocationLong(),
@@ -80,5 +83,4 @@ public class Organization {
     }
 
 
-    }
-
+}

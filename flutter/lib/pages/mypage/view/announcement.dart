@@ -3,34 +3,15 @@ import 'package:intl/intl.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
-  initializeDateFormatting('ko_KR', null); //요일 한국어 입력
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Announce extends StatefulWidget {
+  const Announce({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      home: const HomePage(),
-    );
-  }
+  _AnnounceState createState() => _AnnounceState();
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class _AnnounceState extends State<Announce> {
   int _selectedItemIndex = -1; // 선택한 항목의 인덱스를 저장
 
   String _currentTime = ''; //현재날짜

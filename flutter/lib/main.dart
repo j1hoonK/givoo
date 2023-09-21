@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
-import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:givoo/provider/UserProvider.dart';
+import 'package:intl/date_symbol_data_file.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +18,7 @@ void main() {
       nativeAppKey: 'e61d743ad3d9819502abe521a4b1584b',
       javaScriptAppKey: 'b922d230ead129047285d1c296c0b597'
   );
+  initializeDateFormatting("ko_KR", null.toString()); //요일 한국어 입력
   runApp(MyApp());
 }
 

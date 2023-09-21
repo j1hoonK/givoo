@@ -11,7 +11,7 @@ class MainPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> orgTypeList = ["사회","복지","종교","의료","교육","기타"];
+    List<String> orgTypeList = ["국제구제","자선","교육만화과학","경제활동","환경보전","권익신장","보건복지","국제교류협력","시민사회구축","기타"];
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -39,8 +39,8 @@ class MainPage2 extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: orgTypeList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-                  //  childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
+                  crossAxisCount: 5, //1 개의 행에 보여줄 item 개수
+                  childAspectRatio: 1 / 1.8, //item 의 가로 1, 세로 2 의 비율
                   mainAxisSpacing: 10, //수평 Padding
                   crossAxisSpacing: 10, //수직 Padding
                 ),itemBuilder: (context, idx){

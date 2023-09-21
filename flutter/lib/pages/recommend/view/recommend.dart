@@ -5,8 +5,10 @@ import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
 
 class Recommend extends StatefulWidget {
-  const Recommend({super.key});
 
+  Recommend({super.key,required this.orgType});
+
+  final orgType;
   @override
   State<Recommend> createState() => _RecommendState();
 }
@@ -15,13 +17,13 @@ class _RecommendState extends State<Recommend> {
   @override
   void initState() {
     super.initState();
-    Provider.of<RecommendMoreProvider>(context, listen: false).fetchApi();
+    Provider.of<RecommendMoreProvider>(context, listen: false).fetchApi(widget.orgType);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppbar(title: "종교단체"),   // 저기 타이틀 종교단체 변수로 받아와야합니당
+      appBar: BaseAppbar(title:"${widget.orgType}"),   // 저기 타이틀 종교단체 변수로 받아와야합니당
       body: Consumer<RecommendMoreProvider>(
         builder: (context, provider, child) {
           return Container(

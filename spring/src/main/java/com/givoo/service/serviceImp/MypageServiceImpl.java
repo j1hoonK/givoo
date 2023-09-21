@@ -2,8 +2,10 @@ package com.givoo.service.serviceImp;
 
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
+import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
+import com.givoo.entity.organization.Organization;
 import com.givoo.repository.FavoritesRepository;
 import com.givoo.repository.donation.DonationRegularRepository;
 import com.givoo.repository.donation.DonationRepository;
@@ -12,10 +14,8 @@ import com.givoo.service.MypageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.PublicKey;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -44,7 +44,7 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override   // 기부이력 확인
-    public List<Donation> myDnt(Long userId) {
+    public List<Donation> myDnt(Users userId) {
         List<Donation> dntList = donationRepository.findAllByUserId(userId);
         System.out.println("dntList: "+ dntList);
         if(dntList.isEmpty()){
@@ -55,21 +55,23 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override   // 내 단체
-    public List<MyOrgDTO> myOrg(Long userId) {
+    public List<MyOrgDTO> myOrg(Users userId) {
         List<Favorites> favList = favoritesRepository.findAllByUserId(userId);
-        List<MyOrgDTO> myOrgList = favList.stream()
-                .map(fav -> new MyOrgDTO(organizationRepository.findById(fav.getOrgId()).get().getOrgName(),
-                        organizationRepository.findById(fav.getOrgId()).get().getImagePath(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgType(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgId(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgAddress()
-                        ))
-                .collect(Collectors.toList());
-        return myOrgList;
+//        List<MyOrgDTO> myOrgList = favList.stream()
+//                .map(fav -> new MyOrgDTO(organizationRepository.findById(fav.getOrgId()).get().getOrgName(),
+//                        organizationRepository.findById(fav.getOrgId()).get().getImagePath(),
+//                        organizationRepository.findById(fav.getOrgId()).get().getOrgType(),
+//                        organizationRepository.findById(fav.getOrgId()).get().getOrgId(),
+//                        organizationRepository.findById(fav.getOrgId()).get().getOrgAddress()
+//                        ))
+//                .collect(Collectors.toList());
+//        return myOrgList;
+        return null;
+
     }
 
     @Override   // 정기기부 관리
-    public List<DonationRegular> findByUserID(Long userId) {
+    public List<DonationRegular> findByUserID(Users userId) {
         return donationRegularRepository.findByUserId(userId);
     }
 
@@ -93,7 +95,7 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public void fav(Long orgId, Long userId) {
+    public void fav(Organization orgId, Users userId) {
         Favorites fav = new Favorites(orgId,userId);
         favoritesRepository.save(fav);
     }

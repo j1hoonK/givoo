@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
+import 'package:givoo/pages/mainpage/view/mainPage.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
-import 'package:givoo/pages/search/view/search2.dart';
+import 'package:givoo/pages/search/view/search.dart';
+import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:provider/provider.dart';
-import '../../pages/mainpage/view/main_page.dart';
 
 class BotNavBar extends StatefulWidget {
   const BotNavBar({super.key});
@@ -14,7 +14,12 @@ class BotNavBar extends StatefulWidget {
 
 class _BotNavBarState extends State<BotNavBar> {
   int _currentIndex = 1;
+  @override
+  void initState(){
+    super.initState();
+    Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +28,9 @@ class _BotNavBarState extends State<BotNavBar> {
         selectedIndex: _currentIndex,
         onDestinationSelected: (value) => setState(() {
           _currentIndex = value;
+          if(value==1){
+            Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
+          }
         }),
         destinations: [
           NavigationDestination(

@@ -19,10 +19,10 @@ class KakaoService {
       print("(LoginService.dart)UserData: ${json.encode(kakaoUserData)}");
 
     if (response.statusCode == 200) {
-      print("(LoginService.dart)OK: ${response.body}");
+      print("(LoginService.dart)SignUp OK: ${response.body}");
     } else {
-      print("(LoginService.dart)NG: ${response.statusCode}");
-      print("(LoginService.dart)Messege: ${response.body}");
+      print("(LoginService.dart)SignUp NG: ${response.statusCode}");
+      print("(LoginService.dart)SignUp Messege: ${response.body}");
     }
   }
 }
@@ -33,6 +33,7 @@ class FindByToken {
     var url = "http://10.0.2.2:1000/login/$tokenId";
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
+      print("(LoginService.dart)findUserInfo OK: ${response.body}");
       List<dynamic> userInfo = jsonDecode(utf8.decode(response.bodyBytes));
       print("(LoginService.dart)userInfo == $userInfo");
       return userInfo

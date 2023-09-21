@@ -26,34 +26,42 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+
   final GoRouter _router = GivooRouter.router;
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider( // 내 단체 확인
-          create: (context) => MyPageProvider(),
-        ),
-        ChangeNotifierProvider( // 기관 정보 확인
-          create: (context) => OrganizationProvider(),
-        ),
-        ChangeNotifierProvider( // 후원 이력 확인
-          create: (context) => DonationProvider(),
-        ),
-        ChangeNotifierProvider( // 유저정보 확인
-          create: (context) => UserInfoProvider(),
-        ),
-        ChangeNotifierProvider( // 로그인 확인
-          create: (context) => LoginViewModel(KakaoLogin()),
-        ),
-        ChangeNotifierProvider( //
-            create: (context) => PayCategoryProvider()
-        ),
-        ChangeNotifierProvider( //
-          create: (context) => RecommendMoreProvider(),
-        ),
-      ],
-      child: MaterialApp.router(
+        providers: [
+          ChangeNotifierProvider(
+            // 내 단체 확인
+            create: (context) => MyPageProvider(),
+          ),
+          ChangeNotifierProvider(
+            // 기관 정보 확인
+            create: (context) => OrganizationProvider(),
+          ),
+          ChangeNotifierProvider(
+            // 후원 이력 확인
+            create: (context) => DonationProvider(),
+          ),
+          ChangeNotifierProvider(
+            // 유저정보 확인
+            create: (context) => UserInfoProvider(),
+          ),
+          ChangeNotifierProvider(
+            // 로그인 확인
+            create: (context) => LoginViewModel(KakaoLogin()),
+          ),
+          ChangeNotifierProvider(
+              //
+              create: (context) => PayCategoryProvider()),
+          ChangeNotifierProvider(
+            //
+            create: (context) => RecommendMoreProvider(),
+          ),
+        ],
+        child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: '기부어때',
           theme: ThemeData(

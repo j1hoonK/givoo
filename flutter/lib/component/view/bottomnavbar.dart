@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/search/view/search2.dart';
+import 'package:provider/provider.dart';
 import '../../pages/mainpage/view/main_page.dart';
 
 class BotNavBar extends StatefulWidget {

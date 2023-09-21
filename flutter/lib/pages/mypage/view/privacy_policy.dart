@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timer_builder/timer_builder.dart';
 
-void main() {
-  runApp(const MyApp());
+
+class PrivacyPolicy extends StatefulWidget {
+  const PrivacyPolicy({Key? key}) : super(key: key);
+
+  @override
+  State<PrivacyPolicy> createState() => _PrivacyPolicyState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

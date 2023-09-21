@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginSignupScreen extends StatefulWidget {
   @override
@@ -105,7 +106,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   ),
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push('/login/terms');
+                  },
                   icon: Icon(Icons.arrow_forward_ios),
                   color: Colors.black,
                 ),
@@ -123,14 +126,17 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   checkColor: Colors.white,
                 ),
                 title: Text(
-                  '[필수] 기부어때 이용약관 동의',
+                  '[필수] 기부어때 개인정보처리방침 동의',
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,
                   ),
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                    context.push('/login/pp');
+                  },
                   icon: Icon(Icons.arrow_forward_ios),
                   color: Colors.black,
                 ),

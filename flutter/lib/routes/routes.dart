@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:givoo/config/loading.dart';
+import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
+import 'package:givoo/pages/mypage/view/privacy_policy.dart';
 import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/pages/recommend/view/recommend.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:go_router/go_router.dart';
 
+import '../pages/login/view/login_agreement.dart';
 import '../pages/mypage/view/announcement.dart';
+import '../pages/mypage/view/terms_condition.dart';
 
 class GivooRouter {
   // 로그인 상태
@@ -77,6 +81,23 @@ class GivooRouter {
               builder: (context, state) => Announce(),
             ),
           ]),
+      GoRoute(
+        path: '/login',
+        builder: (BuildContext context, GoRouterState state) {
+          return LoginSignupScreen();
+        },
+          routes: [
+            GoRoute(  // 개인정보처리방침
+              path: 'pp',
+              builder: (context, state) => PrivacyPolicy(),
+            ),
+
+            GoRoute(  // 이용약관 및 정책
+              path: 'terms',
+              builder: (context, state) => TermsCondition(),
+            ),
+          ]
+      )
     ],
   );
 }

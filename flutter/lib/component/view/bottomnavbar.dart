@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/mainpage/view/mainPage2.dart';
+import 'package:givoo/pages/mainpage/view/mainPage.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
-import 'package:givoo/pages/search/view/search2.dart';
+import 'package:givoo/pages/search/view/search.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:provider/provider.dart';
-import '../../pages/mainpage/view/main_page.dart';
-import '../../pages/search/view/search.dart';
 
 class BotNavBar extends StatefulWidget {
   const BotNavBar({super.key});
@@ -54,7 +52,7 @@ class _BotNavBarState extends State<BotNavBar> {
         index: _currentIndex,
         children: [
           Search(),
-          MainPage2(),
+          MainPage(),
           MyPage(),
         ],
       ),

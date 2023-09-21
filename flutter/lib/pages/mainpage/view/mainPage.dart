@@ -6,8 +6,8 @@ import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class MainPage2 extends StatelessWidget {
-  const MainPage2({super.key});
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class MainPage2 extends StatelessWidget {
                     child: GridView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount:provider.OrgList.length,
+                      itemCount:provider.randomOrgList.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
                         //  childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
@@ -92,10 +92,10 @@ class MainPage2 extends StatelessWidget {
                         crossAxisSpacing: 10, //수직 Padding
                       ),
                       itemBuilder: (context,idx) {
-                        return OrgBox(orgName: provider.OrgList[idx].orgName,
-                          orgAddress: provider.OrgList[idx].orgAddress,
-                          imagePath: provider.OrgList[idx].imagePath,
-                          orgId: provider.OrgList[idx].orgId,
+                        return OrgBox(orgName: provider.randomOrgList[idx].orgName,
+                          orgAddress: provider.randomOrgList[idx].orgAddress,
+                          imagePath: provider.randomOrgList[idx].imagePath,
+                          orgId: provider.randomOrgList[idx].orgId,
                         );
                       },
                     ),

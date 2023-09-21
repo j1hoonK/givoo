@@ -14,7 +14,7 @@ class OrgBox extends StatelessWidget {
 
   final orgName;
   final orgAddress;
-  final imagePath;
+  final dynamic imagePath;
   final orgId;
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class OrgBox extends StatelessWidget {
                 height: height * 0.1,
                 width: width * 0.3,
                 child: Image.network(
-                  imagePath,
+                  "",  //imagePath,
                   fit: BoxFit.fill,
                 ),
               ),

@@ -32,12 +32,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public DetailOrgDTO detailOrg(Long orgId, Long userId) {
-//        Optional<Organization> orgOptional = organizationRepo.findById(orgId);
-//        Optional<Favorites> favOptional = favoritesRepository.findById(userId);
-//        if(orgOptional.isPresent()&&favOptional.isPresent()){
-//            return orgOptional.get().converter(favOptional.get().getFavId());
-//        } else return orgOptional.map(organization -> organization.converter(0L)).orElse(null);
-        return null;
+        Optional<Organization> orgOptional = organizationRepo.findById(orgId);
+        Optional<Favorites> favOptional = favoritesRepository.findById(userId);
+        if(orgOptional.isPresent()&&favOptional.isPresent()){
+            return orgOptional.get().converter(favOptional.get().getFavId());
+        } else return orgOptional.map(organization -> organization.converter(0L)).orElse(null);
+
     }
 
     @Override

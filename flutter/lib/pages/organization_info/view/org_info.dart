@@ -23,6 +23,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
   void initState(){
     super.initState();
     var orgId = widget.orgId;
+    print("orgId : ${orgId}@@@@@@@@@@@@@@@@@@@@@@@@@!!!!@@####");
     Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
     print("orgInfoData: ${OrganizationProvider().orgInfodata}");
   }

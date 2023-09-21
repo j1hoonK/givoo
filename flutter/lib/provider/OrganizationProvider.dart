@@ -17,10 +17,10 @@ class OrganizationProvider extends ChangeNotifier {
   bool get isClearButtonVisible => _isClearButtonVisible;
   bool get isSearchIconVisible => _isSearchIconVisible;
   get searchValue => _searchValue;
-
+  List<Organization> _randomOrgList=[];
   Map<String,dynamic> _orgInfodata ={};
   Map<String,dynamic> get orgInfodata =>_orgInfodata;
-
+  get randomOrgList=>_randomOrgList;
 
   // 기관 정보 조회
   Future<void> fetchTodo() async {
@@ -32,7 +32,6 @@ class OrganizationProvider extends ChangeNotifier {
   Future<void> searchOrg(String searchValue) async {
     List<Organization>? _data = await _searchService.fetchApi(searchValue);
     _OrgList = _data;
-    print("orgList: ${OrgList}");
     notifyListeners();
   }
 
@@ -61,7 +60,8 @@ class OrganizationProvider extends ChangeNotifier {
 
   Future<void> randomOrg()async{
     List<Organization>? _data = await _OrganizationListService.randomOrg();
-    _OrgList =_data;
+    _randomOrgList =_data;
     notifyListeners();
   }
 }
+

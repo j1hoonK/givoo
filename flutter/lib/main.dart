@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
           ),
           routerConfig: _router,
           //home: Pay(),
-            home: Loading(),
+          //  home: Loading(),
         ));
   }
 }

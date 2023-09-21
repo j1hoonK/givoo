@@ -7,6 +7,7 @@ import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:givoo/provider/UserProvider.dart';
+import 'package:intl/date_symbol_data_file.dart';
 import 'package:givoo/routes/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
@@ -19,6 +20,7 @@ void main() {
       nativeAppKey: 'e61d743ad3d9819502abe521a4b1584b',
       javaScriptAppKey: 'b922d230ead129047285d1c296c0b597'
   );
+  initializeDateFormatting("ko_KR", null.toString()); //요일 한국어 입력
   runApp(MyApp());
 }
 
@@ -68,8 +70,6 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
           ),
           routerConfig: _router,
-          //home: Pay(),
-            home: Loading(),
         ));
   }
 }

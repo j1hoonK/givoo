@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:givoo/pages/login/view/login.dart';
-import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';

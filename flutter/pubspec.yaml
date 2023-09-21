@@ -46,6 +46,7 @@ dependencies:
   geolocator: ^10.0.1
   google_maps_flutter: ^2.5.0
   timer_builder: ^2.0.0
+  kpostal: ^0.5.1
 
 dev_dependencies:
   flutter_test:

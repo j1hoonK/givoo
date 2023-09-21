@@ -1,8 +1,9 @@
 package com.givoo.service.serviceImp;
 
+import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
-import com.givoo.entity.donation.DonationRegular;
 import com.givoo.entity.donation.DonationType;
+import com.givoo.entity.organization.Organization;
 import com.givoo.repository.donation.DonationRegularRepository;
 import com.givoo.repository.donation.DonationRepository;
 import com.givoo.repository.donation.DonationTypeRepository;
@@ -29,7 +30,7 @@ public class DonationServiceImpl implements DonationService {
 
 
     @Override
-    public List<DonationType> findByOrgIdFromDonation(Long orgId) {
+    public List<DonationType> findByOrgIdFromDonation(Organization orgId) {
         List<DonationType> dntList= donationTypeRepository.findAllByOrgId(orgId);
         if(dntList.isEmpty()){
             return null;
@@ -38,7 +39,7 @@ public class DonationServiceImpl implements DonationService {
     }
 
     @Override
-    public String dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate,String isRegulation,String dntCommentRegulation){
+    public String dntSend(Organization orgId, Users userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation){
         Donation dnt = new Donation(null,dntAmount,dntDate,null
                 ,orgId,userId,typePayment,dntComment,isRegulation,dntCommentRegulation,dntType);
         donationRepository.save(dnt);

@@ -8,6 +8,8 @@ import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:givoo/provider/UserProvider.dart';
 import 'package:intl/date_symbol_data_file.dart';
+import 'package:givoo/routes/routes.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
@@ -23,35 +25,35 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final GoRouter _router = GivooRouter.router;
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(   // 내 단체 확인
-            create: (context) => MyPageProvider(),
-          ),
-          ChangeNotifierProvider(   // 기관 정보 확인
-            create: (context) => OrganizationProvider(),
-          ),
-          ChangeNotifierProvider(   // 후원 이력 확인
-            create: (context) => DonationProvider(),
-          ),
-          ChangeNotifierProvider(   // 유저정보 확인
-            create: (context) => UserInfoProvider(),
-          ),
-          ChangeNotifierProvider(   // 로그인 확인
-              create: (context) => LoginViewModel(KakaoLogin()),
-          ),
-          ChangeNotifierProvider(   //
-              create: (context) => PayCategoryProvider()
-          ),
-          ChangeNotifierProvider(   //
-              create: (context) => RecommendMoreProvider(),
-          ),
-        ],
-        child: MaterialApp(
+      providers: [
+        ChangeNotifierProvider( // 내 단체 확인
+          create: (context) => MyPageProvider(),
+        ),
+        ChangeNotifierProvider( // 기관 정보 확인
+          create: (context) => OrganizationProvider(),
+        ),
+        ChangeNotifierProvider( // 후원 이력 확인
+          create: (context) => DonationProvider(),
+        ),
+        ChangeNotifierProvider( // 유저정보 확인
+          create: (context) => UserInfoProvider(),
+        ),
+        ChangeNotifierProvider( // 로그인 확인
+          create: (context) => LoginViewModel(KakaoLogin()),
+        ),
+        ChangeNotifierProvider( //
+            create: (context) => PayCategoryProvider()
+        ),
+        ChangeNotifierProvider( //
+          create: (context) => RecommendMoreProvider(),
+        ),
+      ],
+      child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: '기부어때',
           theme: ThemeData(
@@ -67,8 +69,7 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             primaryColor: Colors.white,
           ),
-          //home: Pay(),
-          home: Loading(),
+          routerConfig: _router,
         ));
   }
 }

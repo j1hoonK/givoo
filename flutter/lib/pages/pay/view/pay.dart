@@ -4,7 +4,9 @@ import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:provider/provider.dart';
 
 class Pay extends StatelessWidget {
-  Pay({super.key});
+  var orgId;
+
+  Pay({super.key,required this.orgId});
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class Pay extends StatelessWidget {
           children: [
             Container(
               height: height*0.25,
+              child: Text("${orgId}"),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(20, 0, 20, 0),

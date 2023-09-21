@@ -1,5 +1,7 @@
 package com.givoo.entity.donation;
 
+import com.givoo.entity.Users;
+import com.givoo.entity.organization.Organization;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,38 +10,51 @@ import lombok.ToString;
 
 import java.util.Date;
 
-@Entity // Entity 클래스임을 명시합니다.
-@Table(name = "donation")  //매핑할 테이블 명을 지정합니다.
+@Entity
+@Table(name = "donation")
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 public class Donation {
-    @Id //pk 값
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
-    @Column(nullable = false)   // null 값 허용 x 기본값 true
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "dnt_id")
     private Long dntId;
-    @Column(nullable = false)
-    private Long dntAmount;
-    @Column(nullable = false)
-    private Date dntDate;
-    @Column(nullable = false,columnDefinition = "처리중")
-    private String receiptResult;
-    private Long orgId;
-    @Column(nullable = false)
-    private Long userId;
-    @Column(nullable = false)
-    private String typePayment;
-    private String dntComment;  //null 값 허용되는 컬럼
-    @Column(nullable = false)
-    private String isRegulation;
-    private String dntCommentRegulation; //null 값 허용되는 컬럼
-    @Column(nullable = false)
-    private String dntType;
 
+    @Column(name = "dnt_amount", nullable = false)
+    private Long dntAmount;
+
+    @Column(name = "dnt_date", nullable = false)
+    private Date dntDate;
+
+    @Column(name = "receipt_result", nullable = false, columnDefinition = "varchar(45) default '진행중'")
+    private String receiptResult;
+
+    @ManyToOne
+    @JoinColumn(name = "org_id", nullable = false)
+    private Organization orgId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users userId;
+
+    @Column(name = "type_payment", nullable = false)
+    private String typePayment;
+
+    @Column(name = "dnt_comment")
+    private String dntComment;
+
+    @Column(name = "is_regulation", nullable = false, columnDefinition = "varchar(45) default 'False'")
+    private String isRegulation;
+
+    @Column(name = "dnt_comment_regulation")
+    private String dntCommentRegulation;
+
+    @Column(name = "dnt_type", nullable = false)
+    private String dntType;
 
     public Donation() {
 
     }
-
 }

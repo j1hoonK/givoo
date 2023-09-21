@@ -1,6 +1,7 @@
 package com.givoo.repository.organization;
 
 import com.givoo.entity.organization.Organization;
+import org.springframework.beans.MutablePropertyValues;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -2,16 +2,19 @@ package com.givoo.controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.givoo.dto.mypage.MyOrgDTO;
+import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
+import com.givoo.entity.organization.Organization;
 import com.givoo.service.MypageService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@Tag(name = "MyPage", description = "MyPage 기능 관련 API")
 @RestController
 @RequestMapping("/mypage")
 public class MypageController {
@@ -23,7 +26,7 @@ public class MypageController {
     }
 
     @GetMapping("/dntresult/{userid}")  // 기부 이력 확인
-    public List<Donation> myDnt(@PathVariable("userid") Long userid) {
+    public List<Donation> myDnt(@PathVariable("userid") Users userid) {
         return mypageService.myDnt(userid);
     }
 
@@ -33,12 +36,12 @@ public class MypageController {
     }
 
     @GetMapping("/org/{userid}")    // 내 단체
-    public List<MyOrgDTO> myOrg(@PathVariable("userid") Long userid) {
+    public List<MyOrgDTO> myOrg(@PathVariable("userid") Users userid) {
         return mypageService.myOrg(userid);
     }
 
     @GetMapping("/dntregul/{userid}")   //  정기 기부 관리
-    public List<DonationRegular> findByUserID(@PathVariable("userid") Long userId) {
+    public List<DonationRegular> findByUserID(@PathVariable("userid") Users userId) {
         return mypageService.findByUserID(userId);
     }
 
@@ -54,7 +57,7 @@ public class MypageController {
     }
 
     @PostMapping("/fav/apply")
-    public void fav(@RequestParam("orgId") Long orgId, @RequestParam("userId") Long userId) {
+    public void fav(@RequestParam("orgId") Organization orgId, @RequestParam("userId") Users userId) {
         mypageService.fav(orgId, userId);
     }
     @PostMapping("/fav/del")

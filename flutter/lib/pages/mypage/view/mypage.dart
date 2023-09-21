@@ -42,17 +42,17 @@ class _MyPageState extends State<MyPage> {
         try {
           AccessTokenInfo tokenInfo =
               await UserApi.instance.accessTokenInfo(); // 토큰정보 확인
-          print("Token Information == $tokenInfo");
+          print("(mypage.dart)Token Information == $tokenInfo");
           FindByToken findByToken = FindByToken(); // 확인된 토큰ID로 회원정보 조회
           return await findByToken.findUserInfo(tokenInfo.id);
         } catch (e) {
-          print("Error = $e");
+          print("(mypage.dart)Error = $e");
         }
       }
     }
 
     findUserData();
-    print('isLoginNow?? == ${isLoginNow.isLogin}');
+    print('(mypage.dart)isLoginNow?? == ${isLoginNow.isLogin}');
     // 로그인 완료 => MyPage, 로그인 미완료 => LoginPage
     if (isLoginNow.isLogin) {
       return Scaffold(
@@ -209,9 +209,7 @@ class _MyPageState extends State<MyPage> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () async {
-                                await isLoginNow.logout();
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   Icon(

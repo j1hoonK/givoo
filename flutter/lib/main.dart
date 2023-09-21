@@ -68,8 +68,6 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
           ),
           routerConfig: _router,
-          //home: Pay(),
-            home: Loading(),
         ));
   }
 }

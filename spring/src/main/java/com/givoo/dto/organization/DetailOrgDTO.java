@@ -1,5 +1,6 @@
 package com.givoo.dto.organization;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,15 +10,18 @@ import java.util.Date;
 @AllArgsConstructor
 public class DetailOrgDTO {  // /info/{기관아이디}/{유저아이디}
 
-    private String orgName;  //organization
-    private String orgAddress; //organization
-    private Long locationLat; //organization
-    private Long locationLong; //organization
-    private Long orgTell; //organization
-    private String orgInfo; //organization
-    private String orgOwner; //organization
-    private Date startedUp; //organization
-    private String imagePath; //organization
-    private Long favId; //favorite
-
+    private Long orgId; //organization
+    private String orgNumber;
+    private String orgName;
+    private String orgAddress;
+    private Long locationLat;
+    private Long locationLong;
+    private Long orgTell;
+    private String orgType;
+    private String orgInfo;
+    private String orgOwner;
+    private Date startedUp;
+    private Long accountNumber;
+    private String imagePath;
+    private Long favId; //favorite]
 }

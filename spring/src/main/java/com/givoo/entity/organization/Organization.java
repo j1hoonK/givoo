@@ -48,9 +48,8 @@ public class Organization {
 
     public DetailOrgDTO converter(Long favId){
         return new DetailOrgDTO(
-                this.orgName,this.orgAddress,this.getLocationLat(),this.getLocationLong(),
-                this.getOrgTell(),this.getOrgInfo(),this.getOrgOwner(),this.getStartedUp(),
-                this.getImagePath(),favId
+                this.orgId,this.orgNumber,this.orgName,this.orgAddress,this.locationLat,this.locationLong,this.orgTell,
+                this.orgType,this.orgInfo,this.orgOwner,this.startedUp,this.accountNumber,this.imagePath,favId
         );
     }
 

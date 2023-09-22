@@ -8,8 +8,8 @@ class RecommendMoreProvider extends ChangeNotifier{
   final RecommendMoreService _recommendMoreService = RecommendMoreService();
   List<Organization> get orgList =>_orgList;
 
-  Future<void> fetchApi() async{
-    List<Organization>? _data = await _recommendMoreService.fetchApi();
+  Future<void> fetchApi(orgType) async{
+    List<Organization>? _data = await _recommendMoreService.fetchApi(orgType);
     _orgList = _data;
     notifyListeners();
   }

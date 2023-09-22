@@ -11,7 +11,6 @@ class MyPageProvider extends ChangeNotifier {
   List<List<MyOrgList>> myOrgList2=[];
   late List<String> _orgTypes =[];
   List<String> get orgTypes =>_orgTypes;
-
   // 내 단체 확인
   Future<void> fetchTodo() async {
     List<MyOrgList>? _data = await _myOrgService.fetchTodo();

@@ -1,34 +1,44 @@
 package com.givoo.entity.fundraising;
 
+import com.givoo.entity.organization.Organization;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
-@Entity // Entity 클래스임을 명시합니다.
-@Table(name = "fundraising")  //매핑할 테이블 명을 지정합니다.
+@Entity
+@Table(name = "fundraising")
 @Getter
 @Setter
 public class Fundraising {
-    @Id //pk 값
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "fndr_id")
     private Long fndrId;
-    @Column(nullable = false)
-    private String fndrTitle;
-    @Column(nullable = false)
-    private String fndrInfo;
-    @Column(nullable = false)
-    private Long goal;
-    @Column(nullable = false)
-    private Long current;
-    @Column(nullable = false)
-    private Date fndrDeadline;
-    @Column(nullable = false)
-    private Long orgId;
-    @Column(nullable = false)
-    private Long accountFndr;
-    @Column(nullable = false)
-    private String useMainAccount;
 
+    @Column(name = "fndr_title", nullable = false)
+    private String fndrTitle;
+
+    @Column(name = "fndr_info", nullable = false)
+    private String fndrInfo;
+
+    @Column(name = "goal", nullable = false)
+    private Long goal;
+
+    @Column(name = "current", nullable = false)
+    private Long current;
+
+    @Column(name = "fndr_deadline", nullable = false)
+    private Date fndrDeadline;
+
+    @ManyToOne
+    @JoinColumn(name = "org_id", nullable = false)
+    private Organization organization;
+
+    @Column(name = "account_fndr", nullable = false)
+    private Long accountFndr;
+
+    @Column(name = "use_main_account", nullable = false, columnDefinition = "varchar(45) default 'True'")
+    private String useMainAccount;
 }

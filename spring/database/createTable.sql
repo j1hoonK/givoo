@@ -1,15 +1,16 @@
 CREATE TABLE `users`
 (
- `user_id`            int NOT NULL AUTO_INCREMENT COMMENT '사용자 번호' ,
- `user_name`          varchar(45) NOT NULL COMMENT '사용자 이름' ,
- `user_email`         varchar(45) NOT NULL COMMENT '사용자 email' ,
- `user_tell`          bigint NULL COMMENT '사용자 연락처' ,
- `user_address`       varchar(45) NULL COMMENT '사용자 주소' ,
- `user_nname`         varchar(45) NULL COMMENT '사용자 닉네임' ,
- `user_number_first`  int NULL COMMENT '주민번호 앞자리' ,
- `user_number_second` int NULL COMMENT '주민번호 뒷자리' ,
+    `user_id`            int NOT NULL AUTO_INCREMENT COMMENT '사용자 번호' ,
+    `token`				 varchar(45) NOT NULL COMMENT '카카오토큰',
+    `user_name`          varchar(45) NOT NULL COMMENT '사용자 이름' ,
+    `user_email`         varchar(45) NOT NULL COMMENT '사용자 email' ,
+    `user_tell`          bigint NULL COMMENT '사용자 연락처' ,
+    `user_address`       varchar(45) NULL COMMENT '사용자 주소' ,
+    `user_nname`         varchar(45) NULL COMMENT '사용자 닉네임' ,
+    `user_number_first`  int NULL COMMENT '주민번호 앞자리' ,
+    `user_number_second` int NULL COMMENT '주민번호 뒷자리' ,
 
-PRIMARY KEY (`user_id`)
+    PRIMARY KEY (`user_id`)
 );
 
 
@@ -53,7 +54,7 @@ CREATE TABLE `organization_notice`
     CONSTRAINT `FK_11` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org_id`)
 );
 
-CREATE TABLE `fundraising`
+CREATE TABLE `donation`
 (
     `fndr_id`          int NOT NULL AUTO_INCREMENT COMMENT '모금번호' ,
     `fndr_title`       varchar(45) NOT NULL COMMENT '모금제목' ,
@@ -70,7 +71,7 @@ CREATE TABLE `fundraising`
     CONSTRAINT `FK_5` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org_id`)
 );
 
-CREATE TABLE `fundraising_join_list`
+CREATE TABLE `donation_type`
 (
     `fndr_join_id` int NOT NULL AUTO_INCREMENT ,
     `fndr_id`      int NOT NULL COMMENT '모금번호' ,
@@ -83,7 +84,7 @@ CREATE TABLE `fundraising_join_list`
     CONSTRAINT `FK_9` FOREIGN KEY `FK_2` (`user_id`) REFERENCES `users` (`user_id`)
 );
 
-CREATE TABLE `fundraising_interest`
+CREATE TABLE `donation_regular`
 (
     `fndr_intr_id` int NOT NULL AUTO_INCREMENT ,
     `fndr_id`      int NOT NULL COMMENT '모금번호' ,
@@ -96,7 +97,7 @@ CREATE TABLE `fundraising_interest`
     CONSTRAINT `FK_9_1` FOREIGN KEY `FK_2` (`user_id`) REFERENCES `users` (`user_id`)
 );
 
-CREATE TABLE `favorites`
+CREATE TABLE `app_notice`
 (
     `fav_id`   int NOT NULL AUTO_INCREMENT COMMENT '즐겨찾기 번호' ,
     `org_id`   int NOT NULL ,
@@ -110,7 +111,7 @@ CREATE TABLE `favorites`
     CONSTRAINT `FK_2` FOREIGN KEY `FK_2` (`org_id`) REFERENCES `organization` (`org_id`)
 );
 
-CREATE TABLE `donation`
+CREATE TABLE `app_qna`
 (
     `dnt_id`                 int NOT NULL AUTO_INCREMENT COMMENT '기부 번호' ,
     `dnt_amount`             int NOT NULL COMMENT '기부액' ,
@@ -131,7 +132,7 @@ CREATE TABLE `donation`
     CONSTRAINT `FK_4` FOREIGN KEY `FK_2` (`org_id`) REFERENCES `organization` (`org_id`)
 );
 
-CREATE TABLE `donation_regular`
+CREATE TABLE `fundraising`
 (
     `dnt_regular_id`     int NOT NULL AUTO_INCREMENT,
     `user_id`            int NOT NULL COMMENT '사용자 번호' ,
@@ -150,7 +151,7 @@ CREATE TABLE `donation_regular`
     CONSTRAINT `FK_12_1` FOREIGN KEY `FK_2` (`org_id`) REFERENCES `organization` (`org_id`)
 );
 
-CREATE TABLE `donation_type`
+CREATE TABLE `fundraising_interest`
 (
     `type_id` int NOT NULL AUTO_INCREMENT ,
     `org_id`  int NOT NULL COMMENT '기관번호' ,
@@ -161,14 +162,17 @@ CREATE TABLE `donation_type`
     CONSTRAINT `FK_14` FOREIGN KEY `FK_1` (`org_id`) REFERENCES `organization` (`org_id`)
 );
 
-
-# 관리자 로그인용 임시 DB table
-CREATE TABLE `member`
+CREATE TABLE `fundraising_join_list`
 (
-    `id`     int NOT NULL AUTO_INCREMENT,
-    `username`  int NOT NULL COMMENT '관리자아이디' ,
-    `password`  int NOT NULL COMMENT '관리자비밀번호' ,
-    PRIMARY KEY (`id`)
+    `fndr_join_id` int NOT NULL AUTO_INCREMENT ,
+    `fndr_id`      int NOT NULL COMMENT '모금번호' ,
+    `user_id`      int NOT NULL COMMENT '사용자 번호' ,
+
+    PRIMARY KEY (`fndr_join_id`),
+    KEY `FK_1` (`fndr_id`),
+    CONSTRAINT `FK_8` FOREIGN KEY `FK_1` (`fndr_id`) REFERENCES `fundraising` (`fndr_id`),
+    KEY `FK_2` (`user_id`),
+    CONSTRAINT `FK_9` FOREIGN KEY `FK_2` (`user_id`) REFERENCES `users` (`user_id`)
 );
 
 CREATE TABLE `app_notice`

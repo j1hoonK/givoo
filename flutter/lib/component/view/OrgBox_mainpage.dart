@@ -6,10 +6,8 @@ class MainPageOrgBox extends StatelessWidget {
   required this.imagePath
   });
 
-
   final orgName;
   final imagePath;
-
 
   @override
   Widget build(BuildContext context) {

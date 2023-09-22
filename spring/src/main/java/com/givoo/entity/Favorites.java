@@ -1,10 +1,8 @@
 package com.givoo.entity;
 
+import com.givoo.entity.organization.Organization;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity // Entity 클래스임을 명시합니다.
 @Table(name = "favorites")  //매핑할 테이블 명을 지정합니다.
@@ -12,18 +10,23 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Favorites {
-    @Id //pk 값
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
-    private Long favId;
-    @Column(nullable = false)
-    private Long orgId;
-    @Column(nullable = false)
-    private Long userId;
 
-    public Favorites(Long orgId, Long userId) {
+public class Favorites {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "fav_id")
+    private Long favId;
+
+    @ManyToOne
+    @JoinColumn(name = "org_id", nullable = false)
+    private Organization orgId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users userId;
+
+    public Favorites(Organization orgId, Users userId) {
         this.orgId =orgId;
         this.userId =userId;
     }
-
 }

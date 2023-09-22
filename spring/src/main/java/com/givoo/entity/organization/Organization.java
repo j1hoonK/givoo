@@ -17,68 +17,39 @@ import java.util.Date;
 @NoArgsConstructor
 public class Organization {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "org_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
     private Long orgId;
-
-    @Column(name = "org_name", nullable = false)
+    @Column(nullable = false)
+    private String orgNumber;
+    @Column(nullable = false)
     private String orgName;
-
-    @Column(name = "org_ownnumber")
-    private Long orgOwnnumber;
-
-    @Column(name = "org_number", nullable = false)
-    private Long orgNumber;
-
-    @Column(name = "org_address", nullable = false)
+    @Column(nullable = false)
     private String orgAddress;
-
-    @Column(name = "zip")
-    private Long zip;
-
-    @Column(name = "location_lat", nullable = false)
-    private Double locationLat;
-
-    @Column(name = "location_long", nullable = false)
-    private Double locationLong;
-
-    @Column(name = "org_tell", nullable = false)
-    private String orgTell;
-
-    @Column(name = "org_type", nullable = false)
+    @Column(nullable = false)
+    private Long locationLat;
+    @Column(nullable = false)
+    private Long locationLong;
+    @Column(nullable = false)
+    private Long orgTell;
+    @Column(nullable = false)
     private String orgType;
-
-    @Column(name = "org_info")
+    @Column(nullable = false)
     private String orgInfo;
-
-    @Column(name = "org_notice")
-    private String orgNotice;
-
-    @Column(name = "org_owner", nullable = false)
+    @Column(nullable = false)
     private String orgOwner;
+    @Column(nullable = false)
+    private Date startedUp;
 
-    @Column(name = "started_up", nullable = false)
-    private String startedUp;
-
-    @Column(name = "account_number")
-    private Long accountNumber;
-    @Column(name="bank_name")
-    private String bankName;
-    @Column(name="account_holder")
-    private String accountHolder;
-    @Column(name = "image_path")
+    private Long accountNumber; //null 허용
+    @Column(nullable = false)
     private String imagePath;
-    @Column(name = "homepage")
-    private String homepage;
-
-    @Column(name = "total_favorite", nullable = false)
+    @Column(nullable = false)
     private Long totalFavorite;
 
     public DetailOrgDTO converter(Long favId){
         return new DetailOrgDTO(
-                this.orgName,this.orgAddress,this.getLocationLat(),this.getLocationLong(),
-                this.getOrgTell(),this.getOrgInfo(),this.getOrgOwner(),this.getStartedUp(),
-                this.getImagePath(),favId,this.getBankName(),this.getAccountHolder()
+                this.orgId,this.orgNumber,this.orgName,this.orgAddress,this.locationLat,this.locationLong,this.orgTell,
+                this.orgType,this.orgInfo,this.orgOwner,this.startedUp,this.accountNumber,this.imagePath,favId
         );
     }
 

@@ -119,6 +119,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                             SizedBox(width: 10.0),
                             GestureDetector(
                               onTap: () {
+
                                 // 'follow_n.png' 이미지를 클릭했을 때의 동작
                                 toggleFollow(); // 이미지 상태 변경 함수 호출
                               },

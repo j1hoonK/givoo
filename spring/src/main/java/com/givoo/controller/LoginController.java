@@ -39,4 +39,9 @@ public class LoginController {
         System.out.println(token);
         return usersService.findUserInfo(token);
     }
+
+    @PostMapping("/saveinfo/{token}")
+    @Operation(summary = "필수정보 입력", description = "최초 가입 시, 필수정보 입력")
+    public ResponseEntity<String> saveUserInfo(@PathVariable String token){return null;}
+
 }

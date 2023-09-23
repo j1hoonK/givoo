@@ -17,15 +17,13 @@ public class Favorites {
     @Column(name = "fav_id")
     private Long favId;
 
-    @ManyToOne
-    @JoinColumn(name = "org_id", nullable = false)
-    private Organization orgId;
+    @Column
+    private Long orgId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users userId;
+    @Column
+    private Long userId;
 
-    public Favorites(Organization orgId, Users userId) {
+    public Favorites(Long orgId, Long userId) {
         this.orgId =orgId;
         this.userId =userId;
     }

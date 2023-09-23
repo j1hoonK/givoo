@@ -7,19 +7,6 @@ import 'package:kpostal/kpostal.dart';
 
 import 'login_agreement.dart';
 
-void main() => runApp(MmM());
-
-class MmM extends StatelessWidget {
-  const MmM({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FirstLogin(),
-    );
-  }
-}
-
 class FirstLogin extends StatefulWidget {
   const FirstLogin({super.key});
 
@@ -356,38 +343,6 @@ class _FirstLoginState extends State<FirstLogin> {
                       ],
                     )),
                 LoginSignupScreen(),
-                /*SizedBox(
-                  height: mHeight * 0.02,
-                ),
-                Container(
-                  width: double.infinity,
-                  height: mHeight * 0.08,
-                  color: (allB && allC) || (!allA && !allB && !allC)
-                      ? Color(0xFFFF466E)
-                      : Colors.grey, // 버튼 활성/비활성 상태에 따라 색상 변경
-
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFFF466E),
-                    ),
-                    onPressed: (allB && allC) || (!allA && !allB && !allC)
-                        ? () {
-                      print('allA == $allA / allB == $allB / allC == $allC');
-                    }
-                        : () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text('필수 약관을 모두 체크해주세요'),
-                              action: SnackBarAction(label: "닫기", onPressed: (){}),
-                            ));
-                          },
-                    // allB와 allC가 모두 체크되어야 클릭 가능, 아무 것도 체크하지 않았을 때도 클릭 가능
-                    child: Text(
-                      "완료",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                )*/
               ],
             ),
           ),

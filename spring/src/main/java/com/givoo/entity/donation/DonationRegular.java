@@ -18,13 +18,11 @@ public class DonationRegular {
     @Column(name = "dnt_regular_id")
     private Long dntRegularId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users userId;
+    @Column
+    private Long userId;
 
-    @ManyToOne
-    @JoinColumn(name = "org_id", nullable = false)
-    private Organization orgId;
+    @Column
+    private Long orgId;
 
     @Column(name = "isusenow", nullable = false)
     private String isusenow;

@@ -1,4 +1,4 @@
-package com.givoo.service.serviceImp.AppLogin;
+package com.givoo.service.serviceImp;
 
 import com.givoo.entity.Users;
 import com.givoo.repository.Users.UsersRepository;

@@ -26,7 +26,7 @@ public class MypageController {
     }
 
     @GetMapping("/dntresult/{userid}")  // 기부 이력 확인
-    public List<Donation> myDnt(@PathVariable("userid") Users userid) {
+    public List<Donation> myDnt(@PathVariable("userid") Long userid) {
         return mypageService.myDnt(userid);
     }
 
@@ -36,12 +36,12 @@ public class MypageController {
     }
 
     @GetMapping("/org/{userid}")    // 내 단체
-    public List<MyOrgDTO> myOrg(@PathVariable("userid") Users userid) {
+    public List<MyOrgDTO> myOrg(@PathVariable("userid") Long userid) {
         return mypageService.myOrg(userid);
     }
 
     @GetMapping("/dntregul/{userid}")   //  정기 기부 관리
-    public List<DonationRegular> findByUserID(@PathVariable("userid") Users userId) {
+    public List<DonationRegular> findByUserID(@PathVariable("userid") Long userId) {
         return mypageService.findByUserID(userId);
     }
 
@@ -57,7 +57,7 @@ public class MypageController {
     }
 
     @PostMapping("/fav/apply")
-    public void fav(@RequestParam("orgId") Organization orgId, @RequestParam("userId") Users userId) {
+    public void fav(@RequestParam("orgId") Long orgId, @RequestParam("userId") Long userId) {
         mypageService.fav(orgId, userId);
     }
     @PostMapping("/fav/del")

@@ -68,8 +68,8 @@ public class Organization {
     private String accountHolder;
     @Column(name = "image_path")
     private String imagePath;
-    @Column(name = "homepage")
-    private String homepage;
+    @Column(name = "hompage")
+    private String hompage;
 
     @Column(name = "total_favorite", nullable = false)
     private Long totalFavorite;
@@ -78,7 +78,7 @@ public class Organization {
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.locationLat,this.locationLong,
                 this.orgTell,this.orgInfo,this.orgOwner,this.startedUp,
-                this.imagePath,favId,this.bankName,this.accountHolder,this.homepage
+                this.imagePath,favId,this.bankName,this.accountHolder,this.hompage
         );
     }
 

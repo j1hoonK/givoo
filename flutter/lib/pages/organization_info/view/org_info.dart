@@ -109,6 +109,8 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                             ),
                             GestureDetector(
                               onTap: () {
+                                print("homepage: ${provider.orgInfodata['homepage']}");
+                                launchURL(provider.orgInfodata['homepage']);
                               },
                               child: Image.asset(
                                 'images/group/globe.png',

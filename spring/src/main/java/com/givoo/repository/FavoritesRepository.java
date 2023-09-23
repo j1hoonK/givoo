@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface FavoritesRepository extends JpaRepository<Favorites,Long> {
-    List<Favorites> findAllByUserId(Users userId);
+    List<Favorites> findAllByUserId(Long userId);
 }

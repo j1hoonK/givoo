@@ -15,11 +15,9 @@ public class FundraisingInterest {
     @Column(name = "fndr_intr_id")
     private Long fndrIntrId;
 
-    @ManyToOne
-    @JoinColumn(name = "fndr_id", nullable = false)
-    private Fundraising fundraising;
+    @Column
+    private Long fundraising;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users users;
+    @Column
+    private Long users;
 }

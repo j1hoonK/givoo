@@ -1,6 +1,5 @@
 package com.givoo.repository.donation;
 
-import com.givoo.entity.Users;
 import com.givoo.entity.donation.DonationRegular;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface DonationRegularRepository extends JpaRepository<DonationRegular,Long> {
-    List<DonationRegular> findByUserId(Users userId);
+    List<DonationRegular> findByUserId(Long userId);
     List<DonationRegular> findByIsusenowAndDntRegularId(String isusenow, Long dntRegularId);
     List<DonationRegular> findByDntRegularId(Long dntRegularId);
 

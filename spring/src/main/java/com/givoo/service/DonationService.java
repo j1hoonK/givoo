@@ -13,12 +13,12 @@ import java.util.List;
 @Service
 public interface DonationService {
     // 후원화면_후원타입
-    List<DonationType> findByOrgIdFromDonation(Organization orgId);
+    List<DonationType> findByOrgIdFromDonation(Long orgId);
 
     //public String dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation);
 
 
-    String dntSend(Organization orgId, Users userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation);
+    String dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation);
 
     // 후원전송
     Donation sendDonation(Donation donation);

@@ -32,9 +32,8 @@ public class Fundraising {
     @Column(name = "fndr_deadline", nullable = false)
     private Date fndrDeadline;
 
-    @ManyToOne
-    @JoinColumn(name = "org_id", nullable = false)
-    private Organization organization;
+    @Column
+    private Long organization;
 
     @Column(name = "account_fndr", nullable = false)
     private Long accountFndr;

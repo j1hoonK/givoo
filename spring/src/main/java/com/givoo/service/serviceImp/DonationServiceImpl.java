@@ -30,7 +30,7 @@ public class DonationServiceImpl implements DonationService {
 
 
     @Override
-    public List<DonationType> findByOrgIdFromDonation(Organization orgId) {
+    public List<DonationType> findByOrgIdFromDonation(Long orgId) {
         List<DonationType> dntList= donationTypeRepository.findAllByOrgId(orgId);
         if(dntList.isEmpty()){
             return null;
@@ -39,7 +39,7 @@ public class DonationServiceImpl implements DonationService {
     }
 
     @Override
-    public String dntSend(Organization orgId, Users userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation){
+    public String dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation){
         Donation dnt = new Donation(null,dntAmount,dntDate,null
                 ,orgId,userId,typePayment,dntComment,isRegulation,dntCommentRegulation,dntType);
         donationRepository.save(dnt);

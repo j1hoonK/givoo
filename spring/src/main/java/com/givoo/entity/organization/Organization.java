@@ -13,6 +13,8 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Table (name = "organization")  // 테이블 생성시 이름을 지정해줌
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +43,7 @@ public class Organization {
     private Double locationLong;
 
     @Column(name = "org_tell", nullable = false)
-    private Long orgTell;
+    private String orgTell;
 
     @Column(name = "org_type", nullable = false)
     private String orgType;
@@ -56,27 +58,29 @@ public class Organization {
     private String orgOwner;
 
     @Column(name = "started_up", nullable = false)
-    private Date startedUp;
+    private String startedUp;
 
     @Column(name = "account_number")
     private Long accountNumber;
-
+    @Column(name="bank_name")
+    private String bankName;
+    @Column(name="account_holder")
+    private String accountHolder;
     @Column(name = "image_path")
     private String imagePath;
-
     @Column(name = "homepage")
     private String homepage;
 
     @Column(name = "total_favorite", nullable = false)
     private Long totalFavorite;
+
     public DetailOrgDTO converter(Long favId){
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.getLocationLat(),this.getLocationLong(),
                 this.getOrgTell(),this.getOrgInfo(),this.getOrgOwner(),this.getStartedUp(),
-                this.getImagePath(),favId
+                this.getImagePath(),favId,this.getBankName(),this.getAccountHolder()
         );
     }
 
 
-    }
-
+}

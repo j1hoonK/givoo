@@ -13,11 +13,13 @@ public class DetailOrgDTO {  // /info/{기관아이디}/{유저아이디}
     private String orgAddress; //organization
     private Double locationLat; //organization
     private Double locationLong; //organization
-    private Long orgTell; //organization
+    private String orgTell; //organization
     private String orgInfo; //organization
     private String orgOwner; //organization
-    private Date startedUp; //organization
+    private String startedUp; //organization
     private String imagePath; //organization
     private Long favId; //favorite
+    private String bankName;
+    private String accountHolder;
 
 }

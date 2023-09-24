@@ -21,7 +21,7 @@ public class Users {
     private String userEmail;
 
     @Column(name = "user_tell")
-    private Long userTell;
+    private String userTell;
 
     @Column(name = "user_address")
     private String userAddress;
@@ -30,10 +30,10 @@ public class Users {
     private String userNname;
 
     @Column(name = "user_number_first")
-    private Integer userNumberFirst;
+    private Long userNumberFirst;
 
     @Column(name = "user_number_second")
-    private Integer userNumberSecond;
+    private Long userNumberSecond;
 
     @Column(name = "token", nullable = false)
     private String token;

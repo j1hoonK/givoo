@@ -13,7 +13,6 @@ class ComTextForm extends StatefulWidget {
     required this.subject,
     required this.suffixIcon,
     required this.focusColor,
-    required this.onSaved,
   });
 
   final String valitext;
@@ -23,7 +22,6 @@ class ComTextForm extends StatefulWidget {
   final String subject;
   final Icon suffixIcon;
   final Color focusColor;
-  final FormFieldSetter onSaved;
 
   @override
   _ComTextFormState createState() => _ComTextFormState();
@@ -84,7 +82,6 @@ class _ComTextFormState extends State<ComTextForm> {
             keyboardType: widget.keyboard,
             textInputAction: TextInputAction.next,
             controller: _controller,
-            onSaved: (value) => onSaved,
             decoration: InputDecoration(
               hintText: widget.hintText,
               labelText: widget.hintText,

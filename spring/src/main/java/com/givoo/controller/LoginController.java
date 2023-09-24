@@ -27,10 +27,19 @@ public class LoginController {
         kakaoUserData.setToken(token);
         Users kakaoSignUp = usersService.signUpWithKakao(kakaoUserData);
         if(kakaoSignUp != null){
+            if (kakaoSignUp.getUserAddress() == null){
+            return ResponseEntity.ok("추가정보입력필요");
+            }
             return ResponseEntity.ok("OK: User is already in UserList");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("NG: Error saving user.");
         }
+    }
+
+    @PostMapping("/kakao/updateinfo/{token}")
+    @Operation(summary = "필수정보_Kakao", description = "회원가입 후, 필수 정보 전송")
+    public Users kakaoUserInfoUpdate(@PathVariable String token, @RequestBody Users userFirstInfo){
+        return usersService.updateUserInfo(token,userFirstInfo);
     }
 
     @GetMapping("/{token}")
@@ -39,9 +48,4 @@ public class LoginController {
         System.out.println(token);
         return usersService.findUserInfo(token);
     }
-
-    @PostMapping("/saveinfo/{token}")
-    @Operation(summary = "필수정보 입력", description = "최초 가입 시, 필수정보 입력")
-    public ResponseEntity<String> saveUserInfo(@PathVariable String token){return null;}
-
 }

@@ -9,6 +9,8 @@ import 'package:givoo/pages/recommend/view/recommend.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:go_router/go_router.dart';
 
+import '../pages/login/view/login_first.dart';
+
 class GivooRouter {
   // 로그인 상태
   static final GoRouter router = GoRouter(
@@ -59,6 +61,13 @@ class GivooRouter {
         builder: (BuildContext context, GoRouterState state) {
           final orgId = int.parse(state.pathParameters['orgId']!) ?? '-1';
           return OrgInfoPage(orgId : orgId.toString());
+        },
+      ),
+      GoRoute(
+        path: '/login/first',
+        builder: (BuildContext context, GoRouterState state) {
+          //final token = int.parse(state.pathParameters['token']!) ?? '-1';
+          return FirstLogin();
         },
       ),
     ],

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/com_org_info.dart';
@@ -36,6 +38,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    var orgId = widget.orgId;
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
@@ -121,7 +124,11 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                             SizedBox(width: 10.0),
                             GestureDetector(
                               onTap: () {
-
+                                if(provider.orgInfodata['favId']==0){
+                                  provider.likeIsert(orgId, 1);
+                                }else{
+                                  provider.likeToggle(provider.orgInfodata['favId']);
+                                }
                                 // 'follow_n.png' 이미지를 클릭했을 때의 동작
                                 toggleFollow(); // 이미지 상태 변경 함수 호출
                               },

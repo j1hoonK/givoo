@@ -101,9 +101,20 @@ public class MypageServiceImpl implements MypageService {
         favoritesRepository.save(fav);
     }
 
+
+
+
     @Override
-    public void favDel(Long favId) {
-        favoritesRepository.deleteById(favId);
+    public void favUpdate(Long favId) {
+        Favorites fav = favoritesRepository.findById(favId).orElse(null);
+        if(fav!=null){
+            if (fav.getFav_flag() == 0) {
+                fav.setFav_flag(1);
+            } else {
+                fav.setFav_flag(0);
+            }
+        }
+        favoritesRepository.save(fav);
     }
 
 

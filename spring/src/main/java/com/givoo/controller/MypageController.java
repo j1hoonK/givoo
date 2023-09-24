@@ -2,6 +2,7 @@ package com.givoo.controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.givoo.dto.mypage.MyOrgDTO;
+import com.givoo.entity.Favorites;
 import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
@@ -57,11 +58,12 @@ public class MypageController {
     }
 
     @PostMapping("/fav/apply")
-    public void fav(@RequestParam("orgId") Long orgId, @RequestParam("userId") Long userId) {
-        mypageService.fav(orgId, userId);
+    public void fav(@RequestBody Favorites fav) {
+        mypageService.fav(fav.getOrgId(),fav.getUserId());
     }
-    @PostMapping("/fav/del")
-    public void favDel(@RequestParam("favId") Long favId){
-        mypageService.favDel(favId);
+    @GetMapping("/fav/{favId}")
+    public void favDel(@PathVariable("favId") Long favId){
+        System.out.println("favId:" + favId);
+        mypageService.favUpdate(favId);
     }
 }

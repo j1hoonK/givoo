@@ -63,5 +63,13 @@ class OrganizationProvider extends ChangeNotifier {
     _randomOrgList =_data;
     notifyListeners();
   }
-}
+  Future<void> likeIsert(orgId,userId)async{
+    await _OrganizationListService.fetchLike(orgId,userId);
+    notifyListeners();
+  }
+  Future<void> likeToggle(favId)async{
+    await _OrganizationListService.fetchLikeToggle(favId);
+    notifyListeners();
+  }
 
+}

@@ -1,6 +1,5 @@
 package com.givoo.entity;
 
-import com.givoo.entity.organization.Organization;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,8 +22,11 @@ public class Favorites {
     @Column
     private Long userId;
 
-    public Favorites(Long orgId, Long userId) {
-        this.orgId =orgId;
-        this.userId =userId;
-    }
+    @Column
+    private int fav_flag;
+        public Favorites(Long orgId, Long userId) {
+            this.orgId =orgId;
+            this.userId =userId;
+            this.fav_flag=1;
+        }
 }

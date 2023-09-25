@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:givoo/component/model/OrgBoxModel.dart';
 import 'package:http/http.dart' as http;
 
@@ -38,6 +39,34 @@ class OrganizationListService {
       _data.map((e) => Organization.fromJson(e)).toList();
 
       return _result;
+    } catch (error) {
+      throw Exception('Failed to load todo');
+    }
+  }
+  Future<void> fetchLike(orgId,userId) async {
+
+    try {
+      final data = {
+        'orgId': orgId,
+        'userId': userId, // 좋아요를 등록한 사용자 ID
+      };
+      final jsonData = jsonEncode(data);
+      var response = await http.post(
+          Uri.parse("http://10.0.2.2:1000/mypage/fav/apply"),
+        headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+          body:jsonData,
+      );
+      print(response.statusCode);
+    } catch (error) {
+      throw Exception('Failed to load todo');
+    }
+  }
+
+  Future<void> fetchLikeToggle(favId) async {
+    try {
+      var response = await http.get(Uri.parse("http://10.0.2.2:1000/mypage/fav/${favId}"));
     } catch (error) {
       throw Exception('Failed to load todo');
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:timer_builder/timer_builder.dart';
 
@@ -266,26 +267,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            setState(() {
-              _selectedItemIndex = -1; // 뒤로 가기 버튼을 누를 때 선택 해제
-            });
-          },
-          icon: Icon(Icons.arrow_back_ios_new),
-          color: Colors.black,
-        ),
+        centerTitle: true, // 타이틀 중앙 정렬
+        elevation: 0.0, // 앱바 하단 그림자 없애기
+        title: Image.asset('images/login/logo.png',width: MediaQuery.of(context).size.width * 0.3),
         backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          '개인정보처리방침',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 23,
-          ),
-        ),
-        centerTitle: true,
+        leading: IconButton(onPressed: (){context.pop();}, icon: Icon(Icons.arrow_back, color: Colors.black,)),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

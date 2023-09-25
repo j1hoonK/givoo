@@ -1,4 +1,8 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/view/login_first.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
 import '../pages/login/model/kakaoLogin.dart';
@@ -27,6 +31,23 @@ class KakaoService {
   }
 }
 
+// 최초정보 업데이트
+Future<void> updateKakaoUser(userFirstInfo) async {
+  var url = "http://10.0.2.2:1000/login/kakao/updateinfo/${userFirstInfo["token"]}";
+  http.Response response = await http.post(
+    Uri.parse(url),
+    headers: {"Content-Type": 'application/json'},
+    body: json.encode(userFirstInfo),
+  );
+  print("(LoginService.dart)UpdateUserData: ${json.encode(userFirstInfo)}");
+
+  if (response.statusCode == 200) {
+    print("(LoginService.dart)Update OK: ${response.body}");
+  } else {
+    print("(LoginService.dart)Update NG: ${response.statusCode}");
+    print("(LoginService.dart)Update Messege: ${response.body}");
+  }
+}
 class FindByToken {
   // 회원정보 조회
   Future<List<KakaoUser>> findUserInfo(tokenId) async {

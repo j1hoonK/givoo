@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/config/loading.dart';
+import 'package:givoo/pages/login/model/user_info.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';

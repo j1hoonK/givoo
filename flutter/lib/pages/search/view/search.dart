@@ -9,15 +9,15 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: BaseAppbar(
-          title: "검색",
-        ),
-        body: SingleChildScrollView(
-          child: GestureDetector(
-            onTap: (){
-              FocusScope.of(context).unfocus(); // 빈화면 누르면 키보드가 내려감
-            },
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+          appBar: BaseAppbar(
+            title: "검색",
+          ),
+          body: SingleChildScrollView(
             child: Consumer<OrganizationProvider>(
               builder: (context, provider, child) {
                 return  Column(
@@ -119,7 +119,8 @@ class Search extends StatelessWidget {
                                   image: AssetImage('images/person.png'),
                                 ),
                               ),
-                            ),Text("검색하신 결과가 없습니다.")
+                            ),Text("검색하신 결과가 없습니다.",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 15),
                           ],
                         ),
                 ),
@@ -128,7 +129,7 @@ class Search extends StatelessWidget {
                 );
               },
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

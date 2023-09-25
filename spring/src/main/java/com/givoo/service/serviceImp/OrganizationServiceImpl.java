@@ -35,8 +35,8 @@ public class OrganizationServiceImpl implements OrganizationService {
         Optional<Organization> orgOptional = organizationRepo.findById(orgId);
         Favorites favOptional = favoritesRepository.findByOrgIdAndUserId(orgId,userId);
         if(orgOptional.isPresent()&&favOptional != null){
-            return orgOptional.get().converter(favOptional.getFavId());
-        } else return orgOptional.map(organization -> organization.converter(0L)).orElse(null);
+            return orgOptional.get().converter(favOptional.getFavId(),favOptional.getFav_flag());
+        } else return orgOptional.map(organization -> organization.converter(0L,0)).orElse(null);
 
     }
 

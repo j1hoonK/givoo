@@ -42,7 +42,9 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
-      appBar: BaseAppbar(title: "상세정보",),
+      appBar: BaseAppbar(
+      //  title: "상세정보",
+      ),
       bottomNavigationBar: Container(
         width: double.infinity,
         height: mHeight * 4.3,
@@ -133,7 +135,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                                 toggleFollow(); // 이미지 상태 변경 함수 호출
                               },
                               child: Image.asset(
-                                isFollowSelected
+                                provider.isFollowSelected==1
                                     ? 'images/group/follow_y.png' // 선택된 이미지 파일 경로
                                     : 'images/group/follow_n.png', // 일반 이미지 파일 경로
                                 width: 24.0,

@@ -74,11 +74,11 @@ public class Organization {
     @Column(name = "total_favorite", nullable = false)
     private Long totalFavorite;
 
-    public DetailOrgDTO converter(Long favId){
+    public DetailOrgDTO converter(Long favId,int favFlag){
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.locationLat,this.locationLong,
                 this.orgTell,this.orgInfo,this.orgOwner,this.startedUp,
-                this.imagePath,favId,this.bankName,this.accountHolder,this.hompage
+                this.imagePath,favId,this.bankName,this.accountHolder,this.hompage,favFlag
         );
     }
 

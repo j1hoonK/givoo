@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,12 +39,18 @@ class _FirstLoginState extends State<FirstLogin> {
   String address = '';
   String subAddress = '';
   String userName = '';
+  dynamic userBirthday = 0101;
+  dynamic userGender = 0;
   dynamic userNumberFirst = 0;
   dynamic userNumberSecond = 0;
 
   @override
   void initState() {
     super.initState();
+    final user = Provider.of<LoginViewModel>(context, listen: false).user?.kakaoAccount?.birthday;
+
+    // 각 컨트롤러에 초기값 설정
+    _controller3.text = user!.isNotEmpty ? user == '1' ? '남' : '여' : '';
     _controller.addListener(() {
       setState(() {
         _isClearButtonVisible = _controller.text.isNotEmpty;
@@ -74,6 +81,8 @@ class _FirstLoginState extends State<FirstLogin> {
     _controller3.dispose();
     super.dispose();
   }
+
+  bool a = true;
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +159,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                   },
                                   keyboardType: TextInputType.name,
                                   textInputAction: TextInputAction.next,
-                                  controller: _controller3,
+                                  controller: _controller,
                                   onSaved: (value) => setState(() {
                                     userName = value!;
                                   }),
@@ -158,11 +167,11 @@ class _FirstLoginState extends State<FirstLogin> {
                                     hintText: '이름',
                                     labelText: '성명',
                                     prefixIcon: Icon(CupertinoIcons.tag),
-                                    suffixIcon: _isClearButtonVisible3
+                                    suffixIcon: _isClearButtonVisible
                                         ? IconButton(
                                             icon: Icon(Icons.clear),
                                             onPressed: () {
-                                              _controller3.clear();
+                                              _controller.clear();
                                             },
                                           )
                                         : null,
@@ -257,7 +266,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                 height: mHeight * 0.02,
                               ),
                               TextFormField(
-                                controller: _controller,
+                                controller: _controller1,
                                 key: Key('2'),
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -273,11 +282,11 @@ class _FirstLoginState extends State<FirstLogin> {
                                 decoration: InputDecoration(
                                   labelText: '상세주소',
                                   hintText: '상세주소',
-                                  suffixIcon: _isClearButtonVisible
+                                  suffixIcon: _isClearButtonVisible1
                                       ? IconButton(
                                           icon: Icon(Icons.clear),
                                           onPressed: () {
-                                            _controller.clear();
+                                            _controller1.clear();
                                           },
                                         )
                                       : null,
@@ -303,7 +312,7 @@ class _FirstLoginState extends State<FirstLogin> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
-                                  '주민등록번호',
+                                  '생년월일',
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -320,7 +329,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                   SizedBox(
                                     width: mSize * 0.35,
                                     child: TextFormField(
-                                      controller: _controller1,
+                                      controller: _controller2,
                                       key: Key('1'),
                                       validator: (value) {
                                         if (value!.length != 6) {
@@ -329,7 +338,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                         return null;
                                       },
                                       onSaved: (value) => setState(() {
-                                        userNumberFirst = value;
+                                        userBirthday = value;
                                       }),
                                       maxLength: 6,
                                       inputFormatters: [
@@ -340,61 +349,6 @@ class _FirstLoginState extends State<FirstLogin> {
                                       decoration: InputDecoration(
                                         labelText: '앞 6자리',
                                         hintText: '앞 6자리',
-                                        prefixIcon: Icon(Icons.password),
-                                        suffixIcon: _isClearButtonVisible1
-                                            ? IconButton(
-                                                icon: Icon(Icons.clear),
-                                                onPressed: () {
-                                                  _controller1.clear();
-                                                },
-                                              )
-                                            : null,
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Palette.textColor2),
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Palette.textColor1,
-                                              width: 2),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.fromLTRB(
-                                        0, 0, 0, mHeight * 0.03),
-                                    width: mSize * 0.05,
-                                    height: mHeight * 0.003,
-                                    color: Palette.textColor2,
-                                  ),
-                                  SizedBox(
-                                    width: mSize * 0.35,
-                                    child: TextFormField(
-                                      controller: _controller2,
-                                      obscureText: true,
-                                      key: Key('1'),
-                                      validator: (value) {
-                                        if (value!.length != 7) {
-                                          return '유효하지 않습니다.';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) => setState(() {
-                                        userNumberSecond = value;
-                                      }),
-                                      maxLength: 7,
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter.digitsOnly
-                                      ],
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        labelText: '뒤 7자리',
-                                        hintText: '뒤 7자리',
                                         prefixIcon: Icon(Icons.password),
                                         suffixIcon: _isClearButtonVisible2
                                             ? IconButton(
@@ -418,7 +372,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                         ),
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ],
@@ -607,8 +561,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                       var userFirstInfo = {
                                         'userName': userName,
                                         'userAddress': '$address ' '$subAddress',
-                                        'userNumberFirst': userNumberFirst,
-                                        'userNumberSecond': userNumberSecond,
+                                        'userBirthday': userBirthday,
                                         'token': token
                                       };
                                       print(

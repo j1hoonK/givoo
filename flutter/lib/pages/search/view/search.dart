@@ -14,9 +14,7 @@ class Search extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-          appBar: BaseAppbar(
-            title: "검색",
-          ),
+          appBar: BaseAppbar(),
           body: SingleChildScrollView(
             child: Consumer<OrganizationProvider>(
               builder: (context, provider, child) {

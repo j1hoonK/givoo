@@ -39,7 +39,7 @@ public class UsersServiceImpl implements UsersService {
             userinfo.setUserName(userFirstInfo.getUserName());
             userinfo.setUserAddress(userFirstInfo.getUserAddress());
             userinfo.setUserNumberFirst(userFirstInfo.getUserNumberFirst());
-            userinfo.setUserNumberSecond(userFirstInfo.getUserNumberSecond());
+            userinfo.setUserBirthday(userFirstInfo.getUserBirthday());
 
             return usersRepository.save(userinfo);
         } else {

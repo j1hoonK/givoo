@@ -59,6 +59,8 @@ class KakaoLogin implements SocialLogin {
             "userName": user.kakaoAccount?.profile?.nickname,
             "userImage": user.kakaoAccount?.profile?.profileImageUrl,
             "userEmail": user.kakaoAccount?.email,
+            "userGender": user.kakaoAccount?.gender?.index,
+            "userBirthday": user.kakaoAccount?.birthday,
           };
           print('(kakao_login.dart)kakaoUser2 == $kakaoUser');
           print('(kakao_login.dart)Token == ${kakaoUser["token"]}');

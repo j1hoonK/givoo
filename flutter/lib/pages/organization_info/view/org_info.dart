@@ -10,32 +10,19 @@ import 'package:givoo/services/LaunchUrlService.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-
 class OrgInfoPage extends StatefulWidget {
   final orgId;
-
   OrgInfoPage({super.key,required this.orgId});
-
   @override
   State<OrgInfoPage> createState() => _OrgInfoPageState();
 }
-
 class _OrgInfoPageState extends State<OrgInfoPage> {
-
-  bool isFollowSelected = false; // 'follow_n.png' 이미지 상태를 나타내는 변수
   @override
   void initState(){
     super.initState();
     var orgId = widget.orgId;
     Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
   }
-  // 'follow_n.png' 이미지를 토글(바꾸는)하는 함수
-  void toggleFollow() {
-    setState(() {
-      isFollowSelected = !isFollowSelected; // 현재 상태의 반대로 변경
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     var orgId = widget.orgId;
@@ -132,8 +119,6 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                                 }else{
                                   provider.likeToggle(provider.orgInfodata['favId']);
                                 }
-                                // 'follow_n.png' 이미지를 클릭했을 때의 동작
-                                toggleFollow(); // 이미지 상태 변경 함수 호출
                               },
                               child: Image.asset(
                                 provider.isFollowSelected==1

@@ -31,13 +31,11 @@ public class Donation {
     @Column(name = "receipt_result", nullable = false, columnDefinition = "varchar(45) default '진행중'")
     private String receiptResult;
 
-    @ManyToOne
-    @JoinColumn(name = "org_id", nullable = false)
-    private Organization orgId;
+    @Column
+    private Long orgId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users userId;
+    @Column
+    private Long userId;
 
     @Column(name = "type_payment", nullable = false)
     private String typePayment;

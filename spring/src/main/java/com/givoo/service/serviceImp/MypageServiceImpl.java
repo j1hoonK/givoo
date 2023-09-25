@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -44,7 +45,7 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override   // 기부이력 확인
-    public List<Donation> myDnt(Users userId) {
+    public List<Donation> myDnt(Long userId) {
         List<Donation> dntList = donationRepository.findAllByUserId(userId);
         System.out.println("dntList: "+ dntList);
         if(dntList.isEmpty()){
@@ -55,23 +56,23 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override   // 내 단체
-    public List<MyOrgDTO> myOrg(Users userId) {
+    public List<MyOrgDTO> myOrg(Long userId) {
         List<Favorites> favList = favoritesRepository.findAllByUserId(userId);
-//        List<MyOrgDTO> myOrgList = favList.stream()
-//                .map(fav -> new MyOrgDTO(organizationRepository.findById(fav.getOrgId()).get().getOrgName(),
-//                        organizationRepository.findById(fav.getOrgId()).get().getImagePath(),
-//                        organizationRepository.findById(fav.getOrgId()).get().getOrgType(),
-//                        organizationRepository.findById(fav.getOrgId()).get().getOrgId(),
-//                        organizationRepository.findById(fav.getOrgId()).get().getOrgAddress()
-//                        ))
-//                .collect(Collectors.toList());
-//        return myOrgList;
-        return null;
+        List<MyOrgDTO> myOrgList = favList.stream()
+                .map(fav -> new MyOrgDTO(organizationRepository.findById(fav.getOrgId()).get().getOrgName(),
+                        organizationRepository.findById(fav.getOrgId()).get().getImagePath(),
+                        organizationRepository.findById(fav.getOrgId()).get().getOrgType(),
+                        organizationRepository.findById(fav.getOrgId()).get().getOrgId(),
+                        organizationRepository.findById(fav.getOrgId()).get().getOrgAddress()
+                        ))
+                .collect(Collectors.toList());
+        return myOrgList;
+       // return null;
 
     }
 
     @Override   // 정기기부 관리
-    public List<DonationRegular> findByUserID(Users userId) {
+    public List<DonationRegular> findByUserID(Long userId) {
         return donationRegularRepository.findByUserId(userId);
     }
 
@@ -95,14 +96,25 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public void fav(Organization orgId, Users userId) {
+    public void fav(Long orgId, Long userId) {
         Favorites fav = new Favorites(orgId,userId);
         favoritesRepository.save(fav);
     }
 
+
+
+
     @Override
-    public void favDel(Long favId) {
-        favoritesRepository.deleteById(favId);
+    public void favUpdate(Long favId) {
+        Favorites fav = favoritesRepository.findById(favId).orElse(null);
+        if(fav!=null){
+            if (fav.getFav_flag() == 0) {
+                fav.setFav_flag(1);
+            } else {
+                fav.setFav_flag(0);
+            }
+        }
+        favoritesRepository.save(fav);
     }
 
 

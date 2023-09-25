@@ -12,22 +12,21 @@ import java.util.List;
 @Service
 public interface MypageService {
 
-    List<Donation> myDnt(Users userId);
+    List<Donation> myDnt(Long userId);
 
     Donation myDntDetail(Long dntId);
 
     // 내 단체
-    List<MyOrgDTO> myOrg(Users userId);
+    List<MyOrgDTO> myOrg(Long userId);
 
     // 정기기부 관리
-    List<DonationRegular> findByUserID(Users userId);
+    List<DonationRegular> findByUserID(Long userId);
 
     // 정기기부 해지신청-해지취소
     List<DonationRegular> findByIsusenowAndDntRegularId(String isusenow, Long dntRegularId);
 
     List<DonationRegular> findByDntRegularId(Long dntRegularId);
 
-    void fav(Organization orgId, Users userId);
-
-    void favDel(Long favId);
+    void fav(Long orgId, Long userId);
+    void favUpdate(Long favId);
 }

@@ -94,7 +94,7 @@ class MainPage extends StatelessWidget {
                       itemBuilder: (context,idx) {
                         return OrgBox(orgName: provider.randomOrgList[idx].orgName,
                           orgAddress: provider.randomOrgList[idx].orgAddress,
-                          imagePath: provider.randomOrgList[idx].imagePath,
+                          imagePath: provider.randomOrgList[idx].imagePath == null ? "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png":provider.randomOrgList[idx].imagePath,
                           orgId: provider.randomOrgList[idx].orgId,
                         );
                       },

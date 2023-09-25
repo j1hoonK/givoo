@@ -26,7 +26,7 @@ public class DonationController {
     }
     @GetMapping("/{orgid}")
     @Operation(summary = "후원 종류", description = "기관별 후원종류")
-    public List<DonationType> findByOrgIdFromDonation(@PathVariable("orgid") Organization orgid){
+    public List<DonationType> findByOrgIdFromDonation(@PathVariable("orgid") Long orgid){
         return donationService.findByOrgIdFromDonation(orgid);
     }
 

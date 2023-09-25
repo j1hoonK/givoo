@@ -10,8 +10,8 @@ import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/pages/recommend/view/recommend.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:go_router/go_router.dart';
-
 import '../pages/login/view/login_agreement.dart';
+import '../pages/login/view/login_first.dart';
 import '../pages/mypage/view/announcement.dart';
 import '../pages/mypage/view/terms_condition.dart';
 
@@ -55,6 +55,12 @@ class GivooRouter {
         },
       ),
       GoRoute(
+        path: '/login/first',
+        builder: (BuildContext context, GoRouterState state) {
+          //final token = int.parse(state.pathParameters['token']!) ?? '-1';
+          return FirstLogin();
+        },
+      ),
           path: '/mypage',
           builder: (BuildContext context, GoRouterState state) {
             return const MyPage();

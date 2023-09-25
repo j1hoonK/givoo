@@ -15,9 +15,8 @@ public class DonationType {
     @Column(name = "type_id")
     private Long typeId;
 
-    @ManyToOne
-    @JoinColumn(name = "org_id", nullable = false)
-    private Organization orgId;
+    @Column
+    private Long orgId;
 
     @Column(name = "type", nullable = false)
     private String type;

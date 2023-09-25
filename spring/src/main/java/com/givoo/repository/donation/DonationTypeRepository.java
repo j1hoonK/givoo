@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface DonationTypeRepository extends JpaRepository<DonationType,Long> {
-    public List<DonationType> findAllByOrgId(Organization orgId);
+    public List<DonationType> findAllByOrgId(Long orgId);
 }

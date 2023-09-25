@@ -8,8 +8,8 @@ import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/pages/recommend/view/recommend.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:go_router/go_router.dart';
-
 import '../pages/login/view/login_first.dart';
+import '../pages/mypage/view/announcement.dart';
 
 class GivooRouter {
   // 로그인 상태
@@ -20,47 +20,34 @@ class GivooRouter {
         builder: (BuildContext context, GoRouterState state) {
           return const Loading();
         },
-      ), GoRoute(
+      ),
+      GoRoute(
         path: '/pay/:orgId',
         builder: (BuildContext context, GoRouterState state) {
           final orgId = int.parse(state.pathParameters['orgId']!) ?? '-1';
           return Pay(orgId: orgId.toString());
         },
-      ),GoRoute(
+      ),
+      GoRoute(
         path: '/Recommend',
         builder: (BuildContext context, GoRouterState state) {
           final orgType = state.extra;
-          return  Recommend(orgType: orgType.toString(),);
+          return Recommend(
+            orgType: orgType.toString(),
+          );
         },
-      ), GoRoute(
+      ),
+      GoRoute(
         path: '/Search',
         builder: (BuildContext context, GoRouterState state) {
           return const Search();
         },
       ),
       GoRoute(
-        path: '/mypage',
-        builder: (BuildContext context, GoRouterState state) {
-          return const MyPage();
-        },
-      ),
-      GoRoute(
-        path: '/mypage/org',
-        builder: (BuildContext context, GoRouterState state) {
-          return const MainMyGroup();
-        },
-      ),
-      GoRoute(
-        path: '/mypage/dnthistory',
-        builder: (BuildContext context, GoRouterState state) {
-          return const DonationHistory();
-        },
-      ),
-      GoRoute(
         path: '/orginfo/:orgId',
         builder: (BuildContext context, GoRouterState state) {
           final orgId = int.parse(state.pathParameters['orgId']!) ?? '-1';
-          return OrgInfoPage(orgId : orgId.toString());
+          return OrgInfoPage(orgId: orgId.toString());
         },
       ),
       GoRoute(
@@ -70,11 +57,32 @@ class GivooRouter {
           return FirstLogin();
         },
       ),
+          path: '/mypage',
+          builder: (BuildContext context, GoRouterState state) {
+            return const MyPage();
+          },
+          routes: [
+            GoRoute(  // 내 단체
+              path: 'org',
+              builder: (context, state) => MainMyGroup(),
+            ),
+            GoRoute(  // 기부 이력 확인
+              path: 'dnthistory',
+              builder: (context, state) => DonationHistory(),
+            ),
+            GoRoute(  // 공지사항
+              path: 'announce',
+              builder: (context, state) => Announce(),
+            ),
+            GoRoute(  // QnA
+              path: 'qna',
+              builder: (context, state) => Announce(),
+            ),
+            GoRoute(  // 약관 및 정책
+              path: 'terms',
+              builder: (context, state) => Announce(),
+            ),
+          ]),
     ],
   );
 }
-
-
-
-
-

@@ -20,9 +20,8 @@ public class OrganizationNotice {
     @Column(name = "subject", nullable = false)
     private String subject;
 
-    @ManyToOne
-    @JoinColumn(name = "org_id", nullable = false)
-    private Organization organization;
+    @Column
+    private Long orgId;
 
     @Column(name = "contents", nullable = false)
     private String contents;

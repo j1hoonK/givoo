@@ -21,6 +21,8 @@ class OrganizationProvider extends ChangeNotifier {
   Map<String,dynamic> _orgInfodata ={};
   Map<String,dynamic> get orgInfodata =>_orgInfodata;
   get randomOrgList=>_randomOrgList;
+  late int _isFollowSelected;
+  int get isFollowSelected=> _isFollowSelected;
 
   // 기관 정보 조회
   Future<void> fetchTodo() async {
@@ -55,6 +57,7 @@ class OrganizationProvider extends ChangeNotifier {
   Future<void> orgInfo(orgId,userId) async {
     Map<String,dynamic>? _data = await _OrganizationListService.fetchOrgInfo(orgId, userId);
     _orgInfodata = _data;
+    _isFollowSelected =_orgInfodata['favFlag'];
     notifyListeners();
   }
 
@@ -69,6 +72,7 @@ class OrganizationProvider extends ChangeNotifier {
   }
   Future<void> likeToggle(favId)async{
     await _OrganizationListService.fetchLikeToggle(favId);
+    _isFollowSelected == 0 ? _isFollowSelected = 1 : _isFollowSelected = 0 ;
     notifyListeners();
   }
 

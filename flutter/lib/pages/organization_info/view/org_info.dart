@@ -133,7 +133,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                                 toggleFollow(); // 이미지 상태 변경 함수 호출
                               },
                               child: Image.asset(
-                                isFollowSelected
+                                provider.isFollowSelected==1
                                     ? 'images/group/follow_y.png' // 선택된 이미지 파일 경로
                                     : 'images/group/follow_n.png', // 일반 이미지 파일 경로
                                 width: 24.0,

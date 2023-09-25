@@ -22,5 +22,5 @@ public class DetailOrgDTO {  // /info/{기관아이디}/{유저아이디}
     private String bankName;
     private String accountHolder;
     private String homepage;
-
+    private int favFlag;
 }

@@ -33,12 +33,12 @@ class OrgBox extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(),
+                  //border: Border.all(),
                 ),
                 height: height * 0.1,
                 width: width * 0.3,
                 child: Image.network(
-                  "",  //imagePath,
+                  imagePath,  //imagePath,
                   fit: BoxFit.fill,
                 ),
               ),

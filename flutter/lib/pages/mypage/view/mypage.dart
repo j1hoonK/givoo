@@ -15,7 +15,7 @@ class MyPage extends StatelessWidget {
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Consumer<LoginViewModel>(
       builder: (context, provider, child) => provider.isLogin
-          ? provider.kakaoUser[0].userAddress.toString() == 'null'
+          ? provider.kakaoUser[0].userAddress == 'null'
               ? FirstLogin()
               : Scaffold(
                   backgroundColor: Colors.white,

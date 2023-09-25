@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+
+
+class TermsCondition extends StatefulWidget {
+  const TermsCondition({Key? key}) : super(key: key);
+
+  @override
+  State<TermsCondition> createState() => _TermsConditionState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class _TermsConditionState extends State<TermsCondition> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

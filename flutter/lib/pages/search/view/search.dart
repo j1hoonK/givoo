@@ -11,7 +11,7 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppbar(
-          title: "검색",
+          //title: "검색",
         ),
         body: SingleChildScrollView(
           child: GestureDetector(
@@ -119,7 +119,8 @@ class Search extends StatelessWidget {
                                   image: AssetImage('images/person.png'),
                                 ),
                               ),
-                            ),Text("검색하신 결과가 없습니다.")
+                            ),Text("검색하신 결과가 없습니다.",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 15),
                           ],
                         ),
                 ),

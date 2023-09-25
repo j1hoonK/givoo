@@ -23,7 +23,7 @@ class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppbar(title:"${widget.orgType}"),   // 저기 타이틀 종교단체 변수로 받아와야합니당
+      appBar: AppBar(title:Text("${widget.orgType}")),   // 저기 타이틀 종교단체 변수로 받아와야합니당
       body: Consumer<RecommendMoreProvider>(
         builder: (context, provider, child) {
           return Container(

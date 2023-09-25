@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:givoo/config/loading.dart';
-import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
@@ -10,8 +9,10 @@ import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/pages/recommend/view/recommend.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:go_router/go_router.dart';
+import '../component/view/bottomnavbar.dart';
 import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
+import '../pages/mainpage/view/mainPage.dart';
 import '../pages/mypage/view/announcement.dart';
 import '../pages/mypage/view/terms_condition.dart';
 
@@ -23,6 +24,12 @@ class GivooRouter {
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
           return const Loading();
+        },
+      ),
+      GoRoute(
+        path: '/main',
+        builder: (BuildContext context, GoRouterState state) {
+          return const BotNavBar();
         },
       ),
       GoRoute(
@@ -61,6 +68,7 @@ class GivooRouter {
           return FirstLogin();
         },
       ),
+          GoRoute(
           path: '/mypage',
           builder: (BuildContext context, GoRouterState state) {
             return const MyPage();

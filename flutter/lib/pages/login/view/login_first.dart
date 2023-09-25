@@ -445,134 +445,137 @@ class _FirstLoginState extends State<FirstLogin> {
                         // 간격 추가
 
                         // 체크박스 및 텍스트 입력란 추가
-                        Column(
-                          children: [
-                            ListTile(
-                              leading: Checkbox(
-                                value: allAgreed,
-                                // "모두 동의합니다" 체크 상태 설정
-                                onChanged: (bool? value) {
-                                  setState(() {
-                                    allAgreed = value ?? false;
-                                    allA = allAgreed;
-                                    allB = allAgreed;
-                                    allC = allAgreed; // 체크 상태 업데이트
-                                  });
-                                },
-                                activeColor: Color(0xFFFF466E),
-                                // 체크된 상태일 때의 색상
-                                checkColor: Colors.white,
+                        Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                leading: Checkbox(
+                                  value: allAgreed,
+                                  // "모두 동의합니다" 체크 상태 설정
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      allAgreed = value ?? false;
+                                      allA = allAgreed;
+                                      allB = allAgreed;
+                                      allC = allAgreed; // 체크 상태 업데이트
+                                    });
+                                  },
+                                  activeColor: Color(0xFFFF466E),
+                                  // 체크된 상태일 때의 색상
+                                  checkColor: Colors.white,
+                                ),
+                                title: Text(
+                                  '모두 동의합니다',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                contentPadding: EdgeInsets.zero,
                               ),
-                              title: Text(
-                                '모두 동의합니다',
-                                style: TextStyle(
-                                  fontSize: 15,
+                              Divider(
+                                thickness: 2,
+                                height: 1,
+                                indent: 1,
+                                //왼쪽 간격 조정
+                                endIndent: 15,
+                                //오른쪽 간격 조정
+                                color: Colors.grey,
+                              ), //회색 실선
+                              ListTile(
+                                leading: Checkbox(
+                                  value: allA,
+                                  // 체크 상태 설정
+                                  onChanged: (bool? value) {
+                                    allA == false && allB == true && allC == true
+                                        ? setState(() {
+                                            allAgreed = true;
+                                            allA = value ?? false;
+                                          })
+                                        : setState(() {
+                                            allA = value ?? false;
+                                          });
+                                  },
+                                  activeColor: Color(0xFFFF466E),
+                                  // 체크된 상태일 때의 색상
+                                  checkColor: Colors.white,
+                                ),
+                                title: Text(
+                                  '만 14세 이상입니다',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                contentPadding: EdgeInsets.zero,
+                              ),
+                              ListTile(
+                                leading: Checkbox(
+                                  value: allB,
+                                  // 체크 상태 설정
+                                  onChanged: (bool? value) {
+                                    allA == true && allB == false && allC == true
+                                        ? setState(() {
+                                            allAgreed = true;
+                                            allB = value ?? false;
+                                          })
+                                        : setState(() {
+                                            allB = value ?? false;
+                                          });
+                                  },
+                                  activeColor: Color(0xFFFF466E),
+                                  // 체크된 상태일 때의 색상
+                                  checkColor: Colors.white,
+                                ),
+                                title: Text(
+                                  '[필수] 기부어때 이용약관 동의',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                trailing: IconButton(
+                                  onPressed: () {context.push('/login/terms');},
+                                  icon: Icon(Icons.arrow_forward_ios),
                                   color: Colors.black,
                                 ),
+                                contentPadding: EdgeInsets.zero,
                               ),
-                              contentPadding: EdgeInsets.zero,
-                            ),
-                            Divider(
-                              thickness: 2,
-                              height: 1,
-                              indent: 1,
-                              //왼쪽 간격 조정
-                              endIndent: 15,
-                              //오른쪽 간격 조정
-                              color: Colors.grey,
-                            ), //회색 실선
-                            ListTile(
-                              leading: Checkbox(
-                                value: allA,
-                                // 체크 상태 설정
-                                onChanged: (bool? value) {
-                                  allA == false && allB == true && allC == true
-                                      ? setState(() {
-                                          allAgreed = true;
-                                          allA = value ?? false;
-                                        })
-                                      : setState(() {
-                                          allA = value ?? false;
-                                        });
-                                },
-                                activeColor: Color(0xFFFF466E),
-                                // 체크된 상태일 때의 색상
-                                checkColor: Colors.white,
-                              ),
-                              title: Text(
-                                '만 14세 이상입니다',
-                                style: TextStyle(
-                                  fontSize: 15,
+                              ListTile(
+                                leading: Checkbox(
+                                  value: allC,
+                                  // 체크 상태 설정
+                                  onChanged: (bool? value) {
+                                    allA == true && allB == true && allC == false
+                                        ? setState(() {
+                                            allAgreed = true;
+                                            allC = value ?? false;
+                                          })
+                                        : setState(() {
+                                            allC = value ?? false;
+                                          });
+                                  },
+                                  activeColor: Color(0xFFFF466E),
+                                  // 체크된 상태일 때의 색상
+                                  checkColor: Colors.white,
+                                ),
+                                title: Text(
+                                  '[필수] 기부어때 개인정보처리방침 동의',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                trailing: IconButton(
+                                  onPressed: () {context.push('/login/pp');},
+                                  icon: Icon(Icons.arrow_forward_ios),
                                   color: Colors.black,
                                 ),
+                                contentPadding: EdgeInsets.zero,
                               ),
-                              contentPadding: EdgeInsets.zero,
-                            ),
-                            ListTile(
-                              leading: Checkbox(
-                                value: allB,
-                                // 체크 상태 설정
-                                onChanged: (bool? value) {
-                                  allA == true && allB == false && allC == true
-                                      ? setState(() {
-                                          allAgreed = true;
-                                          allB = value ?? false;
-                                        })
-                                      : setState(() {
-                                          allB = value ?? false;
-                                        });
-                                },
-                                activeColor: Color(0xFFFF466E),
-                                // 체크된 상태일 때의 색상
-                                checkColor: Colors.white,
-                              ),
-                              title: Text(
-                                '[필수] 기부어때 이용약관 동의',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              trailing: IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.arrow_forward_ios),
-                                color: Colors.black,
-                              ),
-                              contentPadding: EdgeInsets.zero,
-                            ),
-                            ListTile(
-                              leading: Checkbox(
-                                value: allC,
-                                // 체크 상태 설정
-                                onChanged: (bool? value) {
-                                  allA == true && allB == true && allC == false
-                                      ? setState(() {
-                                          allAgreed = true;
-                                          allC = value ?? false;
-                                        })
-                                      : setState(() {
-                                          allC = value ?? false;
-                                        });
-                                },
-                                activeColor: Color(0xFFFF466E),
-                                // 체크된 상태일 때의 색상
-                                checkColor: Colors.white,
-                              ),
-                              title: Text(
-                                '[필수] 기부어때 이용약관 동의',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              trailing: IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.arrow_forward_ios),
-                                color: Colors.black,
-                              ),
-                              contentPadding: EdgeInsets.zero,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: mHeight * 0.02,

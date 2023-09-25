@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/component/view/appbar.dart';
+import 'package:go_router/go_router.dart';
 
 
 
@@ -59,32 +61,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            setState(() {
-              _selectedItemIndex = -1; // 뒤로 가기 버튼을 누를 때 선택 해제
-            });
-          },
-          icon: Icon(Icons.arrow_back_ios_new),
-          color: Colors.black,
-        ),
+        centerTitle: true, // 타이틀 중앙 정렬
+        elevation: 0.0, // 앱바 하단 그림자 없애기
+        title: Image.asset('images/login/logo.png',width: MediaQuery.of(context).size.width * 0.3),
         backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          '이용약관',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 23,
-          ),
-        ),
-        centerTitle: true,
+        leading: IconButton(onPressed: (){context.pop();}, icon: Icon(Icons.arrow_back, color: Colors.black,)),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const SizedBox(height: 20),
               const Center(
                 child: Text(
                   '기부어때 이용약관',

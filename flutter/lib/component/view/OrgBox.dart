@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class OrgBox extends StatelessWidget {
   OrgBox(
@@ -23,6 +23,7 @@ class OrgBox extends StatelessWidget {
     return InkWell(
       onTap: () {
           context.push('/orginfo/$orgId',extra: orgId);
+          Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
       },
       child: SizedBox(
         height: height * 0.25,

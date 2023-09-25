@@ -12,7 +12,6 @@ import 'package:go_router/go_router.dart';
 import '../component/view/bottomnavbar.dart';
 import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
-import '../pages/mainpage/view/mainPage.dart';
 import '../pages/mypage/view/announcement.dart';
 import '../pages/mypage/view/terms_condition.dart';
 
@@ -58,7 +57,7 @@ class GivooRouter {
         path: '/orginfo/:orgId',
         builder: (BuildContext context, GoRouterState state) {
           final orgId = int.parse(state.pathParameters['orgId']!) ?? '-1';
-          return OrgInfoPage(orgId: orgId.toString());
+          return OrgInfo(orgId: orgId.toString());
         },
       ),
       GoRoute(

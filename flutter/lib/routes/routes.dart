@@ -6,7 +6,7 @@ import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
 import 'package:givoo/pages/mypage/view/privacy_policy.dart';
 import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/pages/pay/view/pay.dart';
-import 'package:givoo/pages/recommend/view/recommend.dart';
+import 'package:givoo/pages/recommend/view/recommendPage.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:go_router/go_router.dart';
 import '../component/view/bottomnavbar.dart';
@@ -42,7 +42,7 @@ class GivooRouter {
         path: '/Recommend',
         builder: (BuildContext context, GoRouterState state) {
           final orgType = state.extra;
-          return Recommend(
+          return RecommendPage(
             orgType: orgType.toString(),
           );
         },

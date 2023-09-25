@@ -68,11 +68,14 @@ class OrganizationProvider extends ChangeNotifier {
   }
   Future<void> likeIsert(orgId,userId)async{
     await _OrganizationListService.fetchLike(orgId,userId);
+    orgInfo(orgId, userId);
+    print("likeInsert");
     notifyListeners();
   }
   Future<void> likeToggle(favId)async{
     await _OrganizationListService.fetchLikeToggle(favId);
     _isFollowSelected == 0 ? _isFollowSelected = 1 : _isFollowSelected = 0 ;
+    print("likeToggle");
     notifyListeners();
   }
 

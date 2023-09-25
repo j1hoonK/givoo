@@ -9,15 +9,15 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: BaseAppbar(
-          title: "검색",
-        ),
-        body: SingleChildScrollView(
-          child: GestureDetector(
-            onTap: (){
-              FocusScope.of(context).unfocus(); // 빈화면 누르면 키보드가 내려감
-            },
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+          appBar: BaseAppbar(
+            title: "검색",
+          ),
+          body: SingleChildScrollView(
             child: Consumer<OrganizationProvider>(
               builder: (context, provider, child) {
                 return  Column(
@@ -128,7 +128,7 @@ class Search extends StatelessWidget {
                 );
               },
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

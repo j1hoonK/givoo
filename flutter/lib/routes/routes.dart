@@ -61,6 +61,7 @@ class GivooRouter {
           return FirstLogin();
         },
       ),
+          GoRoute(
           path: '/mypage',
           builder: (BuildContext context, GoRouterState state) {
             return const MyPage();

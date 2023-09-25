@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/appbar.dart';
@@ -9,7 +9,7 @@ import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/services/LaunchUrlService.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 class OrgInfoPage extends StatefulWidget {
   final orgId;
@@ -228,12 +228,14 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                             ),
                           ])),
                 ),
-                Container(
+                provider.orgInfodata.isNotEmpty ? Container(
                   width: double.infinity,
                   height: mHeight * 25,
                   color: Colors.grey,
-                child:NowGoogleMapView(latitude: provider.orgInfodata['locationLat'],longitude: provider.orgInfodata['locationLong'], orgName: "${provider.orgInfodata['orgName']}"),
-                ),
+                child:NowGoogleMapView(latitude: provider.orgInfodata['locationLat']!=null ?provider.orgInfodata['locationLat']:"",
+                    longitude: provider.orgInfodata['locationLong']!=null ? provider.orgInfodata['locationLong']:"",
+                    orgName: "${provider.orgInfodata['orgName']}"),
+                ) : CircularProgressIndicator(),
               ],
             );
           }

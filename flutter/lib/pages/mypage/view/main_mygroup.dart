@@ -19,14 +19,15 @@ class _MainMyGroupState extends State<MainMyGroup> {
   void initState(){
     super.initState();
     Provider.of<MyPageProvider>(context, listen: false).fetchTodo();
-
   }
 
   @override
   Widget build(BuildContext context) {
     //final myPageProvider = Provider.of<MyPageProvider>(context);
     return Scaffold(
-      appBar: BaseAppbar(title: "내 단체"), // BaseAppbar가 어디에 정의되었는지 확인
+      appBar: BaseAppbar(
+      //    title: "내 단체"
+      ), // BaseAppbar가 어디에 정의되었는지 확인
       body: Column(
         children: [
           Consumer<MyPageProvider>(

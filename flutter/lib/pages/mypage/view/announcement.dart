@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/component/view/appbar.dart';
 import 'package:intl/intl.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -84,8 +85,11 @@ class _AnnounceState extends State<Announce> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
+      appBar: BaseAppbar(),
+      /*AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -97,72 +101,87 @@ class _AnnounceState extends State<Announce> {
           ),
         ),
         centerTitle: true,
-      ),
+      ),*/
       body: SafeArea(
         child: TimerBuilder.periodic(Duration(seconds: 1), builder: (context) {
           _currentTime = _buildDate();
-          return ListView.builder(
-            itemCount: _items.length,
-            itemBuilder: (_, index) {
-              final item = _items[index];
-              final isExpanded = _isExpandedList[index];
-              final isIconButtonSelected = _iconButtonSelectedList[index];
-              return Card(
-                key: PageStorageKey(item['id']),
-                color: _selectedItemIndex == index
-                    ? Colors.white
-                    : isIconButtonSelected
-                        ? Colors.grey
-                        : Colors.white, // 선택한 항목 또는 아이콘 버튼 선택 여부에 따라 배경색 변경
-                elevation: 0,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  height: isExpanded ? 500.0 : 100.0, //공지내용 보이는 컨테이너 높이
-                  child: ExpansionTile(
-                    iconColor: Colors.black,
-                    collapsedIconColor: Colors.black,
-                    backgroundColor: Colors.grey[200],
-                    // ExpansionTile의 배경색, 연한 그레이
-                    onExpansionChanged: (bool expanded) {
-                      setState(() {
-                        _isExpandedList[index] = expanded;
-                        if (expanded) {
-                          _selectedItemIndex = index;
-                        }
-                      });
-                    },
-                    initiallyExpanded: false,
-                    title: ListTile(
-                      title: Text(
-                        _currentTime, // 현재 날짜 표시
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      subtitle: Text(
-                        item['title'], //제목 입력
-                        style: TextStyle(color: Colors.black, fontSize: 23),
-                      ),
-                    ),
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(30.0), // content 패딩값
-                            child: Text(
-                              item['content'],
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 23),
-                              maxLines: 10,
-                              overflow: TextOverflow.ellipsis,
+          return Column(
+            children: [
+              SizedBox(height: height * 0.02,),
+              Text(
+                "공지사항",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),
+              ),
+              SizedBox(height: height * 0.015,),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _items.length,
+                  itemBuilder: (_, index) {
+                    final item = _items[index];
+                    final isExpanded = _isExpandedList[index];
+                    final isIconButtonSelected = _iconButtonSelectedList[index];
+                    return Card(
+                      key: PageStorageKey(item['id']),
+                      color: _selectedItemIndex == index
+                          ? Colors.white
+                          : isIconButtonSelected
+                              ? Colors.grey
+                              : Colors.white, // 선택한 항목 또는 아이콘 버튼 선택 여부에 따라 배경색 변경
+                      elevation: 0,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        height: isExpanded ? 500.0 : 100.0, //공지내용 보이는 컨테이너 높이
+                        child: ExpansionTile(
+                          iconColor: Colors.black,
+                          collapsedIconColor: Colors.black,
+                          backgroundColor: Colors.grey[200],
+                          // ExpansionTile의 배경색, 연한 그레이
+                          onExpansionChanged: (bool expanded) {
+                            setState(() {
+                              _isExpandedList[index] = expanded;
+                              if (expanded) {
+                                _selectedItemIndex = index;
+                              }
+                            });
+                          },
+                          initiallyExpanded: false,
+                          title: ListTile(
+                            title: Text(
+                              _currentTime, // 현재 날짜 표시
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                            subtitle: Text(
+                              item['title'], //제목 입력
+                              style: TextStyle(color: Colors.black, fontSize: 23),
                             ),
                           ),
-                        ],
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(30.0), // content 패딩값
+                                  child: Text(
+                                    item['content'],
+                                    style:
+                                        TextStyle(color: Colors.black, fontSize: 23),
+                                    maxLines: 10,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+            ],
           );
         }),
       ),

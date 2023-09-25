@@ -14,7 +14,7 @@ class Pay extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: BaseAppbar(
-        title: "후원하기",
+        //title: "후원하기",
       ),
       body: SingleChildScrollView(
         child: Column(

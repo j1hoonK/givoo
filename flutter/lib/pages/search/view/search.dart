@@ -119,7 +119,8 @@ class Search extends StatelessWidget {
                                   image: AssetImage('images/person.png'),
                                 ),
                               ),
-                            ),Text("검색하신 결과가 없습니다.")
+                            ),Text("검색하신 결과가 없습니다.",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 15),
                           ],
                         ),
                 ),

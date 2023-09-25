@@ -15,14 +15,15 @@ class MainPage extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: BaseAppbar(title: "나눔 추천"),
+      appBar: BaseAppbar(
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: height * 0.05,),
+            SizedBox(height: height * 0.03,),
             Container(
               alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(left: 20),
+              margin: EdgeInsets.only(left: width * 0.05),
               child: Text(
                 "후원 기관 보기",
                 style: TextStyle(
@@ -68,7 +69,7 @@ class MainPage extends StatelessWidget {
               ),
             ),  Container(
               alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(left: 20),
+              margin: EdgeInsets.only(left: width * 0.05),
               child: Text(
                 "이런 기관은 어떠세요?",
                 style: TextStyle(

@@ -42,7 +42,9 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
-      appBar: BaseAppbar(title: "상세정보",),
+      appBar: BaseAppbar(
+      //  title: "상세정보",
+      ),
       bottomNavigationBar: Container(
         width: double.infinity,
         height: mHeight * 4.3,

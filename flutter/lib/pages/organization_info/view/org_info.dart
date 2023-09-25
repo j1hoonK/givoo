@@ -82,6 +82,7 @@ class _OrgInfoPageState extends State<OrgInfoPage> {
                       left: 0,
                       bottom: 0,
                       child: Container(
+                        width: mSize*28,
                         padding: EdgeInsets.all(mSize * 2.1),
                         color: Colors.black12.withOpacity(0), // 투명도 설정
                         child: Text(

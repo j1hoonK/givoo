@@ -15,7 +15,6 @@ class Search extends StatelessWidget {
       },
       child: Scaffold(
           appBar: BaseAppbar(
-            title: "검색",
           ),
           body: SingleChildScrollView(
             child: Consumer<OrganizationProvider>(
@@ -79,6 +78,7 @@ class Search extends StatelessWidget {
                                   ? IconButton(
                                       onPressed: () {
                                         provider.searchOrg(provider.searchValue);
+                                        FocusScope.of(context).unfocus();
                                         // 검색 기능 구현
                                         // 여기에 검색 기능 추가하기
                                       },

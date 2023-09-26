@@ -14,12 +14,13 @@ class BotNavBar extends StatefulWidget {
 
 class _BotNavBarState extends State<BotNavBar> {
   int _currentIndex = 1;
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +29,9 @@ class _BotNavBarState extends State<BotNavBar> {
         selectedIndex: _currentIndex,
         onDestinationSelected: (value) => setState(() {
           _currentIndex = value;
-          if(value==1){
-            Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
+          if (value == 1) {
+            Provider.of<OrganizationProvider>(context, listen: false)
+                .randomOrg();
           }
         }),
         destinations: [
@@ -56,7 +58,6 @@ class _BotNavBarState extends State<BotNavBar> {
           MyPage(),
         ],
       ),
-
     );
   }
 }

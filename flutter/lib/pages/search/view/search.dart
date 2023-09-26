@@ -15,7 +15,6 @@ class Search extends StatelessWidget {
       },
       child: Scaffold(
           appBar: BaseAppbar(
-            title: "검색",
           ),
           body: SingleChildScrollView(
             child: Consumer<OrganizationProvider>(

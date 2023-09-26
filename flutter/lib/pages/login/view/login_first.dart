@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +5,7 @@ import 'package:givoo/config/palette.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:kpostal/kpostal.dart';
 import 'package:provider/provider.dart';
 
@@ -28,11 +28,13 @@ class _FirstLoginState extends State<FirstLogin> {
   final _controller1 = TextEditingController();
   final _controller2 = TextEditingController();
   final _controller3 = TextEditingController();
+  final _controller4 = TextEditingController();
 
   bool _isClearButtonVisible = false;
   bool _isClearButtonVisible1 = false;
   bool _isClearButtonVisible2 = false;
   bool _isClearButtonVisible3 = false;
+  bool _isClearButtonVisible4 = false;
 
   final _formKey = GlobalKey<FormState>();
   String userAddress = '';
@@ -47,10 +49,29 @@ class _FirstLoginState extends State<FirstLogin> {
   @override
   void initState() {
     super.initState();
-    final user = Provider.of<LoginViewModel>(context, listen: false).user?.kakaoAccount?.birthday;
+    final gender = Provider.of<LoginViewModel>(context, listen: false)
+        .user
+        ?.kakaoAccount
+        ?.gender;
+    final birth = Provider.of<LoginViewModel>(context, listen: false)
+        .user
+        ?.kakaoAccount
+        ?.birthday;
 
-    // 각 컨트롤러에 초기값 설정
-    _controller3.text = user!.isNotEmpty ? user == '1' ? '남' : '여' : '';
+    // 컨트롤러에 초기값 설정
+    _controller2.text = birth?.substring(0,2) ?? '0101';
+    _controller3.text = birth?.substring(2) ?? '0101';
+    if (gender != null) {
+      if (gender == Gender.male) {
+        _controller4.text = '남';
+      } else {
+        _controller4.text = '여';
+      }
+      print('성별 ========== $gender');
+      print('성별 ========== ${gender.toString()}');
+    } else {
+      _controller4.text = '';
+    }
     _controller.addListener(() {
       setState(() {
         _isClearButtonVisible = _controller.text.isNotEmpty;
@@ -312,7 +333,7 @@ class _FirstLoginState extends State<FirstLogin> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
-                                  '생년월일',
+                                  '월',
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -332,7 +353,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                       controller: _controller2,
                                       key: Key('1'),
                                       validator: (value) {
-                                        if (value!.length != 6) {
+                                        if (value!.length != 2) {
                                           return '유효하지 않습니다.';
                                         }
                                         return null;
@@ -340,16 +361,15 @@ class _FirstLoginState extends State<FirstLogin> {
                                       onSaved: (value) => setState(() {
                                         userBirthday = value;
                                       }),
-                                      maxLength: 6,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly
                                       ],
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
-                                        labelText: '앞 6자리',
-                                        hintText: '앞 6자리',
-                                        prefixIcon: Icon(Icons.password),
+                                        labelText: '월',
+                                        hintText: '월',
+                                        prefixIcon: Icon(Icons.calendar_month),
                                         suffixIcon: _isClearButtonVisible2
                                             ? IconButton(
                                                 icon: Icon(Icons.clear),
@@ -369,6 +389,52 @@ class _FirstLoginState extends State<FirstLogin> {
                                               width: 2),
                                           borderRadius:
                                               BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: mSize * 0.35,
+                                    child: TextFormField(
+                                      controller: _controller3,
+                                      key: Key('1'),
+                                      validator: (value) {
+                                        if (value!.length != 2) {
+                                          return '유효하지 않습니다.';
+                                        }
+                                        return null;
+                                      },
+                                      onSaved: (value) => setState(() {
+                                        userBirthday = value;
+                                      }),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly
+                                      ],
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        labelText: '일',
+                                        hintText: '일',
+                                        prefixIcon: Icon(Icons.calendar_today),
+                                        suffixIcon: _isClearButtonVisible3
+                                            ? IconButton(
+                                          icon: Icon(Icons.clear),
+                                          onPressed: () {
+                                            _controller3.clear();
+                                          },
+                                        )
+                                            : null,
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Palette.textColor2),
+                                            borderRadius:
+                                            BorderRadius.circular(8)),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Palette.textColor1,
+                                              width: 2),
+                                          borderRadius:
+                                          BorderRadius.circular(8),
                                         ),
                                       ),
                                     ),
@@ -442,7 +508,9 @@ class _FirstLoginState extends State<FirstLogin> {
                                   value: allA,
                                   // 체크 상태 설정
                                   onChanged: (bool? value) {
-                                    allA == false && allB == true && allC == true
+                                    allA == false &&
+                                            allB == true &&
+                                            allC == true
                                         ? setState(() {
                                             allAgreed = true;
                                             allA = value ?? false;
@@ -469,7 +537,9 @@ class _FirstLoginState extends State<FirstLogin> {
                                   value: allB,
                                   // 체크 상태 설정
                                   onChanged: (bool? value) {
-                                    allA == true && allB == false && allC == true
+                                    allA == true &&
+                                            allB == false &&
+                                            allC == true
                                         ? setState(() {
                                             allAgreed = true;
                                             allB = value ?? false;
@@ -490,7 +560,9 @@ class _FirstLoginState extends State<FirstLogin> {
                                   ),
                                 ),
                                 trailing: IconButton(
-                                  onPressed: () {context.push('/login/terms');},
+                                  onPressed: () {
+                                    context.push('/login/terms');
+                                  },
                                   icon: Icon(Icons.arrow_forward_ios),
                                   color: Colors.black,
                                 ),
@@ -501,7 +573,9 @@ class _FirstLoginState extends State<FirstLogin> {
                                   value: allC,
                                   // 체크 상태 설정
                                   onChanged: (bool? value) {
-                                    allA == true && allB == true && allC == false
+                                    allA == true &&
+                                            allB == true &&
+                                            allC == false
                                         ? setState(() {
                                             allAgreed = true;
                                             allC = value ?? false;
@@ -522,7 +596,9 @@ class _FirstLoginState extends State<FirstLogin> {
                                   ),
                                 ),
                                 trailing: IconButton(
-                                  onPressed: () {context.push('/login/pp');},
+                                  onPressed: () {
+                                    context.push('/login/pp');
+                                  },
                                   icon: Icon(Icons.arrow_forward_ios),
                                   color: Colors.black,
                                 ),
@@ -560,7 +636,8 @@ class _FirstLoginState extends State<FirstLogin> {
                                       _formKey.currentState!.save();
                                       var userFirstInfo = {
                                         'userName': userName,
-                                        'userAddress': '$address ' '$subAddress',
+                                        'userAddress':
+                                            '$address ' '$subAddress',
                                         'userBirthday': userBirthday,
                                         'token': token
                                       };
@@ -569,7 +646,9 @@ class _FirstLoginState extends State<FirstLogin> {
                                       updateKakaoUser(userFirstInfo);
                                       print(
                                           '(login_first.dart)updateKakaoUser Complete');
-                                      final reload = Provider.of<LoginViewModel>(context, listen: false);
+                                      final reload =
+                                          Provider.of<LoginViewModel>(context,
+                                              listen: false);
                                       reload.check();
                                       // context.go('/login/first');
                                       Navigator.pushReplacement(

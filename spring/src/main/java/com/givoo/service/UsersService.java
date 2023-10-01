@@ -15,4 +15,6 @@ public interface UsersService {
 
     // 정보찾기
     List<Users> findUserInfo(String token);
+
+    List<Users> findAll();
 }

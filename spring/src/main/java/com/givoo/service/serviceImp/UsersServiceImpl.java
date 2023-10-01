@@ -52,4 +52,9 @@ public class UsersServiceImpl implements UsersService {
     public List<Users> findUserInfo(String token){
         return usersRepository.findByToken(token);
     }
+
+    @Override
+    public List<Users> findAll() {
+        return usersRepository.findAll();
+    }
 }

@@ -10,4 +10,8 @@ import java.util.List;
 public interface UsersRepository extends JpaRepository <Users,Long> {
     // 회원가입
     List<Users> findByToken(String token);
+
+
+
+
 }

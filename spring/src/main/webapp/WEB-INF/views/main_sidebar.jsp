@@ -3,7 +3,7 @@
 
 <head>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="\css\style.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>기부어때 Admin Panel</title>
 </head>
@@ -17,7 +17,7 @@
 
     <ul class="nav-links">
         <li>
-            <a href="/user">
+            <a href="/user/1">
                 <i class='bx bx-user'></i>
                 <span class="link_name">회원 관리</span>
                 <i class='bx bxs-chevron-down'></i>

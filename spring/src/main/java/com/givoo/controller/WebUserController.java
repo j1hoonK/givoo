@@ -24,7 +24,7 @@ public class WebUserController {
     @RequestMapping("/user/{pages}")
     public String main(@PathVariable("pages") int pages, Model model) {
       List<Users> userList = usersService.findAll();
-      int pageSize = 10;
+      int pageSize = 15;
       int totalUsers = userList.size();
       int totalPages = (int) Math.ceil((double) totalUsers / pageSize);
         // 페이지 번호를 받아올 수 있는 파라미터 (예: ?page=2)
@@ -42,7 +42,7 @@ public class WebUserController {
 
         model.addAttribute("totalPages", totalPages); // 전체 페이지 수를 모델에 추가
         model.addAttribute("currentPage", currentPage); // 현재 페이지 번호를 모델에 추가
-        model.addAttribute("users", userList); // 현재 페이지의 유저 리스트를 모델에 추가
+        model.addAttribute("users", currentPageUsers); // 현재 페이지의 유저 리스트를 모델에 추가
         return "main_user";
     }
 }

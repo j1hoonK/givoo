@@ -53,7 +53,7 @@
 <%--    페이징 --%>
     <div class="pagination">
         <c:if test="${currentPage > 1}">
-            <a href="?page=${currentPage - 1}">이전</a>
+            <a href="${currentPage - 1}">이전</a>
         </c:if>
         <c:forEach begin="1" end="${totalPages}" var="page">
             <c:choose>
@@ -61,7 +61,7 @@
                     <span>${page}</span>
                 </c:when>
                 <c:otherwise>
-                    <a href="?page=${page}">${page}</a>
+                    <a href="${page}">${page}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>

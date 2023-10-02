@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
-
 @Entity
 @Getter
 @Setter
@@ -25,7 +23,7 @@ public class Organization {
     private String orgName;
 
     @Column(name = "org_ownnumber")
-    private Long orgOwnnumber;
+    private String orgOwnnumber;
 
     @Column(name = "org_number", nullable = false)
     private Long orgNumber;

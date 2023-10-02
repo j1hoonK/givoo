@@ -57,7 +57,7 @@ class MainPage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(7),
               height: height * 0.33,
               child: GridView.builder(
                 shrinkWrap: true,
@@ -65,9 +65,9 @@ class MainPage extends StatelessWidget {
                 itemCount: orgTypeList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5, //1 개의 행에 보여줄 item 개수
-                  childAspectRatio: 1 / 1.7, //item 의 가로 1, 세로 2 의 비율
+                  childAspectRatio: 1 / 1.65, //item 의 가로 1, 세로 2 의 비율
                   mainAxisSpacing: 10, //수평 Padding
-                  crossAxisSpacing: 7, //수직 Padding
+                  crossAxisSpacing: 2, //수직 Padding
                 ),
                 itemBuilder: (context, idx) {
                   return InkWell(

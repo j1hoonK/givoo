@@ -40,7 +40,7 @@ class OrgBox extends StatelessWidget {
                 width: width * 0.3,
                 child: Image.network(
                   imagePath!=null ? imagePath :"https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png",  //imagePath,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 ),
               ),
               SizedBox(

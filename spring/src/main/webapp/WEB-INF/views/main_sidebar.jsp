@@ -24,14 +24,14 @@
             </a>
         </li>
         <li>
-            <a href="/organization">
+            <a href="/org/1">
                 <i class='bx bxs-buildings'></i>
                 <span class="link_name">기관 관리</span>
                 <i class='bx bxs-chevron-down'></i>
             </a>
         </li>
         <li>
-            <a href="/donation">
+            <a href="/donation/1">
                 <i class='bx bx-money-withdraw'></i>
                 <span class="link_name">기부금 관리</span>
                 <i class='bx bxs-chevron-down'></i>

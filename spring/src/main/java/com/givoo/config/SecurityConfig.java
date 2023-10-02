@@ -1,5 +1,6 @@
 package com.givoo.config;
 import com.givoo.service.MemberService;
+import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,20 +34,24 @@ public class SecurityConfig {
        AuthenticationManagerBuilder authManager =http.getSharedObject(AuthenticationManagerBuilder.class);
        authManager.userDetailsService(memberService).passwordEncoder(passwordEncoder());
 
+        http.authorizeHttpRequests(
+                        (auth) ->auth.requestMatchers(mvc.pattern("/"),mvc.pattern("/members/**"),mvc.pattern("/item/**"),mvc.pattern( "/images/**"))
+                                .permitAll()
+                                .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                                .requestMatchers(mvc.pattern("/admin/**")).hasRole("ADMIN").anyRequest().authenticated())
 
 
-        http.formLogin((formLogin) ->
+                .formLogin((formLogin) ->
                         formLogin.loginPage("/members/login")
+                                .loginProcessingUrl("/members/login")
                                 .defaultSuccessUrl("/")
                                 .usernameParameter("username")
+                                .passwordParameter("password")
                                 .failureUrl("/members/login/error")
                 )
                 .logout((logout) ->
                         logout.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-                                .logoutSuccessUrl("/"))
-                .authorizeHttpRequests((auth) ->auth.requestMatchers(mvc.pattern("/"),mvc.pattern("/members/**"),mvc.pattern("/item/**"),mvc.pattern( "/images/**"))
-                                .permitAll()
-                                .requestMatchers(mvc.pattern("/admin/**")).hasRole("ADMIN").anyRequest().authenticated());
+                                .logoutSuccessUrl("/"));
         return http.build();
     }
     @Bean

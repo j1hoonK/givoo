@@ -54,7 +54,8 @@ public class MemberController {
 
     @GetMapping("/login")
     public String loginMember(){
-        return "/member/memberLoginForm";
+        System.out.println("dsfdfs");
+        return "login";
     }
 
     @GetMapping("/login/error")

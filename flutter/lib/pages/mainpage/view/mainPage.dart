@@ -14,7 +14,7 @@ class MainPage extends StatelessWidget {
     List<String> orgTypeList = [
       "국제구제",
       "자선",
-      "교육만화과학",
+      "교육문화과학",
       "경제활동",
       "환경보전",
       "권익신장",
@@ -58,16 +58,16 @@ class MainPage extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(7),
-              height: height * 0.33,
+              height: height*0.33,
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: orgTypeList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5, //1 개의 행에 보여줄 item 개수
-                  childAspectRatio: 1 / 1.65, //item 의 가로 1, 세로 2 의 비율
-                  mainAxisSpacing: 10, //수평 Padding
-                  crossAxisSpacing: 2, //수직 Padding
+                  childAspectRatio: 1 / 1.7, //item 의 가로 1, 세로 2 의 비율
+                  mainAxisSpacing: 5, //수평 Padding
+                  crossAxisSpacing: 5, //수직 Padding
                 ),
                 itemBuilder: (context, idx) {
                   return InkWell(
@@ -111,16 +111,16 @@ class MainPage extends StatelessWidget {
             ),
             Consumer<OrganizationProvider>(builder: (context, provider, child) {
               return Container(
-                margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                height: height * 0.2,
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                height: height * 0.23,
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: provider.randomOrgList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-                    //  childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
-                    mainAxisSpacing: 10, //수평 Padding
+                    childAspectRatio: 1 / 1.4, //item 의 가로 1, 세로 2 의 비율
+                    mainAxisSpacing: 5, //수평 Padding
                     crossAxisSpacing: 5, //수직 Padding
                   ),
                   itemBuilder: (context, idx) {
@@ -135,11 +135,8 @@ class MainPage extends StatelessWidget {
                 ),
               );
             }),
-            Container(
-                // height: height*0.2,
-                child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Image.asset('images/main/b.jpg'))),
+            SizedBox(height: height * 0.03,),
+            Image.asset('images/main/b.jpg')
           ],
         ),
       ),

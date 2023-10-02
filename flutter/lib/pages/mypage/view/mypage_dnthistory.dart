@@ -28,11 +28,36 @@ class _DonationHistoryState extends State<DonationHistory> {
           ),
       body: Consumer<DonationProvider>(builder: (context, provider, child) {
         if (provider.donation.isNotEmpty) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return DntHistory(dnt: provider.donation[index]);
-            },
-            itemCount: provider.donation.length,
+          return Column(
+            children: [
+              /*Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: Colors.black,
+                      )),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      '기부 이력 확인',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),*/
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return DntHistory(dnt: provider.donation[index]);
+                  },
+                  itemCount: provider.donation.length,
+                ),
+              ),
+            ],
           );
         } else {
           return Center(

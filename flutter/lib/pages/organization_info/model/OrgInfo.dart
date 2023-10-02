@@ -12,6 +12,8 @@ class OrgInfo {
   int orgTell;
   String orgInfo;
   String orgOwner;
+  String orgOwnNumBer;
+  String orgType;
   DateTime startedUp;
   String imagePath;
   int favId;
@@ -23,7 +25,9 @@ class OrgInfo {
     required this.locationLong,
     required this.orgTell,
     required this.orgInfo,
+    required this.orgType,
     required this.orgOwner,
+    required this.orgOwnNumBer,
     required this.startedUp,
     required this.imagePath,
     required this.favId,
@@ -40,6 +44,8 @@ class OrgInfo {
     startedUp: DateTime.parse(json["startedUp"]),
     imagePath: json["imagePath"],
     favId: json["favId"],
+    orgOwnNumBer: json["orgOwnNumBer"],
+    orgType: json["orgType"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -53,5 +59,7 @@ class OrgInfo {
     "startedUp": startedUp.toIso8601String(),
     "imagePath": imagePath,
     "favId": favId,
+    "orgOwnNumBer": orgOwnNumBer,
+    "orgType": orgType
   };
 }

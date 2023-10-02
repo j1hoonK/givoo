@@ -10,14 +10,14 @@ class RecommendPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text("${orgType}")),   // 저기 타이틀 종교단체 변수로 받아와야합니당
+      appBar: AppBar(title:Text("$orgType")),   // 저기 타이틀 종교단체 변수로 받아와야합니당
       body: Consumer<RecommendMoreProvider>(
         builder: (context, provider, child) {
           return Container(
             margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 20,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

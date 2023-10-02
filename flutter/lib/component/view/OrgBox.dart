@@ -53,7 +53,7 @@ class OrgBox extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: height*0.015,
+                height: height*0.02,
                 child: Text(
                   orgAddress,
                   style: TextStyle(

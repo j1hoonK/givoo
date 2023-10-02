@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
@@ -38,25 +39,20 @@ public class SecurityConfig {
                         (auth) ->auth.requestMatchers(mvc.pattern("/"),mvc.pattern("/members/**"),mvc.pattern("/item/**"),mvc.pattern( "/images/**"))
                                 .permitAll()
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                                .requestMatchers(mvc.pattern("/admin/**")).hasRole("ADMIN").anyRequest().authenticated())
-
-
+                )
                 .formLogin((formLogin) ->
-                        formLogin.loginPage("/members/login")
-                                .loginProcessingUrl("/members/login")
+                        formLogin.failureUrl("/members/login/error")
+                                .loginPage("/members/login")
                                 .defaultSuccessUrl("/")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
-                                .failureUrl("/members/login/error")
+
                 )
                 .logout((logout) ->
                         logout.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
                                 .logoutSuccessUrl("/"));
+
         return http.build();
-    }
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
     }
    @Bean
     public HttpFirewall httpFirewall(){
@@ -67,5 +63,8 @@ public class SecurityConfig {
         return (web -> web.ignoring().
                 requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**")));
     }
-
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new SimplePasswordEncoder();
+    }
 }

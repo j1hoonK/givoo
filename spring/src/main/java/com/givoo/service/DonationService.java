@@ -1,10 +1,7 @@
 package com.givoo.service;
 
-import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
-import com.givoo.entity.donation.DonationRegular;
 import com.givoo.entity.donation.DonationType;
-import com.givoo.entity.organization.Organization;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -22,4 +19,7 @@ public interface DonationService {
 
     // 후원전송
     Donation sendDonation(Donation donation);
+
+    List<Donation> findAll();
+
 }

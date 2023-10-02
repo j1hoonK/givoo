@@ -31,7 +31,7 @@
             </a>
         </li>
         <li>
-            <a href="/donation/1">
+            <a href="/wdonation/1">
                 <i class='bx bx-money-withdraw'></i>
                 <span class="link_name">기부금 관리</span>
                 <i class='bx bxs-chevron-down'></i>

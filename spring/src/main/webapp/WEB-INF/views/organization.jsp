@@ -126,20 +126,52 @@
         <c:if test="${currentPage > 1}">
             <a href="${currentPage - 1}">이전</a>
         </c:if>
-        <c:forEach begin="1" end="${totalPages}" var="page">
-            <c:choose>
-                <c:when test="${page == currentPage}">
-                    <span>${page}</span>
-                </c:when>
-                <c:otherwise>
-                    <a href="${page}">${page}</a>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
+
+        <c:choose>
+            <c:when test="${totalPages <= 10}">
+                <c:forEach begin="1" end="${totalPages}" var="page">
+                    <c:choose>
+                        <c:when test="${page == currentPage}">
+                            <span>${page}</span>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="?page=${page}">${page}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <c:set var="startPage" value="${currentPage - 5}" />
+                <c:set var="endPage" value="${currentPage + 4}" />
+
+                <c:if test="${startPage < 1}">
+                    <c:set var="startPage" value="1" />
+                    <c:set var="endPage" value="10" />
+                </c:if>
+
+                <c:if test="${endPage > totalPages}">
+                    <c:set var="endPage" value="${totalPages}" />
+                    <c:set var="startPage" value="${totalPages - 9}" />
+                </c:if>
+
+                <c:forEach begin="${startPage}" end="${endPage}" var="page">
+                    <c:choose>
+                        <c:when test="${page == currentPage}">
+                            <span>${page}</span>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${page}">${page}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+
         <c:if test="${currentPage < totalPages}">
-            <a href="?page=${currentPage + 1}">다음</a>
+            <a href="${currentPage + 1}">다음</a>
         </c:if>
     </div>
+
 </section>
 
 </body>

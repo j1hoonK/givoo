@@ -5,8 +5,8 @@ import com.givoo.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class WebUserController {
     }
 
 
-    @RequestMapping("/user/{pages}")
+    @GetMapping("/user/{pages}")
     public String main(@PathVariable("pages") int pages, Model model) {
       List<Users> userList = usersService.findAll();
       int pageSize = 15;
@@ -39,6 +39,9 @@ public class WebUserController {
         // 현재 페이지에 해당하는 유저 리스트만 추출
         List<Users> currentPageUsers = userList.subList(startIdx, endIdx);
 
+        System.out.println("....................................................................");
+        System.out.println(model);
+        System.out.println(currentPageUsers.get(0).getUserAddress());
 
         model.addAttribute("totalPages", totalPages); // 전체 페이지 수를 모델에 추가
         model.addAttribute("currentPage", currentPage); // 현재 페이지 번호를 모델에 추가

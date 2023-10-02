@@ -4,6 +4,8 @@
 <head>
     <title>기부어때 Admin Panel</title>
     <link href="\css\web_tablestyle.css" rel="stylesheet">
+    <link href="\css\modal.css" rel="stylesheet">
+    <script type="text/javascript" src="\js\usermodal.js"></script>
 </head>
 <body>
 <%@ include file="main_sidebar.jsp" %>
@@ -18,39 +20,86 @@
         </div>
     </nav>
 
-<%--    유저 테이블--%>
+    <!-- 유저 테이블 -->
     <div class="table-container">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>email</th>
-            <th>phone_number</th>
-            <th>address</th>
-            <th>nickname</th>
-            <th>birth</th>
-            <th>image</th>
-            <th>login type</th>
-            <!-- 다른 유저 정보 필드를 여기에 추가 -->
-        </tr>
-        <c:forEach items="${users}" var="user">
+        <table>
             <tr>
-                <td>${user.userId}</td>
-                <td>${user.userName}</td>
-                <td>${user.userEmail}</td>
-                <td>${user.userTell}</td>
-                <td>${user.userAddress}</td>
-                <td>${user.userNname}</td>
-                <td>${user.userNumberFirst}</td>
-                <td>${user.userImage}</td>
-                <td>${user.loginType}</td>
-                <!-- 다른 유저 정보 필드를 여기에 추가 -->
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Nickname</th>
+                <th>Birth</th>
+                <th>Image</th>
+                <th>Login Type</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach items="${users}" var="user">
+                <!-- 클릭 이벤트 추가 -->
+                <tr class="user-row" data-user-id="${user.userId}" onclick="openModal('${user.userId}')">
+                    <td>${user.userId}</td>
+                    <td>${user.userName}</td>
+                    <td>${user.userEmail}</td>
+                    <td>${user.userTell}</td>
+                    <td>${user.userAddress}</td>
+                    <td>${user.userNname}</td>
+                    <td>${user.userNumberFirst}</td>
+                    <td>${user.userImage}</td>
+                    <td>${user.loginType}</td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
 
-<%--    페이징 --%>
+    <!-- 모달 창 -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>수정 하기</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <td><input class="form-control" id="modalUserId" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td><input class="form-control" id="modalUserName" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input class="form-control" id="modalUserEmail" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Phone Number</th>
+                    <td><input class="form-control" id="modalUserTell" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td><input class="form-control" id="modalUserAddress" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Nickname</th>
+                    <td><input class="form-control" id="modalUserNname" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Birth</th>
+                    <td><input class="form-control" id="modalUserNumberFirst" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td><input class="form-control" id="modalUserImage" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Login Type</th>
+                    <td><input class="form-control" id="modalLoginType" type="text"></td>
+                </tr>
+            </table>
+            <button id="editButton" onclick="openEditForm()">수정</button>
+            <button id="deleteButton" onclick="deleteUser()">삭제</button>
+        </div>
+    </div>
+
+    <!-- 페이징 -->
     <div class="pagination">
         <c:if test="${currentPage > 1}">
             <a href="${currentPage - 1}">이전</a>

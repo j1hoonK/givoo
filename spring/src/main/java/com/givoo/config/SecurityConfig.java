@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -35,8 +36,11 @@ public class SecurityConfig {
        AuthenticationManagerBuilder authManager =http.getSharedObject(AuthenticationManagerBuilder.class);
        authManager.userDetailsService(memberService).passwordEncoder(passwordEncoder());
 
-        http.authorizeHttpRequests(
-                        (auth) ->auth.requestMatchers(mvc.pattern("/"),mvc.pattern("/members/**"),mvc.pattern("/item/**"),mvc.pattern( "/images/**"))
+        http.securityContext(securityContext -> securityContext.requireExplicitSave(false))
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        (auth) ->auth.requestMatchers(mvc.pattern("/"),
+                                        mvc.pattern("/members/**"),mvc.pattern("/item/**"),mvc.pattern( "/images/**"))
                                 .permitAll()
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 )
@@ -64,7 +68,7 @@ public class SecurityConfig {
                 requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**")));
     }
     @Bean
-    PasswordEncoder passwordEncoder() {
-        return new SimplePasswordEncoder();
+    public static PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

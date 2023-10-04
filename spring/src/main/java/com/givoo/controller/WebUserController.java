@@ -48,4 +48,8 @@ public class WebUserController {
         model.addAttribute("users", currentPageUsers); // 현재 페이지의 유저 리스트를 모델에 추가
         return "main_user";
     }
+    @GetMapping("/")
+    public String join(){
+        return "join";
+    }
 }

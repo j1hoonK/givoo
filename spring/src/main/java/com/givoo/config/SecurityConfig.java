@@ -40,14 +40,18 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         (auth) ->auth.requestMatchers(mvc.pattern("/"),
-                                        mvc.pattern("/members/**"),mvc.pattern("/item/**"),mvc.pattern( "/images/**"))
-                                .permitAll()
+                                        mvc.pattern("/members/**"),
+                                        mvc.pattern("/item/**"),
+                                        mvc.pattern( "/images/**")).permitAll()
+                                .requestMatchers(mvc.pattern("/user/**"),
+                                        mvc.pattern("/org/**"),
+                                        mvc.pattern("/wdonation/**")).hasAnyRole("USER")
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 )
                 .formLogin((formLogin) ->
                         formLogin.failureUrl("/members/login/error")
                                 .loginPage("/members/login")
-                                .defaultSuccessUrl("/")
+                                .defaultSuccessUrl("/user/1")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
 

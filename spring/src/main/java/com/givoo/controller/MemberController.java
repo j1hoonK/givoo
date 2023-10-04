@@ -44,5 +44,4 @@ public class MemberController {
         memberService.saveMember(member);
         return "redirect:/";
     }
-
 }

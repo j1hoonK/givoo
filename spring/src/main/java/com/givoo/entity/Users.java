@@ -37,10 +37,10 @@ public class Users {
 
     @Column(name = "token", nullable = false)
     private String token;
-  
+
     @Column(name = "user_image")
     private String userImage;
-  
+
     @Column(name = "login_type", nullable = false)
     private String loginType;
 }

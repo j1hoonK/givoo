@@ -3,9 +3,7 @@ package com.givoo.entity;
 import com.givoo.constant.Role;
 import com.givoo.dto.MemberFormDTO;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
@@ -13,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Member {
     @Id
     @Column(name="member_id")
@@ -24,6 +24,12 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public Member(String username, String password, Role role) {
+        this.username =username;
+        this.password =password;
+        this.role = role;
+    }
 
 
     public static Member createMember(MemberFormDTO memberFormDto, PasswordEncoder passwordEncoder){

@@ -13,6 +13,7 @@ import '../component/view/bottomnavbar.dart';
 import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
 import '../pages/mypage/view/announcement.dart';
+import '../pages/mypage/view/q&a_page.dart';
 import '../pages/mypage/view/terms_condition.dart';
 
 class GivooRouter {
@@ -87,11 +88,11 @@ class GivooRouter {
             ),
             GoRoute(  // QnA
               path: 'qna',
-              builder: (context, state) => Announce(),
+              builder: (context, state) => faqpage(),
             ),
             GoRoute(  // 약관 및 정책
               path: 'terms',
-              builder: (context, state) => Announce(),
+              builder: (context, state) => TermsCondition(),
             ),
           ]),
       GoRoute(

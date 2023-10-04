@@ -181,7 +181,9 @@ class MyPage extends StatelessWidget {
                                           ),
                                           Flexible(
                                             child: TextButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                context.push('/mypage/qna');
+                                              },
                                               child: Row(
                                                 children: [
                                                   Icon(

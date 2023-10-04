@@ -68,50 +68,55 @@ class GivooRouter {
           return FirstLogin();
         },
       ),
-          GoRoute(
+      GoRoute(
           path: '/mypage',
           builder: (BuildContext context, GoRouterState state) {
             return const MyPage();
           },
           routes: [
-            GoRoute(  // 내 단체
+            GoRoute(
+              // 내 단체
               path: 'org',
               builder: (context, state) => MainMyGroup(),
             ),
-            GoRoute(  // 기부 이력 확인
+            GoRoute(
+              // 기부 이력 확인
               path: 'dnthistory',
               builder: (context, state) => DonationHistory(),
             ),
-            GoRoute(  // 공지사항
+            GoRoute(
+              // 공지사항
               path: 'announce',
               builder: (context, state) => Announce(),
             ),
-            GoRoute(  // QnA
+            GoRoute(
+              // QnA
               path: 'qna',
               builder: (context, state) => faqpage(),
             ),
-            GoRoute(  // 약관 및 정책
+            GoRoute(
+              // 약관 및 정책
               path: 'terms',
               builder: (context, state) => TermsCondition(),
             ),
           ]),
       GoRoute(
-        path: '/login',
-        builder: (BuildContext context, GoRouterState state) {
-          return LoginSignupScreen();
-        },
+          path: '/login',
+          builder: (BuildContext context, GoRouterState state) {
+            return LoginSignupScreen();
+          },
           routes: [
-            GoRoute(  // 개인정보처리방침
+            GoRoute(
+              // 개인정보처리방침
               path: 'pp',
               builder: (context, state) => PrivacyPolicy(),
             ),
-
-            GoRoute(  // 이용약관 및 정책
+            GoRoute(
+              // 이용약관 및 정책
               path: 'terms',
               builder: (context, state) => TermsCondition(),
             ),
-          ]
-      )
+          ])
     ],
   );
 }

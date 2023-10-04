@@ -48,6 +48,7 @@ Future<void> updateKakaoUser(userFirstInfo) async {
     print("(LoginService.dart)Update Messege: ${response.body}");
   }
 }
+
 class FindByToken {
   // 회원정보 조회
   Future<List<KakaoUser>> findUserInfo(tokenId) async {

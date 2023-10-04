@@ -13,6 +13,7 @@ class OrgInfo extends StatelessWidget {
   final orgId;
   @override
   Widget build(BuildContext context) {
+    var mapp = Provider.of<OrganizationProvider>(context);
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
@@ -207,8 +208,8 @@ class OrgInfo extends StatelessWidget {
                     width: double.infinity,
                     height: mHeight * 25,
                     color: Colors.grey,
-                    child:NowGoogleMapView(latitude:provider.orgInfodata['locationLat'],
-                        longitude: provider.orgInfodata['locationLong'],
+                    child:NowGoogleMapView(latitude:mapp.orgInfodata['locationLat'],//provider.orgInfodata['locationLat'],
+                        longitude: mapp.orgInfodata['locationLong'],//provider.orgInfodata['locationLong'],
                         orgName: "${provider.orgInfodata['orgName']}"),
                   ) : CircularProgressIndicator(),
                 ],

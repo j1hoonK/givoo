@@ -59,7 +59,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
                                 itemCount: myPageProvider.myOrgList2[idx].length, //item 개수
                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-                                  //  childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
+                                   childAspectRatio: 1 / 1.3, //item 의 가로 1, 세로 2 의 비율
                                   mainAxisSpacing: 10, //수평 Padding
                                   crossAxisSpacing: 10, //수직 Padding
                                 ),
@@ -68,7 +68,8 @@ class _MainMyGroupState extends State<MainMyGroup> {
                                 itemBuilder: (BuildContext ctx2, int idx2) {
                                   return OrgBox(orgName: myPageProvider.myOrgList2[idx][idx2].orgName,
                                       orgAddress: myPageProvider.myOrgList2[idx][idx2].orgAddress,
-                                      imagePath: myPageProvider.myOrgList2[idx][idx2].imagePath, orgId: myPageProvider.myOrgList2[idx][idx2].orgId,);
+                                      imagePath: myPageProvider.myOrgList2[idx][idx2].imagePath ?? "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"
+                                    , orgId: myPageProvider.myOrgList2[idx][idx2].orgId,);
                                 },
                               ),
                             ],

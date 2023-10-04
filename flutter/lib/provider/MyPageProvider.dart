@@ -13,8 +13,8 @@ class MyPageProvider extends ChangeNotifier {
   List<String> get orgTypes =>_orgTypes;
   // 내 단체 확인
   Future<void> fetchTodo() async {
-    List<MyOrgList>? _data = await _myOrgService.fetchTodo();
-    _myOrgList = _data;
+    List<MyOrgList>? data = await _myOrgService.fetchTodo();
+    _myOrgList = data;
     _orgTypes =  _myOrgList.map((org) => org.orgType).toList().toSet().toList();
 
     orgTypes.forEach((orgType) {

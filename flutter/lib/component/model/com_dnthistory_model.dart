@@ -12,7 +12,7 @@ class Donation {
   int orgId;
   int userId;
   String typePayment;
-  String dntComment;
+  //String dntComment;
   String isRegulation;
   String? dntCommentRegulation;
   String dntType;
@@ -25,7 +25,7 @@ class Donation {
     required this.orgId,
     required this.userId,
     required this.typePayment,
-    required this.dntComment,
+    //required this.dntComment,
     required this.isRegulation,
     required this.dntCommentRegulation,
     required this.dntType,
@@ -39,7 +39,7 @@ class Donation {
     orgId: json["orgId"],
     userId: json["userId"],
     typePayment: json["typePayment"],
-    dntComment: json["dntComment"],
+    // dntComment: json["dntComment"],
     isRegulation: json["isRegulation"],
     dntCommentRegulation: json["dntCommentRegulation"],
     dntType: json["dntType"],
@@ -53,7 +53,7 @@ class Donation {
     "orgId": orgId,
     "userId": userId,
     "typePayment": typePayment,
-    "dntComment": dntComment,
+    //"dntComment": dntComment,
     "isRegulation": isRegulation,
     "dntCommentRegulation": dntCommentRegulation,
     "dntType": dntType,

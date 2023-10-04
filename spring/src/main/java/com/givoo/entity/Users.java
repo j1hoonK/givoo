@@ -43,4 +43,10 @@ public class Users {
 
     @Column(name = "login_type", nullable = false)
     private String loginType;
+
+    @Column(name = "user_birthday")
+    private String userBirthday;
+
+    @Column(name = "user_gender")
+    private String userGender;
 }

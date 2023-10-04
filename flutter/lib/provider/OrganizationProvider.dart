@@ -8,21 +8,29 @@ class OrganizationProvider extends ChangeNotifier {
       OrganizationListService();
   final SearchService _searchService = SearchService();
   List<Organization> _OrgList = [];
+
   List<Organization> get OrgList => _OrgList;
   var _controller = TextEditingController();
   bool _isClearButtonVisible = false;
   bool _isSearchIconVisible = true;
   var _searchValue = "";
+
   get controller => _controller;
+
   bool get isClearButtonVisible => _isClearButtonVisible;
+
   bool get isSearchIconVisible => _isSearchIconVisible;
+
   get searchValue => _searchValue;
-  List<Organization> _randomOrgList=[];
-  Map<String,dynamic> _orgInfodata ={};
-  Map<String,dynamic> get orgInfodata =>_orgInfodata;
-  get randomOrgList=>_randomOrgList;
-  late int _isFollowSelected;
-  int get isFollowSelected=> _isFollowSelected;
+  List<Organization> _randomOrgList = [];
+  Map<String, dynamic> _orgInfodata = {};
+
+  Map<String, dynamic> get orgInfodata => _orgInfodata;
+
+  get randomOrgList => _randomOrgList;
+  int _isFollowSelected = 0;
+
+  int get isFollowSelected => _isFollowSelected;
 
   // 기관 정보 조회
   Future<void> fetchTodo() async {
@@ -54,29 +62,31 @@ class OrganizationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> orgInfo(orgId,userId) async {
-    Map<String,dynamic>? _data = await _OrganizationListService.fetchOrgInfo(orgId, userId);
+  Future<void> orgInfo(orgId, userId) async {
+    Map<String, dynamic>? _data =
+        await _OrganizationListService.fetchOrgInfo(orgId, userId);
     _orgInfodata = _data;
-    _isFollowSelected =_orgInfodata['favFlag'];
+    _isFollowSelected = _orgInfodata['favFlag'];
     notifyListeners();
   }
 
-  Future<void> randomOrg()async{
+  Future<void> randomOrg() async {
     List<Organization>? _data = await _OrganizationListService.randomOrg();
-    _randomOrgList =_data;
+    _randomOrgList = _data;
     notifyListeners();
   }
-  Future<void> likeIsert(orgId,userId)async{
-    await _OrganizationListService.fetchLike(orgId,userId);
+
+  Future<void> likeIsert(orgId, userId) async {
+    await _OrganizationListService.fetchLike(orgId, userId);
     orgInfo(orgId, userId);
     print("likeInsert");
     notifyListeners();
   }
-  Future<void> likeToggle(favId)async{
+
+  Future<void> likeToggle(favId) async {
     await _OrganizationListService.fetchLikeToggle(favId);
-    _isFollowSelected == 0 ? _isFollowSelected = 1 : _isFollowSelected = 0 ;
+    _isFollowSelected == 0 ? _isFollowSelected = 1 : _isFollowSelected = 0;
     print("likeToggle");
     notifyListeners();
   }
-
 }

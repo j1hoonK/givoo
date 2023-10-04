@@ -9,12 +9,12 @@ class MyOrgService {
     try {
       var response = await http.get(Uri.parse("http://10.0.2.2:1000/mypage/org/1"));
       print(response.statusCode);
-      List<dynamic> _data = json.decode(utf8.decode(response.bodyBytes));
-      List<MyOrgList> _result =
-      _data.map((e) => MyOrgList.fromJson(e)).toList();
-      print(_result[0].orgType);
-      return _result;
+      List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
+      List<MyOrgList> result = data.map((e) => MyOrgList.fromJson(e)).toList();
+      print(result[0].orgType);
+      return result;
     } catch (error) {
+      print('error == $error');
       throw Exception('Failed to load todo');
     }
   }

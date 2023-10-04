@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class OrgBox extends StatelessWidget {
   OrgBox(
@@ -23,27 +23,28 @@ class OrgBox extends StatelessWidget {
     return InkWell(
       onTap: () {
           context.push('/orginfo/$orgId',extra: orgId);
+          Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
       },
-      child: SizedBox(
-        height: height * 0.25,
-        width: width * 0.3,
-        child: Card(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  //border: Border.all(),
-                ),
-                height: height * 0.1,
-                width: width * 0.3,
-                child: Image.network(
-                  imagePath!=null ? imagePath :"https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png",  //imagePath,
-                  fit: BoxFit.fill,
-                ),
+      child:Card(
+        margin: EdgeInsets.all(width*0.007),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                //border: Border.all(),
               ),
-              SizedBox(
-                height: height*0.023,
+              height: height * 0.1,
+              width: width * 0.3,
+              child: Image.network(
+                imagePath ?? "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png",  //imagePath,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+              child: SizedBox(
+              height: height*0.023,
                 child: Text(
                   orgName,
                   style: TextStyle(
@@ -51,18 +52,18 @@ class OrgBox extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: height*0.015,
-                child: Text(
-                  orgAddress,
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12,
-                  ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(5, 0, 5, 3),
+              child: Text(
+                orgAddress,
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

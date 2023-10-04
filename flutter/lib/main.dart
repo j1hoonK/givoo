@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/login/model/user_info.dart';
@@ -15,7 +17,15 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(context) {
+    return super.createHttpClient(context)
+      ..maxConnectionsPerHost = 5;
+  }
+}
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   KakaoSdk.init(
       nativeAppKey: 'e61d743ad3d9819502abe521a4b1584b',

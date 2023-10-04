@@ -77,6 +77,7 @@ class Search extends StatelessWidget {
                                   ? IconButton(
                                       onPressed: () {
                                         provider.searchOrg(provider.searchValue);
+                                        FocusScope.of(context).unfocus();
                                         // 검색 기능 구현
                                         // 여기에 검색 기능 추가하기
                                       },
@@ -89,12 +90,12 @@ class Search extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 30.0,
                     ),provider.OrgList.length!=0 ? GridView.builder(
                       itemCount: provider.OrgList.length, //item 개수
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-                        //  childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
+                        childAspectRatio: 1 / 1.3, //item 의 가로 1, 세로 2 의 비율
                         mainAxisSpacing: 10, //수평 Padding
                         crossAxisSpacing: 10, //수직 Padding
                       ),

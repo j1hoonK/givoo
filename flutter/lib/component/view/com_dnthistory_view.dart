@@ -25,7 +25,7 @@ class DntHistory extends StatelessWidget {
           children: [
             Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
               Text(
-                "결제 완료",
+                "기부 완료",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,

@@ -8,6 +8,7 @@ import com.givoo.service.MemberService;
 import com.givoo.service.OrganizationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +16,13 @@ import java.util.List;
 @Tag(name = "Organization", description = "기관 관련 API")
 @RestController
 public class OrganizationController {
-
+    private final PasswordEncoder passwordEncoder;
     private final OrganizationService organizationService;
     private final MemberService memberService;
 
     @Autowired
-    public OrganizationController(OrganizationService organizationService, MemberService memberService) {
+    public OrganizationController(PasswordEncoder passwordEncoder, OrganizationService organizationService, MemberService memberService) {
+        this.passwordEncoder = passwordEncoder;
         this.organizationService = organizationService;
         this.memberService = memberService;
     }
@@ -60,12 +62,11 @@ public class OrganizationController {
             Model model) {
         Organization org = new Organization();
         Member member = new Member();
-        member.setUsername("admin");
-        member.setPassword("1234");
-        member.setRole(Role.ADMIN);
-        System.out.println(member);
-        memberService.saveMember(member);
-        
+       // member.setUsername();
+      //  member.setPassword(passwordEncoder.encode(""));
+      //  member.setRole(Role.USER);
+   //     System.out.println(member);
+  //      memberService.saveMember(member);
         org.setOrgName(orgName);
         org.setOrgOwner(orgOwner);
         org.setOrgType(orgType);

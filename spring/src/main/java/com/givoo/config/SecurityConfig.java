@@ -45,7 +45,7 @@ public class SecurityConfig {
                                         mvc.pattern( "/images/**")).permitAll()
                                 .requestMatchers(mvc.pattern("/user/**"),
                                         mvc.pattern("/org/**"),
-                                        mvc.pattern("/wdonation/**")).hasAnyRole("USER")
+                                        mvc.pattern("/wdonation/**")).hasAnyRole("ADMIN")
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 )
                 .formLogin((formLogin) ->

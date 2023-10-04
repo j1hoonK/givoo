@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.Date;
+
 @Entity
 @Getter
 @Setter
@@ -23,7 +25,7 @@ public class Organization {
     private String orgName;
 
     @Column(name = "org_ownnumber")
-    private String orgOwnnumber;
+    private String orgOwnNumber;
 
     @Column(name = "org_number", nullable = false)
     private Long orgNumber;
@@ -59,7 +61,7 @@ public class Organization {
     private String startedUp;
 
     @Column(name = "account_number")
-    private String accountNumber;
+    private Long accountNumber;
     @Column(name="bank_name")
     private String bankName;
     @Column(name="account_holder")
@@ -76,7 +78,7 @@ public class Organization {
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.locationLat,this.locationLong,
                 this.orgTell,this.orgInfo,this.orgOwner,this.startedUp,
-                this.imagePath,favId,this.bankName,this.accountHolder,this.hompage,favFlag
+                this.imagePath,this.orgType,this.orgOwnNumber,favId,this.bankName,this.accountHolder,this.hompage,favFlag
         );
     }
 

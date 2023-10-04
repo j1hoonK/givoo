@@ -60,12 +60,12 @@ public class OrganizationController {
             Model model) {
         Organization org = new Organization();
         Member member = new Member();
-        member.setUsername(username);
-        member.setPassword(password);
-        member.setRole(Role.USER);
+        member.setUsername("admin");
+        member.setPassword("1234");
+        member.setRole(Role.ADMIN);
         System.out.println(member);
         memberService.saveMember(member);
-
+        
         org.setOrgName(orgName);
         org.setOrgOwner(orgOwner);
         org.setOrgType(orgType);

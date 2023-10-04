@@ -59,7 +59,7 @@ public class Organization {
     private String startedUp;
 
     @Column(name = "account_number")
-    private Long accountNumber;
+    private String accountNumber;
     @Column(name="bank_name")
     private String bankName;
     @Column(name="account_holder")

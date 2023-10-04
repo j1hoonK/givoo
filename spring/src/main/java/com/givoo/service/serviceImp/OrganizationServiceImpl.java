@@ -56,4 +56,8 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
         return organizationRepo.randomOrg();
     }
+    @Override
+    public Organization save(Organization org) {
+        return organizationRepo.save(org);
+    }
 }

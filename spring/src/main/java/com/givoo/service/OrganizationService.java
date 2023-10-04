@@ -16,4 +16,6 @@ public interface OrganizationService {
     public List<Organization> findType(String orgType);
     public List<Organization> randomOrg();
 
+    Organization save(Organization org);
+
 }

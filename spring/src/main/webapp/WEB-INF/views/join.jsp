@@ -9,7 +9,7 @@
 <body>
 <h2>회원 가입</h2>
 
-<form action="/register" method="post" enctype="multipart/form-data">
+<form action="/org/join" method="post" enctype="multipart/form-data">
   <div>
     <label for="username">아이디</label>
     <input type="text" id="username" name="username" required>
@@ -19,16 +19,30 @@
     <input type="password" id="password" name="password" required>
   </div>
   <div>
-    <label for="organization">기관명</label>
-    <input type="text" id="organization" name="organization" required>
+    <label for="orgName">기관명</label>
+    <input type="text" id="orgName" name="orgName" required>
   </div>
   <div>
-    <label for="name">대표 이름</label>
-    <input type="text" id="name" name="name" required>
+    <label for="orgOwner">대표 이름</label>
+    <input type="text" id="orgOwner" name="orgOwner" required>
   </div>
   <div>
-    <label for="introduction">기관 소개</label>
-    <textarea id="introduction" name="introduction" required></textarea>
+    <label for="orgType">기관 유형:</label>
+    <div class="org-type-options">
+      <!-- 여기에 라디오 박스를 동적으로 생성할 예정입니다. -->
+    </div>
+  </div>
+  <div>
+    <label for="orgTell">전화번호</label>
+    <input type="text" id="orgTell" name="orgTell" required>
+  </div>
+  <div>
+    <label for="orgInfo">기관 소개</label>
+    <textarea id="orgInfo" name="orgInfo" required></textarea>
+  </div>
+  <div>
+    <label for="homepage">홈페이지</label>
+    <input type="text" id="homepage" name="homepage" required>
   </div>
   <div>
     <label for="accountNumber">계좌번호</label>
@@ -39,7 +53,7 @@
     <input type="text" id="accountHolder" name="accountHolder" required>
   </div>
   <div>
-    <label for="bank">은행명</label>
+    <label for="bankName">은행명</label>
     <div class="bank-options">
       <!-- 은행 선택 라디오 박스를 JavaScript로 동적으로 생성 -->
     </div>
@@ -79,6 +93,30 @@
     radioDiv.appendChild(radioInput);
     radioDiv.appendChild(radioLabel);
     bankOptionsDiv.appendChild(radioDiv);
+  });
+
+  var orgTypes = ["환경보전", "재난구호", "자선", "시민사회구축", "보건복지", "권익신장", "국제구제", "국제교류협력", "교육문화과학", "기타"];
+
+  // 라디오 박스 생성
+  var orgTypeOptionsDiv = document.querySelector(".org-type-options");
+
+  orgTypes.forEach(function (orgType) {
+    var radioDiv = document.createElement("div");
+    radioDiv.classList.add("org-type-option");
+
+    var radioInput = document.createElement("input");
+    var radioLabel = document.createElement("label");
+
+    radioInput.type = "radio";
+    radioInput.name = "orgType";
+    radioInput.value = orgType;
+    radioInput.required = true;
+    radioInput.id=orgType;
+    radioLabel.textContent = orgType;
+    radioLabel.htmlFor =orgType;
+    radioDiv.appendChild(radioInput);
+    radioDiv.appendChild(radioLabel);
+    orgTypeOptionsDiv.appendChild(radioDiv);
   });
 </script>
 </body>

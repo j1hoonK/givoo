@@ -1,5 +1,4 @@
 package com.givoo.config;
-
 import com.givoo.service.MemberService;
 import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,8 +33,8 @@ public class SecurityConfig {
 
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
-       AuthenticationManagerBuilder authManager =http.getSharedObject(AuthenticationManagerBuilder.class);
-       authManager.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+        AuthenticationManagerBuilder authManager =http.getSharedObject(AuthenticationManagerBuilder.class);
+        authManager.userDetailsService(memberService).passwordEncoder(passwordEncoder());
 
         http.securityContext(securityContext -> securityContext.requireExplicitSave(false))
                 .csrf(AbstractHttpConfigurer::disable)
@@ -58,14 +58,14 @@ public class SecurityConfig {
 
         return http.build();
     }
-   @Bean
+    @Bean
     public HttpFirewall httpFirewall(){
         return new DefaultHttpFirewall();
     }
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(MvcRequestMatcher.Builder mvc){
         return (web -> web.ignoring().
-                requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**"),mvc.pattern("/**")));
+                requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**")));
     }
     @Bean
     public static PasswordEncoder passwordEncoder() {

@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
 import '../pages/mypage/view/announcement.dart';
+import '../pages/mypage/view/mypage_terms.dart';
 import '../pages/mypage/view/terms_condition.dart';
 
 class GivooRouter {
@@ -61,6 +62,7 @@ class GivooRouter {
           return FirstLogin();
         },
       ),
+      GoRoute(
           path: '/mypage',
           builder: (BuildContext context, GoRouterState state) {
             return const MyPage();
@@ -84,7 +86,7 @@ class GivooRouter {
             ),
             GoRoute(  // 약관 및 정책
               path: 'terms',
-              builder: (context, state) => Announce(),
+              builder: (context, state) =>MyPageTerms(),
             ),
           ]),
       GoRoute(

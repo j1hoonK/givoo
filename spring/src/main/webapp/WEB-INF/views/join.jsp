@@ -9,18 +9,33 @@
 <body>
 <h2>회원 가입</h2>
 
-<form action="/org/join" method="post" enctype="multipart/form-data">
+<form action="/join/org" method="post" enctype="multipart/form-data">
   <div>
     <label for="username">아이디</label>
     <input type="text" id="username" name="username" required>
+    <button type="button" onclick="checkUsername()">중복 검사</button>
   </div>
+  <div id="username-result"></div>
   <div>
     <label for="password">비밀번호</label>
     <input type="password" id="password" name="password" required>
   </div>
   <div>
+    <label for="confirmPassword">비밀번호 확인</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <div id="password-match-result"></div>
+  </div>
+  <div>
     <label for="orgName">기관명</label>
     <input type="text" id="orgName" name="orgName" required>
+  </div>
+  <div>
+    <label>주소</label>
+    <div><input type="text" id="address_kakao" name="address" readonly /></div>
+  </div>
+  <div>
+    <label>상세 주소</label>
+    <div><input type="text" name="address_detail" /></div>
   </div>
   <div>
     <label for="orgOwner">대표 이름</label>
@@ -63,7 +78,7 @@
     <input type="file" id="file" name="file">
   </div>
   <div>
-    <button type="submit">가입하기</button>
+    <button type="submit" id="join-button">가입하기</button>
   </div>
 </form>
 
@@ -118,6 +133,77 @@
     radioDiv.appendChild(radioLabel);
     orgTypeOptionsDiv.appendChild(radioDiv);
   });
+
+
+  function checkUsername() {
+    var usernameInput = document.getElementById("username");
+    var username = usernameInput.value;
+    // AJAX 요청을 생성합니다.
+    fetch("/joinCheck/" + username)
+            .then(function (response) {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json(); // JSON 형식으로 파싱
+            })
+            .then(function (data) {
+              var resultDiv = document.getElementById("username-result");
+
+              // 서버로부터 받은 결과를 표시합니다.
+              if (data.isUsernameTaken) {
+                resultDiv.innerHTML = "이미 사용 중인 아이디입니다.";
+              } else {
+                resultDiv.innerHTML = "사용 가능한 아이디입니다.";
+              }
+            })
+            .catch(function (error) {
+              console.error("There was a problem with the fetch operation: " + error.message);
+            });
+  }
+
+  function checkPasswordMatch() {
+    var passwordInput = document.getElementById("password");
+    var confirmPasswordInput = document.getElementById("confirmPassword");
+    var passwordMatchResultDiv = document.getElementById("password-match-result");
+    var joinButton = document.getElementById("join-button");
+
+    var password = passwordInput.value;
+    var confirmPassword = confirmPasswordInput.value;
+
+    if (password === confirmPassword) {
+      passwordMatchResultDiv.innerHTML = "비밀번호가 일치합니다.";
+      passwordMatchResultDiv.style.color = "green";
+      joinButton.disabled = false; // 비밀번호가 일치하면 버튼 활성화
+    } else {
+      passwordMatchResultDiv.innerHTML = "비밀번호가 일치하지 않습니다.";
+      passwordMatchResultDiv.style.color = "red";
+      joinButton.disabled = true; // 비밀번호가 일치하지 않으면 버튼 비활성화
+    }
+  }
+
+  // 비밀번호 일치 여부를 실시간으로 확인
+  var passwordInput = document.getElementById("password");
+  var confirmPasswordInput = document.getElementById("confirmPassword");
+
+  passwordInput.addEventListener("keyup", checkPasswordMatch);
+  confirmPasswordInput.addEventListener("keyup", checkPasswordMatch);
+
+
+  window.onload = function(){
+    document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+      //카카오 지도 발생
+      new daum.Postcode({
+        oncomplete: function(data) { //선택시 입력값 세팅
+          document.getElementById("address_kakao").value = data.address; // 주소 넣기
+          console.log(data.address)
+          console.log(data)
+          console.log(data.y)
+          document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+        }
+      }).open();
+    });
+  }
 </script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>

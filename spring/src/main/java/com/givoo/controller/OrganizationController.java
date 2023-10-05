@@ -8,11 +8,15 @@ import com.givoo.service.MemberService;
 import com.givoo.service.OrganizationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Tag(name = "Organization", description = "기관 관련 API")
 @RestController
 public class OrganizationController {
@@ -45,7 +49,7 @@ public class OrganizationController {
         return organizationService.randomOrg();
 
     }
-    @PostMapping("org/join")
+    @PostMapping("join/org")
     public String orgJoin(
             @RequestParam("username") String username,
             @RequestParam("password") String password,
@@ -62,11 +66,10 @@ public class OrganizationController {
             Model model) {
         Organization org = new Organization();
         Member member = new Member();
-       // member.setUsername();
-      //  member.setPassword(passwordEncoder.encode(""));
-      //  member.setRole(Role.USER);
-   //     System.out.println(member);
-  //      memberService.saveMember(member);
+        member.setUsername(username);
+        member.setPassword(passwordEncoder.encode(password));
+        member.setRole(Role.USER);
+        memberService.saveMember(member);
         org.setOrgName(orgName);
         org.setOrgOwner(orgOwner);
         org.setOrgType(orgType);
@@ -84,6 +87,14 @@ public class OrganizationController {
         // 처리 결과에 따라 적절한 응답을 반환하거나 리다이렉트할 수 있습니다.
         return "redirect:/login"; // 회원가입 성공 시 로그인 페이지로 리다이렉트
     }
+    @GetMapping("/joinCheck/{username}")
+    public ResponseEntity<Map<String, Boolean>> checkUsername(@PathVariable String username) {
+        // 아이디 중복 검사 로직을 userService를 통해 수행
+        boolean isUsernameTaken = memberService.validateDuplicateMember(username);
+        // 결과를 JSON 형식으로 응답
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("isUsernameTaken", isUsernameTaken);
 
-
+        return ResponseEntity.ok(response);
+    }
 }

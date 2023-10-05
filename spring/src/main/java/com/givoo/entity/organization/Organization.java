@@ -25,7 +25,7 @@ public class Organization {
     private String orgName;
 
     @Column(name = "org_ownnumber")
-    private String orgOwnNumber;
+    private String orgOwnnumber;
 
     @Column(name = "org_number", nullable = false)
     private Long orgNumber;
@@ -78,7 +78,7 @@ public class Organization {
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.locationLat,this.locationLong,
                 this.orgTell,this.orgInfo,this.orgOwner,this.startedUp,
-                this.imagePath,this.orgType,this.orgOwnNumber,favId,this.bankName,this.accountHolder,this.hompage,favFlag
+                this.imagePath,this.orgType,this.orgOwnnumber,favId,this.bankName,this.accountHolder,this.hompage,favFlag
         );
     }
 

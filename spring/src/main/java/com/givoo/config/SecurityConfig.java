@@ -42,6 +42,8 @@ public class SecurityConfig {
                         (auth) ->auth.requestMatchers(mvc.pattern("/"),
                                         mvc.pattern("/members/**"),
                                         mvc.pattern("/item/**"),
+                                        mvc.pattern("/joinCheck/**"),
+                                        mvc.pattern("/join/org"),
                                         mvc.pattern( "/images/**")).permitAll()
                                 .requestMatchers(mvc.pattern("/user/**"),
                                         mvc.pattern("/org/**"),

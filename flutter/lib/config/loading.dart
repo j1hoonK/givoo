@@ -20,9 +20,9 @@ class _LoadingState extends State<Loading> {
   void initState() {
     super.initState();
     getMyLocation();
-    /*Timer(Duration(milliseconds: 2000), () {
+    Timer(Duration(milliseconds: 2000), () {
       context.push('/main');
-    });*/
+    });
   }
 
   @override
@@ -38,36 +38,51 @@ class _LoadingState extends State<Loading> {
           data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
           child: Scaffold(
             backgroundColor: Colors.white,
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(height: screenHeight * 0.2),
-                Image.asset(
-                  "images/loading/1.png",
-                  width: screenWidth * 0.4,
-                ),
-                Expanded(child: SizedBox()),
-                Text('편리하게 기부하고',
-                style: TextStyle(),),
-                Text('똑똑하게 공제받자'),
-                Expanded(child: SizedBox()),
-                Image.asset(
-                  "images/loading/2.png",
-                  width: screenWidth * 0.616666,
-                  height: screenHeight * 0.0859375,
-                ),
-                Expanded(child: SizedBox()),
-                Align(
-                  child: Text("© Copyright 2023, 기부어때",
-                      style: TextStyle(
-                        fontSize: screenWidth * (14 / 360),
-                        color: Colors.redAccent,
-                      )),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.0625,
-                ),
-              ],
+            body: Center(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: screenHeight * 0.2),
+                  Image.asset(
+                    "images/loading/1.png",
+                    width: screenWidth * 0.4,
+                  ),
+                  SizedBox(height: screenHeight * 0.05),
+                  Text('편리하게 기부하고',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35
+                  ),
+                  ),
+                  Text('똑똑하게 공제받자',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35
+                    ),),
+                  SizedBox(height: screenHeight * 0.1,),
+                  SizedBox(
+                    width: screenWidth * 0.6,
+                    height: screenHeight * 0.23,
+                    child: FittedBox(
+                      fit: BoxFit.fill,
+                      child: Image.asset(
+                        "images/loading/2.png",
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.05,),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: Text("© Copyright 2023, 기부어때",
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontSize: screenWidth * (14 / 360),
+                          color: Colors.redAccent,
+                        )),
+                  ),
+                ],
+              ),
             ),
           ),
         ));

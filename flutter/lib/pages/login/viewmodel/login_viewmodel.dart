@@ -56,4 +56,10 @@ class LoginViewModel with ChangeNotifier{
     notifyListeners();
   }
 
+  // 회원 탈퇴
+  deleteUser(token){
+
+
+  }
+
 }

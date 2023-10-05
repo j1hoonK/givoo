@@ -19,7 +19,6 @@ public class UsersServiceImpl implements UsersService {
     // 회원가입
     public Users signUpWithKakao(Users users) {
         List<Users> findUser = usersRepository.findByToken(users.getToken());
-        List<Users> address = usersRepository.findByToken(users.getUserAddress());
         System.out.println(findUser);
         if (findUser.isEmpty()) {
             return usersRepository.save(users);

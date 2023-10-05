@@ -66,3 +66,17 @@ class FindByToken {
     }
   }
 }
+
+Future deleteUser(token) async {
+  try{
+  print('Delete Start_token: $token');
+  var url = "http://10.0.2.2:1000/login/delete/$token";
+  http.Response response = await http.delete(Uri.parse(url));
+  print('Delete 요청완료');
+  if(response.statusCode == 200) {
+    print('(LoginService.dart)회원 탈퇴 성공');
+  }
+  }catch(e){
+    print(e);
+  }
+}

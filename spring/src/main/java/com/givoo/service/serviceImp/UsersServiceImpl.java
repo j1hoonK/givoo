@@ -19,7 +19,6 @@ public class UsersServiceImpl implements UsersService {
     // 회원가입
     public Users signUpWithKakao(Users users) {
         List<Users> findUser = usersRepository.findByToken(users.getToken());
-        List<Users> address = usersRepository.findByToken(users.getUserAddress());
         System.out.println(findUser);
         if (findUser.isEmpty()) {
             return usersRepository.save(users);
@@ -51,5 +50,10 @@ public class UsersServiceImpl implements UsersService {
     // 정보찾기
     public List<Users> findUserInfo(String token){
         return usersRepository.findByToken(token);
+    }
+
+    @Override
+    public void deleteUser(String token){
+        usersRepository.deleteByToken(token);
     }
 }

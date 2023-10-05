@@ -52,4 +52,9 @@ public class UsersServiceImpl implements UsersService {
     public List<Users> findUserInfo(String token){
         return usersRepository.findByToken(token);
     }
+
+    @Override
+    public void deleteUser(String token){
+        usersRepository.deleteByToken(token);
+    }
 }

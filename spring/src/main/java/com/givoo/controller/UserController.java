@@ -14,10 +14,10 @@ import java.util.List;
 @Tag(name = "Login", description = "App SNS로그인 관련 API")
 @RestController
 @RequestMapping("/login")
-public class LoginController {
+public class UserController {
     private final UsersService usersService;
     @Autowired
-    public LoginController(UsersService usersService) {
+    public UserController(UsersService usersService) {
         this.usersService = usersService;
     }
 
@@ -47,5 +47,11 @@ public class LoginController {
     public List<Users> findUserInfo(@PathVariable("token") String token){
         System.out.println(token);
         return usersService.findUserInfo(token);
+    }
+
+    @DeleteMapping("/delete/{token}")
+    @Operation(summary = "회원탈퇴", description = "Token번호로 user 삭제")
+    public void deleteUserByToken(@PathVariable("token") String token){
+        usersService.deleteUser(token);
     }
 }

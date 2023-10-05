@@ -15,4 +15,7 @@ public interface UsersService {
 
     // 정보찾기
     List<Users> findUserInfo(String token);
+
+    // 회원 탈퇴
+    void deleteUser(String token);
 }

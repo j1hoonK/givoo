@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface DonationService {
@@ -22,4 +23,6 @@ public interface DonationService {
 
     // 후원전송
     Donation sendDonation(Donation donation);
+
+    Optional<Donation> dnt(Long id);
 }

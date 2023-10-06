@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DonationServiceImpl implements DonationService {
@@ -48,5 +49,10 @@ public class DonationServiceImpl implements DonationService {
     @Override
     public Donation sendDonation(Donation donation){
         return donationRepository.save(donation);
+    }
+
+    @Override
+    public Optional<Donation> dnt(Long id) {
+        return donationRepository.findById(id);
     }
 }

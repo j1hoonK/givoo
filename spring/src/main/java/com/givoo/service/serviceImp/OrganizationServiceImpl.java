@@ -56,4 +56,9 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
         return organizationRepo.randomOrg();
     }
+
+    @Override
+    public Optional<Organization> findById(Long id) {
+        return organizationRepo.findById(id);
+    }
 }

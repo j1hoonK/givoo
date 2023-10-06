@@ -15,4 +15,6 @@ public interface UsersRepository extends JpaRepository <Users,Long> {
     // 회원탈퇴
     @Transactional
     void deleteByToken(String token);
+
+
 }

@@ -53,6 +53,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public List<Users> findAll() {
+        return usersRepository.findAll();
+    }
+
+    @Override
     public void deleteUser(String token){
         usersRepository.deleteByToken(token);
     }

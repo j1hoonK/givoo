@@ -1,0 +1,109 @@
+*{padding:0;margin:0}
+ul,ol{list-style:none}
+a{text-decoration:none;color:#fff;font-size:15px}
+nav{width:80%;overflow:hidden;height:80px;margin:50px auto}
+
+body {
+    font-family: Arial, sans-serif;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+/* 헤더 스타일 */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* 각 섹션 스타일 */
+section {
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 이미지 슬라이드 쇼 스타일 (JavaScript로 구현) */
+#imageSection {
+    /* 슬라이드 쇼 스타일을 지정하세요. */
+}
+
+/* 공지사항 스타일 */
+#notices ul {
+    list-style: none;
+    padding: 0;
+}
+
+#notices ul li {
+    margin-bottom: 10px;
+}
+
+#notices a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 기부 내역 스타일 */
+#donations table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#donations th,
+#donations td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+}
+
+#donations th {
+    background-color: #f0f0f0;
+}
+
+#donations a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 기관 정보 스타일 */
+#info p {
+    margin: 0;
+}
+
+#info a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+#info a:hover {
+    text-decoration: underline;
+}
+
+#nav2>a {
+    display: block; /* a태그는 글자성격 = inline */
+    float: left;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 80px;
+    padding: 0 30px;
+}
+#nav2>ul {
+    float: right;
+}
+#nav2>ul li {
+    float: left;
+    padding: 0 30px;
+    line-height: 80px;
+}

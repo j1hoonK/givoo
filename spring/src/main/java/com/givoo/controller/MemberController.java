@@ -1,67 +1,80 @@
 package com.givoo.controller;
 
+import com.givoo.constant.Role;
 import com.givoo.dto.MemberFormDTO;
 import com.givoo.entity.Member;
+import com.givoo.entity.donation.Donation;
+import com.givoo.entity.organization.Organization;
+import com.givoo.service.DonationService;
 import com.givoo.service.MemberService;
+import com.givoo.service.OrganizationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberController {
-
+    @Autowired
     private final PasswordEncoder passwordEncoder;
+    @Autowired
     private final MemberService memberService;
-
-    @GetMapping("/new")
-    public String memberForm(Model model){
-        model.addAttribute("memberFormDto", new MemberFormDTO());
-        return "member/memberForm";
-
-    }
-
-    @PostMapping("/new")
-    public String memberForm(@Valid MemberFormDTO memberFormDto,
-                             BindingResult bindingResult, Model model){
-
-        /* 회원가입폼으로 전달된 데이타가 문제가 있으면 다시 form으로 되돌아감. */
-        if(bindingResult.hasErrors()){
-            return "member/memberForm";
-        }
-
-        try {
-            /* 정상 인경우 db 저장 */
-//            Member member = Member.createMember(memberFormDto, passwordEncoder);
-            //관리자 저장
-            Member member = Member.createAdminMember(memberFormDto, passwordEncoder);
-            memberService.saveMember(member);
-        }catch(IllegalStateException e){
-            /* 오류인 경우 오류 메세지와 함께 form으로 이동 */
-            model.addAttribute("errorMessage", e.getMessage());
-            return "member/memberForm";
-        }
-        /* 저장 후 root(/)로 이동  */
-        return "redirect:/";
-    }
+    @Autowired
+    private final OrganizationService organizationService;
+    @Autowired
+    private final DonationService donationService;
 
     @GetMapping("/login")
     public String loginMember(){
-        return "/member/memberLoginForm";
+        System.out.println("dsfdfs");
+        return "login";
     }
 
     @GetMapping("/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg","아이디 또는 비밀번호를 확인해주세요");
-        return "/member/memberLoginForm";
+        return "login";
     }
-
+    @PostMapping("")
+    public String create(Member member) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
+        member.setRole(Role.valueOf("User"));
+        memberService.saveMember(member);
+        return "redirect:/";
+    }
+    @GetMapping("/org/{id}")
+    public String viewOrganization(@PathVariable("id") Long id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Optional<Organization> organization = organizationService.findById(id);
+        if (organization == null) {
+            // 기관을 찾을 수 없음. 에러 페이지 또는 리다이렉션 처리
+            return "error";
+        }
+        if(username.equals(organization.get().getUsername())) {
+            List<Donation> donations = donationService.findByOrgId(id);
+            model.addAttribute("organization", organization);
+            System.out.println("organization : " + organization.get().getOrgName());
+            model.addAttribute("donations", donations);
+            return "org_main2";
+        }
+        return "error";
+    }
 
 }

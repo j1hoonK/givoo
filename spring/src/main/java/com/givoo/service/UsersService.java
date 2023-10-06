@@ -18,4 +18,6 @@ public interface UsersService {
 
     // 회원 탈퇴
     void deleteUser(String token);
+
+    List<Users> findAll();
 }

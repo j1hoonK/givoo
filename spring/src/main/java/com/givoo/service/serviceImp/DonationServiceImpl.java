@@ -1,9 +1,7 @@
 package com.givoo.service.serviceImp;
 
-import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationType;
-import com.givoo.entity.organization.Organization;
 import com.givoo.repository.donation.DonationRegularRepository;
 import com.givoo.repository.donation.DonationRepository;
 import com.givoo.repository.donation.DonationTypeRepository;
@@ -54,5 +52,15 @@ public class DonationServiceImpl implements DonationService {
     @Override
     public Optional<Donation> dnt(Long id) {
         return donationRepository.findById(id);
+    }
+
+    @Override
+    public List<Donation> findByOrgId(Long id) {
+        return donationRepository.findAllByOrgId(id);
+    }
+
+    @Override
+    public List<Donation> findAll() {
+        return donationRepository.findAll();
     }
 }

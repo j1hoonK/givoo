@@ -20,6 +20,7 @@ public interface DonationService {
     // 후원전송
     Donation sendDonation(Donation donation);
 
+    List<Donation> findByOrgId(Long id);
     List<Donation> findAll();
 
 }

@@ -49,6 +49,11 @@ public class DonationServiceImpl implements DonationService {
     }
 
     @Override
+    public List<Donation> findByOrgId(Long id) {
+        return donationRepository.findAllByOrgId(id);
+    }
+
+    @Override
     public List<Donation> findAll() {
         return donationRepository.findAll();
     }

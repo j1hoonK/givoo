@@ -12,7 +12,7 @@ import java.util.List;
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
     List<Organization> findAllByOrgNameContaining(String orgName);
     List<Organization> findAllByOrgType(String orgType);
-
+    Organization findByUsername(String username);
     Long countBy();
     @Query(value = "SELECT * FROM organization order by RAND() limit 3",nativeQuery = true)
     List<Organization> randomOrg();

@@ -1,18 +1,18 @@
 package com.givoo.config;
+import com.givoo.service.CustomUrl;
 import com.givoo.service.MemberService;
+import com.givoo.service.OrganizationService;
 import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
@@ -25,6 +25,8 @@ public class SecurityConfig {
 
     @Autowired
     MemberService memberService;
+    @Autowired
+    OrganizationService organizationService;
     @Bean
     MvcRequestMatcher.Builder mvc() {
         return new MvcRequestMatcher.Builder(new HandlerMappingIntrospector());
@@ -52,11 +54,9 @@ public class SecurityConfig {
                 )
                 .formLogin((formLogin) ->
                         formLogin.failureUrl("/members/login/error")
-                                .loginPage("/members/login")
-                                .defaultSuccessUrl("/user/1")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
-
+                                .loginPage("/members/login").successHandler(new CustomUrl(organizationService))
                 )
                 .logout((logout) ->
                         logout.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))

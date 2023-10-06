@@ -3,7 +3,9 @@ package com.givoo.controller;
 import com.givoo.constant.Role;
 import com.givoo.dto.organization.DetailOrgDTO;
 import com.givoo.entity.Member;
+import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
+import com.givoo.service.DonationService;
 import com.givoo.service.MemberService;
 import com.givoo.service.OrganizationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Tag(name = "Organization", description = "기관 관련 API")
 @RestController
@@ -23,12 +26,14 @@ public class OrganizationController {
     private final PasswordEncoder passwordEncoder;
     private final OrganizationService organizationService;
     private final MemberService memberService;
+    private final DonationService donationService;
 
     @Autowired
-    public OrganizationController(PasswordEncoder passwordEncoder, OrganizationService organizationService, MemberService memberService) {
+    public OrganizationController(PasswordEncoder passwordEncoder, OrganizationService organizationService, MemberService memberService, DonationService donationService) {
         this.passwordEncoder = passwordEncoder;
         this.organizationService = organizationService;
         this.memberService = memberService;
+        this.donationService = donationService;
     }
 
 
@@ -97,4 +102,5 @@ public class OrganizationController {
 
         return ResponseEntity.ok(response);
     }
+
 }

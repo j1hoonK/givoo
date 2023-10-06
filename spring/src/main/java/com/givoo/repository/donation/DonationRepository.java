@@ -13,4 +13,5 @@ import java.util.List;
 @Repository
 public interface DonationRepository extends JpaRepository<Donation,Long> {
     List<Donation> findAllByUserId(Long userId);
+    List<Donation> findAllByOrgId(Long OrgId);
 }

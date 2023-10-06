@@ -73,6 +73,8 @@ public class Organization {
 
     @Column(name = "total_favorite", nullable = false)
     private Long totalFavorite;
+    @Column(name="username")
+    private String username;
 
     public DetailOrgDTO converter(Long favId,int favFlag){
         return new DetailOrgDTO(

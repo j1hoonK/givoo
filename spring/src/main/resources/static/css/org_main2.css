@@ -107,3 +107,10 @@ section {
     padding: 0 30px;
     line-height: 80px;
 }
+#info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+}

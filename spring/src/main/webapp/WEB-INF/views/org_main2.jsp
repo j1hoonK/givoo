@@ -26,39 +26,64 @@
 </section>
 
 <section id="notices">
-  <h2>공지사항</h2>
-  <!-- 공지사항 리스트 출력 (최대 3개) -->
-  <ul>
-    <c:forEach var="donations" items="${donations}" varStatus="status">
-      <li>${donation.date}</li>
-      <!-- 공지사항 내용 뿌려주기 -->
-    </c:forEach>
-  </ul>
-  <a href="/noticePage">전체보기</a>
+  <div style="display: flex; flex: 1; flex-direction: column;">
+    <div style="display: flex; align-items: center;">
+      <h2>공지사항</h2>
+      <a style="margin-left: auto;" href="/noticePage">
+        <h4 style="color: gray;">전체보기</h4>
+      </a>
+    </div>
+    <c:choose>
+      <c:when test="${empty donations}">
+        <p>공지사항이 없습니다.</p>
+      </c:when>
+      <c:otherwise>
+        <ul>
+          <c:forEach var="donation" items="${donations}" varStatus="status">
+            <li>${donation.date}</li>
+            <!-- 공지사항 내용 뿌려주기 -->
+          </c:forEach>
+        </ul>
+      </c:otherwise>
+    </c:choose>
+  </div>
 </section>
 
 <section id="donations">
-  <h2>기부 내역</h2>
-  <!-- 기부 내역 리스트 출력 (최대 5개) -->
-  <table>
-    <thead>
-    <tr>
-      <th>날짜</th>
-      <th>금액</th>
-      <th>기부자</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="donation" items="${donations}" varStatus="status">
-      <tr>
-        <td>${donation.date}</td>
-        <td>${donation.amount}</td>
-        <td>${donation.donor}</td>
-      </tr>
-    </c:forEach>
-    </tbody>
-  </table>
-  <a href="/donationPage">전체보기</a>
+  <div style="display: flex; flex: 1; flex-direction: column;">
+    <div style="display: flex; align-items: center;">
+      <h2>기부 내역</h2>
+      <a style="margin-left: auto;" href="/donationPage">
+        <h4 style="color: gray;">전체보기</h4>
+      </a>
+    </div>
+    <c:choose>
+      <c:if test="${empty donations}">
+        <p style="text-align: center;">기부내역이 없습니다.</p>
+      </c:if>
+      <c:if test="${not empty donations}">
+        <table>
+          <!-- 기부 내역 리스트 출력 (최대 5개) -->
+          <thead>
+          <tr>
+            <th>날짜</th>
+            <th>금액</th>
+            <th>기부자</th>
+          </tr>
+          </thead>
+          <tbody>
+          <c:forEach var="donation" items="${donations}" varStatus="status">
+            <tr>
+              <td>${donation.date}</td>
+              <td>${donation.amount}</td>
+              <td>${donation.donor}</td>
+            </tr>
+          </c:forEach>
+          </tbody>
+        </table>
+      </c:if>
+    </c:choose>
+  </div>
 </section>
 
 <section id="info">

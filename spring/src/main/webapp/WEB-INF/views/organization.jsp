@@ -66,59 +66,11 @@
                     <td>${org.bankName}</td>
                     <td>${org.accountHolder}</td>
                     <td>${org.imagePath}</td>
-                    <td>${org.hompage}</td>
+                    <td><a href="${org.hompage}">${org.hompage}</a></td>
 
                 </tr>
             </c:forEach>
         </table>
-    </div>
-
-    <!-- 모달 창 -->
-    <div id="userModal" class="modal">
-<%--        <div class="modal-content">--%>
-<%--            <span class="close" onclick="closeModal()">&times;</span>--%>
-<%--            <h2>수정 하기</h2>--%>
-<%--            <table>--%>
-<%--                <tr>--%>
-<%--                    <th>ID</th>--%>
-<%--                    <td><input class="form-control" id="modalUserId" type="text"></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Name</th>--%>
-<%--                    <td><input class="form-control" id="modalUserName" type="text"></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Email</th>--%>
-<%--                    <td><input class="form-control" id="modalUserEmail" type="text"></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Phone Number</th>--%>
-<%--                    <td><input class="form-control" id="modalUserTell" type="text"></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Address</th>--%>
-<%--                    <td><input class="form-control" id="modalUserAddress" type="text"></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Nickname</th>--%>
-<%--                    <td><input class="form-control" id="modalUserNname" type="text"></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Birth</th>--%>
-<%--                    <td><input class="form-control" id="modalUserNumberFirst" type="text"></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Image</th>--%>
-<%--                    <td><input class="form-control" id="modalUserImage" type="text"></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Login Type</th>--%>
-<%--                    <td><input class="form-control" id="modalLoginType" type="text"></td>--%>
-<%--                </tr>--%>
-<%--            </table>--%>
-<%--            <button id="editButton" onclick="openEditForm()">수정</button>--%>
-<%--            <button id="deleteButton" onclick="deleteUser()">삭제</button>--%>
-<%--        </div>--%>
     </div>
 
     <!-- 페이징 -->

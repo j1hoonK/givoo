@@ -3,9 +3,11 @@ package com.givoo.service.serviceImp;
 import com.givoo.entity.Users;
 import com.givoo.repository.Users.UsersRepository;
 import com.givoo.service.UsersService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -54,7 +56,36 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    //웹 모든 정보 찾기
     public List<Users> findAll() {
         return usersRepository.findAll();
     }
+
+    @Override
+    public Users updateUser(Long userId, Users updatedUser) {
+        Users existingUser = usersRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("사용자 정보를 찾을 수 없습니다. " + userId));
+
+        // Update user properties
+        existingUser.setUserName(updatedUser.getUserName());
+        existingUser.setUserEmail(updatedUser.getUserEmail());
+        existingUser.setUserTell(updatedUser.getUserTell());
+        existingUser.setUserAddress(updatedUser.getUserAddress());
+        existingUser.setUserName(updatedUser.getUserName()); // 오타 수정
+        existingUser.setUserNumberFirst(updatedUser.getUserNumberFirst());
+
+        return usersRepository.save(existingUser);
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        usersRepository.deleteById(userId);
+    }
+
+    @Override
+    public Optional<Users> findById(Long id) {
+        return usersRepository.findById(id);
+    }
+
+
 }

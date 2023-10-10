@@ -56,6 +56,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public void deleteUser(String token) {
+
+    }
+
+    @Override
     //웹 모든 정보 찾기
     public List<Users> findAll() {
         return usersRepository.findAll();

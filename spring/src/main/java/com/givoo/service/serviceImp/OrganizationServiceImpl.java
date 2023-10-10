@@ -56,4 +56,19 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
         return organizationRepo.randomOrg();
     }
+
+    @Override
+    public Optional<Organization> findById(Long id) {
+        return organizationRepo.findById(id);
+    }
+
+    @Override
+    public Organization save(Organization org) {
+        return organizationRepo.save(org);
+    }
+
+    @Override
+    public Long findByUserName(String username) {
+        return organizationRepo.findByUsername(username).getOrgId();
+    }
 }

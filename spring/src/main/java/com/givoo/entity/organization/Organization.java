@@ -25,7 +25,7 @@ public class Organization {
     private String orgName;
 
     @Column(name = "org_ownnumber")
-    private String orgOwnNumber;
+    private String orgOwnnumber;
 
     @Column(name = "org_number", nullable = false)
     private Long orgNumber;
@@ -61,7 +61,7 @@ public class Organization {
     private String startedUp;
 
     @Column(name = "account_number")
-    private Long accountNumber;
+    private String accountNumber;
     @Column(name="bank_name")
     private String bankName;
     @Column(name="account_holder")
@@ -73,12 +73,14 @@ public class Organization {
 
     @Column(name = "total_favorite", nullable = false)
     private Long totalFavorite;
+    @Column(name="username")
+    private String username;
 
     public DetailOrgDTO converter(Long favId,int favFlag){
         return new DetailOrgDTO(
                 this.orgName,this.orgAddress,this.locationLat,this.locationLong,
                 this.orgTell,this.orgInfo,this.orgOwner,this.startedUp,
-                this.imagePath,this.orgType,this.orgOwnNumber,favId,this.bankName,this.accountHolder,this.hompage,favFlag
+                this.imagePath,this.orgType,this.orgOwnnumber,favId,this.bankName,this.accountHolder,this.hompage,favFlag
         );
     }
 

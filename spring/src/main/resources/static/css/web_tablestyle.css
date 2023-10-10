@@ -1,0 +1,62 @@
+
+/* 테이블 컨테이너 스타일 */
+.table-container {
+    overflow: auto; /* 스크롤을 활성화하고 내용이 넘칠 때 스크롤 표시 */
+    max-height: calc(100vh - 80px);
+    margin: 20px;
+}
+
+/* 테이블 전체 스타일 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* 테이블 헤더 스타일 */
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+
+}
+
+/* 테이블 데이터 행 스타일 */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* 테이블 데이터 셀 스타일 */
+td {
+    padding: 5px;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    margin: 0 5px;
+}
+
+.pagination a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.pagination span {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    margin: 0 5px;
+}
+

@@ -41,7 +41,8 @@ class _FirstLoginState extends State<FirstLogin> {
   String address = '';
   String subAddress = '';
   String userName = '';
-  dynamic userBirthday = 0101;
+  dynamic birthdayMonth = 01;
+  dynamic birthdayDay = 01;
   dynamic userGender = 0;
   dynamic userNumberFirst = 0;
   dynamic userNumberSecond = 0;
@@ -359,7 +360,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                         return null;
                                       },
                                       onSaved: (value) => setState(() {
-                                        userBirthday = value;
+                                        birthdayMonth = value;
                                       }),
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly
@@ -405,7 +406,7 @@ class _FirstLoginState extends State<FirstLogin> {
                                         return null;
                                       },
                                       onSaved: (value) => setState(() {
-                                        userBirthday = value;
+                                        birthdayDay = value;
                                       }),
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly
@@ -638,7 +639,8 @@ class _FirstLoginState extends State<FirstLogin> {
                                         'userName': userName,
                                         'userAddress':
                                             '$address ' '$subAddress',
-                                        'userBirthday': userBirthday,
+                                        'birthdayMonth': birthdayMonth,
+                                        'birthdayDay': birthdayDay,
                                         'token': token
                                       };
                                       print(
@@ -650,7 +652,6 @@ class _FirstLoginState extends State<FirstLogin> {
                                           Provider.of<LoginViewModel>(context,
                                               listen: false);
                                       reload.check();
-                                      // context.go('/login/first');
                                       Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(

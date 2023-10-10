@@ -3,8 +3,6 @@ package com.givoo.dto.organization;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
-
 @Getter
 @AllArgsConstructor
 public class DetailOrgDTO {  // /info/{기관아이디}/{유저아이디}

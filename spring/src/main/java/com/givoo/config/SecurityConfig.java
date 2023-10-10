@@ -1,12 +1,15 @@
 package com.givoo.config;
+import com.givoo.service.CustomUrl;
 import com.givoo.service.MemberService;
+import com.givoo.service.OrganizationService;
+import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,6 +25,8 @@ public class SecurityConfig {
 
     @Autowired
     MemberService memberService;
+    @Autowired
+    OrganizationService organizationService;
     @Bean
     MvcRequestMatcher.Builder mvc() {
         return new MvcRequestMatcher.Builder(new HandlerMappingIntrospector());
@@ -30,37 +35,46 @@ public class SecurityConfig {
 
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
-       AuthenticationManagerBuilder authManager =http.getSharedObject(AuthenticationManagerBuilder.class);
-       authManager.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+        AuthenticationManagerBuilder authManager =http.getSharedObject(AuthenticationManagerBuilder.class);
+        authManager.userDetailsService(memberService).passwordEncoder(passwordEncoder());
 
-
-
-        http.formLogin((formLogin) ->
-                        formLogin.loginPage("/members/login")
-                                .defaultSuccessUrl("/")
+        http.securityContext(securityContext -> securityContext.requireExplicitSave(false))
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        (auth) ->auth.requestMatchers(mvc.pattern("/"),
+                                        mvc.pattern("/members/**"),
+                                        mvc.pattern("/item/**"),
+                                        mvc.pattern("/joinCheck/**"),
+                                        mvc.pattern("/join/org"),
+                                        mvc.pattern( "/images/**")).permitAll()
+                                .requestMatchers(mvc.pattern("/user/**"),
+                                        mvc.pattern("/org/**"),
+                                        mvc.pattern("/wdonation/**")).hasAnyRole("ADMIN")
+                                .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                )
+                .formLogin((formLogin) ->
+                        formLogin.failureUrl("/members/login/error")
                                 .usernameParameter("username")
-                                .failureUrl("/members/login/error")
+                                .passwordParameter("password")
+                                .loginPage("/members/login").successHandler(new CustomUrl(organizationService))
                 )
                 .logout((logout) ->
                         logout.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-                                .logoutSuccessUrl("/"))
-                .authorizeHttpRequests((auth) ->auth.requestMatchers(mvc.pattern("/"),mvc.pattern("/members/**"),mvc.pattern("/item/**"),mvc.pattern( "/images/**"))
-                                .permitAll()
-                                .requestMatchers(mvc.pattern("/admin/**")).hasRole("ADMIN").anyRequest().authenticated());
+                                .logoutSuccessUrl("/"));
+
         return http.build();
     }
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-   @Bean
     public HttpFirewall httpFirewall(){
         return new DefaultHttpFirewall();
     }
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(MvcRequestMatcher.Builder mvc){
         return (web -> web.ignoring().
-                requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**"),mvc.pattern("/**")));
+                requestMatchers(mvc.pattern("/css/**"),mvc.pattern("/js/**"),mvc.pattern("/img/**")));
     }
-
+    @Bean
+    public static PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:givoo/component/view/appbar.dart';
@@ -5,6 +7,7 @@ import 'package:givoo/config/palette.dart';
 import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/login/view/login_first.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
+import 'package:givoo/services/LoginService.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -181,7 +184,9 @@ class MyPage extends StatelessWidget {
                                           ),
                                           Flexible(
                                             child: TextButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                context.push('/mypage/qna');
+                                              },
                                               child: Row(
                                                 children: [
                                                   Icon(
@@ -231,7 +236,15 @@ class MyPage extends StatelessWidget {
                                           ),
                                           Flexible(
                                             child: TextButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                deleteUser(provider.kakaoUser[0].token);
+                                                print('logout 시도');
+                                                provider.logout().then((value) => context.push('/Search'));
+                                                print('timer Start');
+                                                Timer(Duration(milliseconds: 2000), () {
+                                                  context.push('/main');
+                                                });
+                                              },
                                               child: Row(
                                                 children: [
                                                   Icon(

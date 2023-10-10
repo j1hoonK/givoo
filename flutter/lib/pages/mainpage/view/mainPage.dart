@@ -101,12 +101,26 @@ class MainPage extends StatelessWidget {
             Container(
               alignment: Alignment.topLeft,
               margin: EdgeInsets.only(left: width * 0.05),
-              child: Text(
-                "이런 기관은 어떠세요?",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "이런 기관은 어떠세요?",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: IconButton(
+                        onPressed: (){
+                          Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
+                        },
+                        icon: Icon(Icons.refresh)
+                    ),
+                  ),
+                ],
               ),
             ),
             Consumer<OrganizationProvider>(builder: (context, provider, child) {

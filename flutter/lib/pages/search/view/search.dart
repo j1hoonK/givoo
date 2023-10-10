@@ -95,7 +95,7 @@ class Search extends StatelessWidget {
                       itemCount: provider.OrgList.length, //item 개수
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-                        childAspectRatio: 1 / 1.3, //item 의 가로 1, 세로 2 의 비율
+                        childAspectRatio: 1 / 1.4, //item 의 가로 1, 세로 2 의 비율
                         mainAxisSpacing: 10, //수평 Padding
                         crossAxisSpacing: 10, //수직 Padding
                       ),

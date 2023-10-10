@@ -4,6 +4,7 @@ import com.givoo.entity.Users;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UsersService {
@@ -15,4 +16,16 @@ public interface UsersService {
 
     // 정보찾기
     List<Users> findUserInfo(String token);
+
+    // 회원 탈퇴
+    void deleteUser(String token);
+
+    List<Users> findAll();
+
+    Users updateUser(Long userId, Users updatedUser);
+    void deleteUser(Long userId);
+
+    Optional<Users> findById(Long id);
+
+
 }

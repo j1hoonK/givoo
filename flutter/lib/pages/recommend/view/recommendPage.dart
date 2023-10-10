@@ -44,7 +44,7 @@ class RecommendPage extends StatelessWidget {
                       itemCount: provider.orgList.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-                        childAspectRatio: 1 / 1.23, //item 의 가로 1, 세로 2 의 비율
+                        childAspectRatio: 1 / 1.4, //item 의 가로 1, 세로 2 의 비율
                         mainAxisSpacing: 10, //수평 Padding
                       ),
                       itemBuilder: (BuildContext context, int idx) {

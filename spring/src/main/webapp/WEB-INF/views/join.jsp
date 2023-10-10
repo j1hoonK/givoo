@@ -9,7 +9,7 @@
 <body>
 <h2>회원 가입</h2>
 
-<form action="/join/org" method="post" enctype="multipart/form-data">
+<form action="members/join/org" method="post" enctype="multipart/form-data">
   <div>
     <label for="username">아이디</label>
     <input type="text" id="username" name="username" required>
@@ -139,7 +139,7 @@
     var usernameInput = document.getElementById("username");
     var username = usernameInput.value;
     // AJAX 요청을 생성합니다.
-    fetch("/joinCheck/" + username)
+    fetch("/members/joinCheck/" + username)
             .then(function (response) {
               if (!response.ok) {
                 throw new Error("Network response was not ok");

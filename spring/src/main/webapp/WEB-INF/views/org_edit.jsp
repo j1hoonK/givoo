@@ -9,7 +9,7 @@
 <body>
 <h2>기관 수정</h2>
 
-<form action="/org/edit/${org.get().orgId}" method="post" enctype="multipart/form-data">
+<form action="/auth/org/edit/${org.get().orgId}" method="post" enctype="multipart/form-data">
     <div>
         <label for="orgName">기관명</label>
         <input type="text" id="orgName" name="orgName" value="${org.get().orgName}" required>
@@ -98,7 +98,7 @@
 
     });
 
-    var orgTypes = ["환경보전", "재난구호", "자선", "시민사회구축", "보건복지", "권익신장", "국제구제", "국제교류협력", "교육문화과학", "기타"];
+    var orgTypes = ["환경보전", "재난구호", "자선", "시민사회구축", "보건복지", "권익신장", "국제구제", "국제교류협력","종교", "교육문화과학", "기타"];
 
     // 라디오 박스 생성
     var orgTypeOptionsDiv = document.querySelector(".org-type-options");

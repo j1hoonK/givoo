@@ -78,8 +78,8 @@ public class UsersServiceImpl implements UsersService {
         existingUser.setUserEmail(updatedUser.getUserEmail());
         existingUser.setUserTell(updatedUser.getUserTell());
         existingUser.setUserAddress(updatedUser.getUserAddress());
-        existingUser.setUserName(updatedUser.getUserName()); // 오타 수정
         existingUser.setUserNumberFirst(updatedUser.getUserNumberFirst());
+        existingUser.setUserNumberSecond(updatedUser.getUserNumberSecond());
 
         return usersRepository.save(existingUser);
     }

@@ -9,15 +9,13 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: BaseAppbar(
-          title: "검색",
-        ),
-        body: SingleChildScrollView(
-          child: GestureDetector(
-            onTap: (){
-              FocusScope.of(context).unfocus(); // 빈화면 누르면 키보드가 내려감
-            },
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+          appBar: BaseAppbar(),
+          body: SingleChildScrollView(
             child: Consumer<OrganizationProvider>(
               builder: (context, provider, child) {
                 return  Column(
@@ -79,6 +77,7 @@ class Search extends StatelessWidget {
                                   ? IconButton(
                                       onPressed: () {
                                         provider.searchOrg(provider.searchValue);
+                                        FocusScope.of(context).unfocus();
                                         // 검색 기능 구현
                                         // 여기에 검색 기능 추가하기
                                       },
@@ -91,12 +90,12 @@ class Search extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 30.0,
                     ),provider.OrgList.length!=0 ? GridView.builder(
                       itemCount: provider.OrgList.length, //item 개수
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-                        //  childAspectRatio: 1 / 2, //item 의 가로 1, 세로 2 의 비율
+                        childAspectRatio: 1 / 1.4, //item 의 가로 1, 세로 2 의 비율
                         mainAxisSpacing: 10, //수평 Padding
                         crossAxisSpacing: 10, //수직 Padding
                       ),
@@ -119,7 +118,8 @@ class Search extends StatelessWidget {
                                   image: AssetImage('images/person.png'),
                                 ),
                               ),
-                            ),Text("검색하신 결과가 없습니다.")
+                            ),Text("검색하신 결과가 없습니다.",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                            SizedBox(height: 15),
                           ],
                         ),
                 ),
@@ -128,7 +128,7 @@ class Search extends StatelessWidget {
                 );
               },
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

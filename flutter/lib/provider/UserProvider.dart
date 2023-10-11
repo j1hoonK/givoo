@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/login/model/kakaoLogin.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-
-import '../pages/login/viewmodel/kakao_login.dart';
 import '../services/LoginService.dart';
 
 class UserInfoProvider with ChangeNotifier{
@@ -21,3 +19,4 @@ class UserInfoProvider with ChangeNotifier{
     notifyListeners();
   }
 }
+

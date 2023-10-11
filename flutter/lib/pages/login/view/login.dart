@@ -26,9 +26,14 @@ Widget logIn() {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
-                  Text("기부어때",
-                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 35),
+                  Image.asset(
+                    'images/login/logo.png',
+                    width: MediaQuery.of(context).size.width * 0.55,
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04,),
+                  /*Text("기부어때",
+                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 35),
+                  ),*/
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
                   Image.asset(
                     'images/login/mainlogo.png',

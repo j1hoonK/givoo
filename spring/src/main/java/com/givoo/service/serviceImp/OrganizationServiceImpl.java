@@ -35,8 +35,8 @@ public class OrganizationServiceImpl implements OrganizationService {
         Optional<Organization> orgOptional = organizationRepo.findById(orgId);
         Favorites favOptional = favoritesRepository.findByOrgIdAndUserId(orgId,userId);
         if(orgOptional.isPresent()&&favOptional != null){
-            return orgOptional.get().converter(favOptional.getFavId());
-        } else return orgOptional.map(organization -> organization.converter(0L)).orElse(null);
+            return orgOptional.get().converter(favOptional.getFavId(),favOptional.getFav_flag());
+        } else return orgOptional.map(organization -> organization.converter(0L,0)).orElse(null);
 
     }
 
@@ -55,5 +55,20 @@ public class OrganizationServiceImpl implements OrganizationService {
             return organizationRepo.findAll();
         }
         return organizationRepo.randomOrg();
+    }
+
+    @Override
+    public Optional<Organization> findById(Long id) {
+        return organizationRepo.findById(id);
+    }
+
+    @Override
+    public Organization save(Organization org) {
+        return organizationRepo.save(org);
+    }
+
+    @Override
+    public Long findByUserName(String username) {
+        return organizationRepo.findByUsername(username).getOrgId();
     }
 }

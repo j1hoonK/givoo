@@ -152,7 +152,6 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 ),
                 trailing: IconButton(
                   onPressed: () {
-
                     context.push('/login/pp');
                   },
                   icon: Icon(Icons.arrow_forward_ios),

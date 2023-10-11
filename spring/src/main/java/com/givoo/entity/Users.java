@@ -12,7 +12,7 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int userId;
+    private Long userId;
 
     @Column(name = "user_name", nullable = false)
     private String userName;
@@ -37,10 +37,19 @@ public class Users {
 
     @Column(name = "token", nullable = false)
     private String token;
-  
+
     @Column(name = "user_image")
     private String userImage;
-  
+
     @Column(name = "login_type", nullable = false)
     private String loginType;
+
+    @Column(name = "birthday_month")
+    private String birthdayMonth;
+
+    @Column(name = "birthday_day")
+    private String birthdayDay;
+
+    @Column(name = "user_gender")
+    private String userGender;
 }

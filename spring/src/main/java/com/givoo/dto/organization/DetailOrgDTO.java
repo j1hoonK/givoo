@@ -3,8 +3,6 @@ package com.givoo.dto.organization;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
-
 @Getter
 @AllArgsConstructor
 public class DetailOrgDTO {  // /info/{기관아이디}/{유저아이디}
@@ -18,9 +16,11 @@ public class DetailOrgDTO {  // /info/{기관아이디}/{유저아이디}
     private String orgOwner; //organization
     private String startedUp; //organization
     private String imagePath; //organization
+    private String orgType; //organization
+    private String orgOwnNumber; //organization
     private Long favId; //favorite
     private String bankName;
     private String accountHolder;
     private String homepage;
-
+    private int favFlag;
 }

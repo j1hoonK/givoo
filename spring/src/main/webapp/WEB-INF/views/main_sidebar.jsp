@@ -17,23 +17,37 @@
 
     <ul class="nav-links">
         <li>
-            <a href="/user/1">
+            <a href="/admin/user/1">
                 <i class='bx bx-user'></i>
                 <span class="link_name">회원 관리</span>
                 <i class='bx bxs-chevron-down'></i>
             </a>
         </li>
         <li>
-            <a href="/org/1">
+            <a href="/admin/org/1">
                 <i class='bx bxs-buildings'></i>
                 <span class="link_name">기관 관리</span>
                 <i class='bx bxs-chevron-down'></i>
             </a>
         </li>
         <li>
-            <a href="/wdonation/1">
+            <a href="/admin/wdonation/1">
                 <i class='bx bx-money-withdraw'></i>
                 <span class="link_name">기부금 관리</span>
+                <i class='bx bxs-chevron-down'></i>
+            </a>
+        </li>
+        <li>
+            <a href="/admin/request/org/1">
+                <i class='bx bx-money-withdraw'></i>
+                <span class="link_name">가입 요청</span>
+                <i class='bx bxs-chevron-down'></i>
+            </a>
+        </li>
+        <li>
+            <a href="/admin/request/edit/1">
+                <i class='bx bx-money-withdraw'></i>
+                <span class="link_name">수정 요청</span>
                 <i class='bx bxs-chevron-down'></i>
             </a>
         </li>

@@ -12,7 +12,7 @@ class RecommendMoreService{
       List<Organization> _result = _data.map((e) => Organization.fromJson(e)).toList();
       return _result;
     }catch(error){
-      print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+      print("@@@@@@@@@@@@@@@@@@@$error@@@@@@@@@@@@@@@@@@@@@@");
       throw Exception("Failed to load orgtype");
     }
   }

@@ -22,11 +22,11 @@ public class CustomUrl implements AuthenticationSuccessHandler {
         // 사용자별로 다른 URL로 리다이렉션할 수 있는 로직을 구현
 
         if (authentication.getName().equals("admin")) {
-            response.sendRedirect("/user/1");
+            response.sendRedirect("/admin/user/1");
         } else {
 
             Long id = organizationService.findByUserName(authentication.getName());
-            response.sendRedirect("/members/org/"+id);
+            response.sendRedirect("/auth/org/"+id);
         }
     }
 }

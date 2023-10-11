@@ -13,9 +13,12 @@ import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +39,7 @@ public class ExcelService {
         }
     }
 
-    public void createExcel(Long orgId,Long dntId, HttpServletResponse response) throws InvalidFormatException, IOException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
+    public void createExcel(Long orgId, Long dntId, HttpServletResponse response) throws InvalidFormatException, IOException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
         // 견적 가져오기
         Organization org = organizationService.findById(orgId).orElseThrow();
         Donation dnt = donationService.dnt(dntId).orElseThrow();
@@ -49,20 +52,6 @@ public class ExcelService {
 
         // 데이터 세팅
         setValue(sheet, "C4", org.getOrgName()); // 수신
-   /*     setValue(sheet, "C5", estimate.getEmail()); // 이메일
-        setValue(sheet, "C6", convertPhone(estimate.getPhone())); // 연락처
-        setValue(sheet, "C8", convertDateWithYear(estimate.getCreatedDate())); // 견적일
-        setValue(sheet, "C9", convertDateWithYear(estimate.getValidDate())); // 유효일
-*/
-        /*// 차량-내용
-        String date = convertDate(estimate.getDepartDate()) + "~" + convertDate(estimate.getArrivalDate());
-        setValue(sheet, "C14", date);
-        String content = estimate.getArrivalPlace() + " ~ " + estimate.getArrivalPlace();
-        setValue(sheet, "F14", content);
-        setValue(sheet, "L14", estimate.getVehicleType()); // 규격
-        setValue(sheet, "N14", Integer.toString(estimate.getVehicleNumber())); // 댓수
-        setValue(sheet, "O14", "대");
-*/
         // 다운로드
         response.setContentType("ms-vnd/excel");
         String fileName = "기부영수증" + org.getOrgName();
@@ -74,22 +63,65 @@ public class ExcelService {
         workbook.close();
     }
 
-    // 06-29 형식
-    private String convertDate(String date){
-        return date.substring(5, 10);
-    }
+    public String ShowExcel(Long orgId, Long dntId, HttpServletResponse response) throws InvalidFormatException, IOException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
+        try {
+            // 견적 가져오기
+            Organization org = organizationService.findById(orgId).orElseThrow();
+            Donation dnt = donationService.dnt(dntId).orElseThrow();
 
-    // 2022-06-29 형식
-    private String convertDateWithYear(String date) {
-        return date.substring(0, 10);
-    }
+            // 엑셀 파일 불러오기
+            OPCPackage opcPackage = OPCPackage.open(new File(FILE_PATH));
+            XSSFWorkbook workbook = new XSSFWorkbook(opcPackage);
+            String sheetName = workbook.getSheetName(0);
+            Sheet sheet = workbook.getSheet(sheetName);
 
-    // 010-1234-1234 형식
-    private String convertPhone(String phone) {
-        String top = phone.substring(0, 3);
-        String mid = phone.substring(3, 7);
-        String bottom = phone.substring(7, 11);
-        return top + "-" + mid + "-" + bottom;
+            // 데이터 세팅
+            setValue(sheet, "C4", org.getOrgName()); // 수신
+
+            StringBuilder htmlContent = new StringBuilder("<table border=\"1\">");
+            Iterator<Row> rowIterator = sheet.iterator();
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+                Iterator<Cell> cellIterator = row.iterator();
+
+                htmlContent.append("<tr>");
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    String cellValue = getCellValueAsString(cell);
+                    htmlContent.append("<td>").append(cellValue).append("</td>");
+                }
+                htmlContent.append("</tr>");
+            }
+
+            htmlContent.append("</table>");
+            workbook.close();
+
+            return htmlContent.toString();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+    private String getCellValueAsString(Cell cell) {
+        String cellValue = "";
+        switch (cell.getCellType()) {
+            case STRING:
+                cellValue = cell.getStringCellValue();
+                break;
+            case NUMERIC:
+                cellValue = String.valueOf(cell.getNumericCellValue());
+                break;
+            case BOOLEAN:
+                cellValue = String.valueOf(cell.getBooleanCellValue());
+                break;
+            default:
+                break;
+        }
+        return cellValue;
     }
 }
+
+
+
 

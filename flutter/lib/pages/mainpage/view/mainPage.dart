@@ -19,6 +19,11 @@ class MainPage extends StatelessWidget {
       "경제활동",
       "환경보전",
       "권익신장",
+      "보건복지",
+      "국제교류협력",
+      "시민사회구축",
+      "종교",
+      "기타",
     ];
     List<String> orgImageList1 = [
       "images/main/1.png",
@@ -27,16 +32,6 @@ class MainPage extends StatelessWidget {
       "images/main/4.png",
       "images/main/5.png",
       "images/main/6.png",
-    ];
-
-    List<String> orgTypeList2 = [
-      "보건복지",
-      "국제교류협력",
-      "시민사회구축",
-      "종교",
-      "기타",
-    ];
-    List<String> orgImageList2 = [
       "images/main/7.png",
       "images/main/8.png",
       "images/main/9.png",
@@ -52,7 +47,7 @@ class MainPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: height * 0.03,
+              height: height * 0.05,
             ),
             Container(
               alignment: Alignment.topLeft,
@@ -68,7 +63,7 @@ class MainPage extends StatelessWidget {
             // 위쪽 그리드뷰
             Container(
               margin: EdgeInsets.all(7),
-              height: height * 0.16, // 절반의 높이
+              height: height * 0.2, // Card의 높이 늘림
               child: CarouselSlider(
                 items: [
                   for (var idx = 0; idx < orgTypeList1.length; idx++)
@@ -80,17 +75,21 @@ class MainPage extends StatelessWidget {
                               .fetchApi(orgTypeList1[idx]);
                         },
                         child: Card(
+                          margin: EdgeInsets.all(7),
                           child: Column(
                             children: [
                               SizedBox(
-                                height: height * 0.1,
+                                height: height * 0.13,// 이미지 높이 늘림
+                                width: width * 0.4,// 이미지 높이 늘림
                                 child: Image.asset(orgImageList1[idx]),
                               ),
                               SizedBox(
-                                height: height * 0.03,
+                                height: height * 0.04,
                                 child: FittedBox(
                                   fit: BoxFit.fill,
-                                  child: Text(orgTypeList1[idx]),
+                                  child: Text(orgTypeList1[idx],
+                                    style: TextStyle(fontSize: 14),//text크기 조절
+                                  ),
                                 ),
                               ),
                             ],
@@ -100,58 +99,17 @@ class MainPage extends StatelessWidget {
                     ),
                 ],
                 options: CarouselOptions(
-                  height: height * 0.33,
-                  autoPlay: false, // 자동 플레이 비활성화
-                  enlargeCenterPage: false,//가운데 이미지만 크게 보이는 캐러셀,, 비활성화
-                  viewportFraction: 0.24, //컨테이너 이미지 보이는 정도
+                  height: height * 0.5,
+                  autoPlay: false,
+                  enlargeCenterPage: false,
+                  viewportFraction: 0.23,
                 ),
               ),
             ),
             // 아래쪽 그리드뷰
-            Container(
-              // 국제구제, 자산
-              margin: EdgeInsets.all(7),
-              height: height * 0.16, // 절반의 높이
-              child: CarouselSlider(
-                items: [
-                  for (var idx = 0; idx < orgTypeList2.length; idx++)
-                    Container(
-                      child: InkWell(
-                        onTap: () {
-                          context.push("/Recommend", extra: orgTypeList2[idx]);
-                          Provider.of<RecommendMoreProvider>(context, listen: false)
-                              .fetchApi(orgTypeList2[idx]);
-                        },
-                        child: Card(
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: height * 0.1,
-                                child: Image.asset(orgImageList2[idx]),
-                              ),
-                              SizedBox(
-                                height: height * 0.03,
-                                child: FittedBox(
-                                  fit: BoxFit.fill,
-                                  child: Text(orgTypeList2[idx]),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-                options: CarouselOptions(
-                  height: height * 0.33,
-                  autoPlay: false, // 자동 플레이 비활성화
-                  enlargeCenterPage: false,//가운데 이미지만 크게 보이는 캐러셀,, 비활성화
-                  viewportFraction: 0.23,//컨테이너 이미지 보이는 정도
-                ),
-              ),
-            ),
+
             SizedBox(
-              height: height * 0.02, // 조절하고 싶은 간격 값 설정
+              height: height * 0.05,
             ),
             Container(
               alignment: Alignment.topLeft,
@@ -160,7 +118,7 @@ class MainPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "이런 기관은 어떠세요?",
+                    "이런 기관은 어떠세요",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -187,10 +145,10 @@ class MainPage extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: provider.randomOrgList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, // 3개의 행에 4개의 아이템 표시
-                    childAspectRatio: 1 / 1.4, // item 의 가로 1, 세로 2 의 비율
-                    mainAxisSpacing: 5, // 수평 Padding
-                    crossAxisSpacing: 5, // 수직 Padding
+                    crossAxisCount: 3,
+                    childAspectRatio: 1 / 1.4,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
                   ),
                   itemBuilder: (context, idx) {
                     return OrgBox(
@@ -205,16 +163,15 @@ class MainPage extends StatelessWidget {
               );
             }),
             SizedBox(
-              height: height * 0.00, // 조절하고 싶은 간격 값 설정
+              height: height * 0.00,
             ),
             CarouselSlider(
               items: [
                 Image.asset('images/main/b.jpg'),
-                // Add more images here
               ],
               options: CarouselOptions(
                 height: height * 0.4,
-                autoPlay: true, // 자동 플레이 활성화
+                autoPlay: true,
                 enlargeCenterPage: true,
               ),
             ),

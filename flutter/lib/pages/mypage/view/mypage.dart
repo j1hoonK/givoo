@@ -10,7 +10,7 @@ import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
+void main() { runApp(MyPage());}
 class MyPage extends StatelessWidget {
   const MyPage({super.key});
 

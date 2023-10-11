@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 
-
+void main() { runApp(MyPageTerms());}
 class MyPageTerms extends StatefulWidget {
   const MyPageTerms({Key? key}) : super(key: key);
 
@@ -82,26 +83,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            setState(() {
-              _selectedItemIndex = -1;
-            });
-          },
-          icon: Icon(Icons.arrow_back_ios_new),
-          color: Colors.black,
-        ),
+        centerTitle: true, // 타이틀 중앙 정렬
+        elevation: 0.0, // 앱바 하단 그림자 없애기
+        title: Image.asset('images/login/logo.png',width: MediaQuery.of(context).size.width * 0.3),
         backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          '이용약관',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 23,
-          ),
-        ),
-        centerTitle: true,
+        leading: IconButton(onPressed: (){context.pop();}, icon: Icon(Icons.arrow_back, color: Colors.black,)),
+
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -111,7 +98,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20),
               const Center(
                 child: Text(
-                  '기부어때 이용약관',
+                  '기부어때 이용약관 및 개인정보처리방침',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -128,8 +115,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
-
+              const SizedBox(height: 15),
+              const Center(
+                child: Text(
+                  '-이용약관-',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+             
 
               title('  제1장 총 칙', size: 15),
               const SizedBox(height: 10),
@@ -257,6 +254,27 @@ class _HomePageState extends State<HomePage> {
 
               const SizedBox(height: 15),
 
+              const SizedBox(height: 15),
+              const Center(
+                child: Text(
+                  '-개인정보처리방침-',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Center(
+                child: Text(
+                  '업데이트 날짜: $_updateDate',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+//여기에 개인정보처리 방침
             ],
           ),
         ),

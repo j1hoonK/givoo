@@ -48,6 +48,9 @@
                     <td>${donation.isRegulation}</td>
                     <td>${donation.dntCommentRegulation}</td>
                     <td>${donation.dntType}</td>
+                    <td><a href="/auth/excel/${organization.get().orgId}/${donation.dntId}">
+                        <img src="\images\excel.png" width="50" height="50" alt="Excel Icon"/>
+                    </a></td>
                 </tr>
             </c:forEach>
         </table>

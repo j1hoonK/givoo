@@ -37,7 +37,7 @@ public class ImageUploadController {
     public String uploadFile(@PathVariable("id") Long id,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
 
         imageUploadService.saveFile(file,id);
-        
+
         return "redirect:/";
     }
     @GetMapping("/imageupload/{id}")
@@ -53,7 +53,7 @@ public class ImageUploadController {
     public ResponseEntity<Resource> serveImage(@PathVariable String imageName) {
         try {
             // 이미지 디렉토리에서 이미지 파일을 로드
-            Path imagePath = Paths.get(imageUploadDirectory).resolve(imageName+".png");
+            Path imagePath = Paths.get(imageUploadDirectory).resolve(imageName);
             Resource resource = new UrlResource(imagePath.toUri());
 
             if (resource.exists() && resource.isReadable()) {

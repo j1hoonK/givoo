@@ -1,20 +1,26 @@
 package com.givoo.service;
 
-import lombok.RequiredArgsConstructor;
+import com.givoo.entity.OrgImage;
+import com.givoo.repository.OrgImageRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
-@RequiredArgsConstructor
+
 @Service
 public class ImageUploadService {
+    private final OrgImageRepository orgImageRepository;
+
     @Value("${file.dir}")
     private String fileDir;
 
-    public Long saveFile(MultipartFile files) throws IOException {
+    public ImageUploadService(OrgImageRepository orgImageRepository) {
+        this.orgImageRepository = orgImageRepository;
+    }
+
+    public Long saveFile(MultipartFile files,Long id) throws IOException {
         if (files.isEmpty()) {
             System.out.println("@@@실패@@@@@");
             return null;
@@ -36,8 +42,14 @@ public class ImageUploadService {
         String savedPath = fileDir + savedName;
 
         // 실제로 로컬에 uuid를 파일명으로 저장
-        files.transferTo(new File(savedPath));
-
+        OrgImage orgImage =new OrgImage();
+        orgImage.setImageType("0");
+        orgImage.setExtension(extension);
+        orgImage.setOrgId(id);
+        orgImage.setSaveName(savedName);
+        orgImage.setOriginName(origName);
+        orgImage.setSavePath(savedPath);
+        orgImageRepository.save(orgImage);
         return null;
     }
 }

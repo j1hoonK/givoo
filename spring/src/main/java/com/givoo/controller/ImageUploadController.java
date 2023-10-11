@@ -1,7 +1,8 @@
 package com.givoo.controller;
 
+import com.givoo.entity.OrgImage;
+import com.givoo.repository.OrgImageRepository;
 import com.givoo.service.ImageUploadService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -10,37 +11,44 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 
 @Controller
+@RequestMapping("auth/org")
 public class ImageUploadController {
+    private final OrgImageRepository orgImageRepository;
 
     private final ImageUploadService imageUploadService;
 
     @Autowired
-    public ImageUploadController(ImageUploadService imageUploadService, ImageUploadService imageUploadService1) {
-        this.imageUploadService = imageUploadService1;
+    public ImageUploadController(OrgImageRepository orgImageRepository, ImageUploadService imageUploadService) {
+        this.orgImageRepository = orgImageRepository;
+        this.imageUploadService = imageUploadService;
     }
 
-    @PostMapping("/upload")
-    public String uploadFile(@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
-        imageUploadService.saveFile(file);
+    @PostMapping("/upload/{id}")
+    public String uploadFile(@PathVariable("id") Long id,@RequestParam(value = "file",required = false) MultipartFile file) throws IOException {
 
+        imageUploadService.saveFile(file,id);
+        
         return "redirect:/";
     }
-    @GetMapping("/imageupload")
-    public String imageupload(){
+    @GetMapping("/imageupload/{id}")
+    public String imageupload(@PathVariable("id")Long id, Model model){
+        model.addAttribute("orgId",id);
         return "image_upload";
     }
     @Value("${file.dir}") // 이미지 업로드 디렉토리 경로
     private String imageUploadDirectory;
+
+
     @GetMapping("/images/{imageName}")
     public ResponseEntity<Resource> serveImage(@PathVariable String imageName) {
         try {

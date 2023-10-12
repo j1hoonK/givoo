@@ -27,19 +27,19 @@ public class Organization {
     @Column(name = "org_ownnumber")
     private String orgOwnnumber;
 
-    @Column(name = "org_number", nullable = false)
+    @Column(name = "org_number")
     private Long orgNumber;
 
     @Column(name = "org_address", nullable = false)
     private String orgAddress;
 
     @Column(name = "zip")
-    private Long zip;
+    private String zip;
 
-    @Column(name = "location_lat", nullable = false)
+    @Column(name = "location_lat")
     private Double locationLat;
 
-    @Column(name = "location_long", nullable = false)
+    @Column(name = "location_long")
     private Double locationLong;
 
     @Column(name = "org_tell", nullable = false)

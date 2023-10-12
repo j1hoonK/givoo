@@ -31,7 +31,7 @@ public class RequestEdit {
     private String orgAddress;
 
     @Column(name = "zip")
-    private Long zip;
+    private String zip;
 
     @Column(name = "location_lat", nullable = false)
     private Double locationLat;

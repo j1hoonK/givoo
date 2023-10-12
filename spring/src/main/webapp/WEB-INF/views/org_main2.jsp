@@ -18,7 +18,7 @@
   <div style="display: flex; flex: 1; flex-direction: column;">
     <div style="display: flex; align-items: center;">
       <h2>공지사항</h2>
-      <a style="margin-left: auto;" href="/auth/org/notice/${organization.get().orgId}/1">
+      <a style="margin-left: auto;" href="/auth/org/notice/${orgId}/1">
         <h4 style="color: gray;">전체보기</h4>
       </a>
     </div>
@@ -65,7 +65,7 @@
               <td>${donation.dntAmount}</td>
               <td>${donation.userId}</td>
               <td><a href="/auth/excel/${organization.get().orgId}/${donation.dntId}">
-                <img src="\images\excel.png"/>
+                <img src="\images\excel.png" width="50" height="50" alt="Excel Icon"/>
               </a></td>
             </tr>
           </c:forEach>

@@ -19,8 +19,20 @@
         <div><input type="text" id="address_kakao" name="address" value="${org.get().orgAddress}" readonly /></div>
     </div>
     <div>
+        <label>우편번호</label>
+        <input type="text" id="zip" placeholder="우편번호" value="${org.get().zip}" readonly>
+    </div>
+    <div>
         <label for="orgOwner">대표 이름</label>
         <input type="text" id="orgOwner" name="orgOwner" value=${org.get().orgOwner} required>
+    </div>
+    <div>
+        <label for="orgOwnnumber">고유번호</label>
+        <input type="text" id="orgOwnnumber" name="orgOwnnumber" value=${org.get().orgOwnnumber}>
+    </div>
+    <div>
+        <label for="startedUp">설립일</label>
+        <input type="date" id="startedUp" name="startedUp" value="" onfocus="setInitialDate()" required>
     </div>
     <div>
         <label for="orgType">기관 유형:</label>
@@ -139,13 +151,23 @@
             new daum.Postcode({
                 oncomplete: function(data) { //선택시 입력값 세팅
                     document.getElementById("address_kakao").value = data.address; // 주소 넣기
-                    console.log(data.address)
-                    console.log(data)
-                    console.log(data.y)
+                    document.getElementById("zip").value = data.zonecode;
                 }
             }).open();
         });
     }
+
+
+    var dateStr = '${org.get().startedUp}';
+    // 날짜 문자열을 Date 객체로 파싱
+    dateStr = dateStr.replace('년', '-').replace('월', '-').replace('일', '');
+
+    // 변환된 날짜 문자열을 Date 객체로 파싱
+    var initialDate = new Date(dateStr);
+
+    // 날짜를 입력 필드에 설정
+    var input = document.getElementById("startedUp"); //
+    input.valueAsDate = initialDate;
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>

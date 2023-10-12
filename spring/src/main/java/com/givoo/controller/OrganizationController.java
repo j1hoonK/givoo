@@ -3,6 +3,7 @@ package com.givoo.controller;
 import com.givoo.constant.Role;
 import com.givoo.dto.organization.DetailOrgDTO;
 import com.givoo.entity.Member;
+import com.givoo.entity.OrgImage;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
 import com.givoo.service.DonationService;
@@ -59,7 +60,6 @@ public class OrganizationController {
         return organizationService.randomOrg();
 
     }
-
 
 
 }

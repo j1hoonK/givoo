@@ -65,6 +65,10 @@ public class WebOrgController {
     }
     @PostMapping("/edit/{id}")
     public String editOrg(@PathVariable("id") Long id,
+                          @RequestParam("address") String address,
+                          @RequestParam("orgOwnnumber") String orgOwnnumber,
+                          @RequestParam("startedUp") String startedUp,
+                          @RequestParam("bankName") String bankName,
                           @RequestParam("orgName") String orgName,
                           @RequestParam("orgOwner") String orgOwner,
                           @RequestParam("orgType") String orgType,
@@ -72,7 +76,8 @@ public class WebOrgController {
                           @RequestParam("orgInfo") String orgInfo,
                           @RequestParam("homepage") String homepage,
                           @RequestParam("accountNumber") String accountNumber,
-                          @RequestParam("accountHolder") String accountHolder){
+                          @RequestParam("accountHolder") String accountHolder,
+                          @RequestParam("zip") String zip){
         Optional<Organization> orgOptional = organizationService.findById(id);
         orgOptional.ifPresent(org -> {
             // 값이 있는 경우에만 이 블록이 실행됨
@@ -85,35 +90,23 @@ public class WebOrgController {
             org2.setHompage(homepage);
             org2.setAccountNumber(accountNumber);
             org2.setAccountHolder(accountHolder);
-            //organizationService.save(org2);
-            // 이제 'org' 변수에 Organization 객체가 들어있습니다.
-            // 여기서 'org'를 사용할 수 있습니다.
             RequestEdit editOrg = new RequestEdit();
             editOrg.setHompage(homepage);
             editOrg.setOrgInfo(orgInfo);
             editOrg.setAccountHolder(accountHolder);
             editOrg.setOrgName(orgName);
-            //editOrg.setOrgAddress(org2.getOrgAddress());
             editOrg.setAccountNumber(accountNumber);
-            //editOrg.setBankName(org2.getBankName());
-            // editOrg.setOrgNotice(org2.getOrgNotice());
-            // editOrg.setOrgNumber(org2.getOrgNumber());
             editOrg.setOrgOwner(orgOwner);
             editOrg.setOrgId(id);
             editOrg.setOrgTell(orgTell);
             editOrg.setOrgType(orgType);
-            editOrg.setLocationLat(org2.getLocationLat());
-            editOrg.setLocationLong(org2.getLocationLong());
-            editOrg.setOrgAddress(org2.getOrgAddress());
-            editOrg.setStartedUp(org2.getStartedUp());
+            editOrg.setOrgAddress(address);
+            editOrg.setStartedUp(startedUp);
             editOrg.setTotalFavorite(org2.getTotalFavorite());
-            editOrg.setOrgNumber(org2.getOrgNumber());
             editOrg.setUsername(org2.getUsername());
-            editOrg.setImagePath(org2.getImagePath());
-            editOrg.setOrgNotice(org2.getOrgNotice());
-            editOrg.setOrgOwnnumber(org2.getOrgOwnnumber());
-            editOrg.setZip(org2.getZip());
-            editOrg.setBankName(org2.getBankName());
+            editOrg.setOrgOwnnumber(orgOwnnumber);
+            editOrg.setZip(zip);
+            editOrg.setBankName(bankName);
             System.out.println("editOrg:" + editOrg);
             requestEditService.save(editOrg);
         });

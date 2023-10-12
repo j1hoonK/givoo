@@ -173,6 +173,10 @@ public class WebAdminController {
             org2.setOrgOwner(requestEdit.get().getOrgOwner());
             org2.setOrgTell(requestEdit.get().getOrgTell());
             org2.setOrgType(requestEdit.get().getOrgType());
+            org2.setBankName(requestEdit.get().getBankName());
+            org2.setOrgAddress(requestEdit.get().getOrgAddress());
+            org2.setStartedUp(requestEdit.get().getStartedUp());
+            org2.setZip(requestEdit.get().getZip());
             organizationService.save(org2);
             requestEditService.deleteById(id);
         });

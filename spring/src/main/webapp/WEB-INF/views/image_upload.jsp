@@ -2,11 +2,13 @@
 <html>
 <head>
     <title>imageUpload</title>
+    <link rel="stylesheet" href="\css\org_main2.css">
 </head>
 <body>
-<form method="post" action="/upload" enctype="multipart/form-data">
+<%@ include file="org_header.jsp" %>
+<form method="post" action="/auth/org/upload/${orgId}" enctype="multipart/form-data">
     <input multiple type="file" name="file">
-    <button>submit</button>
+    <button>등록하기</button>
 </form>
 </body>
 </html>

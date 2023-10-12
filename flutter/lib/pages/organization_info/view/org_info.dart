@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart'; // 캐러셀 슬라이더 패키지 추가
 import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/config/palette.dart';
@@ -9,8 +10,9 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class OrgInfo extends StatelessWidget {
-  const OrgInfo({super.key,required this.orgId});
+  const OrgInfo({Key? key, required this.orgId}) : super(key: key);
   final orgId;
+
   @override
   Widget build(BuildContext context) {
     var mapp = Provider.of<OrganizationProvider>(context);
@@ -18,107 +20,108 @@ class OrgInfo extends StatelessWidget {
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     return Scaffold(
       appBar: BaseAppbar(
-        //  title: "상세정보",
+        // title: "상세정보",
       ),
       bottomNavigationBar: Container(
         width: double.infinity,
         height: mHeight * 4.3,
         color: Palette.mainColor,
         child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Palette.mainColor),
-            onPressed: () {
-              context.push("/pay/$orgId");
-            },
-            child: Text(
-              "후원하기",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            )),
+          style: ElevatedButton.styleFrom(backgroundColor: Palette.mainColor),
+          onPressed: () {
+            context.go('/pay/$orgId');
+          },
+          child: Text(
+            "후원하기",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Consumer<OrganizationProvider>(
-            builder: (context, provider, child) {
-              return Column(
-                children: [
-                  SizedBox(height: MediaQuery.of(context).padding.top),
-                  Stack(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: mHeight * 28,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('images/org/whb.png'), // 이미지 파일 경로
-                            fit: BoxFit.fill,
+          builder: (context, provider, child) {
+            return Column(
+              children: [
+                SizedBox(height: MediaQuery.of(context).padding.top),
+                Stack(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: mHeight * 28,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/org/whb.png'), // 이미지 파일 경로
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 0,
+                      bottom: 0,
+                      child: Container(
+                        width: mSize * 28,
+                        padding: EdgeInsets.all(mSize * 2.1),
+                        color: Colors.black12.withOpacity(0), // 투명도 설정
+                        child: Text(
+                          '${provider.orgInfodata['orgName']}',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      Positioned(
-                        left: 0,
-                        bottom: 0,
-                        child: Container(
-                          width: mSize*28,
-                          padding: EdgeInsets.all(mSize * 2.1),
-                          color: Colors.black12.withOpacity(0), // 투명도 설정
-                          child: Text(
-                            '${provider.orgInfodata['orgName']}',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            0, 0, mSize * 2.5, mSize * 1),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              icon: Icon(
+                                Icons.phone,
+                                color: Colors.black,
+                                size: 24.0,
+                              ),
+                              onPressed: () {
+                                // 아이콘을 누를 때의 동작 (예: 언어 설정)
+                              },
                             ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, mSize * 2.5, mSize * 1),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.phone,
-                                  color: Colors.black,
-                                  size: 24.0,
-                                ),
-                                onPressed: () {
-                                  // 아이콘을 누를 때의 동작 (예: 언어 설정)
-                                },
+                            GestureDetector(
+                              onTap: () {
+                                print("homepage: ${provider.orgInfodata['homepage']}");
+                                launchURL(provider.orgInfodata['homepage']);
+                              },
+                              child: Image.asset(
+                                'images/group/globe.png',
+                                width: 24.0,
+                                height: 24.0,
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  print("homepage: ${provider.orgInfodata['homepage']}");
-                                  launchURL(provider.orgInfodata['homepage']);
-                                },
-                                child: Image.asset(
-                                  'images/group/globe.png',
-                                  width: 24.0,
-                                  height: 24.0,
-                                ),
+                            ),
+                            SizedBox(width: 10.0),
+                            GestureDetector(
+                              onTap: () {
+                                if (provider.orgInfodata['favId'] == 0) {
+                                  provider.likeIsert(orgId, 1);
+                                } else {
+                                  provider.likeToggle(provider.orgInfodata['favId']);
+                                }
+                              },
+                              child: Image.asset(
+                                provider.isFollowSelected == 1
+                                    ? 'images/group/follow_y.png' // 선택된 이미지 파일 경로
+                                    : 'images/group/follow_n.png', // 일반 이미지 파일 경로
+                                width: 24.0,
+                                height: 24.0,
+                                // 이미지 색상 설정 (선택 사항)
                               ),
-                              SizedBox(width: 10.0),
-                              GestureDetector(
-                                onTap: () {
-                                  if(provider.orgInfodata['favId']==0){
-                                    provider.likeIsert(orgId, 1);
-                                  }else{
-                                    provider.likeToggle(provider.orgInfodata['favId']);
-                                  }
-                                },
-                                child: Image.asset(
-                                  provider.isFollowSelected==1
-                                      ? 'images/group/follow_y.png' // 선택된 이미지 파일 경로
-                                      : 'images/group/follow_n.png', // 일반 이미지 파일 경로
-                                  width: 24.0,
-                                  height: 24.0,
-                                  // 이미지 색상 설정 (선택 사항)
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -203,21 +206,27 @@ class OrgInfo extends StatelessWidget {
                               SizedBox(
                                 height: mHeight * 1,
                               ),
-                            ])),
+                            );
+                          }).toList(),
+                        )
+                            : CircularProgressIndicator(),
+                        provider.orgInfodata.isNotEmpty ? Container(
+                          width: double.infinity,
+                          height: mHeight * 25,
+                          color: Colors.grey,
+                          child: NowGoogleMapView(latitude:mapp.orgInfodata['locationLat'],//provider.orgInfodata['locationLat'],
+                              longitude: mapp.orgInfodata['locationLong'],//provider.orgInfodata['locationLong'],
+                              orgName: "${provider.orgInfodata['orgName']}"),
+                        ) : CircularProgressIndicator(),
+                      ],
+                    ),
                   ),
-                  provider.orgInfodata.isNotEmpty ? Container(
-                    width: double.infinity,
-                    height: mHeight * 25,
-                    color: Colors.grey,
-                    child:NowGoogleMapView(latitude:mapp.orgInfodata['locationLat'],//provider.orgInfodata['locationLat'],
-                        longitude: mapp.orgInfodata['locationLong'],//provider.orgInfodata['locationLong'],
-                        orgName: "${provider.orgInfodata['orgName']}"),
-                  ) : CircularProgressIndicator(),
-                ],
-              );
-            }
+                ),
+              ],
+            );
+          },
         ),
       ),
-    );;
+    );
   }
 }

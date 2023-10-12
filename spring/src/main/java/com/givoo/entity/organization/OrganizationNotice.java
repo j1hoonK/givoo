@@ -28,4 +28,6 @@ public class OrganizationNotice {
 
     @Column(name = "notice_date", nullable = false)
     private Timestamp noticeDate;
+    @Column(name ="notice_flag", nullable = false)
+    private Boolean noticeFlag;
 }

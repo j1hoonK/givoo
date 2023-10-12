@@ -1,7 +1,13 @@
 package com.givoo.controller;
 
+import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
+import com.givoo.entity.organization.OrganizationNotice;
+import com.givoo.entity.request.RequestEdit;
+import com.givoo.service.DonationService;
+import com.givoo.service.OrganizationNoticeService;
 import com.givoo.service.OrganizationService;
+import com.givoo.service.RequestEditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,41 +19,20 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-
+@RequestMapping("/auth/org")
 public class WebOrgController {
-
-    @Autowired
     private final OrganizationService organizationService;
-
-    public WebOrgController(OrganizationService organizationService) {
+    private final DonationService donationService;
+    private final OrganizationNoticeService organizationNoticeService;
+    private final RequestEditService requestEditService;
+    @Autowired
+    public WebOrgController(OrganizationService organizationService, DonationService donationService, OrganizationNoticeService organizationNoticeService, RequestEditService requestEditService) {
         this.organizationService = organizationService;
+        this.donationService = donationService;
+        this.organizationNoticeService = organizationNoticeService;
+        this.requestEditService = requestEditService;
     }
-
-
-    @GetMapping("/org/{pages}")
-    public String org(@PathVariable("pages") int pages, Model model) {
-        List<Organization> orgList = organizationService.findAll();
-        int pageSize = 15;
-        int totalOrgs = orgList.size();
-        int totalPages = (int) Math.ceil((double) totalOrgs / pageSize);
-        // 페이지 번호를 받아올 수 있는 파라미터 (예: ?page=2)
-        int currentPage = 1; // 기본 페이지 번호
-        if (pages < totalOrgs) {
-            currentPage = pages;
-        }
-
-        int startIdx = (currentPage - 1) * pageSize;
-        int endIdx = Math.min(currentPage * pageSize, totalOrgs);
-
-        // 현재 페이지에 해당하는 유저 리스트만 추출
-        List<Organization> currentPageOrgs = orgList.subList(startIdx, endIdx);
-
-        model.addAttribute("totalPages", totalPages); // 전체 페이지 수를 모델에 추가
-        model.addAttribute("currentPage", currentPage); // 현재 페이지 번호를 모델에 추가
-        model.addAttribute("organizarion", currentPageOrgs); // 현재 페이지의 유저 리스트를 모델에 추가
-        return "organization";
-    }
-    @GetMapping("/org/{id}/edit")
+    @GetMapping("/edit/{id}")
     public String orgEdit(@PathVariable("id") Long id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -59,9 +44,31 @@ public class WebOrgController {
         model.addAttribute("org", organization);
             return "org_edit";
     }
-
-    @PostMapping("org/edit/{orgid}")
-    public String editOrg(@PathVariable("orgid") Long orgId,
+    @GetMapping("/{id}")
+    public String viewOrganization(@PathVariable("id") Long id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Optional<Organization> organization = organizationService.findById(id);
+        if (organization == null) {
+            // 기관을 찾을 수 없음. 에러 페이지 또는 리다이렉션 처리
+            return "error";
+        }
+        if(username.equals(organization.get().getUsername())) {
+            List<Donation> donations = donationService.findByOrgId(id);
+            List<OrganizationNotice> orgNotice = organizationNoticeService.findByOrgId(id);
+            model.addAttribute("organization", organization);
+            model.addAttribute("donations", donations);
+            model.addAttribute("orgNotice",orgNotice);
+            return "org_main2";
+        }
+        return "error";
+    }
+    @PostMapping("/edit/{id}")
+    public String editOrg(@PathVariable("id") Long id,
+                          @RequestParam("address") String address,
+                          @RequestParam("orgOwnnumber") String orgOwnnumber,
+                          @RequestParam("startedUp") String startedUp,
+                          @RequestParam("bankName") String bankName,
                           @RequestParam("orgName") String orgName,
                           @RequestParam("orgOwner") String orgOwner,
                           @RequestParam("orgType") String orgType,
@@ -69,9 +76,9 @@ public class WebOrgController {
                           @RequestParam("orgInfo") String orgInfo,
                           @RequestParam("homepage") String homepage,
                           @RequestParam("accountNumber") String accountNumber,
-                          @RequestParam("accountHolder") String accountHolder){
-
-        Optional<Organization> orgOptional = organizationService.findById(orgId);
+                          @RequestParam("accountHolder") String accountHolder,
+                          @RequestParam("zip") String zip){
+        Optional<Organization> orgOptional = organizationService.findById(id);
         orgOptional.ifPresent(org -> {
             // 값이 있는 경우에만 이 블록이 실행됨
             Organization org2 = orgOptional.get();
@@ -83,13 +90,36 @@ public class WebOrgController {
             org2.setHompage(homepage);
             org2.setAccountNumber(accountNumber);
             org2.setAccountHolder(accountHolder);
-
-            organizationService.save(org2);
-            System.out.println("zzzzzzsdf");
-            // 이제 'org' 변수에 Organization 객체가 들어있습니다.
-            // 여기서 'org'를 사용할 수 있습니다.
+            RequestEdit editOrg = new RequestEdit();
+            editOrg.setHompage(homepage);
+            editOrg.setOrgInfo(orgInfo);
+            editOrg.setAccountHolder(accountHolder);
+            editOrg.setOrgName(orgName);
+            editOrg.setAccountNumber(accountNumber);
+            editOrg.setOrgOwner(orgOwner);
+            editOrg.setOrgId(id);
+            editOrg.setOrgTell(orgTell);
+            editOrg.setOrgType(orgType);
+            editOrg.setOrgAddress(address);
+            editOrg.setStartedUp(startedUp);
+            editOrg.setTotalFavorite(org2.getTotalFavorite());
+            editOrg.setUsername(org2.getUsername());
+            editOrg.setOrgOwnnumber(orgOwnnumber);
+            editOrg.setZip(zip);
+            editOrg.setBankName(bankName);
+            System.out.println("editOrg:" + editOrg);
+            requestEditService.save(editOrg);
         });
-        return "redirect:/org/1";
-    }
+        return "org_main2";
+        }
 
+
+    @GetMapping("/dnt/{id}")
+    public String dntList(@PathVariable ("id") Long id) {
+        return "org_dntlist";
+    }
+    @GetMapping("/notice/{id}")
+    public String noticeList(@PathVariable ("id") Long id) {
+        return "org_noticelist";
+    }
 }

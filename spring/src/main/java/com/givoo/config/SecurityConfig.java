@@ -41,15 +41,19 @@ public class SecurityConfig {
         http.securityContext(securityContext -> securityContext.requireExplicitSave(false))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        (auth) ->auth.requestMatchers(mvc.pattern("/"),
-                                        mvc.pattern("/members/**"),
+                        (auth) ->auth.requestMatchers(mvc.pattern("/members/**"),
                                         mvc.pattern("/item/**"),
-                                        mvc.pattern("/joinCheck/**"),
-                                        mvc.pattern("/join/org"),
-                                        mvc.pattern( "/images/**")).permitAll()
-                                .requestMatchers(mvc.pattern("/user/**"),
+                                        mvc.pattern("/mypage/**"),
+                                        mvc.pattern("/mypage/**"),
+                                        mvc.pattern("/login/**"),
                                         mvc.pattern("/org/**"),
-                                        mvc.pattern("/wdonation/**")).hasAnyRole("ADMIN")
+                                        mvc.pattern("/info/**"),
+                                        mvc.pattern("/search/**"),
+                                        mvc.pattern("/mainpage/**"),
+                                        mvc.pattern("/mainpage/**"),
+                                        mvc.pattern( "/images/**")).permitAll()
+                                .requestMatchers(mvc.pattern("/auth/**")).hasAnyRole("USER")
+                                .requestMatchers(mvc.pattern("/admin/**")).hasAnyRole("ADMIN")
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 )
                 .formLogin((formLogin) ->

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,19 +8,7 @@
   <link rel="stylesheet" href="\css\org_main2.css">
 </head>
 <body>
-<header>
-  <nav id="nav2">
-    <h1>${organization.get().orgName}</h1>
-    <ul>
-      <li><a href="#">기부내역</a></li>
-      <li><a href="#">공지사항</a></li>
-      <li><a href="#">기관정보</a></li>
-      <li><a href="#">내 정보</a></li>
-      <li><a href="#">로그아웃</a></li>
-    </ul>
-  </nav>
-</header>
-
+<%@ include file="org_header.jsp" %>
 <section id="imageSection">
   <!-- 이미지 슬라이드 쇼 코드 (JavaScript 사용) -->
   <!-- imageUrl 변수를 사용하여 이미지를 동적으로 로드 -->
@@ -29,18 +18,18 @@
   <div style="display: flex; flex: 1; flex-direction: column;">
     <div style="display: flex; align-items: center;">
       <h2>공지사항</h2>
-      <a style="margin-left: auto;" href="/noticePage">
+      <a style="margin-left: auto;" href="/auth/org/notice/${orgId}/1">
         <h4 style="color: gray;">전체보기</h4>
       </a>
     </div>
     <c:choose>
-      <c:when test="${empty donations}">
-        <p>공지사항이 없습니다.</p>
+      <c:when test="${empty orgNotice}">
+        <p style="text-align: center;">공지사항이 없습니다.</p>
       </c:when>
       <c:otherwise>
         <ul>
-          <c:forEach var="donation" items="${donations}" varStatus="status">
-            <li>${donation.date}</li>
+          <c:forEach var="notice" items="${orgNotice}" varStatus="status">
+            <li>${notice.subject}</li>
             <!-- 공지사항 내용 뿌려주기 -->
           </c:forEach>
         </ul>
@@ -53,35 +42,35 @@
   <div style="display: flex; flex: 1; flex-direction: column;">
     <div style="display: flex; align-items: center;">
       <h2>기부 내역</h2>
-      <a style="margin-left: auto;" href="/donationPage">
+      <a style="margin-left: auto;" href="/auth/org/dnt/${organization.get().orgId}/1">
         <h4 style="color: gray;">전체보기</h4>
       </a>
     </div>
     <c:choose>
-      <c:if test="${empty donations}">
+      <c:when test="${empty donations}">
         <p style="text-align: center;">기부내역이 없습니다.</p>
-      </c:if>
-      <c:if test="${not empty donations}">
+      </c:when>
+      <c:otherwise>
         <table>
           <!-- 기부 내역 리스트 출력 (최대 5개) -->
-          <thead>
           <tr>
             <th>날짜</th>
             <th>금액</th>
             <th>기부자</th>
+            <th>영수증다운</th>
           </tr>
-          </thead>
-          <tbody>
-          <c:forEach var="donation" items="${donations}" varStatus="status">
+          <c:forEach items="${donations}" var="donation">
             <tr>
-              <td>${donation.date}</td>
-              <td>${donation.amount}</td>
-              <td>${donation.donor}</td>
+              <td>${donation.dntAmount}</td>
+              <td>${donation.dntAmount}</td>
+              <td>${donation.userId}</td>
+              <td><a href="/auth/excel/${organization.get().orgId}/${donation.dntId}">
+                <img src="\images\excel.png" width="50" height="50" alt="Excel Icon"/>
+              </a></td>
             </tr>
           </c:forEach>
-          </tbody>
         </table>
-      </c:if>
+      </c:otherwise>
     </c:choose>
   </div>
 </section>

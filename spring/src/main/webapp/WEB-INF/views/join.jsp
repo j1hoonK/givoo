@@ -9,7 +9,7 @@
 <body>
 <h2>회원 가입</h2>
 
-<form action="/join/org" method="post" enctype="multipart/form-data">
+<form action="members/join/org" method="post" enctype="multipart/form-data">
   <div>
     <label for="username">아이디</label>
     <input type="text" id="username" name="username" required>
@@ -38,8 +38,20 @@
     <div><input type="text" name="address_detail" /></div>
   </div>
   <div>
+    <label>우편번호</label>
+  <input type="text" id="zip" name="zip" placeholder="우편번호" readonly>
+  </div>
+  <div>
     <label for="orgOwner">대표 이름</label>
     <input type="text" id="orgOwner" name="orgOwner" required>
+  </div>
+  <div>
+    <label for="orgOwnnumber">고유번호</label>
+    <input type="text" id="orgOwnnumber" name="orgOwnnumber">
+  </div>
+  <div>
+    <label for="startedUp">설립일</label>
+    <input type="date" id="startedUp" name="startedUp" required>
   </div>
   <div>
     <label for="orgType">기관 유형:</label>
@@ -74,10 +86,6 @@
     </div>
   </div>
   <div>
-    <label for="file">파일 첨부:</label>
-    <input type="file" id="file" name="file">
-  </div>
-  <div>
     <button type="submit" id="join-button">가입하기</button>
   </div>
 </form>
@@ -97,7 +105,7 @@
     var radioLabel = document.createElement("label");
 
     radioInput.type = "radio";
-    radioInput.name = "bank";
+    radioInput.name = "bankName";
     radioInput.value = bankName;
     radioInput.required = true;
     radioInput.id=bankName;
@@ -110,7 +118,7 @@
     bankOptionsDiv.appendChild(radioDiv);
   });
 
-  var orgTypes = ["환경보전", "재난구호", "자선", "시민사회구축", "보건복지", "권익신장", "국제구제", "국제교류협력", "교육문화과학", "기타"];
+  var orgTypes = ["환경보전", "재난구호", "자선", "시민사회구축", "보건복지", "권익신장", "국제구제","종교", "국제교류협력", "교육문화과학", "기타"];
 
   // 라디오 박스 생성
   var orgTypeOptionsDiv = document.querySelector(".org-type-options");
@@ -139,7 +147,7 @@
     var usernameInput = document.getElementById("username");
     var username = usernameInput.value;
     // AJAX 요청을 생성합니다.
-    fetch("/joinCheck/" + username)
+    fetch("/members/joinCheck/" + username)
             .then(function (response) {
               if (!response.ok) {
                 throw new Error("Network response was not ok");
@@ -195,9 +203,7 @@
       new daum.Postcode({
         oncomplete: function(data) { //선택시 입력값 세팅
           document.getElementById("address_kakao").value = data.address; // 주소 넣기
-          console.log(data.address)
-          console.log(data)
-          console.log(data.y)
+          document.getElementById("zip").value = data.zonecode;
           document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
         }
       }).open();

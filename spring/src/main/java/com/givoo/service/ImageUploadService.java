@@ -71,6 +71,10 @@ public class ImageUploadService {
         return orgImageRepository.findAllByOrgId(id);
     }
 
+    public List<OrgImage> findAll() {
+        return orgImageRepository.findAll();
+    }
+
     private void uploadOnS3(final String findName, final File file) {
         // AWS S3 전송 객체 생성
         final TransferManager transferManager = new TransferManager(this.amazonS3Client);

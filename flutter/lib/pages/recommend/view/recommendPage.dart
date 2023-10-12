@@ -13,7 +13,7 @@ class RecommendPage extends StatelessWidget {
       appBar: AppBar(title:Text("$orgType")),   // 저기 타이틀 종교단체 변수로 받아와야합니당
       body: Consumer<RecommendMoreProvider>(
         builder: (context, provider, child) {
-          return provider.orgImageList.isEmpty ?Center(child: CircularProgressIndicator()) :Container(
+          return provider.orgImageMap.isEmpty ?Center(child: CircularProgressIndicator()) :Container(
             margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
             child: Column(
               children: [
@@ -53,8 +53,11 @@ class RecommendPage extends StatelessWidget {
                           OrgBox(
                           orgName: provider.orgList[idx].orgName,
                           orgAddress: provider.orgList[idx].orgAddress,
-                          imagePath: provider.orgImageList[idx] !="" ? provider.orgImageList[idx]:
-                              "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"
+                          imagePath: provider.orgImageMap.containsKey(provider.orgList[idx].orgId)
+                              ?
+                          provider.orgImageMap[provider.orgList[idx].orgId]
+                              :
+                          "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"
                           , orgId: provider.orgList[idx].orgId,
                         );
                       }),

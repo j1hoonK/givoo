@@ -43,7 +43,7 @@ class OrgInfo extends StatelessWidget {
                   SizedBox(height: MediaQuery.of(context).padding.top),
                   Stack(
                     children: [
-                      Container(
+                      provider.imagePath.isEmpty? Container(
                         width: MediaQuery.of(context).size.width,
                         height: mHeight * 28,
                         decoration: BoxDecoration(
@@ -51,6 +51,13 @@ class OrgInfo extends StatelessWidget {
                             image: AssetImage('images/org/whb.png'), // 이미지 파일 경로
                             fit: BoxFit.fill,
                           ),
+                        ),
+                      ):Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: mHeight * 28,
+                        child: Image.network(
+                          provider.imagePath[0], // 원격 이미지 URL
+                          fit: BoxFit.fill, // 이미지의 맞춤 방식 (원하는 대로 변경 가능)
                         ),
                       ),
                       Positioned(

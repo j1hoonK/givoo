@@ -6,10 +6,7 @@ import com.givoo.entity.Member;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
 import com.givoo.entity.organization.OrganizationNotice;
-import com.givoo.service.DonationService;
-import com.givoo.service.MemberService;
-import com.givoo.service.OrganizationNoticeService;
-import com.givoo.service.OrganizationService;
+import com.givoo.service.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +60,7 @@ public class MemberController {
         memberService.saveMember(member);
         return "redirect:/";
     }
-    @GetMapping("/")
+    @GetMapping("")
     public String join(){
         return "join";
     }
@@ -76,7 +75,6 @@ public class MemberController {
 
         return ResponseEntity.ok(response);
     }
-
     @PostMapping("join/org")
     public String orgJoin(
             @RequestParam("username") String username,
@@ -89,15 +87,21 @@ public class MemberController {
             @RequestParam("homepage") String homepage,
             @RequestParam("accountNumber") String accountNumber,
             @RequestParam("accountHolder") String accountHolder,
-            //@RequestParam("bankName") String bankName,
-            //@RequestParam("imagePath") String imagePath,
-            Model model) {
-        Organization org = new Organization();
+            @RequestParam("address") String address,
+            @RequestParam("zip") String zip,
+            @RequestParam("orgOwnnumber") String orgOwnnumber,
+            @RequestParam("startedUp") String startedUp,
+            @RequestParam("bankName") String bankName,
+            Model model) throws IOException {
+        String startUp = startedUp.replace("-", "년 ").replace("-", "월 ") + "일";
+
         Member member = new Member();
         member.setUsername(username);
         member.setPassword(passwordEncoder.encode(password));
         member.setRole(Role.USER);
         memberService.saveMember(member);
+        Organization org = new Organization();
+        org.setUsername(username);
         org.setOrgName(orgName);
         org.setOrgOwner(orgOwner);
         org.setOrgType(orgType);
@@ -106,14 +110,18 @@ public class MemberController {
         org.setHompage(homepage);
         org.setAccountNumber(accountNumber);
         org.setAccountHolder(accountHolder);
-        //   org.setBankName(bankName);
+        org.setOrgAddress(address);
+        org.setZip(zip);
+        org.setOrgOwner(orgOwnnumber);
+        org.setStartedUp(startUp);
+        org.setBankName(bankName);
         // org.setImagePath(imagePath);
 
         //organizationService.save(org);
 
         // 여기에서 회원가입 처리 로직을 구현합니다.
         // 처리 결과에 따라 적절한 응답을 반환하거나 리다이렉트할 수 있습니다.
-        return "redirect:/login"; // 회원가입 성공 시 로그인 페이지로 리다이렉트
+        return "redirect:/members/login"; // 회원가입 성공 시 로그인 페이지로 리다이렉트
     }
 
 }

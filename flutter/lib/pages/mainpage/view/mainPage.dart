@@ -151,10 +151,10 @@ class MainPage extends StatelessWidget {
                     crossAxisSpacing: 5,
                   ),
                   itemBuilder: (context, idx) {
-                    return OrgBox(
+                    return provider.orgImageList.length <= idx ? Center(child: CircularProgressIndicator()) :OrgBox(
                       orgName: provider.randomOrgList[idx].orgName,
                       orgAddress: provider.randomOrgList[idx].orgAddress,
-                      imagePath: provider.randomOrgList[idx].imagePath ??
+                      imagePath: provider.orgImageList[idx]!="" ? provider.orgImageList[idx] :
                           "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png",
                       orgId: provider.randomOrgList[idx].orgId,
                     );

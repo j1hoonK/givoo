@@ -102,9 +102,12 @@ class Search extends StatelessWidget {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext ctx2, int idx) {
-                        return OrgBox(orgName: provider.OrgList[idx].orgName,
+                        return provider.orgImageList.length <= idx ? Center(child: CircularProgressIndicator())
+                            :OrgBox(orgName: provider.OrgList[idx].orgName,
                             orgAddress: provider.OrgList[idx].orgAddress,
-                            imagePath:provider.OrgList[idx].imagePath, orgId: provider.OrgList[idx].orgId,);
+                            imagePath:provider.orgImageList[idx]!="" ?provider.orgImageList[idx]:
+                            "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"
+                            , orgId: provider.OrgList[idx].orgId,);
                       },
                     ) : Container(
                       height: 500,

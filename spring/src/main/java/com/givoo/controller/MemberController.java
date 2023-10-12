@@ -94,6 +94,7 @@ public class MemberController {
             @RequestParam("bankName") String bankName,
             Model model) throws IOException {
         String startUp = startedUp.replace("-", "년 ").replace("-", "월 ") + "일";
+
         Member member = new Member();
         member.setUsername(username);
         member.setPassword(passwordEncoder.encode(password));

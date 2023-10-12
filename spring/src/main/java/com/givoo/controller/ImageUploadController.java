@@ -3,6 +3,7 @@ package com.givoo.controller;
 import com.givoo.entity.OrgImage;
 import com.givoo.repository.OrgImageRepository;
 import com.givoo.service.ImageUploadService;
+import com.givoo.service.ImageUploadService2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -23,14 +24,16 @@ import java.nio.file.Paths;
 @Controller
 @RequestMapping("auth/org")
 public class ImageUploadController {
+    private final ImageUploadService2 imageUploadService2;
     private final OrgImageRepository orgImageRepository;
 
     private final ImageUploadService imageUploadService;
 
     @Autowired
-    public ImageUploadController(OrgImageRepository orgImageRepository, ImageUploadService imageUploadService) {
+    public ImageUploadController(OrgImageRepository orgImageRepository, ImageUploadService imageUploadService, ImageUploadService2 imageUploadService2) {
         this.orgImageRepository = orgImageRepository;
         this.imageUploadService = imageUploadService;
+        this.imageUploadService2 =imageUploadService2;
     }
 
     @PostMapping("/upload/{id}")
@@ -67,4 +70,8 @@ public class ImageUploadController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+  /*  @GetMapping("/images/images")
+    public void img(){
+        imageUploadService2.getImagesFromFolder();
+    }*/
 }

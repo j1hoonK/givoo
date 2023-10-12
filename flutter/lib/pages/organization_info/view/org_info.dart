@@ -124,7 +124,7 @@ class OrgInfo extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ],
+                    )],
                   ),
                   SizedBox(
                     width: double.infinity,
@@ -206,10 +206,8 @@ class OrgInfo extends StatelessWidget {
                               SizedBox(
                                 height: mHeight * 1,
                               ),
-                            );
-                          }).toList(),
-                        )
-                            : CircularProgressIndicator(),
+                            ])),
+                        ),
                         provider.orgInfodata.isNotEmpty ? Container(
                           width: double.infinity,
                           height: mHeight * 25,
@@ -218,13 +216,9 @@ class OrgInfo extends StatelessWidget {
                               longitude: mapp.orgInfodata['locationLong'],//provider.orgInfodata['locationLong'],
                               orgName: "${provider.orgInfodata['orgName']}"),
                         ) : CircularProgressIndicator(),
-                      ],
-                    ),
-                  ),
-                ),
               ],
             );
-          },
+          }
         ),
       ),
     );

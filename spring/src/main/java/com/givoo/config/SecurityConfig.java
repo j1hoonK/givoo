@@ -6,6 +6,7 @@ import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -44,13 +45,14 @@ public class SecurityConfig {
                         (auth) ->auth.requestMatchers(mvc.pattern("/members/**"),
                                         mvc.pattern("/item/**"),
                                         mvc.pattern("/mypage/**"),
-                                        mvc.pattern("/mypage/**"),
                                         mvc.pattern("/login/**"),
                                         mvc.pattern("/org/**"),
                                         mvc.pattern("/info/**"),
                                         mvc.pattern("/search/**"),
                                         mvc.pattern("/mainpage/**"),
-                                        mvc.pattern("/mainpage/**"),
+                                        mvc.pattern("/donation/**"),
+                                        mvc.pattern("/swagger-ui/**"),
+                                        mvc.pattern("/v3/api-docs/**"),
                                         mvc.pattern( "/images/**")).permitAll()
                                 .requestMatchers(mvc.pattern("/auth/**")).hasAnyRole("USER")
                                 .requestMatchers(mvc.pattern("/admin/**")).hasAnyRole("ADMIN")

@@ -1,130 +1,156 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/appbar.dart';
+import 'package:givoo/component/view/com_dnt_type_list.dart';
+import 'package:givoo/config/palette.dart';
+import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:provider/provider.dart';
 
-class Pay extends StatelessWidget {
+class Pay extends StatefulWidget {
+  Pay({super.key, required this.orgId});
+
   var orgId;
 
-  Pay({super.key,required this.orgId});
+  @override
+  State<Pay> createState() => _PayState();
+}
+
+class _PayState extends State<Pay> {
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: BaseAppbar(
-        //title: "후원하기",
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: height*0.25,
-              child: Text("${orgId}"),
+    return Consumer<DonationProvider>(
+      builder: (context, value, child) => Scaffold(
+        appBar: BaseAppbar(
+            //title: "후원하기",
             ),
-            Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              alignment: Alignment.topLeft,
-              child: Text(
-                "후원 금액 입력",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: height * 0.25,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "후원 금액 입력",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            Form(
-              key: formKey,
-              child: Consumer<PayCategoryProvider>(
-                builder: (context, provider, child) {
-                  return Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                        child: Stack(
-                          children: [
-                            TextFormField(
-                              onChanged: (test) {
-                                provider.selectedString(test);
-                              },
-                              keyboardType: TextInputType.number,
-                              textAlign: TextAlign.right,
-                              cursorColor: Colors.black,
-                              decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(right: 15),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                    ),
-                                  )),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 13),
-                              alignment: Alignment.topRight,
-                              child: Text(
-                                "원",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+              Form(
+                key: formKey,
+                child: Consumer<PayCategoryProvider>(
+                  builder: (context, provider, child) {
+                    return Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Stack(
+                            children: [
+                              TextFormField(
+                                onChanged: (test) {
+                                  provider.selectedString(test);
+                                },
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.right,
+                                cursorColor: Colors.black,
+                                decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.only(right: 15),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                      ),
+                                    )),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 13),
+                                alignment: Alignment.topRight,
+                                child: Text(
+                                  "원",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: height*0.1,
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "후원 수단 선택",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height*0.2,
-                        child: ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: provider.payCategory.length,
-                            itemBuilder: (context, idx) {
-                              return RadioListTile(
-                                  title: Text("${provider.payCategory[idx]}"),
-                                  value: idx,
-                                  groupValue: provider.num,
-                                  onChanged: (value) {
-                                    provider.selectedPay(value);
-                                  });
-                            }),
-                      ),
-                    ],
-                  );
-                },
+                        Column(
+                            children: [
+                              value.typeInfo.isNotEmpty
+                              ? DntTypeList(
+                                dntType: value.typeInfo[0].type,
+                                pay: value.typeInfo[0].defaultPay,
+                              )
+                              : DntTypeList(dntType: 'ddd', pay: '30000')
+                            ],
+                          ),
+                        SizedBox(
+                          height: height * 0.1,
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "후원 수단 선택",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.2,
+                          child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: provider.payCategory.length,
+                              itemBuilder: (context, idx) {
+                                return RadioListTile(
+                                    title: Text("${provider.payCategory[idx]}"),
+                                    value: idx,
+                                    groupValue: provider.num,
+                                    onChanged: (value) {
+                                      provider.selectedPay(value);
+                                    });
+                              }),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Consumer<PayCategoryProvider>(
-        builder: (context, provider, child) {
-        return SizedBox(
-        width: width * 1,
-        height: height *0.07,
-        child: ElevatedButton(
-          onPressed: () {
-            if (formKey.currentState!.validate()) {}
-          },
-          child: Text('후원하기'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor:
-            provider.abc != "" && provider.num != null
-                ? Colors.pinkAccent
-                : Colors.grey,
+            ],
           ),
         ),
-      );},
+        bottomNavigationBar: Consumer<PayCategoryProvider>(
+          builder: (context, provider, child) {
+            return SizedBox(
+              width: width * 1,
+              height: height * 0.07,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {}
+                },
+                child: Text('후원하기'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: provider.abc != "" && provider.num != null
+                      ? Colors.pinkAccent
+                      : Colors.grey,
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

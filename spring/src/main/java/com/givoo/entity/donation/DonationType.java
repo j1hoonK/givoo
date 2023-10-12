@@ -20,4 +20,7 @@ public class DonationType {
 
     @Column(name = "type", nullable = false)
     private String type;
+
+    @Column(name = "default_pay")
+    private  String defaultPay;
 }

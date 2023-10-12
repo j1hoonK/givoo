@@ -9,6 +9,8 @@ import 'package:givoo/services/LaunchUrlService.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../../provider/DonationProvider.dart';
+
 class OrgInfo extends StatelessWidget {
   const OrgInfo({Key? key, required this.orgId}) : super(key: key);
   final orgId;
@@ -29,7 +31,8 @@ class OrgInfo extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: Palette.mainColor),
           onPressed: () {
-            context.go('/pay/$orgId');
+            Provider.of<DonationProvider>(context, listen: false).loadDonationType(orgId);
+            context.push('/pay/$orgId');
           },
           child: Text(
             "후원하기",

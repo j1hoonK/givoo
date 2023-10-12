@@ -14,6 +14,7 @@ import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
 import '../pages/mypage/view/announcement.dart';
 import '../pages/mypage/view/q&a_page.dart';
+import '../pages/mypage/view/mypage_terms.dart';
 import '../pages/mypage/view/terms_condition.dart';
 
 class GivooRouter {

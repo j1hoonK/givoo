@@ -41,6 +41,7 @@ public class UsersServiceImpl implements UsersService {
             userinfo.setUserName(userFirstInfo.getUserName());
             userinfo.setUserAddress(userFirstInfo.getUserAddress());
             userinfo.setUserNumberFirst(userFirstInfo.getUserNumberFirst());
+            userinfo.setUserNumberSecond(userFirstInfo.getUserNumberSecond());
             userinfo.setBirthdayMonth(userFirstInfo.getBirthdayMonth());
             userinfo.setBirthdayDay(userFirstInfo.getBirthdayDay());
 
@@ -77,8 +78,8 @@ public class UsersServiceImpl implements UsersService {
         existingUser.setUserEmail(updatedUser.getUserEmail());
         existingUser.setUserTell(updatedUser.getUserTell());
         existingUser.setUserAddress(updatedUser.getUserAddress());
-        existingUser.setUserName(updatedUser.getUserName()); // 오타 수정
         existingUser.setUserNumberFirst(updatedUser.getUserNumberFirst());
+        existingUser.setUserNumberSecond(updatedUser.getUserNumberSecond());
 
         return usersRepository.save(existingUser);
     }

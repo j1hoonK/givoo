@@ -42,7 +42,8 @@ class _FirstLoginState extends State<FirstLogin> {
   String address = '';
   String subAddress = '';
   String userName = '';
-  dynamic userBirthday = 0101;
+  dynamic birthdayMonth = 01;
+  dynamic birthdayDay = 01;
   dynamic userGender = 0;
   dynamic userNumberFirst = 0;
   dynamic userNumberSecond = 0;
@@ -60,8 +61,8 @@ class _FirstLoginState extends State<FirstLogin> {
         ?.birthday;
 
     // 컨트롤러에 초기값 설정
-    _controller2.text = birth?.substring(0,2) ?? '0101';
-    _controller3.text = birth?.substring(2) ?? '0101';
+    //_controller2.text = birth?.substring(0,2) ?? '0101';
+    //_controller3.text = birth?.substring(2) ?? '0101';
     if (gender != null) {
       if (gender == Gender.male) {
         _controller4.text = '남';
@@ -328,118 +329,127 @@ class _FirstLoginState extends State<FirstLogin> {
                           SizedBox(
                             height: mHeight * 0.03,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  '월',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Palette.textColor1),
-                                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        '주민등록번호',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Palette.textColor1),
+                      ),
+                    ),
+                    SizedBox(
+                      height: mHeight * 0.02,
+                    ),
+                    Row(
+                      mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: mSize * 0.35,
+                          child: TextFormField(
+                            controller: _controller2,
+                            key: Key('1'),
+                            validator: (value) {
+                              if (value!.length != 6) {
+                                return '유효하지 않습니다.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) => setState(() {
+                              userNumberFirst = value;
+                            }),
+                            maxLength: 6,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              labelText: '앞 6자리',
+                              hintText: '앞 6자리',
+                              prefixIcon: Icon(Icons.password),
+                              suffixIcon: _isClearButtonVisible2
+                                  ? IconButton(
+                                icon: Icon(Icons.clear),
+                                onPressed: () {
+                                  _controller2.clear();
+                                },
+                              )
+                                  : null,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Palette.textColor2),
+                                  borderRadius:
+                                  BorderRadius.circular(8)),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Palette.textColor1,
+                                    width: 2),
+                                borderRadius:
+                                BorderRadius.circular(8),
                               ),
-                              SizedBox(
-                                height: mHeight * 0.02,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(
+                              0, 0, 0, mHeight * 0.03),
+                          width: mSize * 0.05,
+                          height: mHeight * 0.003,
+                          color: Palette.textColor2,
+                        ),
+                        SizedBox(
+                          width: mSize * 0.35,
+                          child: TextFormField(
+                            controller: _controller3,
+                            obscureText: true,
+                            key: Key('1'),
+                            validator: (value) {
+                              if (value!.length != 7) {
+                                return '유효하지 않습니다.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) => setState(() {
+                              userNumberSecond = value;
+                            }),
+                            maxLength: 7,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              labelText: '뒤 7자리',
+                              hintText: '뒤 7자리',
+                              prefixIcon: Icon(Icons.password),
+                              suffixIcon: _isClearButtonVisible3
+                                  ? IconButton(
+                                icon: Icon(Icons.clear),
+                                onPressed: () {
+                                  _controller3.clear();
+                                },
+                              )
+                                  : null,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Palette.textColor2),
+                                  borderRadius:
+                                  BorderRadius.circular(8)),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Palette.textColor1,
+                                    width: 2),
+                                borderRadius:
+                                BorderRadius.circular(8),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: mSize * 0.35,
-                                    child: TextFormField(
-                                      controller: _controller2,
-                                      key: Key('1'),
-                                      validator: (value) {
-                                        if (value!.length != 2) {
-                                          return '유효하지 않습니다.';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) => setState(() {
-                                        userBirthday = value;
-                                      }),
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter.digitsOnly
-                                      ],
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        labelText: '월',
-                                        hintText: '월',
-                                        prefixIcon: Icon(Icons.calendar_month),
-                                        suffixIcon: _isClearButtonVisible2
-                                            ? IconButton(
-                                                icon: Icon(Icons.clear),
-                                                onPressed: () {
-                                                  _controller2.clear();
-                                                },
-                                              )
-                                            : null,
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Palette.textColor2),
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Palette.textColor1,
-                                              width: 2),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: mSize * 0.35,
-                                    child: TextFormField(
-                                      controller: _controller3,
-                                      key: Key('1'),
-                                      validator: (value) {
-                                        if (value!.length != 2) {
-                                          return '유효하지 않습니다.';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) => setState(() {
-                                        userBirthday = value;
-                                      }),
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter.digitsOnly
-                                      ],
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        labelText: '일',
-                                        hintText: '일',
-                                        prefixIcon: Icon(Icons.calendar_today),
-                                        suffixIcon: _isClearButtonVisible3
-                                            ? IconButton(
-                                          icon: Icon(Icons.clear),
-                                          onPressed: () {
-                                            _controller3.clear();
-                                          },
-                                        )
-                                            : null,
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Palette.textColor2),
-                                            borderRadius:
-                                            BorderRadius.circular(8)),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Palette.textColor1,
-                                              width: 2),
-                                          borderRadius:
-                                          BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                            ),
+                          ),),
                                 ],
                               ),
                             ],
@@ -639,7 +649,8 @@ class _FirstLoginState extends State<FirstLogin> {
                                         'userName': userName,
                                         'userAddress':
                                             '$address ' '$subAddress',
-                                        'userBirthday': userBirthday,
+                                        'userNumberFirst': userNumberFirst,
+                                        'userNumberSecond': userNumberSecond,
                                         'token': token
                                       };
                                       print(
@@ -651,7 +662,6 @@ class _FirstLoginState extends State<FirstLogin> {
                                           Provider.of<LoginViewModel>(context,
                                               listen: false);
                                       reload.check();
-                                      // context.go('/login/first');
                                       Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(

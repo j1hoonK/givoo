@@ -51,7 +51,11 @@ public class ExcelService {
         Sheet sheet = workbook.getSheet(sheetName);
 
         // 데이터 세팅
-        setValue(sheet, "C4", org.getOrgName()); // 수신
+        setValue(sheet, "C4", "1234567890");
+        setValue(sheet, "C3", org.getOrgName());
+        setValue(sheet, "C4", org.getOrgOwner());
+        setValue(sheet, "C5", org.getOrgTell());
+
         // 다운로드
         response.setContentType("ms-vnd/excel");
         String fileName = "기부영수증" + org.getOrgName();

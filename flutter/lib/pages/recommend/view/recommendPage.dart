@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/OrgBox.dart';
+import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,7 @@ class RecommendPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text("$orgType")),   // 저기 타이틀 종교단체 변수로 받아와야합니당
+      appBar: BaseAppbar(title:orgType),   // 저기 타이틀 종교단체 변수로 받아와야합니당
       body: Consumer<RecommendMoreProvider>(
         builder: (context, provider, child) {
           return provider.orgImageMap.isEmpty ?Center(child: CircularProgressIndicator()) :Container(

@@ -61,23 +61,6 @@ class OrgInfo extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        left: 0,
-                        bottom: 0,
-                        child: Container(
-                          width: mSize*28,
-                          padding: EdgeInsets.all(mSize * 2.1),
-                          color: Colors.black12.withOpacity(0), // 투명도 설정
-                          child: Text(
-                            '${provider.orgInfodata['orgName']}',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
                         bottom: 0,
                         right: 0,
                         child: Padding(
@@ -134,23 +117,81 @@ class OrgInfo extends StatelessWidget {
                     width: double.infinity,
                     child: Padding(
                         padding: EdgeInsets.fromLTRB(
-                            mSize * 2.5, mHeight * 3, mSize * 2.5, mHeight * 1),
+                            mSize * 2.5, mHeight * 1.5, mSize * 2.5, mHeight * 1),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "단체 정보",
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              Container(
+                                width: 100,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color:Color(0xFFFCF4EF),
+                                  borderRadius: BorderRadius.circular(20), // 둥근 모서리 설정
+                                ),
+                                child: Center(child: Text(provider.orgInfodata['orgType'],
+                                  style:TextStyle(
+                                    fontWeight: FontWeight.bold
+                                  ),),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 15),
+                                child: Text(
+                                  provider.orgInfodata['orgName'],
+                                  style: TextStyle(
+                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                ),
                               ),
                               SizedBox(
                                 height: mHeight * 1.5,
+                              ),Card(
+                                margin: EdgeInsets.only(top: 10),
+                                child:SizedBox(
+                                  height: 70,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                        child: Icon(Icons.location_on,color:Colors.grey),),
+                                        Container(
+                                          child: Text(provider.orgInfodata['orgAddress']
+                                            ,style: TextStyle(
+                                            fontWeight: FontWeight.bold,),
+                                      ),),],
+                                    ),
+                                      Row(
+                                      children: [Container(
+                                        margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                        child: Icon(Icons.phone,color:Colors.grey),),
+                                        Container(
+                                          child: Text(provider.orgInfodata['orgTell'],
+                                            style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),),
+                                        )],
+                                    )],
+                                  ),
+                                ) ,
+                              ),SizedBox(
+                                height: 40,
+                              ),Container(
+                                child:Text(//"${provider.orgInfodata['orgInfo']}"
+                                    "모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. "
+                                        "통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. "
+                                        "원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다."
+                                        " 대통령은 필요하다고 인정할 때에는 외교·국방·통일 기타 국가안위에 관한 중요정책을 국민투표에 붙일 수 있다.",
+                                  style: TextStyle(fontWeight: FontWeight.bold),),
+                              ),SizedBox(
+                                height: 40,
                               ),
+                              Divider(thickness: 1, height: mHeight * 3),
                               Column(
                                 children: [
                                   SubTitle(title1: "대표자", title2: "고유번호"),
                                   SizedBox(height: mHeight * 0.3,),
-                                  SubSentence(sentence1: "${provider.orgInfodata['orgOwner']}", sentence2: "${provider.orgInfodata['orgOwnNumber']}")
+                                  SubSentence(sentence1: "${provider.orgInfodata['orgOwner']}", sentence2: provider.orgInfodata['orgOwnNumber'] ==null? "-" : "${provider.orgInfodata['orgOwnNumber']}")
                                 ],
                               ),
                               SizedBox(height: mHeight * 1),
@@ -178,17 +219,8 @@ class OrgInfo extends StatelessWidget {
                                   Text("${provider.orgInfodata['orgAddress']}")
                                 ],
                               ),
-                              Divider(thickness: 1, height: mHeight * 3),
-                              Text(
-                                "단체 소개",
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: mHeight * 1.5,
-                              ),
-                              Text(//"${provider.orgInfodata['orgInfo']}"
-                                  "모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 대통령은 필요하다고 인정할 때에는 외교·국방·통일 기타 국가안위에 관한 중요정책을 국민투표에 붙일 수 있다."),
+
+
                               Divider(thickness: 1, height: mHeight * 3),
                               Text(
                                 "공지사항",

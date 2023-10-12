@@ -44,12 +44,10 @@ public class SecurityConfig {
                         (auth) ->auth.requestMatchers(mvc.pattern("/members/**"),
                                         mvc.pattern("/item/**"),
                                         mvc.pattern("/mypage/**"),
-                                        mvc.pattern("/mypage/**"),
                                         mvc.pattern("/login/**"),
                                         mvc.pattern("/org/**"),
                                         mvc.pattern("/info/**"),
                                         mvc.pattern("/search/**"),
-                                        mvc.pattern("/mainpage/**"),
                                         mvc.pattern("/mainpage/**"),
                                         mvc.pattern( "/images/**")).permitAll()
                                 .requestMatchers(mvc.pattern("/auth/**")).hasAnyRole("USER")

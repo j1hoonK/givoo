@@ -12,6 +12,8 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mSize = MediaQuery.of(context).size.width * 0.025;
+    var mHeight = MediaQuery.of(context).size.height * 0.013;
     List<String> orgTypeList1 = [
       "국제구제",
       "자선",
@@ -63,37 +65,46 @@ class MainPage extends StatelessWidget {
             // 위쪽 그리드뷰
             Container(
               margin: EdgeInsets.all(7),
-              height: height * 0.2, // Card의 높이 늘림
+              height: height * 0.15, // Card의 높이 늘림
               child: CarouselSlider(
                 items: [
                   for (var idx = 0; idx < orgTypeList1.length; idx++)
                     Container(
+                      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: InkWell(
                         onTap: () {
                           context.push("/Recommend", extra: orgTypeList1[idx]);
                           Provider.of<RecommendMoreProvider>(context, listen: false)
                               .fetchApi(orgTypeList1[idx]);
                         },
-                        child: Card(
-                          margin: EdgeInsets.all(7),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: height * 0.13,// 이미지 높이 늘림
-                                width: width * 0.4,// 이미지 높이 늘림
-                                child: Image.asset(orgImageList1[idx]),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: height * 0.10,// 이미지 높이 늘림
+                              width: width * 0.4,// 이미지 높이 늘림
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.redAccent,
+                                  width: 2.0,
+                                ),
+                                shape: BoxShape.circle, // 배경 색상 지정
+                                image: DecorationImage(
+                                  image:AssetImage(orgImageList1[idx]),
+                                )
                               ),
-                              SizedBox(
-                                height: height * 0.04,
-                                child: FittedBox(
-                                  fit: BoxFit.fill,
-                                  child: Text(orgTypeList1[idx],
-                                    style: TextStyle(fontSize: 14),//text크기 조절
-                                  ),
+                            ),SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                              child: FittedBox(
+                                fit: BoxFit.fill,
+                                child: Text(orgTypeList1[idx],
+                                  style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),//text크기 조절
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -107,10 +118,7 @@ class MainPage extends StatelessWidget {
               ),
             ),
             // 아래쪽 그리드뷰
-
-            SizedBox(
-              height: height * 0.05,
-            ),
+            Divider(thickness: 1, height: mHeight * 3),
             Container(
               alignment: Alignment.topLeft,
               margin: EdgeInsets.only(left: width * 0.05),
@@ -162,12 +170,12 @@ class MainPage extends StatelessWidget {
                 ),
               );
             }),
-            SizedBox(
-              height: height * 0.00,
-            ),
+            Divider(thickness: 1, height: mHeight * 3),
             CarouselSlider(
               items: [
+                Image.asset('images/main/a.jpg'),
                 Image.asset('images/main/b.jpg'),
+                Image.asset('images/main/c.jpg')
               ],
               options: CarouselOptions(
                 height: height * 0.4,

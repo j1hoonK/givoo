@@ -22,4 +22,8 @@ public class ImageShowController {
         return imageUploadService.findAllByOrgId(id);
     }
 
+    @GetMapping("org/images/all")
+    public List<OrgImage> allImage(){
+        return imageUploadService.findAll();
+    }
 }

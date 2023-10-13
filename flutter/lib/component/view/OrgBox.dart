@@ -32,7 +32,7 @@ class OrgBox extends StatelessWidget {
             margin: EdgeInsets.all(width * 0.007), // 컨테이너 간의 간격
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.redAccent, // 테두리 색상 설정
+                color: Colors.grey, // 테두리 색상 설정
                 width: 5.0, // 테두리 두께 설정
               ),
               image: DecorationImage(

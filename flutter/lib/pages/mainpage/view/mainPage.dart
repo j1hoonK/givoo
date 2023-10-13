@@ -84,8 +84,8 @@ class MainPage extends StatelessWidget {
                               width: width * 0.4,// 이미지 높이 늘림
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Colors.redAccent,
-                                  width: 2.0,
+                                  color: Colors.grey,
+                                  width: 3.0,
                                 ),
                                 shape: BoxShape.circle, // 배경 색상 지정
                                 image: DecorationImage(

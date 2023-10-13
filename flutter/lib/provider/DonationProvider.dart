@@ -13,4 +13,6 @@ class DonationProvider with ChangeNotifier{
     _donation = donationList;
     notifyListeners();
   }
+  // 후원 전송
+
 }

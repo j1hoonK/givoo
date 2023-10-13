@@ -44,13 +44,14 @@ public class SecurityConfig {
                         (auth) ->auth.requestMatchers(mvc.pattern("/members/**"),
                                         mvc.pattern("/item/**"),
                                         mvc.pattern("/mypage/**"),
-                                        mvc.pattern("/mypage/**"),
                                         mvc.pattern("/login/**"),
                                         mvc.pattern("/org/**"),
                                         mvc.pattern("/info/**"),
                                         mvc.pattern("/search/**"),
                                         mvc.pattern("/mainpage/**"),
-                                        mvc.pattern("/mainpage/**"),
+                                        mvc.pattern("/donation/**"),
+                                        mvc.pattern("/swagger-ui/**"),
+                                        mvc.pattern("/v3/api-docs/**"),
                                         mvc.pattern( "/images/**")).permitAll()
                                 .requestMatchers(mvc.pattern("/auth/**")).hasAnyRole("USER")
                                 .requestMatchers(mvc.pattern("/admin/**")).hasAnyRole("ADMIN")

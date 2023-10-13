@@ -114,7 +114,9 @@ class Pay extends StatelessWidget {
         height: height *0.07,
         child: ElevatedButton(
           onPressed: () {
-            if (formKey.currentState!.validate()) {}
+            if (formKey.currentState!.validate()) {
+
+            }
           },
           child: Text('후원하기'),
           style: ElevatedButton.styleFrom(

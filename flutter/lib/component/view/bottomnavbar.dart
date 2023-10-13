@@ -18,35 +18,36 @@ class _BotNavBarState extends State<BotNavBar> {
   void initState(){
     super.initState();
     Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
-
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        //indicatorColor: Color(),
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (value) => setState(() {
-          _currentIndex = value;
-          if(value==1){
-            Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
-          }
-        }),
-        destinations: [
-          NavigationDestination(
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.redAccent,
+        currentIndex: _currentIndex,
+        onTap: (value) {
+          setState(() {
+            _currentIndex = value;
+            if (value == 1) {
+              Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
+            }
+          });
+        },
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
             icon: Icon(Icons.manage_search),
             label: '검색',
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(Icons.real_estate_agent),
             label: 'Home',
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: '마이페이지',
           ),
         ],
-        animationDuration: Duration(milliseconds: 1000),
+        // 다른 설정들도 추가할 수 있습니다. 예를 들어 type, selectedItemColor 등.
       ),
       body: IndexedStack(
         index: _currentIndex,

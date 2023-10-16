@@ -69,59 +69,6 @@ class _OrgInfoState extends State<OrgInfo> {
                             fit: BoxFit.fill, // 이미지의 맞춤 방식 (원하는 대로 변경 가능)
                           ),
                         ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Padding(
-                      padding:
-                          EdgeInsets.fromLTRB(0, 0, mSize * 2.5, mSize * 1),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.phone,
-                              color: Colors.black,
-                              size: 24.0,
-                            ),
-                            onPressed: () {},
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              print(
-                                  "homepage: ${provider.orgInfodata['homepage']}");
-                              launchURL(provider.orgInfodata['homepage']);
-                            },
-                            child: Image.asset(
-                              'images/group/globe.png',
-                              width: 24.0,
-                              height: 24.0,
-                            ),
-                          ),
-                          SizedBox(width: 10.0),
-                          GestureDetector(
-                            onTap: () {
-                              if (provider.orgInfodata['favId'] == 0) {
-                                provider.likeIsert(widget.orgId, 1);
-                              } else {
-                                provider
-                                    .likeToggle(provider.orgInfodata['favId']);
-                              }
-                            },
-                            child: Image.asset(
-                              provider.isFollowSelected == 1
-                                  ? 'images/group/follow_y.png' // 선택된 이미지 파일 경로
-                                  : 'images/group/follow_n.png',
-                              // 일반 이미지 파일 경로
-                              width: 24.0,
-                              height: 24.0,
-                              // 이미지 색상 설정 (선택 사항)
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                 ],
               ),
               Container(
@@ -159,20 +106,77 @@ class _OrgInfoState extends State<OrgInfo> {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: 100,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFFFE6D3),
-                              borderRadius:
-                                  BorderRadius.circular(15), // 둥근 모서리 설정
-                            ),
-                            child: Center(
-                              child: Text(
-                                provider.orgInfodata['orgType'],
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: 100,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFE6D3),
+                                  borderRadius:
+                                      BorderRadius.circular(15), // 둥근 모서리 설정
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    provider.orgInfodata['orgType'],
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Padding(
+                                  padding:
+                                  EdgeInsets.fromLTRB(0, 0, mSize * 2.5, mSize * 1),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.phone,
+                                          color: Colors.black,
+                                          size: 24.0,
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          print(
+                                              "homepage: ${provider.orgInfodata['homepage']}");
+                                          launchURL(provider.orgInfodata['homepage']);
+                                        },
+                                        child: Image.asset(
+                                          'images/group/globe.png',
+                                          width: 24.0,
+                                          height: 24.0,
+                                        ),
+                                      ),
+                                      SizedBox(width: 10.0),
+                                      GestureDetector(
+                                        onTap: () {
+                                          if (provider.orgInfodata['favId'] == 0) {
+                                            provider.likeIsert(widget.orgId, 1);
+                                          } else {
+                                            provider
+                                                .likeToggle(provider.orgInfodata['favId']);
+                                          }
+                                        },
+                                        child: Image.asset(
+                                          provider.isFollowSelected == 1
+                                              ? 'images/group/follow_y.png' // 선택된 이미지 파일 경로
+                                              : 'images/group/follow_n.png',
+                                          // 일반 이미지 파일 경로
+                                          width: 24.0,
+                                          height: 24.0,
+                                          // 이미지 색상 설정 (선택 사항)
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                           Container(
                             margin: EdgeInsets.only(top: 15),

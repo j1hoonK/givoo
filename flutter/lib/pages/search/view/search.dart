@@ -27,9 +27,14 @@ class Search extends StatelessWidget {
                       margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                       height: 50,
                       child: TextField(
+                        textInputAction: TextInputAction.search,
                         controller: provider.controller,
                         onChanged: (value) {
                           provider.listener(value);
+                        },
+                        onSubmitted: (value) {
+                          provider.searchOrg(value);
+                          FocusScope.of(context).unfocus();
                         },
                         style: TextStyle(
                           color: Colors.black,

@@ -75,6 +75,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: '기부어때',
           theme: ThemeData(
+            fontFamily: 'GyeonggiTitle',
             //TODO: 다크모드 설정하기
             useMaterial3: false,
             navigationBarTheme: NavigationBarThemeData(

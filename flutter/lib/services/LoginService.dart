@@ -6,6 +6,7 @@ import 'package:givoo/pages/login/view/login_first.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
+import '../config/custom_url.dart';
 import '../pages/login/model/kakaoLogin.dart';
 import '../pages/login/viewmodel/kakao_login.dart';
 
@@ -15,7 +16,7 @@ class KakaoService {
 
   // 회원가입
   Future<void> sendKakaoLogin(kakaoUserData) async {
-    var url = "http://${Url.url}:1000/login/kakao/${kakaoUserData["token"]}";
+    var url = "${CustomUrl.url}/login/kakao/${kakaoUserData["token"]}";
     http.Response response = await http.post(
       Uri.parse(url),
       headers: {"Content-Type": 'application/json'},
@@ -34,7 +35,7 @@ class KakaoService {
 
 // 최초정보 업데이트
 Future<void> updateKakaoUser(userFirstInfo) async {
-  var url = "http://${Url.url}:1000/login/kakao/updateinfo/${userFirstInfo["token"]}";
+  var url = "${CustomUrl.url}/login/kakao/updateinfo/${userFirstInfo["token"]}";
   http.Response response = await http.post(
     Uri.parse(url),
     headers: {"Content-Type": 'application/json'},
@@ -53,7 +54,7 @@ Future<void> updateKakaoUser(userFirstInfo) async {
 class FindByToken {
   // 회원정보 조회
   Future<List<KakaoUser>> findUserInfo(tokenId) async {
-    var url = "http://${Url.url}:1000/login/$tokenId";
+    var url = "${CustomUrl.url}/login/$tokenId";
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       print("(LoginService.dart)findUserInfo OK: ${response.body}");
@@ -71,7 +72,7 @@ class FindByToken {
 Future deleteUser(token) async {
   try{
   print('Delete Start_token: $token');
-  var url = "http://${Url.url}:1000/login/delete/$token";
+  var url = "${CustomUrl.url}/login/delete/$token";
   http.Response response = await http.delete(Uri.parse(url));
   print('Delete 요청완료');
   if(response.statusCode == 200) {

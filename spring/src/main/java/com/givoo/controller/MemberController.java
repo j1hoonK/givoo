@@ -43,7 +43,6 @@ public class MemberController {
     private final OrganizationNoticeService organizationNoticeService;
     @GetMapping("/login")
     public String loginMember(){
-        System.out.println("dsfdfs");
         return "login";
     }
 

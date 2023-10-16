@@ -33,7 +33,7 @@ class Search extends StatelessWidget {
                           provider.listener(value);
                         },
                         onSubmitted: (value) {
-                          provider.searchOrg(value);
+                          provider.searchOrg(provider.searchValue);
                           FocusScope.of(context).unfocus();
                         },
                         style: TextStyle(

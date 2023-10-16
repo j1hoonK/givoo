@@ -128,7 +128,7 @@ class _OrgInfoState extends State<OrgInfo> {
                                 right: 0,
                                 child: Padding(
                                   padding:
-                                  EdgeInsets.fromLTRB(0, 0, mSize * 2.5, mSize * 1),
+                                  EdgeInsets.fromLTRB(0, 0, mSize * 0.1, mSize * 1),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [

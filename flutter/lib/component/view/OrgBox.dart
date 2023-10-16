@@ -22,8 +22,8 @@ class OrgBox extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-          context.push('/orginfo/$orgId',extra: orgId);
           Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
+          context.push('/orginfo/$orgId',extra: orgId);
       },
       child:Column(
         children: [

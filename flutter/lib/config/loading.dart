@@ -21,7 +21,7 @@ class _LoadingState extends State<Loading> {
     super.initState();
     getMyLocation();
     Timer(Duration(milliseconds: 2000), () {
-      context.push('/main');
+      context.go('/main');
     });
   }
 

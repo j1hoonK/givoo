@@ -25,47 +25,46 @@ class OrgBox extends StatelessWidget {
           context.push('/orginfo/$orgId',extra: orgId);
           Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
       },
-      child:Card(
-        margin: EdgeInsets.all(width*0.007),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                //border: Border.all(),
+      child:Column(
+        children: [
+          Container(
+            height: height*0.12,
+            margin: EdgeInsets.all(width * 0.007), // 컨테이너 간의 간격
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey, // 테두리 색상 설정
+                width: 5.0, // 테두리 두께 설정
               ),
-              height: height * 0.1,
-              width: width * 0.3,
-              child: Image.network(
-                imagePath ?? "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png",  //imagePath,
-                fit: BoxFit.contain,
+              image: DecorationImage(
+                image: NetworkImage(imagePath ??
+                    "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"),
+                fit: BoxFit.fill,
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-              child: SizedBox(
-              height: height*0.023,
-                child: Text(
-                  orgName,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+              borderRadius: BorderRadius.circular(12.0), // 컨테이너의 모서리를 둥글게 만들기
+            ),), Padding(
+                  padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                  child: SizedBox(
+                    height: height * 0.023,
+                    child: Text(
+                      orgName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(5, 0, 5, 3),
-              child: Text(
-                orgAddress,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(5, 0, 5, 3),
+                  child: Text(
+                    orgAddress,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+              ],
+    ),
+      );
   }
 }

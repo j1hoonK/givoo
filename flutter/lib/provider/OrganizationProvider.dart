@@ -16,7 +16,8 @@ class OrganizationProvider extends ChangeNotifier {
   bool _isClearButtonVisible = false;
   bool _isSearchIconVisible = true;
   var _searchValue = "";
-
+  List<String> _imagePath=[];
+  get imagePath => _imagePath;
   get controller => _controller;
 
   bool get isClearButtonVisible => _isClearButtonVisible;
@@ -75,10 +76,15 @@ class OrganizationProvider extends ChangeNotifier {
   }
 
   Future<void> orgInfo(orgId, userId) async {
-    Map<String, dynamic>? _data =
-        await _OrganizationListService.fetchOrgInfo(orgId, userId);
+    _imagePath=[];
+    Map<String, dynamic>? _data = await _OrganizationListService.fetchOrgInfo(orgId, userId);
+    List<OrgImage>? _data2 = await _OrganizationListService.orgImage(orgId);
+    print("orgId:${_data2[0].savePath}");
     _orgInfodata = _data;
     _isFollowSelected = _orgInfodata['favFlag'];
+    _data2.forEach((data) {
+     _imagePath.add(data.savePath);
+    });
     notifyListeners();
   }
 

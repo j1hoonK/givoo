@@ -28,4 +28,6 @@ class DonationProvider with ChangeNotifier{
       notifyListeners();
     }
   }
+  // 후원 전송
+
 }

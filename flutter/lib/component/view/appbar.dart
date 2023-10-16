@@ -7,6 +7,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     var tHeight = MediaQuery.of(context).size.height;
     return AppBar(
+      // automaticallyImplyLeading: false,
       toolbarHeight: double.infinity,
       centerTitle: true,
       elevation: 0,

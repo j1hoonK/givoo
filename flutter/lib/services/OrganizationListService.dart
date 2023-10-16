@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:givoo/component/model/OrgBoxModel.dart';
 import 'package:givoo/component/model/OrgImageModel.dart';
 import 'package:http/http.dart' as http;
@@ -79,9 +78,20 @@ class OrganizationListService {
 
   Future<void> fetchLikeToggle(favId) async {
     try {
-      var response = await http.get(Uri.parse("http://10.0.2.2:1000/mypage/fav/${favId}"));
+      var response = await http.get(Uri.parse("${CustomUrl.url}/mypage/fav/${favId}"));
     } catch (error) {
       throw Exception('Failed to load todo');
     }
   }
+
+  Future<List<OrgImage>> allImage()async{
+    try{
+      var response = await http.get(Uri.parse("${CustomUrl.url}/org/images/all"));
+      List<dynamic> _data = json.decode(utf8.decode(response.bodyBytes));
+      List<OrgImage> _result = _data.map((e) => OrgImage.fromJson(e)).toList();
+      return _result;
+    } catch (error) {
+      throw Exception('Failed to load todo');
+    }
+    }
 }

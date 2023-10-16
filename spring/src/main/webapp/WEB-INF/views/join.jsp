@@ -43,7 +43,7 @@
   </div>
   <div>
     <label for="orgOwner">대표 이름</label>
-    <input type="text" id="orgOwner" name "orgOwner" required>
+    <input type="text" id="orgOwner" name ="orgOwner" required>
   </div>
   <div>
     <label for="orgOwnnumber">고유번호</label>
@@ -206,13 +206,15 @@
 
   // 기부금목록 추가 버튼 이벤트 처리
   // 기부금 목록 추가 버튼 클릭 이벤트 처리
+  var donations = []; // 기부금 목록을 담을 배열
+
   document.getElementById("add-donation-button").addEventListener("click", function () {
     var donationList = document.getElementById("donation-list");
     var donationField = document.createElement("div");
     donationField.classList.add("donation-field");
     var index = donationList.children.length + 1;
     donationField.innerHTML = `<label for="donation${index}">기부금 ${index}</label>
-    <input type="text" id="donation${index}" name="donation${index}">
+    <input type="text" id="donation${index}" name="donationsType[]">
     <button type="button" class="remove-donation-button">삭제</button>`;
     donationList.appendChild(donationField);
 
@@ -223,10 +225,12 @@
         var parentDiv = this.parentElement;
         donationList.removeChild(parentDiv);
         updateDonationLabels(); // 기부금 레이블 다시 업데이트
+        updateDonationsArray();
       });
     }
 
     updateDonationLabels(); // 기부금 레이블 업데이트
+    updateDonationsArray();
   });
 
   // 기부금 레이블 업데이트
@@ -236,6 +240,14 @@
       var label = donationFields[i].querySelector("label");
       label.textContent = "기부금 " + (i + 1);
     }
+  }
+
+  // 기부금 배열 업데이트
+  function updateDonationsArray() {
+    var donationFields = document.querySelectorAll("input[name='donationsType[]']");
+    donations = Array.from(donationFields).map(function (field) {
+      return field.value;
+    });
   }
   window.onload = function(){
     document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면

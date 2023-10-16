@@ -22,10 +22,11 @@ class DonationService{
 
   Future<List<DonationType>?> loadDonationType(orgId) async {
     http.Response response = await http.get(Uri.parse("${CustomUrl.url}/donation/$orgId"));
+        print('(DonationService) response.body == ${response.body}');
     if(response.body.isNotEmpty) {
       if (response.statusCode == 200) {
         List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
-        print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@$body');
+        print('(DonationService)loadDonationType == \n$body');
         return body.map<DonationType>((item) => DonationType.fromJson(item))
             .toList();
       } else {
@@ -33,7 +34,6 @@ class DonationService{
         throw Exception('Failed to load Donation Data');
       }
     } else {
-      return null;
     }
   }
 }

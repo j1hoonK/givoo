@@ -108,3 +108,23 @@ button[type="submit"]:hover {
     color: #fff !important;
 }
 /* 선택된 항목 스타일 */
+.add-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+}
+
+/* 스타일링 삭제 버튼 */
+.remove-donation-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    color: red;
+    font-size: inherit;
+}

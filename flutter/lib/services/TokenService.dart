@@ -1,4 +1,3 @@
-import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 

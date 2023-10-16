@@ -180,7 +180,7 @@ class MainPage extends StatelessWidget {
               options: CarouselOptions(
                 height: height * 0.4,
                 autoPlay: true,
-                enlargeCenterPage: true,
+                // enlargeCenterPage: false,
               ),
             ),
           ],

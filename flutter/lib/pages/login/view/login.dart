@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/loginbutton.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
 Widget logIn() {
   //var mSize = MediaQuery.of(context).size.width * 0.025;

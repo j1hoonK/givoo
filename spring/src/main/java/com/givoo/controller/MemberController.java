@@ -91,9 +91,9 @@ public class MemberController {
             @RequestParam("orgOwnnumber") String orgOwnnumber,
             @RequestParam("startedUp") String startedUp,
             @RequestParam("bankName") String bankName,
+            @RequestParam(value = "donationsType[]",required = false) List<String> donationType,
             Model model) throws IOException {
         String startUp = startedUp.replace("-", "년 ").replace("-", "월 ") + "일";
-
         Member member = new Member();
         member.setUsername(username);
         member.setPassword(passwordEncoder.encode(password));

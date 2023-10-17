@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/key.properties
+
+
+/keystore/
+key.properties
+custom_url.dart

@@ -7,7 +7,7 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 class LoginViewModel with ChangeNotifier{
   final SocialLogin _socialLogin;
   LoginViewModel(this._socialLogin);
-
+  static String userId ="0";
   bool _isLogin = false;
   User? user;
   bool get isLogin => _isLogin;
@@ -29,7 +29,8 @@ class LoginViewModel with ChangeNotifier{
     List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
     // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
-
+    userId=_kakaoUser[0].userId;
+    print("userId: ${userId}");
     notifyListeners();
   }
 

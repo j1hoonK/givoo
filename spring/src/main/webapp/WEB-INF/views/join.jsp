@@ -39,11 +39,11 @@
   </div>
   <div>
     <label>우편번호</label>
-  <input type="text" id="zip" name="zip" placeholder="우편번호" readonly>
+    <input type="text" id="zip" name="zip" placeholder="우편번호" readonly>
   </div>
   <div>
     <label for="orgOwner">대표 이름</label>
-    <input type="text" id="orgOwner" name="orgOwner" required>
+    <input type="text" id="orgOwner" name ="orgOwner" required>
   </div>
   <div>
     <label for="orgOwnnumber">고유번호</label>
@@ -70,6 +70,14 @@
   <div>
     <label for="homepage">홈페이지</label>
     <input type="text" id="homepage" name="homepage" required>
+  </div>
+  <div>
+    <h3>기부금목록</h3>
+    <!-- 기부금목록 추가 버튼을 추가합니다. -->
+    <button type="button" id="add-donation-button" class="add-button">기부금목록 추가</button>
+    <div id="donation-list">
+      <!-- 동적으로 추가될 입력 필드는 여기에 들어갑니다. -->
+    </div>
   </div>
   <div>
     <label for="accountNumber">계좌번호</label>
@@ -196,7 +204,51 @@
   passwordInput.addEventListener("keyup", checkPasswordMatch);
   confirmPasswordInput.addEventListener("keyup", checkPasswordMatch);
 
+  // 기부금목록 추가 버튼 이벤트 처리
+  // 기부금 목록 추가 버튼 클릭 이벤트 처리
+  var donations = []; // 기부금 목록을 담을 배열
 
+  document.getElementById("add-donation-button").addEventListener("click", function () {
+    var donationList = document.getElementById("donation-list");
+    var donationField = document.createElement("div");
+    donationField.classList.add("donation-field");
+    var index = donationList.children.length + 1;
+    donationField.innerHTML = `<label for="donation${index}">기부금 ${index}</label>
+    <input type="text" id="donation${index}" name="donationsType[]">
+    <button type="button" class="remove-donation-button">삭제</button>`;
+    donationList.appendChild(donationField);
+
+    // 삭제 버튼 클릭 이벤트 처리
+    var removeButtons = donationList.getElementsByClassName("remove-donation-button");
+    for (var i = 0; i < removeButtons.length; i++) {
+      removeButtons[i].addEventListener("click", function () {
+        var parentDiv = this.parentElement;
+        donationList.removeChild(parentDiv);
+        updateDonationLabels(); // 기부금 레이블 다시 업데이트
+        updateDonationsArray();
+      });
+    }
+
+    updateDonationLabels(); // 기부금 레이블 업데이트
+    updateDonationsArray();
+  });
+
+  // 기부금 레이블 업데이트
+  function updateDonationLabels() {
+    var donationFields = document.getElementsByClassName("donation-field");
+    for (var i = 0; i < donationFields.length; i++) {
+      var label = donationFields[i].querySelector("label");
+      label.textContent = "기부금 " + (i + 1);
+    }
+  }
+
+  // 기부금 배열 업데이트
+  function updateDonationsArray() {
+    var donationFields = document.querySelectorAll("input[name='donationsType[]']");
+    donations = Array.from(donationFields).map(function (field) {
+      return field.value;
+    });
+  }
   window.onload = function(){
     document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
       //카카오 지도 발생

@@ -75,11 +75,11 @@ class OrganizationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> orgInfo(orgId, userId) async {
+  Future<void> orgInfo(orgId, int userId) async {
     _imagePath=[];
     Map<String, dynamic>? _data = await _OrganizationListService.fetchOrgInfo(orgId, userId);
     List<OrgImage>? _data2 = await _OrganizationListService.orgImage(orgId);
-    print("orgId:${_data2[0].savePath}");
+    // print("orgId:${_data2[0].savePath}");
     _orgInfodata = _data;
     _isFollowSelected = _orgInfodata['favFlag'];
     _data2.forEach((data) {

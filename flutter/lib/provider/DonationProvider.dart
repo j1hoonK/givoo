@@ -21,6 +21,11 @@ class DonationProvider with ChangeNotifier {
     try {
       List<Donation> donationList = await _donationService.loadDonation(1);
       _donation = donationList;
+      _totalAmount=0;
+      for (var donation in _donation) {
+        int donationAmount = donation.dntAmount;
+        _totalAmount += donationAmount;
+      }
       notifyListeners();
     } catch (error) {
       print('Error loading donation: $error');

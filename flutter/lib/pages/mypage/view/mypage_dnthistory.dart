@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../../../component/view/appbar.dart';
 import '../../../component/view/com_dnthistory_view.dart';
@@ -30,20 +32,39 @@ class _DonationHistoryState extends State<DonationHistory> {
           ),
       body: Consumer<DonationProvider>(builder: (context, provider, child) {
         if (provider.donation.isNotEmpty) {
-          return Column(
-            children: [
-              Container(
-                height:height*0.1,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return DntHistory(dnt: provider.donation[index]);
-                  },
-                  itemCount: provider.donation.length,
+          return Container(color: Color(0xFFF7F7F8),
+            child: Column(
+              children: [
+                Container(
+                  height:height*0.08,
+                  color: Color(0xFFF95835),
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(10,0,10,0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                       Row(
+                         children: [
+                           Icon(CupertinoIcons.heart_fill,color: Colors.red,)
+                           ,Text("나의 기부금액",style: TextStyle(color: Color(0xFFFD9DBE0)),)
+                         ],
+                       ),Text("${NumberFormat.currency(symbol:"",locale: 'ko_KR').format(DonationProvider.totalAmount)} 원",style: TextStyle(
+                          color: Colors.white,fontSize: 20
+                        ),)
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return DntHistory(dnt: provider.donation[index]);
+                    },
+                    itemCount: provider.donation.length,
+                  ),
+                ),
+              ],
+            ),
           );
         } else {
           return Center(

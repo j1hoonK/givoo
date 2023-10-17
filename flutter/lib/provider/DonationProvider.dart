@@ -1,4 +1,8 @@
 
+
+
+import 'dart:core';
+
 import 'package:flutter/cupertino.dart';
 import 'package:givoo/component/model/com_dnt_type_model.dart';
 import 'package:givoo/services/DonationService.dart';
@@ -8,6 +12,8 @@ class DonationProvider with ChangeNotifier {
   final DonationService _donationService = DonationService();
   List<Donation> _donation = [];
 
+ static var _totalAmount =0;
+ static get totalAmount=>_totalAmount;
   List<Donation> get donation => _donation;
 
   List<DonationType> _typeInfo = [];
@@ -18,6 +24,11 @@ class DonationProvider with ChangeNotifier {
   loadDonation() async {
     List<Donation> donationList = await _donationService.loadDonation(1);
     _donation = donationList;
+    _totalAmount=0;
+    for (var donation in _donation) {
+      int donationAmount = donation.dntAmount;
+      _totalAmount += donationAmount;
+    }
     notifyListeners();
   }
 

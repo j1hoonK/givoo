@@ -5,6 +5,7 @@ KakaoUser kakaoUserFromJson(String str) => KakaoUser.fromJson(json.decode(str));
 String kakaoUserToJson(KakaoUser data) => json.encode(data.toJson());
 
 class KakaoUser {
+  var userId;
   String loginType;
   String token;
   String userName;
@@ -13,6 +14,7 @@ class KakaoUser {
   var userAddress;
 
   KakaoUser({
+    required this.userId,
     required this.loginType,
     required this.token,
     required this.userName,
@@ -22,6 +24,7 @@ class KakaoUser {
   });
 
   factory KakaoUser.fromJson(Map<String, dynamic> json) => KakaoUser(
+    userId: json["userId"].toString(),
     loginType: json["loginType"].toString(),
     token: json["token"].toString(),
     userName: json["userName"].toString(),
@@ -31,6 +34,7 @@ class KakaoUser {
   );
 
   Map<String, dynamic> toJson() => {
+    "userId":userId.toString(),
     "loginType": loginType.toString(),
     "token": token.toString(),
     "userName": userName.toString(),

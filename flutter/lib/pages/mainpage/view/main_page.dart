@@ -48,9 +48,6 @@ class MainPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: height * 0.05,
-            ),
             Container(
               alignment: Alignment.topLeft,
               margin: EdgeInsets.only(left: width * 0.05),

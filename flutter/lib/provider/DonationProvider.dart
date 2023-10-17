@@ -1,12 +1,8 @@
 
-
-
-import 'dart:core';
-
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/component/model/com_dnt_type_model.dart';
 import 'package:givoo/services/DonationService.dart';
-import '../component/model/com_dnthistory_model.dart';
 
 class DonationProvider with ChangeNotifier {
   final DonationService _donationService = DonationService();
@@ -21,28 +17,30 @@ class DonationProvider with ChangeNotifier {
   List<DonationType> get typeInfo => _typeInfo;
 
   // 후원 이력 확인
-  loadDonation() async {
-    List<Donation> donationList = await _donationService.loadDonation(1);
-    _donation = donationList;
-    _totalAmount=0;
-    for (var donation in _donation) {
-      int donationAmount = donation.dntAmount;
-      _totalAmount += donationAmount;
+  Future<void> loadDonation() async {
+    try {
+      List<Donation> donationList = await _donationService.loadDonation(1);
+      _donation = donationList;
+      notifyListeners();
+    } catch (error) {
+      print('Error loading donation: $error');
     }
-    notifyListeners();
   }
 
-  loadDonationType(orgid) async {
+  Future<void> loadDonationType(orgid) async {
     _typeInfo = [];
-    List<DonationType>? typeList =
-        await _donationService.loadDonationType(orgid);
-    print('TypeList == $typeList');
-    if (typeList == null) {
-      print('null process');
-    } else {
-      _typeInfo = typeList;
-      notifyListeners();
+    try {
+      List<DonationType>? typeList =
+      await _donationService.loadDonationType(orgid);
+      print('TypeList == $typeList');
+      if (typeList == null) {
+        print('null process');
+      } else {
+        _typeInfo = typeList;
+        notifyListeners();
+      }
+    } catch (error) {
+      print('Error loading donation type: $error');
     }
   }
-// 후원 전송
 }

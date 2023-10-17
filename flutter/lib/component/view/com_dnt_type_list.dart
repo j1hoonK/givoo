@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 
 class DntTypeList extends StatefulWidget {
-  const DntTypeList({super.key, required this.dntType, required this.pay});
+  const DntTypeList(
+      {super.key,
+      required this.dntType,
+      required this.pay,
+      required this.isChecked,
+      required this.onChanged});
 
   final String dntType;
   final String pay;
+  final bool isChecked;
+  final ValueChanged onChanged;
 
   @override
   State<DntTypeList> createState() => _DntTypeListState();
 }
 
 class _DntTypeListState extends State<DntTypeList> {
-  bool isCheckd = false;
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -30,14 +35,7 @@ class _DntTypeListState extends State<DntTypeList> {
       child: Stack(children: [
         Row(
           children: [
-            Checkbox(
-                value: isCheckd,
-                onChanged: (bool? value) {
-                  setState(() {
-                    isCheckd = value ?? false;
-                  });
-                  print(value);
-                }),
+            Checkbox(value: widget.isChecked, onChanged: widget.onChanged),
             SizedBox(
               width: width * 0.01,
             ),
@@ -56,7 +54,7 @@ class _DntTypeListState extends State<DntTypeList> {
             bottom: 0,
             child: Center(
               child: Text(
-                '${widget.pay} 원',
+                '${widget.pay} 원 ',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             )),
@@ -65,17 +63,18 @@ class _DntTypeListState extends State<DntTypeList> {
   }
 }
 
-
-
 class FreeDonation extends StatefulWidget {
-  const FreeDonation({super.key});
+  const FreeDonation(
+      {super.key, required this.checkedOnFree, required this.onChangedOnFree});
+
+  final bool checkedOnFree;
+  final ValueChanged onChangedOnFree;
 
   @override
   State<FreeDonation> createState() => _FreeDonationState();
 }
 
 class _FreeDonationState extends State<FreeDonation> {
-  bool isCheckd = false;
   String payment = '0';
 
   @override
@@ -83,7 +82,7 @@ class _FreeDonationState extends State<FreeDonation> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
       margin: EdgeInsets.fromLTRB(width * 0.01, 0, width * 0.01, height * 0.01),
       width: double.infinity,
       decoration: BoxDecoration(
@@ -97,22 +96,25 @@ class _FreeDonationState extends State<FreeDonation> {
           Row(
             children: [
               Checkbox(
-                value: isCheckd,
-                onChanged: (bool? value) {
-                  setState(() {
-                    isCheckd = value ?? false;
-                  });
-                },
-              ),
+                  value: widget.checkedOnFree, onChanged: widget.onChangedOnFree
+                  //     (bool? value) {
+                  //   setState(() {
+                  //     checkedOnFree = value ?? false;
+                  //   });
+                  //   print('checkedOnFree == ${widget.checkedOnFree}');
+                  // },
+                  ),
               SizedBox(width: width * 0.03),
               Expanded(
                 child: TextFormField(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return '필수 항목입니다.';
-                    }
-                    return null;
-                  },
+                  validator: widget.checkedOnFree == true
+                      ? (value) {
+                          if (value!.isEmpty) {
+                            return '필수 항목입니다.';
+                          }
+                          return null;
+                        }
+                      : null,
                   onSaved: (value) => setState(() {
                     payment = value!;
                   }),
@@ -121,31 +123,31 @@ class _FreeDonationState extends State<FreeDonation> {
                   cursorColor: Colors.black,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(right: 30),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.black
-                      ),
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
                 ),
               ),
+              Text(
+                ' 원 ',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              )
             ],
           ),
-          Positioned(
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: Center(
-              child: Text(
-                ' 원',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   right: 0,
+          //   top: 0,
+          //   bottom: 0,
+          //   child: Center(
+          //     child: Text(
+          //       ' 원',
+          //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
   }
 }
-

@@ -147,7 +147,7 @@ class MainPage extends StatelessWidget {
             Consumer<OrganizationProvider>(builder: (context, provider, child) {
               return Container(
                 margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-                height: height * 0.23,
+                // height: height * 0.23,
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),

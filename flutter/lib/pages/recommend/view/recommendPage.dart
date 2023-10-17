@@ -14,7 +14,7 @@ class RecommendPage extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: BaseAppbar(),   // 저기 타이틀 종교단체 변수로 받아와야합니당
+      appBar: BaseAppbar(title:orgType.toString()),   // 저기 타이틀 종교단체 변수로 받아와야합니당
       body: Consumer<RecommendMoreProvider>(
         builder: (context, provider, child) {
           return provider.orgImageMap.isEmpty ?Center(child: CircularProgressIndicator()) :Container(

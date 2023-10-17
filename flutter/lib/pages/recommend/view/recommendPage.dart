@@ -14,7 +14,7 @@ class RecommendPage extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: BaseAppbar(),   // 저기 타이틀 종교단체 변수로 받아와야합니당
+      appBar: BaseAppbar(),
       body: Consumer<RecommendMoreProvider>(
         builder: (context, provider, child) {
           return provider.orgImageMap.isEmpty ?Center(child: CircularProgressIndicator()) :Container(
@@ -44,8 +44,7 @@ class RecommendPage extends StatelessWidget {
                   ),SizedBox(
                     height: 10,
                   ),
-                  SizedBox(
-                    height: height * 0.88,
+                  Expanded(
                     child: GridView.builder(
                         itemCount: provider.orgList.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

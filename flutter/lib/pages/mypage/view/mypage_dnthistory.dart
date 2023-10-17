@@ -98,6 +98,25 @@ class _DonationHistoryState extends State<DonationHistory> {
           );
         }
       }),
+      bottomNavigationBar: Container(
+        color: Color(0xFFF7F7F8),
+        height: height*0.1,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              height: height*0.08,
+                child: ElevatedButton(onPressed: (){}, child: Text("기부금 영수증 다운받기"))),
+            Container(
+                height: height*0.08,
+                child: ElevatedButton(onPressed: (){}, child: Text("전자기부금영수증 신청"),
+                    style: ElevatedButton.styleFrom(
+                  backgroundColor:Colors.red,)
+                ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

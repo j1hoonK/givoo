@@ -11,7 +11,7 @@ class OrgList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
        leading: CircleAvatar(
-          backgroundImage: AssetImage("images/org/img.png"), // Text(key['title']),
+          backgroundImage: AssetImage("images/org/heart.png"), // Text(key['title']),
        ),
        title: Text(myOrgList.orgName,style: TextStyle(
           fontSize: 12,

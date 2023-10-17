@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
-  BaseAppbar({Key? key});
-
+  BaseAppbar({Key? key,this.title});
+  final String? title;
   @override
   Widget build(BuildContext context) {
     var tHeight = MediaQuery.of(context).size.height;
@@ -11,7 +11,9 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: double.infinity,
       centerTitle: true,
       elevation: 0,
-      title: Container(
+      title: title!=null ? Text("$title",style: TextStyle(
+        color: Colors.black,
+      ),) : Container(
         margin: EdgeInsets.fromLTRB(0, tHeight *0.01 , 0 , 0),
         child: Image.asset(
           'images/login/logo.png',

@@ -47,3 +47,4 @@ app.*.map.json
 
 /keystore/
 key.properties
+custom_url.dart

@@ -7,6 +7,7 @@ import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/services/LaunchUrlService.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../provider/DonationProvider.dart';
 import '../../pay/view/pay.dart';
@@ -25,7 +26,8 @@ var isSelected = [true, false, false];
 class _OrgInfoState extends State<OrgInfo> {
   @override
   void initState() {
-    Provider.of<DonationProvider>(context, listen: false).loadDonationType(widget.orgId);
+    Provider.of<DonationProvider>(context, listen: false)
+        .loadDonationType(widget.orgId);
     setState(() {
       isSelected = [true, false, false];
     });
@@ -73,7 +75,8 @@ class _OrgInfoState extends State<OrgInfo> {
               Container(
                 color: Colors.grey[300],
                 child: ToggleButtons(
-                  constraints: BoxConstraints.expand(width: MediaQuery.of(context).size.width/3 - 4/3),
+                  constraints: BoxConstraints.expand(
+                      width: MediaQuery.of(context).size.width / 3 - 4 / 3),
                   borderColor: Colors.black,
                   fillColor: Colors.black,
                   borderWidth: 1,
@@ -106,7 +109,7 @@ class _OrgInfoState extends State<OrgInfo> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
                                 width: 100,
@@ -119,15 +122,17 @@ class _OrgInfoState extends State<OrgInfo> {
                                 child: Center(
                                   child: Text(
                                     provider.orgInfodata['orgType'],
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                              ),Positioned(
+                              ),
+                              Positioned(
                                 bottom: 0,
                                 right: 0,
                                 child: Padding(
-                                  padding:
-                                  EdgeInsets.fromLTRB(0, 0, mSize * 0.1, mSize * 1),
+                                  padding: EdgeInsets.fromLTRB(
+                                      0, 0, mSize * 0.1, mSize * 1),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
@@ -137,13 +142,29 @@ class _OrgInfoState extends State<OrgInfo> {
                                           color: Colors.black,
                                           size: 24.0,
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          final tellNum =
+                                              provider.orgInfodata['orgTell'];
+                                          final url = Uri.parse("tel:$tellNum");
+                                          try {
+                                            await launchUrl(url);
+                                          } on Exception catch (e) {
+                                            ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text('연결이 불가능합니다.\n등록된 번호: $tellNum'),
+                                            action: SnackBarAction(
+                                                label: "닫기", onPressed: () {}),
+                                          ));
+                                            print(e);
+                                          }
+                                        },
                                       ),
                                       GestureDetector(
                                         onTap: () {
                                           print(
                                               "homepage: ${provider.orgInfodata['homepage']}");
-                                          launchURL(provider.orgInfodata['homepage']);
+                                          launchURL(
+                                              provider.orgInfodata['homepage']);
                                         },
                                         child: Image.asset(
                                           'images/group/globe.png',
@@ -154,11 +175,12 @@ class _OrgInfoState extends State<OrgInfo> {
                                       SizedBox(width: 10.0),
                                       GestureDetector(
                                         onTap: () {
-                                          if (provider.orgInfodata['favId'] == 0) {
+                                          if (provider.orgInfodata['favId'] ==
+                                              0) {
                                             provider.likeIsert(widget.orgId, 1);
                                           } else {
-                                            provider
-                                                .likeToggle(provider.orgInfodata['favId']);
+                                            provider.likeToggle(
+                                                provider.orgInfodata['favId']);
                                           }
                                         },
                                         child: Image.asset(
@@ -185,169 +207,180 @@ class _OrgInfoState extends State<OrgInfo> {
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
-                    // var isSelected = [true, false, false];
+                          // var isSelected = [true, false, false];
                           isSelected[2]
-                          ?
-                          Pay(orgId: widget.orgId)
-                          : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: mHeight * 1.5,
-                              ),
-                          Card(
-                            margin: EdgeInsets.only(top: 10),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Expanded(
-                                child: Column(
+                              ? Pay(orgId: widget.orgId)
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          margin:
-                                          EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                          child: Icon(Icons.phone,
-                                              color: Colors.grey),
-                                        ),
-                                        Container(
-                                          child: Text(
-                                            provider.orgInfodata['orgTell'],
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                    SizedBox(
+                                      height: mHeight * 1.5,
+                                    ),
+                                    Card(
+                                      margin: EdgeInsets.only(top: 10),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Expanded(
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Container(
+                                                    margin: EdgeInsets.fromLTRB(
+                                                        10, 5, 10, 5),
+                                                    child: Icon(Icons.phone,
+                                                        color: Colors.grey),
+                                                  ),
+                                                  Text(
+                                                    provider
+                                                        .orgInfodata['orgTell'],
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Container(
+                                                    margin: EdgeInsets.fromLTRB(
+                                                        10, 5, 10, 5),
+                                                    child: Icon(
+                                                        Icons.location_on,
+                                                        color: Colors.grey),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      provider.orgInfodata[
+                                                          'orgAddress'],
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
-                                        )
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 40,
+                                    ),
+                                    Text(
+                                      //"${provider.orgInfodata['orgInfo']}"
+                                      "모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. "
+                                      "통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. "
+                                      "원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다."
+                                      " 대통령은 필요하다고 인정할 때에는 외교·국방·통일 기타 국가안위에 관한 중요정책을 국민투표에 붙일 수 있다.",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: 40,
+                                    ),
+                                    Divider(thickness: 1, height: mHeight * 3),
+                                    Column(
+                                      children: [
+                                        SubTitle(title1: "대표자", title2: "고유번호"),
+                                        SizedBox(
+                                          height: mHeight * 0.3,
+                                        ),
+                                        SubSentence(
+                                            sentence1:
+                                                "${provider.orgInfodata['orgOwner']}",
+                                            sentence2: provider.orgInfodata[
+                                                        'orgOwnNumber'] ==
+                                                    null
+                                                ? "-"
+                                                : "${provider.orgInfodata['orgOwnNumber']}")
                                       ],
                                     ),
-                                    Row(
+                                    SizedBox(height: mHeight * 1),
+                                    Column(
                                       children: [
-                                        Container(
-                                          margin:
-                                              EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                          child: Icon(Icons.location_on,
-                                              color: Colors.grey),
+                                        SubTitle(
+                                            title1: "공익사업유형", title2: "설립일"),
+                                        SizedBox(
+                                          height: mHeight * 0.3,
                                         ),
-                                        Expanded(
-                                          child: Text(
-                                            provider.orgInfodata['orgAddress'],
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
+                                        SubSentence(
+                                            sentence1:
+                                                "${provider.orgInfodata['orgType']}",
+                                            sentence2:
+                                                "${provider.orgInfodata['startedUp']}"),
                                       ],
                                     ),
+                                    SizedBox(height: mHeight * 1),
+                                    Column(
+                                      children: [
+                                        SubTitle(title1: "전화번호", title2: ""),
+                                        SizedBox(height: mHeight * 0.3),
+                                        SubSentence(
+                                            sentence1:
+                                                "${provider.orgInfodata['orgTell']}",
+                                            sentence2: "")
+                                      ],
+                                    ),
+                                    SizedBox(height: mHeight * 1),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text("소재지",
+                                            style: TextStyle(
+                                                color: Palette.textColor2)),
+                                        SizedBox(height: mHeight * 0.3),
+                                        Text(
+                                            "${provider.orgInfodata['orgAddress']}")
+                                      ],
+                                    ),
+                                    Divider(thickness: 1, height: mHeight * 3),
+                                    Text(
+                                      "공지사항",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: mHeight * 1.5,
+                                    ),
+                                    Text(
+                                        //"${provider.orgInfodata['orgNotice']}"
+                                        "법원은 최고법원인 대법원과 각급법원으로 조직된다. 국회는 국무총리 또는 국무위원의 해임을 대통령에게 건의할 수 있다. 군인 또는 군무원이 아닌 국민은 대한민국의 영역안에서는 중대한 군사상 기밀·초병·초소·유독음식물공급·포로·군용물에 관한 죄중 법률이 정한 경우와 비상계엄이 선포된 경우를 제외하고는 군사법원의 재판을 받지 아니한다."),
+                                    Divider(thickness: 1, height: mHeight * 3),
+                                    Text(
+                                      "단체 위치",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: mHeight * 1,
+                                    ),
+                                    provider.orgInfodata.isNotEmpty
+                                        ? Container(
+                                            width: double.infinity,
+                                            height: mHeight * 25,
+                                            color: Colors.grey,
+                                            child: NowGoogleMapView(
+                                                latitude: mapp
+                                                    .orgInfodata['locationLat'],
+                                                //provider.orgInfodata['locationLat'],
+                                                longitude: mapp.orgInfodata[
+                                                    'locationLong'],
+                                                //provider.orgInfodata['locationLong'],
+                                                orgName:
+                                                    "${provider.orgInfodata['orgName']}"),
+                                          )
+                                        : CircularProgressIndicator(),
                                   ],
                                 ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Text(
-                            //"${provider.orgInfodata['orgInfo']}"
-                            "모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. "
-                            "통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. "
-                            "원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다."
-                            " 대통령은 필요하다고 인정할 때에는 외교·국방·통일 기타 국가안위에 관한 중요정책을 국민투표에 붙일 수 있다.",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Divider(thickness: 1, height: mHeight * 3),
-                          Column(
-                            children: [
-                              SubTitle(title1: "대표자", title2: "고유번호"),
-                              SizedBox(
-                                height: mHeight * 0.3,
-                              ),
-                              SubSentence(
-                                  sentence1:
-                                      "${provider.orgInfodata['orgOwner']}",
-                                  sentence2: provider
-                                              .orgInfodata['orgOwnNumber'] ==
-                                          null
-                                      ? "-"
-                                      : "${provider.orgInfodata['orgOwnNumber']}")
-                            ],
-                          ),
-                          SizedBox(height: mHeight * 1),
-                          Column(
-                            children: [
-                              SubTitle(title1: "공익사업유형", title2: "설립일"),
-                              SizedBox(
-                                height: mHeight * 0.3,
-                              ),
-                              SubSentence(
-                                  sentence1:
-                                      "${provider.orgInfodata['orgType']}",
-                                  sentence2:
-                                      "${provider.orgInfodata['startedUp']}"),
-                            ],
-                          ),
-                          SizedBox(height: mHeight * 1),
-                          Column(
-                            children: [
-                              SubTitle(title1: "전화번호", title2: ""),
-                              SizedBox(height: mHeight * 0.3),
-                              SubSentence(
-                                  sentence1:
-                                      "${provider.orgInfodata['orgTell']}",
-                                  sentence2: "")
-                            ],
-                          ),
-                          SizedBox(height: mHeight * 1),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("소재지",
-                                  style: TextStyle(color: Palette.textColor2)),
-                              SizedBox(height: mHeight * 0.3),
-                              Text("${provider.orgInfodata['orgAddress']}")
-                            ],
-                          ),
-                          Divider(thickness: 1, height: mHeight * 3),
-                          Text(
-                            "공지사항",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: mHeight * 1.5,
-                          ),
-                          Text(//"${provider.orgInfodata['orgNotice']}"
-                              "법원은 최고법원인 대법원과 각급법원으로 조직된다. 국회는 국무총리 또는 국무위원의 해임을 대통령에게 건의할 수 있다. 군인 또는 군무원이 아닌 국민은 대한민국의 영역안에서는 중대한 군사상 기밀·초병·초소·유독음식물공급·포로·군용물에 관한 죄중 법률이 정한 경우와 비상계엄이 선포된 경우를 제외하고는 군사법원의 재판을 받지 아니한다."),
-                          Divider(thickness: 1, height: mHeight * 3),
-                          Text(
-                            "단체 위치",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: mHeight * 1,
-                          ),
-                          provider.orgInfodata.isNotEmpty
-                              ? Container(
-                            width: double.infinity,
-                            height: mHeight * 25,
-                            color: Colors.grey,
-                            child: NowGoogleMapView(
-                                latitude: mapp.orgInfodata['locationLat'],
-                                //provider.orgInfodata['locationLat'],
-                                longitude: mapp.orgInfodata['locationLong'],
-                                //provider.orgInfodata['locationLong'],
-                                orgName: "${provider.orgInfodata['orgName']}"),
-                          )
-                              : CircularProgressIndicator(),
-
-                            ],
-                          ),
                         ])),
               ),
-
             ],
           );
         }),

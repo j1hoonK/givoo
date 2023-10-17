@@ -53,11 +53,11 @@ class DntHistory extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        orgIdForm,
+                        dnt.orgName,
                         style: TextStyle(color: Palette.textColor1),
                       ),
                       Text(
-                        "$amountForm 원",
+                        "${NumberFormat.currency(symbol:"",locale: 'ko_KR').format(int.parse(amountForm))}원",
                         style: TextStyle(color: Palette.textColor1),
                       ),
                     ],

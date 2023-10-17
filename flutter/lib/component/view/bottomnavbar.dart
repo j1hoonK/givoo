@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:givoo/pages/mainpage/view/mainPage.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/search/view/search.dart';
+import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,9 @@ class _BotNavBarState extends State<BotNavBar> {
             _currentIndex = value;
             if (value == 1) {
               Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
+            }
+            if(value==2){
+              Provider.of<DonationProvider>(context,listen: false).loadDonation();
             }
           });
         },

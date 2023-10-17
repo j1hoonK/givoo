@@ -39,13 +39,16 @@ class _OrgInfoState extends State<OrgInfo> {
     var mapp = Provider.of<OrganizationProvider>(context);
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: BaseAppbar(),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child:
             Consumer<OrganizationProvider>(builder: (context, provider, child) {
-          return Column(
+          return provider.orgInfodata.isEmpty  ?  Container(
+              height: height*0.7,
+              child: Center(child: CircularProgressIndicator())) :Column(
             children: [
               SizedBox(height: MediaQuery.of(context).padding.top),
               Stack(

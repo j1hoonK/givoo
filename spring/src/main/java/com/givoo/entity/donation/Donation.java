@@ -51,7 +51,8 @@ public class Donation {
 
     @Column(name = "dnt_type", nullable = false)
     private String dntType;
-
+    @Column(nullable = false)
+    private String orgName;
     public Donation() {
 
     }

@@ -47,7 +47,6 @@ public class MypageServiceImpl implements MypageService {
     @Override   // 기부이력 확인
     public List<Donation> myDnt(Long userId) {
         List<Donation> dntList = donationRepository.findAllByUserId(userId);
-        System.out.println("dntList: "+ dntList);
         if(dntList.isEmpty()){
             return null;
         }else{

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/component/model/com_dnt_type_model.dart';
@@ -7,6 +8,8 @@ class DonationProvider with ChangeNotifier {
   final DonationService _donationService = DonationService();
   List<Donation> _donation = [];
 
+ static var _totalAmount =0;
+ static get totalAmount=>_totalAmount;
   List<Donation> get donation => _donation;
 
   List<DonationType> _typeInfo = [];

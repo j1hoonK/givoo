@@ -6,7 +6,6 @@ import 'package:givoo/config/palette.dart';
 import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/services/LaunchUrlService.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/DonationProvider.dart';
@@ -102,7 +101,7 @@ class _OrgInfoState extends State<OrgInfo> {
                 width: double.infinity,
                 child: Padding(
                     padding: EdgeInsets.fromLTRB(
-                        mSize * 2.5, mHeight * 1.5, mSize * 2.5, mHeight * 1),
+                        mSize * 2.5, mHeight * 1, mSize * 2.5, mHeight * 1),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -188,7 +187,8 @@ class _OrgInfoState extends State<OrgInfo> {
                           ),
                     // var isSelected = [true, false, false];
                           isSelected[2]
-                          ? Pay(orgId: widget.orgId)
+                          ?
+                          Pay(orgId: widget.orgId)
                           : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -197,45 +197,49 @@ class _OrgInfoState extends State<OrgInfo> {
                               ),
                           Card(
                             margin: EdgeInsets.only(top: 10),
-                            child: SizedBox(
-                              height: 70,
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin:
-                                            EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                        child: Icon(Icons.location_on,
-                                            color: Colors.grey),
-                                      ),
-                                      Text(
-                                        provider.orgInfodata['orgAddress'],
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Expanded(
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          margin:
+                                          EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                          child: Icon(Icons.phone,
+                                              color: Colors.grey),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin:
-                                            EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                        child: Icon(Icons.phone,
-                                            color: Colors.grey),
-                                      ),
-                                      Container(
-                                        child: Text(
-                                          provider.orgInfodata['orgTell'],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                        Container(
+                                          child: Text(
+                                            provider.orgInfodata['orgTell'],
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                          child: Icon(Icons.location_on,
+                                              color: Colors.grey),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            provider.orgInfodata['orgAddress'],
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
-                                      )
-                                    ],
-                                  )
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

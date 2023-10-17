@@ -35,11 +35,11 @@ class MyPage extends StatelessWidget {
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Consumer<LoginViewModel>(
+    return /*Consumer<LoginViewModel>(
       builder: (context, provider, child) => provider.isLogin
           ? provider.kakaoUser[0].userAddress == 'null'
               ? FirstLogin()
-              : Scaffold(
+              : */Scaffold(
                   backgroundColor: Colors.white,
                   appBar: AppBar(
                     centerTitle: true,
@@ -50,7 +50,7 @@ class MyPage extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 10.0),
                         child: IconButton(
                             onPressed: () {
-                              provider.logout();
+                              // provider.logout();
                             },
                             icon: Icon(Icons.logout)),
                       )
@@ -78,12 +78,17 @@ class MyPage extends StatelessWidget {
                                 margin: EdgeInsets.only(left: 20),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(42),
-                                  child: Image.network(
+                                  child: Image.asset('images/main/1.png',
+                                    width: mSize * 11,
+                                    height: mSize * 11,
+                                    fit: BoxFit.contain,
+                                  )
+                                  /*Image.network(
                                     provider.kakaoUser[0].userImage,
                                     width: mSize * 11,
                                     height: mSize * 11,
                                     fit: BoxFit.contain,
-                                  ),
+                                  ),*/
                                 ),
                               ),
                               Container(
@@ -92,8 +97,8 @@ class MyPage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      child: Text(
-                                        provider.kakaoUser[0].userName,
+                                      child: Text('이름자리',
+                                        // provider.kakaoUser[0].userName,
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -498,8 +503,8 @@ class MyPage extends StatelessWidget {
                       ),
                     ),*/
                   ]),
-                )
-          : logIn(),
-    );
+                );
+          // : logIn(),
+    // );
   }
 }

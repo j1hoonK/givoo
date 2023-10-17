@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/provider/UserProvider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -22,8 +24,9 @@ class OrgBox extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-          context.push('/orginfo/$orgId',extra: orgId);
-          Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, 1);
+        Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId,int.parse("${LoginViewModel.userId}"));
+        context.push('/orginfo/$orgId',extra: orgId);
+
       },
       child:Column(
         children: [

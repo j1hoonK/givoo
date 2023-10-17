@@ -5,6 +5,7 @@ List<Donation> donationFromJson(String str) => List<Donation>.from(json.decode(s
 String donationToJson(List<Donation> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Donation {
+  String orgName;
   int dntId;
   int dntAmount;
   DateTime dntDate;
@@ -18,6 +19,7 @@ class Donation {
   String dntType;
 
   Donation({
+    required this.orgName,
     required this.dntId,
     required this.dntAmount,
     required this.dntDate,
@@ -32,6 +34,7 @@ class Donation {
   });
 
   factory Donation.fromJson(Map<String, dynamic> json) => Donation(
+    orgName: json["orgName"],
     dntId: json["dntId"],
     dntAmount: json["dntAmount"],
     dntDate: DateTime.parse(json["dntDate"]),
@@ -46,6 +49,7 @@ class Donation {
   );
 
   Map<String, dynamic> toJson() => {
+    "orgName": orgName,
     "dntId": dntId,
     "dntAmount": dntAmount,
     "dntDate": dntDate.toIso8601String(),

@@ -26,7 +26,6 @@ class OrgBox extends StatelessWidget {
       onTap: () {
         Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId,int.parse("${LoginViewModel.userId}"));
         context.push('/orginfo/$orgId',extra: orgId);
-
       },
       child:Column(
         children: [

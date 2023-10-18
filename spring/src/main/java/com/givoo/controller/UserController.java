@@ -52,7 +52,7 @@ public class UserController {
     @DeleteMapping("/delete/{token}")
     @Operation(summary = "회원탈퇴", description = "Token번호로 user 삭제")
     public void deleteUserByToken(@PathVariable("token") String token){
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@token ==" + token);
-        usersService.deleteUser(token);
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@token == " + token);
+        usersService.deleteAppUser(token);
     }
 }

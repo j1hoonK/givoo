@@ -58,11 +58,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void deleteUser(String token) {
-
-    }
-
-    @Override
     //웹 모든 정보 찾기
     public List<Users> findAll() {
         return usersRepository.findAll();
@@ -93,6 +88,9 @@ public class UsersServiceImpl implements UsersService {
     public Optional<Users> findById(Long id) {
         return usersRepository.findById(id);
     }
+
+    @Override
+    public void deleteAppUser(String token){usersRepository.deleteByToken(token);}
 
 
 }

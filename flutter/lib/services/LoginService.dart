@@ -21,7 +21,7 @@ class KakaoService {
       headers: {"Content-Type": 'application/json'},
       body: json.encode(kakaoUserData),
     );
-      print("(LoginService.dart)UserData: ${json.encode(kakaoUserData)}");
+    print("(LoginService.dart)UserData: ${json.encode(kakaoUserData)}");
 
     if (response.statusCode == 200) {
       print("(LoginService.dart)SignUp OK: ${response.body}");
@@ -69,15 +69,16 @@ class FindByToken {
 }
 
 Future deleteUser(token) async {
-  try{
-  print('Delete Start_token: $token');
-  var url = "${CustomUrl.url}/login/delete/$token";
-  http.Response response = await http.delete(Uri.parse(url));
-  print('Delete 요청완료');
-  if(response.statusCode == 200) {
-    print('(LoginService.dart)회원 탈퇴 성공');
-  }
-  }catch(e){
+  try {
+    print('Delete Start_token: $token');
+    var url = "${CustomUrl.url}/login/delete/$token";
+    print('url ======= $url');
+    http.Response response = await http.delete(Uri.parse(url));
+    print('Delete 요청완료');
+    if (response.statusCode == 200) {
+      print('(LoginService.dart)회원 탈퇴 성공');
+    }
+  } catch (e) {
     print(e);
   }
 }

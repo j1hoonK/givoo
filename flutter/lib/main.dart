@@ -6,6 +6,8 @@ import 'package:givoo/pages/login/model/user_info.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';
+import 'package:givoo/provider/DropDownProvider.dart';
+import 'package:givoo/provider/InquiryProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
@@ -70,6 +72,12 @@ class MyApp extends StatelessWidget {
             //
             create: (context) => RecommendMoreProvider(),
           ),
+          ChangeNotifierProvider(
+            //
+            create: (context) => DropdownProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => InquiryProvider(),),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

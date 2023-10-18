@@ -27,7 +27,7 @@ class MyPage extends StatelessWidget {
     List<String> pushList = [
       "/mypage/announce",
       "/mypage/announce",
-      "/mypage/qna",
+      "/mypage/inquiry",
       "/mypage/announce",
       "/mypage/terms"
     ];

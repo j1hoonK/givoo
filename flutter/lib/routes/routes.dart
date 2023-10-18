@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:givoo/config/loading.dart';
+import 'package:givoo/pages/mypage/view/dntBillRequest.dart';
+import 'package:givoo/pages/mypage/view/dntBillSend.dart';
+import 'package:givoo/pages/mypage/view/inquiry.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
+import 'package:givoo/pages/mypage/view/mypage_setting.dart';
 import 'package:givoo/pages/mypage/view/privacy_policy.dart';
 import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/pages/pay/view/pay.dart';
@@ -99,6 +103,20 @@ class GivooRouter {
               // 약관 및 정책
               path: 'terms',
               builder: (context, state) => TermsCondition(),
+            ),
+            GoRoute(path: 'dntbillsend',
+            builder: (context,state) => DntBillSend(),
+            ),
+            GoRoute(path: 'dntbillrequest',
+              builder: (context,state) => DntBillRequest(),
+            ),
+            GoRoute(path: 'inquiry',
+              builder: (context,state) => Inquiry(),
+            ),
+              // 개인 설정
+            GoRoute(
+              path: 'settings',
+              builder: (context, state) => SettingPage(),
             ),
           ]),
       GoRoute(

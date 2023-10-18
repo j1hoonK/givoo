@@ -18,7 +18,7 @@ public interface UsersService {
     List<Users> findUserInfo(String token);
 
     // 회원 탈퇴
-    void deleteUser(String token);
+    void deleteAppUser(String token);
 
     List<Users> findAll();
 

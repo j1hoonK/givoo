@@ -95,16 +95,17 @@ class _FreeDonationState extends State<FreeDonation> {
         children: [
           Row(
             children: [
-              Checkbox(
-                  value: widget.checkedOnFree, onChanged: widget.onChangedOnFree
-                  //     (bool? value) {
-                  //   setState(() {
-                  //     checkedOnFree = value ?? false;
-                  //   });
-                  //   print('checkedOnFree == ${widget.checkedOnFree}');
-                  // },
-                  ),
-              SizedBox(width: width * 0.03),
+              Checkbox(value: widget.checkedOnFree, onChanged: widget.onChangedOnFree),
+              SizedBox(
+                width: width * 0.01,
+              ),
+              Text('직접 입력',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              SizedBox(width: width * 0.03),              
               Expanded(
                 child: TextFormField(
                   validator: widget.checkedOnFree == true

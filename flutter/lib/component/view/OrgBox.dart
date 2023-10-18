@@ -33,7 +33,7 @@ class OrgBox extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: height * 0.12,
+            height: height * 0.13,
             margin: EdgeInsets.all(width * 0.007), // 컨테이너 간의 간격
             decoration: BoxDecoration(
               border: Border.all(
@@ -43,7 +43,7 @@ class OrgBox extends StatelessWidget {
               image: DecorationImage(
                 image: NetworkImage(imagePath ??
                     "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"),
-                fit: BoxFit.contain,
+                fit: BoxFit.fill,
               ),
               borderRadius: BorderRadius.circular(12.0), // 컨테이너의 모서리를 둥글게 만들기
             ),
@@ -57,15 +57,17 @@ class OrgBox extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(5, 0, 5, 3),
-            child: Text(
-              orgAddress,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(5, 0, 5, 3),
+              child: Text(
+                orgAddress,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
               ),
             ),
           ),

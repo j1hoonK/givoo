@@ -50,13 +50,10 @@ class OrgBox extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-            child: Expanded(
-              // height: height * 0.023,
-              child: Text(
-                orgName,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+            child: Text(
+              orgName,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),

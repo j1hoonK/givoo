@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../provider/DonationProvider.dart';
+import '../../mypage/view/notice.dart';
 import '../../pay/view/pay.dart';
 
 class OrgInfo extends StatefulWidget {
@@ -211,7 +212,9 @@ class _OrgInfoState extends State<OrgInfo> {
                             ),
                           ),
                           // var isSelected = [true, false, false];
-                          isSelected[2]
+                          isSelected[1]
+                              ? Notice()
+                          :isSelected[2]
                               ? Pay(orgId: widget.orgId)
                               : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,34 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
 
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-          scaffoldBackgroundColor: Colors.white,
-      ),
-      home: const HomePage(),
-    );
-  }
-}
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class Notice extends StatefulWidget {
+  const Notice({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _NoticeState createState() => _NoticeState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NoticeState extends State<Notice> {
   final List<Map<String, dynamic>> _items = [
     {
       "title": "행정안전부 출생미등록 아동신고기간 안내", // 첫 번째 공지 제목
@@ -75,21 +58,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          '공지사항',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 23,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
+    return
+       SafeArea(
         child: ListView.builder(
           itemCount: _items.length,
           itemBuilder: (_, index) {
@@ -134,7 +104,7 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
-      ),
-    );
+       );
+
   }
 }

@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 
 
-void main() { runApp(TermsCondition());}
+
 class TermsCondition extends StatefulWidget {
   const TermsCondition({Key? key}) : super(key: key);
 
@@ -88,14 +88,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         centerTitle: true, // 타이틀 중앙 정렬
         elevation: 0.0, // 앱바 하단 그림자 없애기
         title: Image.asset('images/login/logo.png',width: MediaQuery.of(context).size.width * 0.3),
         backgroundColor: Colors.white,
         leading: IconButton(onPressed: (){context.pop();}, icon: Icon(Icons.arrow_back, color: Colors.black,)),
 
-      ),
+      ),*/
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

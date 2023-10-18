@@ -148,7 +148,7 @@ class _AnnounceState extends State<Announce> {
                                 ),
                                 subtitle: Text(
                                   item['title'],
-                                  style: TextStyle(color: Colors.black, fontSize: 23),
+                                  style: TextStyle(color: Colors.black, fontSize: 17),
                                 ),
                               ),
                             ),

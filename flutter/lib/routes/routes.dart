@@ -102,7 +102,7 @@ class GivooRouter {
             GoRoute(
               // 약관 및 정책
               path: 'terms',
-              builder: (context, state) => TermsCondition(),
+              builder: (context, state) => Mypage_terms(),
             ),
             GoRoute(path: 'dntbillsend',
             builder: (context,state) => DntBillSend(),

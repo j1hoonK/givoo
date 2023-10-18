@@ -3,15 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:timer_builder/timer_builder.dart';
 
-void main() { runApp(PrivacyPolicy());}
-class PrivacyPolicy extends StatefulWidget {
+
+class PrivacyPolicy extends StatelessWidget {
   const PrivacyPolicy({Key? key}) : super(key: key);
 
-  @override
-  State<PrivacyPolicy> createState() => _PrivacyPolicyState();
-}
-
-class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -82,13 +77,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         centerTitle: true, // 타이틀 중앙 정렬
         elevation: 0.0, // 앱바 하단 그림자 없애기
         title: Image.asset('images/login/logo.png',width: MediaQuery.of(context).size.width * 0.3),
         backgroundColor: Colors.white,
         leading: IconButton(onPressed: (){context.pop();}, icon: Icon(Icons.arrow_back, color: Colors.black,)),
-      ),
+      ),*/
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

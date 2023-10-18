@@ -38,12 +38,12 @@ class OrgBox extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.grey, // 테두리 색상 설정
-                width: 5.0, // 테두리 두께 설정
+                width: 3.0, // 테두리 두께 설정
               ),
               image: DecorationImage(
                 image: NetworkImage(imagePath ??
                     "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"),
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
               ),
               borderRadius: BorderRadius.circular(12.0), // 컨테이너의 모서리를 둥글게 만들기
             ),

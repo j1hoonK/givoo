@@ -44,8 +44,7 @@ class RecommendPage extends StatelessWidget {
                   ),SizedBox(
                     height: 10,
                   ),
-                  SizedBox(
-                    height: height * 0.88,
+                  Expanded(
                     child: GridView.builder(
                         itemCount: provider.orgList.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

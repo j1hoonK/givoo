@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:givoo/config/palette.dart';
 import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/login/view/login_first.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
@@ -50,9 +49,9 @@ class MyPage extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 10.0),
                         child: IconButton(
                             onPressed: () {
-                              provider.logout();
+                              context.push('/mypage/settings');
                             },
-                            icon: Icon(Icons.logout)),
+                            icon: Icon(Icons.settings)),
                       )
                     ],
                     title: Container(
@@ -188,7 +187,9 @@ class MyPage extends StatelessWidget {
                                     height: height * 0.06,
                                     width: width,
                                     child: Text(
-                                      "Wow!! 이렇게 많은 기부를 하고 계시네요.",
+                                      DonationProvider.totalAmount != 0
+                                      ? "Wow!! 이렇게 많은 기부를 하고 계시네요."
+                                      : "기부하러 출발!",
                                       style: TextStyle(
                                         fontSize: 15,
                                         color: Colors.white,

@@ -138,9 +138,13 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.0.0</version> <!-- 사용 가능한 최신 버전 사용 -->
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

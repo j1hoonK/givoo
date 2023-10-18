@@ -38,7 +38,7 @@ class LoginViewModel with ChangeNotifier{
     // 유저정보 확인
     AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
     token = tokenInfo.id.toString();
-    print('(login_viewmodel.dart)tokenId == $token');
+    print('(login_viewmodel.dart)_tokenId == $token');
     // 확인된 토큰ID를 Api서버로 전송 >> 회원정보 습득
     List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
     // _kakaoUser에 회원정보 저장
@@ -54,6 +54,7 @@ class LoginViewModel with ChangeNotifier{
     await _socialLogin.logout();
     _isLogin = false;
     user = null;
+    print('Logout 완료');
     notifyListeners();
   }
 

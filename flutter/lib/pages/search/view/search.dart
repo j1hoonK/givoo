@@ -96,7 +96,7 @@ class Search extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 30.0,
-                    ),provider.OrgList.length!=0 ? GridView.builder(
+                    ),provider.OrgList.isNotEmpty ? GridView.builder(
                       itemCount: provider.OrgList.length, //item 개수
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
@@ -114,7 +114,7 @@ class Search extends StatelessWidget {
                             "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"
                             , orgId: provider.OrgList[idx].orgId,);
                       },
-                    ) : Container(
+                    ) : SizedBox(
                       height: 500,
                       child: Center(
                         child: Column(

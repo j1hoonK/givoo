@@ -372,7 +372,7 @@ class _FirstLoginState extends State<FirstLogin> {
                             decoration: InputDecoration(
                               labelText: '앞 6자리',
                               hintText: '앞 6자리',
-                              prefixIcon: Icon(Icons.password),
+                              // prefixIcon: Icon(Icons.password),
                               suffixIcon: _isClearButtonVisible2
                                   ? IconButton(
                                 icon: Icon(Icons.clear),
@@ -427,7 +427,7 @@ class _FirstLoginState extends State<FirstLogin> {
                             decoration: InputDecoration(
                               labelText: '뒤 7자리',
                               hintText: '뒤 7자리',
-                              prefixIcon: Icon(Icons.password),
+                              // prefixIcon: Icon(Icons.password),
                               suffixIcon: _isClearButtonVisible3
                                   ? IconButton(
                                 icon: Icon(Icons.clear),
@@ -624,7 +624,8 @@ class _FirstLoginState extends State<FirstLogin> {
                         Container(
                           width: double.infinity,
                           height: mHeight * 0.08,
-                          color: (allB && allC) || (!allA && !allB && !allC)
+                          color: allB
+                          // (allB && allC) || (!allA && !allB && !allC)
                               ? Color(0xFFFF466E)
                               : Colors.grey, // 버튼 활성/비활성 상태에 따라 색상 변경
 

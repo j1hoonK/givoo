@@ -6,6 +6,7 @@ import 'package:givoo/pages/mypage/view/inquiry.dart';
 import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
+import 'package:givoo/pages/mypage/view/mypage_setting.dart';
 import 'package:givoo/pages/mypage/view/privacy_policy.dart';
 import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/pages/pay/view/pay.dart';
@@ -111,6 +112,11 @@ class GivooRouter {
             ),
             GoRoute(path: 'inquiry',
               builder: (context,state) => Inquiry(),
+            ),
+              // 개인 설정
+            GoRoute(
+              path: 'settings',
+              builder: (context, state) => SettingPage(),
             ),
           ]),
       GoRoute(

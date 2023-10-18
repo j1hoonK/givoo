@@ -89,19 +89,6 @@ class _AnnounceState extends State<Announce> {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: BaseAppbar(),
-      /*AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          '공지사항',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 23,
-          ),
-        ),
-        centerTitle: true,
-      ),*/
       body: SafeArea(
         child: TimerBuilder.periodic(Duration(seconds: 1), builder: (context) {
           _currentTime = _buildDate();
@@ -133,7 +120,7 @@ class _AnnounceState extends State<Announce> {
                       elevation: 0,
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
-                        height: isExpanded ? 500.0 : 100.0, //공지내용 보이는 컨테이너 높이
+                        height: isExpanded ? 500 : 100.0, //공지내용 보이는 컨테이너 높이
                         child: ExpansionTile(
                           iconColor: Colors.black,
                           collapsedIconColor: Colors.black,

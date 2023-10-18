@@ -88,7 +88,6 @@ class _faqpageState extends State<faqpage> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: BaseAppbar(),
       /*AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -107,14 +106,6 @@ class _faqpageState extends State<faqpage> {
           _currentTime = _buildDate();
           return Column(
             children: [
-              SizedBox(height: height * 0.02,),
-              Text(
-                "FAQ",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                ),
-              ),
               SizedBox(height: height * 0.015,),
               Expanded(
                 child: ListView.builder(

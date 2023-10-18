@@ -624,19 +624,17 @@ class _FirstLoginState extends State<FirstLogin> {
                         Container(
                           width: double.infinity,
                           height: mHeight * 0.08,
-                          color: allB
-                          // (allB && allC) || (!allA && !allB && !allC)
-                              ? Color(0xFFFF466E)
-                              : Colors.grey, // 버튼 활성/비활성 상태에 따라 색상 변경
+                          // color: (allB && allC) || (!allA && !allB && !allC)
+                          //     ? Color(0xFFFF466E)
+                          //     : Colors.grey, // 버튼 활성/비활성 상태에 따라 색상 변경
 
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFFF466E),
+                              backgroundColor: (allB == true && allC == true)
+                                  ? Color(0xFFFF466E)
+                                  : Colors.grey,
                             ),
-                            onPressed: (allB == true && allC == true) ||
-                                    (allB == true &&
-                                        allC == true &&
-                                        allC == true)
+                            onPressed: (allB == true && allC == true)
                                 ? () async {
                                     if (_formKey.currentState!.validate()) {
                                       ScaffoldMessenger.of(context)

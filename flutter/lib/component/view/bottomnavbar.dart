@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/mainpage/view/main_page.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/search/view/search.dart';
@@ -33,6 +34,7 @@ class _BotNavBarState extends State<BotNavBar> {
               Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
             }
             if(value==2){
+              Provider.of<LoginViewModel>(context, listen: false).check();
               Provider.of<DonationProvider>(context,listen: false).loadDonation();
             }
           });

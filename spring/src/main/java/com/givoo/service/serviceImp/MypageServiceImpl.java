@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -57,16 +58,26 @@ public class MypageServiceImpl implements MypageService {
     @Override   // 내 단체
     public List<MyOrgDTO> myOrg(Long userId) {
         List<Favorites> favList = favoritesRepository.findAllByUserId(userId);
+
         List<MyOrgDTO> myOrgList = favList.stream()
-                .map(fav -> new MyOrgDTO(organizationRepository.findById(fav.getOrgId()).get().getOrgName(),
-                        organizationRepository.findById(fav.getOrgId()).get().getImagePath(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgType(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgId(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgAddress()
-                        ))
+                .map(fav -> {
+                    Organization org = organizationRepository.findById(fav.getOrgId()).orElse(null);
+                    if (org != null) {
+                        return new MyOrgDTO(
+                                org.getOrgName(),
+                                org.getImagePath(),
+                                org.getOrgType(),
+                                org.getOrgId(),
+                                org.getOrgAddress()
+                        );
+                    } else {
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull) // null인 항목 제외
                 .collect(Collectors.toList());
+
         return myOrgList;
-       // return null;
 
     }
 

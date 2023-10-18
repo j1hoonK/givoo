@@ -3,6 +3,7 @@ import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/component/view/togglebutton.dart';
 import 'package:givoo/config/palette.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/services/LaunchUrlService.dart';
@@ -177,7 +178,7 @@ class _OrgInfoState extends State<OrgInfo> {
                                       onTap: () {
                                         if (provider.orgInfodata['favId'] ==
                                             0) {
-                                          provider.likeIsert(widget.orgId, 1);
+                                          LoginViewModel.userId!="0"? provider.likeIsert(widget.orgId, int.parse(LoginViewModel.userId)):"";
                                         } else {
                                           provider.likeToggle(
                                               provider.orgInfodata['favId']);

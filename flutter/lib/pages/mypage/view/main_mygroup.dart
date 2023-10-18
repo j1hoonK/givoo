@@ -3,6 +3,7 @@ import 'package:givoo/component/view/OrgBox.dart';
 import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/noOrgList.dart';
 import 'package:givoo/component/view/orgList.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
@@ -18,11 +19,12 @@ class _MainMyGroupState extends State<MainMyGroup> {
   @override
   void initState(){
     super.initState();
-    Provider.of<MyPageProvider>(context, listen: false).fetchTodo();
+    Provider.of<MyPageProvider>(context, listen: false).fetchTodo(int.parse(LoginViewModel.userId));
   }
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
     //final myPageProvider = Provider.of<MyPageProvider>(context);
     return Scaffold(
       appBar: BaseAppbar(
@@ -33,7 +35,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
           Consumer<MyPageProvider>(
             builder: (context, myPageProvider, child) {
               if (!myPageProvider.myOrgList.isEmpty) {
-                return Expanded(
+                return myPageProvider.myOrgList2.isNotEmpty ? Expanded(
                   child: Container(
                     margin: EdgeInsets.all(0),
                     child: ListView.builder(
@@ -78,7 +80,9 @@ class _MainMyGroupState extends State<MainMyGroup> {
                       },
                     ),
                   ),
-                );
+                ) : Container(
+                    height: height*0.8,
+                    child: Center(child: CircularProgressIndicator()));
               } else {
                 return noOrgList();
               }

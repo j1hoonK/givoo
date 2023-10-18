@@ -6,6 +6,7 @@ import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/login/view/login_first.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';
+import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -247,6 +248,7 @@ class MyPage extends StatelessWidget {
                                         color: Colors.white),
                                     InkWell(
                                       onTap: () {
+                                        Provider.of<MyPageProvider>(context, listen: false).fetchTodo(int.parse(LoginViewModel.userId));
                                         context.push("/mypage/org");
                                       },
                                       child: Column(

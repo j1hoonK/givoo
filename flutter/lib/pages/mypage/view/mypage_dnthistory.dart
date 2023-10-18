@@ -106,10 +106,16 @@ class _DonationHistoryState extends State<DonationHistory> {
           children: [
             Container(
               height: height*0.08,
-                child: ElevatedButton(onPressed: (){}, child: Text("기부금 영수증 다운받기"))),
+                child: ElevatedButton(onPressed: (){
+                  context.push("/mypage/dntbillsend");
+
+                }, child: Text("기부금 영수증 다운받기"))),
             Container(
                 height: height*0.08,
-                child: ElevatedButton(onPressed: (){}, child: Text("전자기부금영수증 신청"),
+                child: ElevatedButton(onPressed: (){
+                  context.push("/mypage/dntbillrequest");
+
+                }, child: Text("전자기부금영수증 신청"),
                     style: ElevatedButton.styleFrom(
                   backgroundColor:Colors.red,)
                 ),

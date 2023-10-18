@@ -70,8 +70,9 @@ public class ImageUploadController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-  /*  @GetMapping("/images/images")
+    @GetMapping("/images/images")
     public void img(){
+        System.out.println("AAA");
         imageUploadService2.getImagesFromFolder();
-    }*/
+    }
 }

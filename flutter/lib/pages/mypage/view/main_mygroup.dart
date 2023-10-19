@@ -62,7 +62,11 @@ class _MainMyGroupState extends State<MainMyGroup> {
                                 itemBuilder: (BuildContext ctx2, int idx2) {
                                   return OrgList(orgName: myPageProvider.myOrgList2[idx][idx2].orgName,
                                       orgAddress: myPageProvider.myOrgList2[idx][idx2].orgAddress,
-                                      imagePath: myPageProvider.myOrgList2[idx][idx2].imagePath ?? "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"
+                                      imagePath: myPageProvider.orgImageMap.containsKey(myPageProvider.myOrgList2[idx][idx2].orgId)
+                                          ?
+                                      myPageProvider.orgImageMap[myPageProvider.myOrgList2[idx][idx2].orgId]
+                                          :
+                                      "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"
                                       , orgId: myPageProvider.myOrgList2[idx][idx2].orgId);
                                 },
                               ),

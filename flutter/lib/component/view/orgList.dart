@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/mypage/model/MyOrgList.dart';
+import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class OrgList extends StatelessWidget {
   const OrgList({super.key,
@@ -28,6 +31,8 @@ class OrgList extends StatelessWidget {
          fontSize: 12
        ),),
        onTap: (){
+         Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, LoginViewModel.userId);
+         print(orgId);
          context.push('/orginfo/$orgId',extra: orgId);
        },
     );

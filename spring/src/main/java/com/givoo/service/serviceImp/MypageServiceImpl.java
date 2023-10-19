@@ -2,11 +2,12 @@ package com.givoo.service.serviceImp;
 
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
-import com.givoo.entity.Users;
+import com.givoo.entity.Inquiry;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
 import com.givoo.entity.organization.Organization;
 import com.givoo.repository.FavoritesRepository;
+import com.givoo.repository.InquiryRepository;
 import com.givoo.repository.donation.DonationRegularRepository;
 import com.givoo.repository.donation.DonationRepository;
 import com.givoo.repository.organization.OrganizationRepository;
@@ -23,12 +24,14 @@ import java.util.stream.Collectors;
 public class MypageServiceImpl implements MypageService {
 
     private final DonationRepository donationRepository;
+    private final InquiryRepository inquiryRepository;
     private final DonationRegularRepository donationRegularRepository;
     private final FavoritesRepository favoritesRepository;
     private final OrganizationRepository organizationRepository;
     @Autowired
-    public MypageServiceImpl(DonationRepository donationRepository, DonationRegularRepository donationRegularRepository, FavoritesRepository favoritesRepository, OrganizationRepository organizationRepository) {
+    public MypageServiceImpl(DonationRepository donationRepository, InquiryRepository inquiryRepository, DonationRegularRepository donationRegularRepository, FavoritesRepository favoritesRepository, OrganizationRepository organizationRepository) {
         this.donationRepository = donationRepository;
+        this.inquiryRepository = inquiryRepository;
         this.donationRegularRepository = donationRegularRepository;
         this.favoritesRepository = favoritesRepository;
         this.organizationRepository = organizationRepository;
@@ -125,6 +128,17 @@ public class MypageServiceImpl implements MypageService {
             }
         }
         favoritesRepository.save(fav);
+    }
+
+    @Override
+    public void saveInquiry(Long userId,String title, String content) {
+        Inquiry inq = new Inquiry(userId,title,content);
+        inquiryRepository.save(inq);
+    }
+
+    @Override
+    public List<Inquiry> myInquiry(Long userId) {
+        return inquiryRepository.findAllByUserId(userId);
     }
 
 

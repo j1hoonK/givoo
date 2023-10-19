@@ -1,6 +1,7 @@
 package com.givoo.service;
 
 import com.givoo.dto.mypage.MyOrgDTO;
+import com.givoo.entity.Inquiry;
 import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
@@ -29,4 +30,7 @@ public interface MypageService {
 
     void fav(Long orgId, Long userId);
     void favUpdate(Long favId);
+    void saveInquiry(Long userId,String title, String content);
+
+    List<Inquiry> myInquiry(Long userId);
 }

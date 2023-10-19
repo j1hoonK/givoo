@@ -17,7 +17,7 @@ class LoginViewModel with ChangeNotifier{
   List<dynamic> _kakaoUser = [];
   List<dynamic> get kakaoUser => _kakaoUser;
   final DonationProvider _donationProvider = DonationProvider();
-
+  static String userName="";
   // 로그인 완료 => isLogin = true
   Future login() async {
     _isLogin = await _socialLogin.login();
@@ -35,6 +35,7 @@ class LoginViewModel with ChangeNotifier{
     // Donation 정보 최신화
     print('(login_viewmodel.dart) loadDonation Start');
     await _donationProvider.loadDonation(userId);
+    userName=_kakaoUser[0].userName;
     notifyListeners();
   }
 
@@ -48,6 +49,7 @@ class LoginViewModel with ChangeNotifier{
     // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
     userId=_kakaoUser[0].userId;
+    userName=_kakaoUser[0].userName;
     User user = await UserApi.instance.me();
     print('useruseruser == $user');
 

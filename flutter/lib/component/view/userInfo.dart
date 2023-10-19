@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DropDownProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class UserInfo extends StatelessWidget {
-  UserInfo({super.key, required this.name, required this.resiNumber});
-
-  var name;
-  var resiNumber;
+  UserInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class UserInfo extends StatelessWidget {
                 alignment: Alignment.center,
                 height: height * 0.1,
                 width: width * 0.5,
-                child: Text(name),
+                child: Text(LoginViewModel.userName),
               ),
             ],
           ),
@@ -60,7 +58,7 @@ class UserInfo extends StatelessWidget {
                 alignment: Alignment.center,
                 height: height * 0.1,
                 width: width * 0.5,
-                child: Text(resiNumber),
+                child: Text("960625-*******"),
               ),
             ],
           ),

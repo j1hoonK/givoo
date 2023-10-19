@@ -31,7 +31,7 @@ class KakaoLogin implements SocialLogin {
           };
           print('(kakao_login.dart)kakoUser1 == $kakaoUser');
           print('(kakao_login.dart)Token1 == ${kakaoUser["token"]}');
-          kakaoService.sendKakaoLogin(kakaoUser);
+          // kakaoService.sendKakaoLogin(kakaoUser);
           return true;
         } catch (error) {
           print('(kakao_login.dart)카카오톡으로 로그인 실패 $error');

@@ -20,15 +20,21 @@ class DonationProvider with ChangeNotifier {
   // 후원 이력 확인
   Future<void> loadDonation(String userId) async {
     try {
-      List<Donation> donationList = await _donationService.loadDonation(int.parse(LoginViewModel.userId));
-      _donation = donationList;
-      _totalAmount=0;
-      for (var donation in _donation) {
-        int donationAmount = donation.dntAmount;
-        _totalAmount += donationAmount;
+      List<Donation> donationList = await _donationService.loadDonation(userId);
+        _totalAmount = 0;
+      if(donationList.isNotEmpty) {
+        _donation = donationList;
+        for (var donation in _donation) {
+          int donationAmount = donation.dntAmount;
+          _totalAmount += donationAmount;
+        }
+        notifyListeners();
       }
-      notifyListeners();
-    } catch (error) {
+      // else {
+      //   print('Empty');
+      //   _totalAmount = 0;
+      //   }
+      } catch (error) {
       print('Error loading donation: $error');
     }
   }

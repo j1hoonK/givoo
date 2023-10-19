@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="56629ec3-098d-4025-ba97-9a97b84fc3ce" name="변경" comment="변경">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="10-app-pay-화면-구현" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+  }
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="1ad7fea9-5c73-4946-8bf3-3ed356def593" />
+        <option name="url" value="https://github.com/j1hoonK/givoo.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2UVwuWGC2JLy7m16zNd5sZK3wHE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "Develop-Branch",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/KIBWA_19/gson-2.10.1.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "show.migrate.to.gradle.popup": "false",
+    "spring.configuration.checksum": "e8a10806c02c89ccd8f460cee53f9c56",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\prj_Workspace\givoo\spring\src\main\java\com\givoo" />
+      <recent name="C:\prj_Workspace\givoo\spring\src\main\java\com\givoo\controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\prj_Workspace\givoo\spring" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BaroApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="givoo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.givoo.BaroApplication" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="56629ec3-098d-4025-ba97-9a97b84fc3ce" name="변경" comment="" />
+      <created>1693038280447</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1693038280447</updated>
+      <workItem from="1693038284302" duration="103000" />
+      <workItem from="1693038641648" duration="40000" />
+      <workItem from="1693038692022" duration="216000" />
+      <workItem from="1693039412587" duration="330000" />
+      <workItem from="1693039773446" duration="74000" />
+      <workItem from="1693180440057" duration="55000" />
+      <workItem from="1693191796014" duration="91000" />
+      <workItem from="1693213887707" duration="1135000" />
+      <workItem from="1693284722968" duration="637000" />
+      <workItem from="1693296443363" duration="220000" />
+      <workItem from="1693296711157" duration="2391000" />
+      <workItem from="1693360886643" duration="651000" />
+      <workItem from="1693361613070" duration="335000" />
+      <workItem from="1693362653738" duration="4088000" />
+      <workItem from="1693377855594" duration="8055000" />
+      <workItem from="1693446080257" duration="19000" />
+      <workItem from="1693464767999" duration="45000" />
+      <workItem from="1693611581047" duration="21678000" />
+      <workItem from="1693787062121" duration="15000" />
+      <workItem from="1693820903392" duration="1039000" />
+      <workItem from="1693873811572" duration="12000" />
+      <workItem from="1693896188482" duration="5629000" />
+      <workItem from="1693974445859" duration="1225000" />
+      <workItem from="1694045728268" duration="3539000" />
+      <workItem from="1694057331004" duration="12000" />
+      <workItem from="1694216594937" duration="5506000" />
+      <workItem from="1694235484701" duration="6442000" />
+      <workItem from="1694392316303" duration="2551000" />
+      <workItem from="1694395591976" duration="18418000" />
+      <workItem from="1694491984431" duration="1834000" />
+      <workItem from="1694564816344" duration="8373000" />
+      <workItem from="1694651088613" duration="1037000" />
+      <workItem from="1694652756557" duration="4499000" />
+      <workItem from="1694680988957" duration="1955000" />
+      <workItem from="1694738000721" duration="5344000" />
+      <workItem from="1694760459421" duration="233000" />
+      <workItem from="1694760699495" duration="127000" />
+      <workItem from="1694760843350" duration="155000" />
+      <workItem from="1694761003815" duration="37000" />
+      <workItem from="1694761329231" duration="305000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

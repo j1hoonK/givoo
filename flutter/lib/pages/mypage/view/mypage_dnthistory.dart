@@ -59,7 +59,7 @@ class _DonationHistoryState extends State<DonationHistory> {
                 Expanded(
                   child: ListView.builder(
                     itemBuilder: (context, index) {
-                      return DntHistory(dnt: provider.donation[index]);
+                      return DntHistory(dnt: provider.donation[index], isChecked: true,);
                     },
                     itemCount: provider.donation.length,
                   ),

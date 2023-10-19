@@ -4,20 +4,17 @@ import 'package:givoo/config/palette.dart';
 import 'package:intl/intl.dart';
 
 class DntHistory extends StatelessWidget {
-  const DntHistory({super.key, required this.dnt});
+  const DntHistory({super.key, required this.dnt, required this.isChecked});
 
   final Donation dnt;
+  final bool isChecked;
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    var mSize = MediaQuery.of(context).size.width * 0.025;
-    var mHeight = MediaQuery.of(context).size.height * 0.013;
 
     final dateForm = DateFormat('yyyy-MM-dd').format(dnt.dntDate);
-    final orgIdForm = dnt.orgId.toString();
-    final amountForm = dnt.dntAmount.toString();
 
     return TextButton(
       onPressed: () {},

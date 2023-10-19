@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/login/model/kakaoLogin.dart';
 import 'package:givoo/pages/login/viewmodel/social_login.dart';
+import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
@@ -15,6 +16,7 @@ class LoginViewModel with ChangeNotifier{
   final FindByToken _findByToken = FindByToken();
   List<dynamic> _kakaoUser = [];
   List<dynamic> get kakaoUser => _kakaoUser;
+  final DonationProvider _donationProvider = DonationProvider();
 
   // 로그인 완료 => isLogin = true
   Future login() async {
@@ -29,7 +31,10 @@ class LoginViewModel with ChangeNotifier{
     List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
     // // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
-    // print("userId: ${userId}");
+    userId=_kakaoUser[0].userId;
+    // Donation 정보 최신화
+    print('(login_viewmodel.dart) loadDonation Start');
+    await _donationProvider.loadDonation(userId);
     notifyListeners();
   }
 

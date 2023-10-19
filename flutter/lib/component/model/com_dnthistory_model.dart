@@ -17,7 +17,6 @@ class Donation {
   String isRegulation;
   String? dntCommentRegulation;
   String dntType;
-  String orgName;
 
   Donation({
     required this.orgName,
@@ -32,7 +31,6 @@ class Donation {
     required this.isRegulation,
     required this.dntCommentRegulation,
     required this.dntType,
-    required this.orgName
   });
 
   factory Donation.fromJson(Map<String, dynamic> json) => Donation(
@@ -48,7 +46,6 @@ class Donation {
     isRegulation: json["isRegulation"],
     dntCommentRegulation: json["dntCommentRegulation"],
     dntType: json["dntType"],
-    orgName: json["orgName"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -64,6 +61,5 @@ class Donation {
     "isRegulation": isRegulation,
     "dntCommentRegulation": dntCommentRegulation,
     "dntType": dntType,
-    "orgName": orgName
   };
 }

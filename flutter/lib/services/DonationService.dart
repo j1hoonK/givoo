@@ -10,14 +10,19 @@ class DonationService{
 
   Future<List<Donation>> loadDonation(userId) async {
     http.Response response = await http.get(Uri.parse("${CustomUrl.url}/mypage/dntresult/$userId"));
-    if(response.statusCode == 200){
-      print("OK");
-      List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
-      print(body);
-      return body.map<Donation>((item) => Donation.fromJson(item)).toList();
-    }else{
-      print("NG");
-      throw Exception('Failed to load Donation Data');
+    print(response.bodyBytes);
+    try {
+      if(response.statusCode == 200){
+        print("OK");
+        List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
+          return body.map<Donation>((item) => Donation.fromJson(item)).toList();
+      }else{
+        print("NG");
+        throw Exception('Failed to load Donation Data');
+      }
+    } on Exception catch (e) {
+      print('(DonationService.dart) Donation List is maybe Empty => $e');
+      return List.empty();
     }
   }
 
@@ -36,5 +41,6 @@ class DonationService{
       }
     } else {
     }
+    return null;
   }
 }

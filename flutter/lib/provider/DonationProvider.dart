@@ -20,14 +20,20 @@ class DonationProvider with ChangeNotifier {
   Future<void> loadDonation(userId) async {
     try {
       List<Donation> donationList = await _donationService.loadDonation(userId);
-      _donation = donationList;
-      _totalAmount=0;
-      for (var donation in _donation) {
-        int donationAmount = donation.dntAmount;
-        _totalAmount += donationAmount;
+        _totalAmount = 0;
+      if(donationList.isNotEmpty) {
+        _donation = donationList;
+        for (var donation in _donation) {
+          int donationAmount = donation.dntAmount;
+          _totalAmount += donationAmount;
+        }
+        notifyListeners();
       }
-      notifyListeners();
-    } catch (error) {
+      // else {
+      //   print('Empty');
+      //   _totalAmount = 0;
+      //   }
+      } catch (error) {
       print('Error loading donation: $error');
     }
   }

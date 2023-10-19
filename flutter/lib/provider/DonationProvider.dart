@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/component/model/com_dnt_type_model.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/services/DonationService.dart';
 
 class DonationProvider with ChangeNotifier {
@@ -17,7 +18,7 @@ class DonationProvider with ChangeNotifier {
   List<DonationType> get typeInfo => _typeInfo;
 
   // 후원 이력 확인
-  Future<void> loadDonation() async {
+  Future<void> loadDonation(String userId) async {
     try {
       List<Donation> donationList = await _donationService.loadDonation(int.parse(LoginViewModel.userId));
       _donation = donationList;

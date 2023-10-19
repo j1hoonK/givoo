@@ -17,9 +17,9 @@ class DonationProvider with ChangeNotifier {
   List<DonationType> get typeInfo => _typeInfo;
 
   // 후원 이력 확인
-  Future<void> loadDonation() async {
+  Future<void> loadDonation(userId) async {
     try {
-      List<Donation> donationList = await _donationService.loadDonation(1);
+      List<Donation> donationList = await _donationService.loadDonation(userId);
       _donation = donationList;
       _totalAmount=0;
       for (var donation in _donation) {

@@ -25,10 +25,8 @@ class _MainMyGroupState extends State<MainMyGroup> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    //final myPageProvider = Provider.of<MyPageProvider>(context);
     return Scaffold(
       appBar: BaseAppbar(
-      //    title: "내 단체"
       ), // BaseAppbar가 어디에 정의되었는지 확인
       body: Column(
         children: [
@@ -57,21 +55,15 @@ class _MainMyGroupState extends State<MainMyGroup> {
                                   ),
                                 ),
                               ),
-                              GridView.builder(
+                              ListView.builder(
                                 itemCount: myPageProvider.myOrgList2[idx].length, //item 개수
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-                                   childAspectRatio: 1 / 1.4, //item 의 가로 1, 세로 2 의 비율
-                                  mainAxisSpacing: 10, //수평 Padding
-                                  crossAxisSpacing: 10, //수직 Padding
-                                ),
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 itemBuilder: (BuildContext ctx2, int idx2) {
-                                  return OrgBox(orgName: myPageProvider.myOrgList2[idx][idx2].orgName,
+                                  return OrgList(orgName: myPageProvider.myOrgList2[idx][idx2].orgName,
                                       orgAddress: myPageProvider.myOrgList2[idx][idx2].orgAddress,
                                       imagePath: myPageProvider.myOrgList2[idx][idx2].imagePath ?? "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png"
-                                    , orgId: myPageProvider.myOrgList2[idx][idx2].orgId,);
+                                      , orgId: myPageProvider.myOrgList2[idx][idx2].orgId);
                                 },
                               ),
                             ],

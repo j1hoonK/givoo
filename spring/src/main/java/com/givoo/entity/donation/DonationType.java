@@ -1,5 +1,6 @@
 package com.givoo.entity.donation;
 
+import com.givoo.entity.organization.Organization;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,11 +10,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DonationType {
-    @Id //pk 값
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "type_id")
     private Long typeId;
-    @Column(nullable = false)
+
+    @Column
     private Long orgId;
-    @Column(nullable = false)
+
+    @Column(name = "type", nullable = false)
     private String type;
+
+    @Column(name = "default_pay")
+    private  String defaultPay;
 }

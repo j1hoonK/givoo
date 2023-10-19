@@ -1,9 +1,10 @@
 package com.givoo.service;
 
-import com.givoo.dto.donation.DonationDTO;
 import com.givoo.dto.mypage.MyOrgDTO;
+import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
+import com.givoo.entity.organization.Organization;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,9 +12,12 @@ import java.util.List;
 @Service
 public interface MypageService {
 
-    List<DonationDTO> getDonationsByUserId(Long userId);
-    List<MyOrgDTO> myOrg(Long userId);
+    List<Donation> myDnt(Long userId);
+
     Donation myDntDetail(Long dntId);
+
+    // 내 단체
+    List<MyOrgDTO> myOrg(Long userId);
 
     // 정기기부 관리
     List<DonationRegular> findByUserID(Long userId);
@@ -23,7 +27,6 @@ public interface MypageService {
 
     List<DonationRegular> findByDntRegularId(Long dntRegularId);
 
-    void fav(Long orgId,Long userId);
-
-    void favDel(Long favId);
+    void fav(Long orgId, Long userId);
+    void favUpdate(Long favId);
 }

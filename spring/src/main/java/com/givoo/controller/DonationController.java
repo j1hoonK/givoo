@@ -2,6 +2,7 @@ package com.givoo.controller;
 
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationType;
+import com.givoo.entity.organization.Organization;
 import com.givoo.service.DonationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +26,7 @@ public class DonationController {
     }
     @GetMapping("/{orgid}")
     @Operation(summary = "후원 종류", description = "기관별 후원종류")
-    public List<DonationType> findByOrgIdFromDonation(@PathVariable("orgid")Long orgid){
+    public List<DonationType> findByOrgIdFromDonation(@PathVariable("orgid") Long orgid){
         return donationService.findByOrgIdFromDonation(orgid);
     }
 

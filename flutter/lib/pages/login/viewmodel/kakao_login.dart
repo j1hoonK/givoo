@@ -18,19 +18,23 @@ class KakaoLogin implements SocialLogin {
         try {
           User user = await UserApi.instance.me();
           OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
-          print('카카오톡으로 로그인 성공_token:${token.accessToken}');
+          print('(kakao_login.dart)카카오톡으로 로그인 성공_token:${token.accessToken}');
           var kakaoUser = {
             // 서버에 전송할 user 정보
-            "login": "kakao",
+            "loginType": "kakao",
             "token": user.id,
-            "user_name": user.kakaoAccount?.profile?.nickname,
-            "user_image": user.kakaoAccount?.profile?.profileImageUrl,
-            "user_email": user.kakaoAccount?.email,
+            "userName": user.kakaoAccount?.profile?.nickname,
+            "userImage": user.kakaoAccount?.profile?.profileImageUrl,
+            "userEmail": user.kakaoAccount?.email,
+            "userGender": user.kakaoAccount?.gender?.index,
+            "userBirthday": user.kakaoAccount?.birthday,
           };
-          print('user:$kakaoUser');
+          print('(kakao_login.dart)kakoUser1 == $kakaoUser');
+          print('(kakao_login.dart)Token1 == ${kakaoUser["token"]}');
+          kakaoService.sendKakaoLogin(kakaoUser);
           return true;
         } catch (error) {
-          print('카카오톡으로 로그인 실패 $error');
+          print('(kakao_login.dart)카카오톡으로 로그인 실패 $error');
 
           // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
           // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
@@ -40,17 +44,31 @@ class KakaoLogin implements SocialLogin {
           // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
           try {
             OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
-            print('카카오계정으로 로그인 성공_token:${token.accessToken}');
+            print('(kakao_login.dart)카카오계정으로 로그인 성공2_token:${token.accessToken}');
+            User user = await UserApi.instance.me();
+            var kakaoUser = {
+              // 서버에 전송할 user 정보
+              "loginType": "kakao",
+              "token": user.id,
+              "userName": user.kakaoAccount?.profile?.nickname,
+              "userImage": user.kakaoAccount?.profile?.profileImageUrl,
+              "userEmail": user.kakaoAccount?.email,
+              "userGender": user.kakaoAccount?.gender?.index,
+              "userBirthday": user.kakaoAccount?.birthday,
+            };
+            print('(kakao_login.dart)kakaoUser2 == $kakaoUser');
+            print('(kakao_login.dart)Token2 == ${kakaoUser["token"]}');
+            kakaoService.sendKakaoLogin(kakaoUser);
             return true;
           } catch (error) {
-            print('카카오계정으로 로그인 실패 $error');
+            print('(kakao_login.dart)카카오계정으로 로그인 실패2 $error');
             return false;
           }
         }
       } else {
         try {
           OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
-          print('카카오계정으로 로그인 성공2');
+          print('(kakao_login.dart)카카오계정으로 로그인 성공3');
           User user = await UserApi.instance.me();
           var kakaoUser = {
             // 서버에 전송할 user 정보
@@ -59,12 +77,15 @@ class KakaoLogin implements SocialLogin {
             "userName": user.kakaoAccount?.profile?.nickname,
             "userImage": user.kakaoAccount?.profile?.profileImageUrl,
             "userEmail": user.kakaoAccount?.email,
+            "userGender": user.kakaoAccount?.gender?.index,
+            "userBirthday": user.kakaoAccount?.birthday,
           };
-          print('Token:${kakaoUser["token"]}');
+          print('(kakao_login.dart)kakaoUser3 == $kakaoUser');
+          print('(kakao_login.dart)Token == ${kakaoUser["token"]}');
           kakaoService.sendKakaoLogin(kakaoUser);
           return true;
         } catch (error) {
-          print('카카오계정으로 로그인 실패2 $error');
+          print('(kakao_login.dart)카카오계정으로 로그인 실패3 $error');
           return false;
         }
       }

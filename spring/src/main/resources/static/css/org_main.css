@@ -1,0 +1,36 @@
+.org-info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+/* 기부 내역 테이블 스타일 */
+.donation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.donation-table th, .donation-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.donation-table th {
+    background-color: #f2f2f2;
+}
+
+/* 수정 및 삭제 버튼 스타일 */
+.donation-table a {
+    text-decoration: none;
+    color: #007bff; /* 링크 색상 (파란색) */
+    margin-right: 10px;
+}
+
+/* 버튼에 호버 스타일 */
+.donation-table a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}

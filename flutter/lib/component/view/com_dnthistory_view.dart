@@ -10,67 +10,81 @@ class DntHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
 
     final dateForm = DateFormat('yyyy-MM-dd').format(dnt.dntDate);
     final orgIdForm = dnt.orgId.toString();
     final amountForm = dnt.dntAmount.toString();
-    final orgName = dnt.orgName.toString();
 
     return TextButton(
       onPressed: () {},
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        child: Column(
-          children: [
-            Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              Text(
-                "결제 완료",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Palette.textColor1),
-              ),
-              SizedBox(
-                width: mSize * 2,
-              ),
-              Text(dateForm, style: TextStyle(color: Palette.textColor2)),
-            ]),
-            SizedBox(
-              height: mHeight * 0.3,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(dnt.dntType,
-                      style: TextStyle(color: Palette.textColor2)),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Container(
+        //height: height*0.15,
+        child: Card(
+          child: Container(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                  Text(dateForm, style: TextStyle(color: Palette.textColor2)),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        dnt.orgName,
-                        style: TextStyle(color: Palette.textColor1),
+                      Text("${NumberFormat.currency(symbol:"",locale: 'ko_KR').format(dnt.dntAmount)} 원",
+                        style: TextStyle(
+                        color: Color(0xFF32D4AE)
                       ),
-                      Text(
-                        "$amountForm 원",
-                        style: TextStyle(color: Palette.textColor1),
+                      ),SizedBox(
+                        height: 10,
+                      ),
+                      Text(dnt.dntType,style: TextStyle(
+                        fontWeight: FontWeight.bold,color: Colors.grey,
+                        fontSize: 12
+                      ),),SizedBox(
+                        height: 5,
+                      ),
+                      Text(dnt.orgName,style: TextStyle(
+                          fontWeight: FontWeight.bold,
+
+                      ),),
+                    ],
+                  )
+
+
+
+            /*    SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(dnt.dntType,
+                          style: TextStyle(color: Palette.textColor2)),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            dnt.orgName,
+                            style: TextStyle(color: Palette.textColor1),
+                          ),
+                          Text(
+                            "${NumberFormat.currency(symbol:"",locale: 'ko_KR').format(int.parse(amountForm))}원",
+                            style: TextStyle(color: Palette.textColor1),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),*/
+              ],
             ),
-            Divider(
-              height: 20,
-              color: Colors.grey,
-            )
-          ],
+          ),
         ),
       ),
     );

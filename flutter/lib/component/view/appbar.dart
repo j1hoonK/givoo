@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 
 class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
-  BaseAppbar({super.key, required this.title});
-
-  String title;
-
+  BaseAppbar({Key? key,this.title});
+  final String? title;
   @override
   Widget build(BuildContext context) {
+    var tHeight = MediaQuery.of(context).size.height;
     return AppBar(
-      centerTitle: true, // 타이틀 중앙 정렬
-      elevation: 0.0, // 앱바 하단 그림자 없애기
-      leading: IconButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        icon: Icon(Icons.arrow_back_ios_new),
+      // automaticallyImplyLeading: false,
+      toolbarHeight: double.infinity,
+      centerTitle: true,
+      elevation: 0,
+      title: title!=null ? Text("$title",style: TextStyle(
+        color: Colors.black,
+      ),) : Container(
+        margin: EdgeInsets.fromLTRB(0, tHeight *0.01 , 0 , 0),
+        child: Image.asset(
+          'images/login/logo.png',
+          height: MediaQuery.of(context).size.height * 0.05,
+        ),
       ),
-      title: Text(
-        title,
-        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-      ),
+      backgroundColor: Colors.white,
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight); // ✅
+  Size get preferredSize => Size.fromHeight(MediaQueryData.fromView(WidgetsBinding.instance!.window).padding.top + kToolbarHeight);
 }

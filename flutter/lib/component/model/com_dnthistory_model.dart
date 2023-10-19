@@ -5,6 +5,7 @@ List<Donation> donationFromJson(String str) => List<Donation>.from(json.decode(s
 String donationToJson(List<Donation> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Donation {
+  String orgName;
   int dntId;
   int dntAmount;
   DateTime dntDate;
@@ -12,13 +13,14 @@ class Donation {
   int orgId;
   int userId;
   String typePayment;
-  String dntComment;
+  //String dntComment;
   String isRegulation;
   String? dntCommentRegulation;
   String dntType;
   String orgName;
 
   Donation({
+    required this.orgName,
     required this.dntId,
     required this.dntAmount,
     required this.dntDate,
@@ -26,7 +28,7 @@ class Donation {
     required this.orgId,
     required this.userId,
     required this.typePayment,
-    required this.dntComment,
+    //required this.dntComment,
     required this.isRegulation,
     required this.dntCommentRegulation,
     required this.dntType,
@@ -34,6 +36,7 @@ class Donation {
   });
 
   factory Donation.fromJson(Map<String, dynamic> json) => Donation(
+    orgName: json["orgName"],
     dntId: json["dntId"],
     dntAmount: json["dntAmount"],
     dntDate: DateTime.parse(json["dntDate"]),
@@ -41,7 +44,7 @@ class Donation {
     orgId: json["orgId"],
     userId: json["userId"],
     typePayment: json["typePayment"],
-    dntComment: json["dntComment"],
+    // dntComment: json["dntComment"],
     isRegulation: json["isRegulation"],
     dntCommentRegulation: json["dntCommentRegulation"],
     dntType: json["dntType"],
@@ -49,6 +52,7 @@ class Donation {
   );
 
   Map<String, dynamic> toJson() => {
+    "orgName": orgName,
     "dntId": dntId,
     "dntAmount": dntAmount,
     "dntDate": dntDate.toIso8601String(),
@@ -56,7 +60,7 @@ class Donation {
     "orgId": orgId,
     "userId": userId,
     "typePayment": typePayment,
-    "dntComment": dntComment,
+    //"dntComment": dntComment,
     "isRegulation": isRegulation,
     "dntCommentRegulation": dntCommentRegulation,
     "dntType": dntType,

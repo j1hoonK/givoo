@@ -1,34 +1,44 @@
 package com.givoo.entity.donation;
 
+import com.givoo.entity.Users;
+import com.givoo.entity.organization.Organization;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
-@Entity // Entity 클래스임을 명시합니다.
-@Table(name = "donation_regular")  //매핑할 테이블 명을 지정합니다.
+@Entity
+@Table(name = "donation_regular")
 @Getter
 @Setter
 public class DonationRegular {
-    @Id //pk 값
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "dnt_regular_id")
     private Long dntRegularId;
-    @Column(nullable = false)
+
+    @Column
     private Long userId;
-    @Column(nullable = false)
+
+    @Column
     private Long orgId;
-    @Column(nullable = false)
+
+    @Column(name = "isusenow", nullable = false)
     private String isusenow;
-    @Column(nullable = false)
+
+    @Column(name = "started", nullable = false)
     private Date started;
 
-    private Long amountDntRegular; //null 허용 컬럼
-    @Column(nullable = false)
-    private Date paymentDate;
-    @Column(nullable = false)
-    private Long period;
-    @Column(nullable = false)
-    private Long periodDetail;
+    @Column(name = "amount_dnt_regular")
+    private Long amountDntRegular;
 
+    @Column(name = "payment_date", nullable = false)
+    private Date paymentDate;
+
+    @Column(name = "period", nullable = false)
+    private Long period;
+
+    @Column(name = "period_detail", nullable = false)
+    private Long periodDetail;
 }

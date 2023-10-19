@@ -29,7 +29,6 @@ class LoginViewModel with ChangeNotifier{
     // List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
     // // _kakaoUser에 회원정보 저장
     // _kakaoUser = nowUserInfo;
-    // userId=_kakaoUser[0].userId;
     // print("userId: ${userId}");
     notifyListeners();
   }
@@ -43,6 +42,7 @@ class LoginViewModel with ChangeNotifier{
     List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
     // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
+    userId=_kakaoUser[0].userId;
     User user = await UserApi.instance.me();
     print('useruseruser == $user');
 

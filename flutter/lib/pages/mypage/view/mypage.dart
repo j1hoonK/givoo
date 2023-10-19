@@ -27,7 +27,7 @@ class MyPage extends StatelessWidget {
       "/mypage/announce",
       "/mypage/announce",
       "/mypage/inquiry",
-      "/mypage/announce",
+      "/mypage/announcement",
       "/mypage/terms"
     ];
     var mSize = MediaQuery.of(context).size.width * 0.025;
@@ -389,7 +389,7 @@ class MyPage extends StatelessWidget {
                                             child: TextButton(
                                               onPressed: () {
                                                 context
-                                                    .push('/mypage/announce');
+                                                    .push('/mypage/announcement');
                                               },
                                               child: Row(
                                                 children: [

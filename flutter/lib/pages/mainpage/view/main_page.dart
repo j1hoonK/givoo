@@ -177,7 +177,7 @@ class MainPage extends StatelessWidget {
               options: CarouselOptions(
                 height: height * 0.4,
                 autoPlay: true,
-                // enlargeCenterPage: false,
+                // enlargeCenterPage: false,=>이미지 크기가 달라서 적용 안됨.
               ),
             ),
           ],

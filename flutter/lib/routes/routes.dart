@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:givoo/config/loading.dart';
+import 'package:givoo/pages/mypage/view/announcement.dart';
 import 'package:givoo/pages/mypage/view/dntBillRequest.dart';
 import 'package:givoo/pages/mypage/view/dntBillSend.dart';
 import 'package:givoo/pages/mypage/view/inquiry.dart';
@@ -7,6 +8,7 @@ import 'package:givoo/pages/mypage/view/main_mygroup.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/mypage/view/mypage_dnthistory.dart';
 import 'package:givoo/pages/mypage/view/mypage_setting.dart';
+import 'package:givoo/pages/mypage/view/notice.dart';
 import 'package:givoo/pages/mypage/view/privacy_policy.dart';
 import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/pages/pay/view/pay.dart';
@@ -16,6 +18,7 @@ import 'package:go_router/go_router.dart';
 import '../component/view/bottomnavbar.dart';
 import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
+import '../pages/mypage/view/notice.dart';
 import '../pages/mypage/view/announcement.dart';
 import '../pages/mypage/view/q&a_page.dart';
 import '../pages/mypage/view/mypage_terms.dart';
@@ -91,8 +94,8 @@ class GivooRouter {
             ),
             GoRoute(
               // 공지사항
-              path: 'announce',
-              builder: (context, state) => Announce(),
+              path: 'announcement',
+              builder: (context, state) => Announcement(),
             ),
             GoRoute(
               // QnA

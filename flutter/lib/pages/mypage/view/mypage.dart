@@ -35,7 +35,7 @@ class MyPage extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Consumer<LoginViewModel>(
       builder: (context, provider, child) => provider.isLogin
-          ? provider.kakaoUser[0].userAddress == 'null'
+          ? provider.kakaoUser.isEmpty || provider.kakaoUser[0].userAddress == 'null'//provider.kakaoUser[0].userAddress == 'null'
               ? FirstLogin()
               : Scaffold(
                   backgroundColor: Colors.white,
@@ -287,7 +287,8 @@ class MyPage extends StatelessWidget {
                                   trailing: Icon(Icons.arrow_forward_ios),
                                 ),
                               );
-                            }),
+                            }
+                            ),
                       ),
                     )
                     /*   Container(

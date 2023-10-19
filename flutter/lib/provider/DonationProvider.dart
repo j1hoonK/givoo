@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/component/model/com_dnt_type_model.dart';
-import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/services/DonationService.dart';
 
 class DonationProvider with ChangeNotifier {

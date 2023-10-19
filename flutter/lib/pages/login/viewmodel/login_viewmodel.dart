@@ -25,11 +25,12 @@ class LoginViewModel with ChangeNotifier{
     AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
     token = tokenInfo.id.toString();
     print('(login_viewmodel.dart)tokenId == $token');
-   // 확인된 토큰ID를 Api서버로 전송 >> 회원정보 습득
+    // 확인된 토큰ID를 Api서버로 전송 >> 회원정보 습득
     List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
-    // _kakaoUser에 회원정보 저장
+    // // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
-    print("userId: ${userId}");
+    userId=_kakaoUser[0].userId;
+    // print("userId: ${userId}");
     notifyListeners();
   }
 
@@ -42,7 +43,6 @@ class LoginViewModel with ChangeNotifier{
     List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
     // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
-    print("userId: ${userId}");
     userId=_kakaoUser[0].userId;
     User user = await UserApi.instance.me();
     print('useruseruser == $user');

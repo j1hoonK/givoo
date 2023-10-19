@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -19,7 +20,7 @@ class _DonationHistoryState extends State<DonationHistory> {
   @override
   void initState() {
     super.initState();
-    Provider.of<DonationProvider>(context, listen: false).loadDonation();
+    Provider.of<DonationProvider>(context, listen: false).loadDonation(LoginViewModel.userId);
   }
 
   @override

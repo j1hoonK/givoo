@@ -58,7 +58,7 @@ class UserInfo extends StatelessWidget {
                 alignment: Alignment.center,
                 height: height * 0.1,
                 width: width * 0.5,
-                child: Text("960625-*******"),
+                child: Text("${LoginViewModel.userNumberFirst}-*******"),
               ),
             ],
           ),

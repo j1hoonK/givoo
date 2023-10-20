@@ -8,16 +8,19 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 class LoginViewModel with ChangeNotifier{
   final SocialLogin _socialLogin;
   LoginViewModel(this._socialLogin);
-  static String userId ="0";
-  bool _isLogin = false;
   User? user;
-  bool get isLogin => _isLogin;
   String? token;
-  final FindByToken _findByToken = FindByToken();
+  bool _isLogin = false;
+  bool get isLogin => _isLogin;
   List<dynamic> _kakaoUser = [];
   List<dynamic> get kakaoUser => _kakaoUser;
   final DonationProvider _donationProvider = DonationProvider();
+  final FindByToken _findByToken = FindByToken();
+  static String userId ="0";
   static String userName="";
+  static int userNumberFirst = 0;
+  static int userNumberSecond = 0;
+
   // 로그인 완료 => isLogin = true
   Future login() async {
     _isLogin = await _socialLogin.login();
@@ -32,10 +35,12 @@ class LoginViewModel with ChangeNotifier{
     // // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
     userId=_kakaoUser[0].userId;
+    userName=_kakaoUser[0].userName;
+    userNumberFirst = _kakaoUser[0].userNumberFirst;
+    userNumberSecond = _kakaoUser[0].userNumberSecond;
     // Donation 정보 최신화
     print('(login_viewmodel.dart) loadDonation Start');
     await _donationProvider.loadDonation(userId);
-    userName=_kakaoUser[0].userName;
     notifyListeners();
   }
 
@@ -50,6 +55,8 @@ class LoginViewModel with ChangeNotifier{
     _kakaoUser = nowUserInfo;
     userId=_kakaoUser[0].userId;
     userName=_kakaoUser[0].userName;
+    userNumberFirst = _kakaoUser[0].userNumberFirst;
+    userNumberSecond = _kakaoUser[0].userNumberSecond;
     User user = await UserApi.instance.me();
     print('useruseruser == $user');
 

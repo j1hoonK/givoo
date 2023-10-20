@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/login/view/login.dart';
@@ -17,15 +19,17 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> list = [
-      "기부영수증 전송",
-      "전자기부금영수증 신청(홈텍스신고)",
+      // "기부영수증 전송",
+      // "전자기부금영수증 신청(홈텍스신고)",
       "문의사항",
       "공지사항",
-      "약관/정책"
+      "약관 및 정책",
+      "로그아웃",
+      "회원탈퇴"
     ];
     List<String> pushList = [
-      "/mypage/announce",
-      "/mypage/announce",
+      // "/mypage/announce",
+      // "/mypage/announce",
       "/mypage/inquiry",
       "/mypage/announce",
       "/mypage/terms"
@@ -34,6 +38,7 @@ class MyPage extends StatelessWidget {
     var mHeight = MediaQuery.of(context).size.height * 0.013;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    var loginProvider = Provider.of<LoginViewModel>(context, listen: false);
     return Consumer<LoginViewModel>(
       builder: (context, provider, child) => provider.isLogin
           ? provider.kakaoUser.isEmpty || provider.kakaoUser[0].userAddress == 'null'//provider.kakaoUser[0].userAddress == 'null'
@@ -282,8 +287,20 @@ class MyPage extends StatelessWidget {
                                 height: height * 0.05,
                                 child: ListTile(
                                   onTap: () {
-                                    if(idx==2){
+                                    if(idx==0){
                                       Provider.of<InquiryProvider>(context, listen: false).loadInquiry();
+                                    } else if(idx == 3){
+                                      loginProvider.logout();
+                                    } else if(idx == 4){
+                                      deleteUser(loginProvider.kakaoUser[0].token);
+                                      loginProvider.logout().then(
+                                            (value) =>
+                                            Timer(
+                                                Duration(
+                                                    milliseconds: 2000),
+                                                    () {
+                                                  context.go('/main');
+                                                }),);
                                     }
                                     context.push(pushList[idx]);
                                   },

@@ -11,6 +11,8 @@ class KakaoUser {
   String userName;
   String userImage;
   String userEmail;
+  int userNumberFirst;
+  int userNumberSecond;
   var userAddress;
 
   KakaoUser({
@@ -20,27 +22,32 @@ class KakaoUser {
     required this.userName,
     required this.userImage,
     required this.userEmail,
+    required this.userNumberFirst,
+    required this.userNumberSecond,
     required this.userAddress,
   });
 
   factory KakaoUser.fromJson(Map<String, dynamic> json) => KakaoUser(
-    userId: json["userId"].toString(),
-    loginType: json["loginType"].toString(),
-    token: json["token"].toString(),
-    userName: json["userName"].toString(),
-    userImage: json["userImage"].toString(),
-    userEmail: json["userEmail"].toString(),
-    userAddress: json["userAddress"].toString(),
-  );
+        userId: json["userId"].toString(),
+        loginType: json["loginType"].toString(),
+        token: json["token"].toString(),
+        userName: json["userName"].toString(),
+        userImage: json["userImage"].toString(),
+        userEmail: json["userEmail"].toString(),
+        userNumberFirst: json["userNumberFirst"],
+        userNumberSecond: json["userNumberSecond"],
+        userAddress: json["userAddress"].toString(),
+      );
 
   Map<String, dynamic> toJson() => {
-    "userId":userId.toString(),
-    "loginType": loginType.toString(),
-    "token": token.toString(),
-    "userName": userName.toString(),
-    "userImage": userImage.toString(),
-    "userEmail": userEmail.toString(),
-    "userAddress": userAddress.toString(),
-
-  };
+        "userId": userId.toString(),
+        "loginType": loginType.toString(),
+        "token": token.toString(),
+        "userName": userName.toString(),
+        "userImage": userImage.toString(),
+        "userEmail": userEmail.toString(),
+        "userAddress": userAddress.toString(),
+        "userNumberFirst": userNumberFirst,
+        "userNumberSecond": userNumberSecond,
+      };
 }

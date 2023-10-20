@@ -33,7 +33,7 @@ class _AnnounceState extends State<Announce> {
     {
       "title": "제목 1", // 첫 번째 공지 제목
       "date": "yyyy.MM.dd (월)",
-      "content": "안녕하세요, '기부어때'  입니다. '기부어때'의 이용약관이 개정되어 안내드립니다. 어쩌고.",
+      "content": "안녕하세요, '기부어때'  입니다. '기부어때'의 이용약관이 개정되어 안내드립니다.",
     },
     {
       "title": "제목 2", // 두 번째 공지 제목

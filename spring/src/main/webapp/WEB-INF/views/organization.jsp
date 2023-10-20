@@ -1,6 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <title>기부어때 Admin Panel</title>
     <link href="\css\web_tablestyle.css" rel="stylesheet">

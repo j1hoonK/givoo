@@ -1,5 +1,4 @@
-
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
   <title>기부어때 Admin Panel</title>
@@ -35,11 +34,11 @@
         <th>기관명</th>
 
       </tr>
-      <c:forEach items="${edit}" var="edit">
+      <c:forEach items="${edit}" var="edits">
         <!-- 클릭 이벤트 추가 -->
-        <tr class="org-row" data-user-id="${edit.editId}" onclick="openModal('${edit.editId}')">
-          <td>${edit.editId}</td>
-          <td>${edit.orgTell}</td>
+        <tr class="org-row" data-user-id="${edits.editId}" onclick="openModal('${edits.editId}')">
+          <td>${edits.editId}</td>
+          <td>${edits.orgTell}</td>
           <td></td>
           <td></td>
           <td></td>
@@ -49,8 +48,8 @@
           <td></td>
           <td></td>
           <td></td>
-          <td><a href="/admin/edit/ok/${edit.editId}">수락</a></td>
-          <td><a href="/admin/edit/no/${edit.editId}">거절</a></td>
+          <td><a href="/admin/edit/ok/${edits.editId}">수락</a></td>
+          <td><a href="/admin/edit/no/${edits.editId}">거절</a></td>
         </tr>
       </c:forEach>
     </table>

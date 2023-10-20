@@ -1,3 +1,4 @@
+/*
 package com.givoo.controller;
 
 import java.io.InputStreamReader;
@@ -33,15 +34,25 @@ public class OpenApiController {
 
             StringBuilder urlBuilder = new StringBuilder("http://openapi.1365.go.kr/openapi/service/rest/ContributionGroupService/getCntrGrpProgramList");
             urlBuilder.append("?serviceKey=m9IRUGmwrOiSW82kWOXnIC4m7NaSN42qLgPtrh02EjHQ2XjT%2BN8btdSpQsB2HlD4pjNFxkMlIJnpfuyRYrHk0g%3D%3D"); // 서비스 키
-            urlBuilder.append("&" + URLEncoder.encode("schCntrProgrmRegistNo", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*모집등록번호*/
-            urlBuilder.append("&" + URLEncoder.encode("schSido", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*시도*/
-            urlBuilder.append("&" + URLEncoder.encode("schRcritBgnde", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*모집시작일자*/
-            urlBuilder.append("&" + URLEncoder.encode("keyword", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*검색어*/
+            urlBuilder.append("&" + URLEncoder.encode("schCntrProgrmRegistNo", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); */
+/*모집등록번호*//*
+
+            urlBuilder.append("&" + URLEncoder.encode("schSido", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); */
+/*시도*//*
+
+            urlBuilder.append("&" + URLEncoder.encode("schRcritBgnde", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); */
+/*모집시작일자*//*
+
+            urlBuilder.append("&" + URLEncoder.encode("keyword", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); */
+/*검색어*//*
+
             urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + pageNo); // 페이지 번호
             urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + pageSize); // 페이지 크기
             cal.add(Calendar.DATE, 1);
             todayDate = dateFormat.format(cal.getTime());
-            urlBuilder.append("&" + URLEncoder.encode("schRcritEndde", "UTF-8") + "=" + URLEncoder.encode(todayDate, "UTF-8")); /*모집완료일자*/
+            urlBuilder.append("&" + URLEncoder.encode("schRcritEndde", "UTF-8") + "=" + URLEncoder.encode(todayDate, "UTF-8")); */
+/*모집완료일자*//*
+
             URL url = new URL(urlBuilder.toString());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -106,3 +117,4 @@ public class OpenApiController {
         }
     }
 }
+*/

@@ -75,7 +75,7 @@ class OrganizationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> orgInfo(orgId, int userId) async {
+  Future<void> orgInfo(orgId, userId) async {
     _imagePath=[];
     Map<String, dynamic>? _data = await _OrganizationListService.fetchOrgInfo(orgId, userId);
     List<OrgImage>? _data2 = await _OrganizationListService.orgImage(orgId);

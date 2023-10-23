@@ -110,7 +110,7 @@ section {
 #info {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 0%;
+    width: 70%;
     background-color: white;
 }

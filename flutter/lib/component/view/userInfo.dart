@@ -1,14 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:givoo/component/model/com_dnthistory_model.dart';
+import 'package:givoo/component/view/dntListCarousel.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
+import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/DropDownProvider.dart';
-import 'package:intl/intl.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 class UserInfo extends StatelessWidget {
-  UserInfo({super.key, required this.name, required this.resiNumber});
-
-  var name;
-  var resiNumber;
+  UserInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class UserInfo extends StatelessWidget {
         "회원님의 이름 및 개인정보가 다르거나, 기부내역이 다른 경우 회원상담센터 1544-7777로 연락주시기 바랍니다.";
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    List<Donation> dntList = Provider.of<DonationProvider> (context, listen: false).selectedDonations;
     return Container(
       color: Color(0xFFF7F7F8),
       child: Column(
@@ -44,7 +46,7 @@ class UserInfo extends StatelessWidget {
                 alignment: Alignment.center,
                 height: height * 0.1,
                 width: width * 0.5,
-                child: Text(name),
+                child: Text(LoginViewModel.userName),
               ),
             ],
           ),
@@ -61,7 +63,7 @@ class UserInfo extends StatelessWidget {
                 alignment: Alignment.center,
                 height: height * 0.1,
                 width: width * 0.5,
-                child: Text(resiNumber),
+                child: Text("${LoginViewModel.userNumberFirst}-*******"),
               ),
             ],
           ),
@@ -111,12 +113,49 @@ class UserInfo extends StatelessWidget {
             ],
           ),
           Divider(),
-          Container(
+          /*Container(
             height: height * 0.08,
             width: width,
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    barrierDismissible:true,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CarouselSlider.builder(itemCount:dntList.length,
+                        itemBuilder:(context,idx,realIdx){
+                          return AlertDialog(
+                            title: Text('Dialog Title'),
+                            content: Text('This is the dialog content.'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop(); // 다이얼로그 닫기
+                                },
+                                child: Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                        options:  CarouselOptions(
+                          height: 200,
+                          aspectRatio: 16 / 9,
+                          viewportFraction: 0.8,
+                          initialPage: 0,
+                          enableInfiniteScroll: true, // 무한 스크롤 사용 여부
+                          reverse: false, // 캐로셀 반대 방향
+                          autoPlay: false, // 자동 재생 여부
+                          autoPlayInterval: Duration(seconds: 3),
+                          autoPlayAnimationDuration: Duration(milliseconds: 800),
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          scrollDirection: Axis.horizontal,
+
+                        ),
+                      );
+                    },
+                  );
+                },
                 child: Text(
                   "기부 내역 확인하기",
                   style: TextStyle(
@@ -127,7 +166,7 @@ class UserInfo extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                 )),
-          ),
+          ),*/
           Container(
             margin: EdgeInsets.fromLTRB(15, 20, 15, 20),
             padding: EdgeInsets.fromLTRB(15, 0, 15, 0),

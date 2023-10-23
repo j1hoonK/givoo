@@ -6,10 +6,10 @@ String myOrgListToJson(List<MyOrgList> data) => json.encode(List<dynamic>.from(d
 
 class MyOrgList {
   String orgName;
-  String imagePath;
+  var imagePath;
   String orgType;
   var orgId;
-  String orgAddress;
+  var orgAddress;
 
   MyOrgList({
     required this.orgName,

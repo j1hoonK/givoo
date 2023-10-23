@@ -1,7 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html lang="en">
+<html>
 <head>
     <title>기부어때 Admin Panel</title>
     <link href="\css\web_tablestyle.css" rel="stylesheet">

@@ -7,9 +7,9 @@ import '../config/custom_url.dart';
 class MyOrgService {
 
   // 내 단체 확인
-  Future<List<MyOrgList>> fetchTodo() async {
+  Future<List<MyOrgList>> fetchTodo(userId) async {
     try {
-      var response = await http.get(Uri.parse("${CustomUrl.url}/mypage/org/1"));
+      var response = await http.get(Uri.parse("${CustomUrl.url}/mypage/org/$userId"));
       print(response.statusCode);
       List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
       List<MyOrgList> result = data.map((e) => MyOrgList.fromJson(e)).toList();

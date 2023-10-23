@@ -2,19 +2,22 @@ package com.givoo.service.serviceImp;
 
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
-import com.givoo.entity.Users;
+import com.givoo.entity.Inquiry;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
 import com.givoo.entity.organization.Organization;
 import com.givoo.repository.FavoritesRepository;
+import com.givoo.repository.InquiryRepository;
 import com.givoo.repository.donation.DonationRegularRepository;
 import com.givoo.repository.donation.DonationRepository;
 import com.givoo.repository.organization.OrganizationRepository;
 import com.givoo.service.MypageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -22,12 +25,14 @@ import java.util.stream.Collectors;
 public class MypageServiceImpl implements MypageService {
 
     private final DonationRepository donationRepository;
+    private final InquiryRepository inquiryRepository;
     private final DonationRegularRepository donationRegularRepository;
     private final FavoritesRepository favoritesRepository;
     private final OrganizationRepository organizationRepository;
     @Autowired
-    public MypageServiceImpl(DonationRepository donationRepository, DonationRegularRepository donationRegularRepository, FavoritesRepository favoritesRepository, OrganizationRepository organizationRepository) {
+    public MypageServiceImpl(DonationRepository donationRepository, InquiryRepository inquiryRepository, DonationRegularRepository donationRegularRepository, FavoritesRepository favoritesRepository, OrganizationRepository organizationRepository) {
         this.donationRepository = donationRepository;
+        this.inquiryRepository = inquiryRepository;
         this.donationRegularRepository = donationRegularRepository;
         this.favoritesRepository = favoritesRepository;
         this.organizationRepository = organizationRepository;
@@ -57,16 +62,26 @@ public class MypageServiceImpl implements MypageService {
     @Override   // 내 단체
     public List<MyOrgDTO> myOrg(Long userId) {
         List<Favorites> favList = favoritesRepository.findAllByUserId(userId);
+
         List<MyOrgDTO> myOrgList = favList.stream()
-                .map(fav -> new MyOrgDTO(organizationRepository.findById(fav.getOrgId()).get().getOrgName(),
-                        organizationRepository.findById(fav.getOrgId()).get().getImagePath(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgType(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgId(),
-                        organizationRepository.findById(fav.getOrgId()).get().getOrgAddress()
-                        ))
+                .map(fav -> {
+                    Organization org = organizationRepository.findById(fav.getOrgId()).orElse(null);
+                    if (org != null) {
+                        return new MyOrgDTO(
+                                org.getOrgName(),
+                                org.getImagePath(),
+                                org.getOrgType(),
+                                org.getOrgId(),
+                                org.getOrgAddress()
+                        );
+                    } else {
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull) // null인 항목 제외
                 .collect(Collectors.toList());
+
         return myOrgList;
-       // return null;
 
     }
 
@@ -116,6 +131,16 @@ public class MypageServiceImpl implements MypageService {
         favoritesRepository.save(fav);
     }
 
+    @Override
+    public void saveInquiry(Long userId,String title, String content) {
+        Inquiry inq = new Inquiry(userId,title,content);
+        inquiryRepository.save(inq);
+    }
+
+    @Override
+    public List<Inquiry> myInquiry(Long userId) {
+        return inquiryRepository.findAllByUserId(userId, Sort.by(Sort.Direction.DESC, "inquiryId"));
+    }
 
 }
 

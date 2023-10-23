@@ -48,12 +48,16 @@ class OrgBox extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0), // 컨테이너의 모서리를 둥글게 만들기
             ),
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-            child: Text(
-              orgName,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+              child: Text(
+                orgName,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

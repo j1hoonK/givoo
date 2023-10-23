@@ -2,11 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/component/model/com_dnt_type_model.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/services/DonationService.dart';
 
 class DonationProvider with ChangeNotifier {
   final DonationService _donationService = DonationService();
   List<Donation> _donation = [];
+  List<Donation> selectedDonations = []; // 선택된 카드를 저장할 Set
+
 
  static var _totalAmount =0;
  static get totalAmount=>_totalAmount;
@@ -17,17 +20,23 @@ class DonationProvider with ChangeNotifier {
   List<DonationType> get typeInfo => _typeInfo;
 
   // 후원 이력 확인
-  Future<void> loadDonation() async {
+  Future<void> loadDonation(String userId) async {
     try {
-      List<Donation> donationList = await _donationService.loadDonation(1);
-      _donation = donationList;
-      _totalAmount=0;
-      for (var donation in _donation) {
-        int donationAmount = donation.dntAmount;
-        _totalAmount += donationAmount;
+      List<Donation> donationList = await _donationService.loadDonation(userId);
+        _totalAmount = 0;
+      if(donationList.isNotEmpty) {
+        _donation = donationList;
+        for (var donation in _donation) {
+          int donationAmount = donation.dntAmount;
+          _totalAmount += donationAmount;
+        }
+        notifyListeners();
       }
-      notifyListeners();
-    } catch (error) {
+      // else {
+      //   print('Empty');
+      //   _totalAmount = 0;
+      //   }
+      } catch (error) {
       print('Error loading donation: $error');
     }
   }
@@ -48,4 +57,16 @@ class DonationProvider with ChangeNotifier {
       print('Error loading donation type: $error');
     }
   }
+
+
+  void toggleSelection(Donation dnt) {
+    if (selectedDonations.contains(dnt)) {
+      selectedDonations.remove(dnt); // 선택 해제
+    } else {
+      selectedDonations.add(dnt); // 선택
+    }
+    notifyListeners();
+  }
+
+
 }

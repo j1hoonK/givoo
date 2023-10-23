@@ -30,7 +30,7 @@ class Inquiry extends StatelessWidget {
                   child: TabBarView(
                     children: <Widget>[
                       InquiryPage(),
-                      faqpage(),
+                      QNA(),
                     ],
                   ),
                 )

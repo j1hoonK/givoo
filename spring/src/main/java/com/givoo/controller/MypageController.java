@@ -3,6 +3,7 @@ package com.givoo.controller;
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
+import com.givoo.entity.Inquiry;
 import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
@@ -75,4 +76,15 @@ public class MypageController {
         System.out.println("favId:" + favId);
         mypageService.favUpdate(favId);
     }
+
+    @PostMapping("/inquiry/send")
+    public void snedInquiry(@RequestBody Inquiry inq){
+        mypageService.saveInquiry(inq.getUserId(),inq.getTitle(),inq.getContent());
+        }
+    @GetMapping("/inquiry/{userid}")
+    public List<Inquiry> myInquiry(@PathVariable ("userid") Long userId){
+       return mypageService.myInquiry(userId);
+    }
+
 }
+

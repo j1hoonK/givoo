@@ -5,6 +5,8 @@ import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/services/LoginService.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
+import '../model/join_kakao_login.dart';
+
 class LoginViewModel with ChangeNotifier{
   final SocialLogin _socialLogin;
   LoginViewModel(this._socialLogin);
@@ -16,6 +18,7 @@ class LoginViewModel with ChangeNotifier{
   List<dynamic> get kakaoUser => _kakaoUser;
   final DonationProvider _donationProvider = DonationProvider();
   final FindByToken _findByToken = FindByToken();
+  final FindByTokenFirst _findByTokenFirst = FindByTokenFirst();
   static String userId ="0";
   static String userName="";
   static int userNumberFirst = 0;
@@ -31,13 +34,14 @@ class LoginViewModel with ChangeNotifier{
     token = tokenInfo.id.toString();
     print('(login_viewmodel.dart)tokenId == $token');
     // 확인된 토큰ID를 Api서버로 전송 >> 회원정보 습득
-    List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
-    // // _kakaoUser에 회원정보 저장
+    List<JoinKakaoUser> nowUserInfo = await _findByTokenFirst.findJoinUserInfo(tokenInfo.id);
+    // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
-    userId=_kakaoUser[0].userId;
-    userName=_kakaoUser[0].userName;
-    userNumberFirst = _kakaoUser[0].userNumberFirst;
-    userNumberSecond = _kakaoUser[0].userNumberSecond;
+    print('KakoUserData ======= $_kakaoUser');
+    // userId=_kakaoUser[0].userId;
+    // userName=_kakaoUser[0].userName;
+    // userNumberFirst = _kakaoUser[0].userNumberFirst;
+    // userNumberSecond = _kakaoUser[0].userNumberSecond;
     // Donation 정보 최신화
     print('(login_viewmodel.dart) loadDonation Start');
     await _donationProvider.loadDonation(userId);

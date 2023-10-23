@@ -288,18 +288,6 @@ class MyPage extends StatelessWidget {
                                   onTap: () {
                                     if(idx==0){
                                       Provider.of<InquiryProvider>(context, listen: false).loadInquiry();
-                                    } else if(idx == 3){
-                                      loginProvider.logout();
-                                    } else if(idx == 4){
-                                      deleteUser(loginProvider.kakaoUser[0].token);
-                                      loginProvider.logout().then(
-                                            (value) =>
-                                            Timer(
-                                                Duration(
-                                                    milliseconds: 2000),
-                                                    () {
-                                                  context.go('/main');
-                                                }),);
                                     }
                                     context.push(pushList[idx]);
                                   },

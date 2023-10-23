@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/component/view/bottomnavbar.dart';
 import 'package:givoo/config/palette.dart';
+
+import '../../pages/mainpage/view/main_page.dart';
 
 Widget noOrgList() {
   return Center(

@@ -29,7 +29,7 @@ class MyPage extends StatelessWidget {
       "/mypage/dntbillsend",
       "/mypage/dntbillrequest",
       "/mypage/inquiry",
-      "/mypage/announce",
+      "/mypage/announcement",
       "/mypage/terms"
     ];
     var mSize = MediaQuery.of(context).size.width * 0.025;
@@ -41,7 +41,7 @@ class MyPage extends StatelessWidget {
       builder: (context, provider, child) => provider.isLogin
           ? provider.kakaoUser.isEmpty || provider.kakaoUser[0].userAddress == 'null'//provider.kakaoUser[0].userAddress == 'null'
               ? FirstLogin()
-              : Scaffold(
+              : */Scaffold(
                   backgroundColor: Colors.white,
                   appBar: AppBar(
                     centerTitle: true,
@@ -52,6 +52,7 @@ class MyPage extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 10.0),
                         child: IconButton(
                             onPressed: () {
+                              // provider.logout();
                               context.push('/mypage/settings');
                             },
                             icon: Icon(Icons.settings)),
@@ -80,12 +81,11 @@ class MyPage extends StatelessWidget {
                                 margin: EdgeInsets.only(left: 20),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(42),
-                                  child: Image.network(
-                                    provider.kakaoUser[0].userImage,
+                                  child: Image.asset('images/main/1.png',
                                     width: mSize * 11,
                                     height: mSize * 11,
                                     fit: BoxFit.contain,
-                                  ),
+                                  )
                                 ),
                               ),
                               Container(
@@ -94,8 +94,8 @@ class MyPage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      child: Text(
-                                        provider.kakaoUser[0].userName,
+                                      child: Text('이름자리',
+                                        // provider.kakaoUser[0].userName,
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -300,8 +300,8 @@ class MyPage extends StatelessWidget {
                       ),
                     )
                   ]),
-                )
-          : logIn(),
-    );
+                );
+          // : logIn(),
+    // );
   }
 }

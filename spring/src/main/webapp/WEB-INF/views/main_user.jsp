@@ -24,7 +24,7 @@
     <div class="table-container">
         <table>
             <tr>
-                <th>ID12121212112312312312312312312321312312312312312312</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone Number</th>

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:givoo/pages/login/view/login.dart';
@@ -8,7 +6,6 @@ import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/InquiryProvider.dart';
 import 'package:givoo/provider/MyPageProvider.dart';
-import 'package:givoo/services/LoginService.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +38,7 @@ class MyPage extends StatelessWidget {
       builder: (context, provider, child) => provider.isLogin
           ? provider.kakaoUser.isEmpty || provider.kakaoUser[0].userAddress == 'null'//provider.kakaoUser[0].userAddress == 'null'
               ? FirstLogin()
-              : */Scaffold(
+              : Scaffold(
                   backgroundColor: Colors.white,
                   appBar: AppBar(
                     centerTitle: true,
@@ -300,8 +297,8 @@ class MyPage extends StatelessWidget {
                       ),
                     )
                   ]),
-                );
-          // : logIn(),
-    // );
+      )
+         : logIn()
+    );
   }
 }

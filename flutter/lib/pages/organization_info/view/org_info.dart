@@ -3,7 +3,6 @@ import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/component/view/togglebutton.dart';
 import 'package:givoo/config/palette.dart';
-import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/services/LaunchUrlService.dart';
@@ -49,7 +48,7 @@ class _OrgInfoState extends State<OrgInfo> {
         child:
             Consumer<OrganizationProvider>(builder: (context, provider, child) {
           return provider.orgInfodata.isEmpty
-              ? Container(
+              ? SizedBox(
                   height: height * 0.7,
                   child: Center(child: CircularProgressIndicator()))
               : Column(
@@ -140,49 +139,49 @@ class _OrgInfoState extends State<OrgInfo> {
                                       padding: EdgeInsets.fromLTRB(
                                           0, 0, mSize * 0.1, mSize * 1),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          IconButton(
-                                            icon: Icon(
-                                              Icons.phone,
-                                              color: Colors.black,
-                                              size: 24.0,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            IconButton(
+                                              icon: Icon(
+                                                Icons.phone,
+                                                color: Colors.black,
+                                                size: 24.0,
+                                              ),
+                                              onPressed: () async {
+                                                final tellNum = provider
+                                                    .orgInfodata['orgTell'];
+                                                final url =
+                                                    Uri.parse("tel:$tellNum");
+                                                try {
+                                                  await launchUrl(url);
+                                                } on Exception catch (e) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                    content: Text(
+                                                        '연결이 불가능합니다.\n등록된 번호: $tellNum'),
+                                                    action: SnackBarAction(
+                                                        label: "닫기",
+                                                        onPressed: () {}),
+                                                  ));
+                                                  print(e);
+                                                }
+                                              },
                                             ),
-                                            onPressed: () async {
-                                              final tellNum = provider
-                                                  .orgInfodata['orgTell'];
-                                              final url =
-                                                  Uri.parse("tel:$tellNum");
-                                              try {
-                                                await launchUrl(url);
-                                              } on Exception catch (e) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                  content: Text(
-                                                      '연결이 불가능합니다.\n등록된 번호: $tellNum'),
-                                                  action: SnackBarAction(
-                                                      label: "닫기",
-                                                      onPressed: () {}),
-                                                ));
-                                                print(e);
-                                              }
-                                            },
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              print(
-                                                  "homepage: ${provider.orgInfodata['homepage']}");
-                                              launchURL(provider
-                                                  .orgInfodata['homepage']);
-                                            },
-                                            child: Image.asset(
-                                              'images/group/globe.png',
-                                              width: 24.0,
-                                              height: 24.0,
+                                            GestureDetector(
+                                              onTap: () {
+                                                print(
+                                                    "homepage: ${provider.orgInfodata['homepage']}");
+                                                launchURL(provider
+                                                    .orgInfodata['homepage']);
+                                              },
+                                              child: Image.asset(
+                                                'images/group/globe.png',
+                                                width: 24.0,
+                                                height: 24.0,
+                                              ),
                                             ),
-                                          ),
-                                      ),
+                                          ]),
                                     ),
                                   ],
                                 ),
@@ -197,11 +196,12 @@ class _OrgInfoState extends State<OrgInfo> {
                                 ),
                                 // var isSelected = [true, false, false];
                                 isSelected[1]
-                                    ?
-                                Container(
-                                  height: MediaQuery.of(context).size.height, //전체 스크롤 가능
-                                    child: Notice())
-                                           //공지사항 연결 사이즈 설정
+                                    ? SizedBox(
+                                        height: MediaQuery.of(context)
+                                            .size
+                                            .height, //전체 스크롤 가능
+                                        child: Notice())
+                                    //공지사항 연결 사이즈 설정
                                     : isSelected[2]
                                         ? Pay(orgId: widget.orgId)
                                         : Column(

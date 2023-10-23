@@ -13,6 +13,7 @@ import com.givoo.repository.donation.DonationRepository;
 import com.givoo.repository.organization.OrganizationRepository;
 import com.givoo.service.MypageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -138,9 +139,8 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public List<Inquiry> myInquiry(Long userId) {
-        return inquiryRepository.findAllByUserId(userId);
+        return inquiryRepository.findAllByUserId(userId, Sort.by(Sort.Direction.DESC, "inquiryId"));
     }
-
 
 }
 

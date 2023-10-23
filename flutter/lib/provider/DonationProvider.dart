@@ -8,6 +8,8 @@ import 'package:givoo/services/DonationService.dart';
 class DonationProvider with ChangeNotifier {
   final DonationService _donationService = DonationService();
   List<Donation> _donation = [];
+  List<Donation> selectedDonations = []; // 선택된 카드를 저장할 Set
+
 
  static var _totalAmount =0;
  static get totalAmount=>_totalAmount;
@@ -55,4 +57,16 @@ class DonationProvider with ChangeNotifier {
       print('Error loading donation type: $error');
     }
   }
+
+
+  void toggleSelection(Donation dnt) {
+    if (selectedDonations.contains(dnt)) {
+      selectedDonations.remove(dnt); // 선택 해제
+    } else {
+      selectedDonations.add(dnt); // 선택
+    }
+    notifyListeners();
+  }
+
+
 }

@@ -219,6 +219,7 @@ class MyPage extends StatelessWidget {
                                   children: [
                                     InkWell(
                                       onTap: () {
+                                        Provider.of<DonationProvider>(context, listen: false).loadDonation(LoginViewModel.userId);
                                         context.push("/mypage/dnthistory");
                                       },
                                       child: Column(

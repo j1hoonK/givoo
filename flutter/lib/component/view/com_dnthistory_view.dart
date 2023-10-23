@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/config/palette.dart';
+import 'package:givoo/provider/DonationProvider.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class DntHistory extends StatelessWidget {
-  const DntHistory({super.key, required this.dnt, required this.isChecked, required this.onChanged});
+  const DntHistory({super.key, required this.dnt});
 
   final Donation dnt;
-  final bool isChecked;
-  final ValueChanged onChanged;
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
+    var mSize = MediaQuery.of(context).size.width * 0.025;
+    var mHeight = MediaQuery.of(context).size.height * 0.013;
     final dateForm = DateFormat('yyyy-MM-dd').format(dnt.dntDate);
-
-    return TextButton(
-      onPressed: () {},
+    final orgIdForm = dnt.orgId.toString();
+    final amountForm = dnt.dntAmount.toString();
+    final provider = Provider.of<DonationProvider>(context);
+    return Container(
       child: Card(
+        color: provider.selectedDonations.contains(dnt) ? Colors.grey : Colors.white,
         child: Container(
           padding: EdgeInsets.all(20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Checkbox(value: isChecked, onChanged: onChanged),
                 Text(dateForm, style: TextStyle(color: Palette.textColor2)),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -50,35 +52,6 @@ class DntHistory extends StatelessWidget {
                     ),),
                   ],
                 )
-
-
-
-          /*    SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(dnt.dntType,
-                        style: TextStyle(color: Palette.textColor2)),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          dnt.orgName,
-                          style: TextStyle(color: Palette.textColor1),
-                        ),
-                        Text(
-                          "${NumberFormat.currency(symbol:"",locale: 'ko_KR').format(int.parse(amountForm))}원",
-                          style: TextStyle(color: Palette.textColor1),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),*/
             ],
           ),
         ),

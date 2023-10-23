@@ -27,14 +27,22 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
+    # Caching dependencies
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2        
     - name: Build with Maven
       run: |
         cd /home/runner/work/givoo/givoo/spring
         mvn -B package --file pom.xml
         
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Maven Dependency Tree Dependency Submission
-      uses: advanced-security/maven-dependency-submission-action@v3.0.3
-      with:
-        directory: /home/runner/work/givoo/givoo/spring
+    #- name: Maven Dependency Tree Dependency Submission
+    #  uses: advanced-security/maven-dependency-submission-action@v3.0.3
+    #  with:
+    #    directory: /home/runner/work/givoo/givoo/spring
             

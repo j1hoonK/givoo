@@ -113,7 +113,7 @@ class UserInfo extends StatelessWidget {
             ],
           ),
           Divider(),
-          Container(
+          /*Container(
             height: height * 0.08,
             width: width,
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -166,7 +166,7 @@ class UserInfo extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                 )),
-          ),
+          ),*/
           Container(
             margin: EdgeInsets.fromLTRB(15, 20, 15, 20),
             padding: EdgeInsets.fromLTRB(15, 0, 15, 0),

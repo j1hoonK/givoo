@@ -19,17 +19,15 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> list = [
-      // "기부영수증 전송",
-      // "전자기부금영수증 신청(홈텍스신고)",
+      "기부영수증 전송",
+      "전자기부금영수증 신청(홈텍스신고)",
       "문의사항",
       "공지사항",
       "약관 및 정책",
-      "로그아웃",
-      "회원탈퇴"
     ];
     List<String> pushList = [
-      // "/mypage/announce",
-      // "/mypage/announce",
+      "/mypage/dntbillsend",
+      "/mypage/dntbillrequest",
       "/mypage/inquiry",
       "/mypage/announce",
       "/mypage/terms"

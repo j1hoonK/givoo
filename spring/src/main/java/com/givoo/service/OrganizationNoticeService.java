@@ -9,4 +9,5 @@ import java.util.List;
 public interface OrganizationNoticeService {
     List<OrganizationNotice> findByOrgId(Long id);
     List<OrganizationNotice> findAllByOrgId(Long orgId);
+    public void saveNotice(OrganizationNotice orgNotice);
 }

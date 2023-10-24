@@ -27,12 +27,12 @@ public class OrganizationNoticeServiceImpl implements OrganizationNoticeService 
         try {
             return organizationNoticeRepository.findAllByOrgId(orgId);
         } catch (Exception e) {
-            // 여기에서 예외를 로그에 기록하거나 디버깅 정보를 출력
             e.printStackTrace();
-            // 또는 로그에 날짜 값을 출력하여 현재 값이 어떤 형식인지 확인
-            // logger.error("Error processing date: " + yourDateValue);
-            throw e; // 예외를 다시 던지거나, 적절한 방법으로 처리
+            throw e;
         }
     }
 
+    public void saveNotice(OrganizationNotice orgNotice) {
+        organizationNoticeRepository.save(orgNotice);
+    }
 }

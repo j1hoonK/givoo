@@ -22,7 +22,8 @@ class OrgList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
        leading: CircleAvatar(
-          backgroundImage:NetworkImage(imagePath), // Text(key['title']),
+          backgroundImage:NetworkImage(imagePath),
+         radius: 30,// Text(key['title']),
        ),
        title: Text(orgName,style: TextStyle(
           fontSize: 14,

@@ -25,10 +25,10 @@
         <table>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>이름</th>
                 <th>Email</th>
-                <th>Phone Number</th>
-                <th>Address</th>
+                <th>전화번호</th>
+                <th>주소</th>
                 <th>Nickname</th>
                 <th>Birth</th>
                 <th>Image</th>

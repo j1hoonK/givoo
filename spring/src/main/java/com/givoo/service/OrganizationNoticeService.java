@@ -8,4 +8,5 @@ import java.util.List;
 @Service
 public interface OrganizationNoticeService {
     List<OrganizationNotice> findByOrgId(Long id);
+    List<OrganizationNotice> findAllByOrgId(Long orgId);
 }

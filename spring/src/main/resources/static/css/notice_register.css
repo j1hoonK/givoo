@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    height: 100vh; /* 화면 높이 100% */
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.bank-options {
+    display: flex;
+    flex-wrap: wrap; /* 넘치면 줄바꿈 */
+    gap: 10px; /* 각 라디오 박스 사이의 간격 */
+}
+
+.bank-option {
+    flex: 1 0 calc(25% - 10px); /* 4개씩 나열, 간격 제외 */
+    display: flex;
+    align-items: center;
+    box-sizing: border-box; /* 박스 크기 계산 시 패딩과 보더 포함 */
+}
+
+.bank-option input[type="radio"] {
+    display: none;
+}
+
+.bank-option label {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* 라디오 박스 100% 너비 */
+    text-align: center; /* 가운데 정렬 */
+}
+.bank-option input[type="radio"]:checked + label {
+    background-color: #007bff !important;
+    color: #fff !important;
+}
+
+.org-type-options {
+    display: flex;
+    flex-wrap: wrap; /* 넘치면 줄바꿈 */
+    gap: 10px; /* 각 라디오 박스 사이의 간격 */
+}
+
+.org-type-option {
+    flex: 1 0 calc(25% - 10px); /* 4개씩 나열, 간격 제외 */
+    display: flex;
+    align-items: center;
+    box-sizing: border-box; /* 박스 크기 계산 시 패딩과 보더 포함 */
+}
+.org-type-option input[type="radio"] {
+    display: none;
+}
+
+.org-type-option label {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* 라디오 박스 100% 너비 */
+    text-align: center; /* 가운데 정렬 */
+}
+.org-type-option input[type="radio"]:checked + label {
+    background-color: #007bff !important;
+    color: #fff !important;
+}
+/* 선택된 항목 스타일 */
+.add-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+}
+
+/* 스타일링 삭제 버튼 */
+.remove-donation-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    color: red;
+    font-size: inherit;
+}

@@ -1,10 +1,7 @@
 package com.givoo.controller;
 
-import com.givoo.constant.Role;
+
 import com.givoo.dto.organization.DetailOrgDTO;
-import com.givoo.entity.Member;
-import com.givoo.entity.OrgImage;
-import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
 import com.givoo.service.DonationService;
 import com.givoo.service.MemberService;
@@ -12,15 +9,14 @@ import com.givoo.service.OrganizationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+
 
 @Tag(name = "Organization", description = "기관 관련 API")
 @RestController
@@ -60,6 +56,7 @@ public class OrganizationController {
         return organizationService.randomOrg();
 
     }
+
 
 
 }

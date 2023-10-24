@@ -1,13 +1,11 @@
 package com.givoo.controller;
 
+import com.givoo.entity.Inquiry;
 import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.organization.Organization;
 import com.givoo.entity.request.RequestEdit;
-import com.givoo.service.DonationService;
-import com.givoo.service.OrganizationService;
-import com.givoo.service.RequestEditService;
-import com.givoo.service.UsersService;
+import com.givoo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,28 +17,30 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/admin")
 public class WebAdminController {
+    private final InquiryService inquiryService;
     private final UsersService usersService;
     private final OrganizationService organizationService;
     private final DonationService donationService;
     private final RequestEditService requestEditService;
     @Autowired
-    public WebAdminController(UsersService usersService, OrganizationService organizationService, DonationService donationService, RequestEditService requestEditService) {
+    public WebAdminController(InquiryService inquiryService, UsersService usersService, OrganizationService organizationService, DonationService donationService, RequestEditService requestEditService) {
+        this.inquiryService = inquiryService;
         this.usersService = usersService;
         this.organizationService = organizationService;
         this.donationService = donationService;
         this.requestEditService = requestEditService;
     }
 
-    @GetMapping("/user/{pages}")
-    public String main(@PathVariable("pages") int pages, Model model) {
+    @GetMapping("/user/{page}")
+    public String main(@PathVariable("page") int page, Model model) {
         List<Users> userList = usersService.findAll();
         int pageSize = 15;
         int totalUsers = userList.size();
         int totalPages = (int) Math.ceil((double) totalUsers / pageSize);
         // 페이지 번호를 받아올 수 있는 파라미터 (예: ?page=2)
         int currentPage = 1; // 기본 페이지 번호
-        if (pages < totalUsers) {
-            currentPage = pages;
+        if (page > 0 && page <= totalPages) {
+            currentPage = page;
         }
 
         int startIdx = (currentPage - 1) * pageSize;
@@ -48,10 +48,6 @@ public class WebAdminController {
 
         // 현재 페이지에 해당하는 유저 리스트만 추출
         List<Users> currentPageUsers = userList.subList(startIdx, endIdx);
-
-        System.out.println("....................................................................");
-        System.out.println(model);
-        System.out.println(currentPageUsers.get(0).getUserAddress());
 
         model.addAttribute("totalPages", totalPages); // 전체 페이지 수를 모델에 추가
         model.addAttribute("currentPage", currentPage); // 현재 페이지 번호를 모델에 추가
@@ -186,5 +182,27 @@ public class WebAdminController {
     public String editNo(@PathVariable("id") Long id) {
         requestEditService.deleteById(id);
         return "admin_edit";
+    }
+
+    @GetMapping("/inquiry/{pages}")
+    public String inquiryList(@PathVariable("pages") int pages, Model model){
+        List<Inquiry> inquiryList = inquiryService.findAll();
+        int pageSize = 15;
+        int totalInquriy = inquiryList.size();
+        int totalPages = (int) Math.ceil((double) totalInquriy / pageSize);
+        // 페이지 번호를 받아올 수 있는 파라미터 (예: ?page=2)
+        int currentPage = 1; // 기본 페이지 번호
+        if (pages < totalInquriy) {
+            currentPage = pages;
+        }
+        int startIdx = (currentPage - 1) * pageSize;
+        int endIdx = Math.min(currentPage * pageSize, totalInquriy);
+        // 현재 페이지에 해당하는 유저 리스트만 추출
+        List<Inquiry> currentPageinquiry = inquiryList.subList(startIdx, endIdx);
+        model.addAttribute("totalPages", totalPages); // 전체 페이지 수를 모델에 추가
+        model.addAttribute("currentPage", currentPage); // 현재 페이지 번호를 모델에 추가
+        model.addAttribute("inquirys", currentPageinquiry); // 현재 페이지의 유저 리스트를 모델에 추가
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@");
+        return "admin_inquiry";
     }
 }

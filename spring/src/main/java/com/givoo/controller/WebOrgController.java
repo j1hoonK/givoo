@@ -110,7 +110,7 @@ public class WebOrgController {
             System.out.println("editOrg:" + editOrg);
             requestEditService.save(editOrg);
         });
-        return "org_main2";
+        return "redirect:/auth/org/"+id;
         }
 
 
@@ -122,4 +122,21 @@ public class WebOrgController {
     public String noticeList(@PathVariable ("id") Long id) {
         return "org_noticelist";
     }
+
+    @GetMapping("/notice/register/{id}")
+    public String noticeRegister(@PathVariable ("id") Long id){
+        return "org_notice_register";
+    }
+
+    @PostMapping("/notice/register/{id}")
+    public String noticeRegister(@PathVariable ("id") Long id,
+                                 @RequestParam("subject") String subject,
+                                 @RequestParam("contents") String contents){
+
+        OrganizationNotice orgNotice = new OrganizationNotice(subject,contents,id);
+        System.out.println("orgNotice :" + orgNotice );
+        organizationNoticeService.saveNotice(orgNotice);
+        return "redirect:/auth/org/"+id;
+    }
+
 }

@@ -21,4 +21,9 @@ public class OrganizationNoticeServiceImpl implements OrganizationNoticeService 
     public List<OrganizationNotice> findByOrgId(Long id) {
         return organizationNoticeRepository.findByOrgId(id);
     }
+
+    @Override
+    public void saveNotice(OrganizationNotice orgNotice) {
+        organizationNoticeRepository.save(orgNotice);
+    }
 }

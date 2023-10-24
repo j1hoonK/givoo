@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface OrganizationNoticeRepository extends JpaRepository<OrganizationNotice,Long> {
      List<OrganizationNotice> findByOrgId(Long id);
+     List<OrganizationNotice> findAllByOrgId(Long orgId);
 }

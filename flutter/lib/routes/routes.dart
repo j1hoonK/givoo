@@ -13,6 +13,7 @@ import 'package:givoo/pages/organization_info/view/org_info.dart';
 import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/pages/recommend/view/recommendPage.dart';
 import 'package:givoo/pages/search/view/search.dart';
+import 'package:givoo/payment_result.dart';
 import 'package:go_router/go_router.dart';
 
 import '../component/view/bottomnavbar.dart';
@@ -36,6 +37,13 @@ class GivooRouter {
         path: '/main',
         builder: (BuildContext context, GoRouterState state) {
           return const BotNavBar();
+        },
+      ),
+      GoRoute(
+        path: '/payment',
+        builder: (BuildContext context, GoRouterState state) {
+          Object? data = state.extra;
+          return PaymentResult(data: data as PaymentResultPayload);
         },
       ),
       GoRoute(

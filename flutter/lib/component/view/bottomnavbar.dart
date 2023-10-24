@@ -5,6 +5,7 @@ import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/Payment.dart';
 import 'package:provider/provider.dart';
 
 class BotNavBar extends StatefulWidget {
@@ -65,7 +66,7 @@ class _BotNavBarState extends State<BotNavBar> {
         children: [
           Search(),
           MainPage(),
-          MyPage(),
+          Payment(),
         ],
       ),
     );

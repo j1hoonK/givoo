@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
             create: (context) => LoginViewModel(KakaoLogin()),
           ),
           ChangeNotifierProvider(
-              //
+            //
               create: (context) => PayCategoryProvider()),
           ChangeNotifierProvider(
             //
@@ -100,3 +100,8 @@ class MyApp extends StatelessWidget {
         ));
   }
 }
+
+
+
+
+

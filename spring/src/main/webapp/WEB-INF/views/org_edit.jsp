@@ -20,7 +20,7 @@
     </div>
     <div>
         <label>우편번호</label>
-        <input type="text" id="zip" placeholder="우편번호" value="${org.get().zip}" readonly>
+        <input type="text" id="zip" name ="zip" placeholder="우편번호" value="${org.get().zip}" readonly>
     </div>
     <div>
         <label for="orgOwner">대표 이름</label>
@@ -86,7 +86,7 @@
         var radioLabel = document.createElement("label");
 
         radioInput.type = "radio";
-        radioInput.name = "bank";
+        radioInput.name = "bankName";
         radioInput.value = bankName;
         radioInput.required = true;
         radioInput.id=bankName;

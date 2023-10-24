@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/OrgBox.dart';
 import 'package:givoo/component/view/appbar.dart';
+import 'package:givoo/component/view/orgList.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/RecommendMoreProvider.dart';
 import 'package:go_router/go_router.dart';
@@ -46,141 +47,136 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: BaseAppbar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(left: width * 0.05),
-              child: Text(
-                "후원 기관 보기",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(left: width * 0.05),
+                child: Text(
+                  "후원 기관 보기",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
-            ),
-            // 위쪽 그리드뷰
-            Container(
-              margin: EdgeInsets.all(7),
-              height: height * 0.15, // Card의 높이 늘림
-              child: CarouselSlider(
-                items: [
-                  for (var idx = 0; idx < orgTypeList1.length; idx++)
-                    Container(
-                      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      child: InkWell(
-                        onTap: () {
-                          context.push("/Recommend", extra: orgTypeList1[idx]);
-                          Provider.of<RecommendMoreProvider>(context, listen: false)
-                              .fetchApi(orgTypeList1[idx]);
-                        },
-                        child: Column(
-                          children: [
-                            Container(
-                              height: height * 0.10,// 이미지 높이 늘림
-                              width: width * 0.4,// 이미지 높이 늘림
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 3.0,
+              // 위쪽 그리드뷰
+              Container(
+                margin: EdgeInsets.all(7),
+                height: height * 0.15, // Card의 높이 늘림
+                child: CarouselSlider(
+                  items: [
+                    for (var idx = 0; idx < orgTypeList1.length; idx++)
+                      Container(
+                        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: InkWell(
+                          onTap: () {
+                            context.push("/Recommend", extra: orgTypeList1[idx]);
+                            Provider.of<RecommendMoreProvider>(context, listen: false)
+                                .fetchApi(orgTypeList1[idx]);
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                height: height * 0.10,// 이미지 높이 늘림
+                                width: width * 0.4,// 이미지 높이 늘림
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 3.0,
+                                  ),
+                                  shape: BoxShape.circle, // 배경 색상 지정
+                                  image: DecorationImage(
+                                    image:AssetImage(orgImageList1[idx]),
+                                  )
                                 ),
-                                shape: BoxShape.circle, // 배경 색상 지정
-                                image: DecorationImage(
-                                  image:AssetImage(orgImageList1[idx]),
-                                )
+                              ),SizedBox(
+                                height: 20,
                               ),
-                            ),SizedBox(
-                              height: 20,
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                              child: FittedBox(
-                                fit: BoxFit.fill,
-                                child: Text(orgTypeList1[idx],
-                                  style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),//text크기 조절
+                              SizedBox(
+                                height: height * 0.02,
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: Text(orgTypeList1[idx],
+                                    style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),//text크기 조절
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                ],
-                options: CarouselOptions(
-                  height: height * 0.5,
-                  autoPlay: false,
-                  enlargeCenterPage: false,
-                  viewportFraction: 0.23,
+                  ],
+                  options: CarouselOptions(
+                    height: height * 0.5,
+                    autoPlay: false,
+                    enlargeCenterPage: false,
+                    viewportFraction: 0.23,
+                  ),
                 ),
               ),
-            ),
-            // 아래쪽 그리드뷰
-            Divider(thickness: 1, height: mHeight * 3),
-            Container(
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(left: width * 0.05),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "이런 기관은 어떠세요",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+              // 아래쪽 그리드뷰
+              Divider(thickness: 1, height: mHeight * 3),
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(left: width * 0.05),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "이런 기관은 어떠세요",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: IconButton(
-                      onPressed: () {
-                        Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
-                      },
-                      icon: Icon(Icons.refresh),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: IconButton(
+                        onPressed: () {
+                          Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
+                        },
+                        icon: Icon(Icons.refresh),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Consumer<OrganizationProvider>(builder: (context, provider, child) {
-              return Container(
-                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                // height: height * 0.23,
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: provider.randomOrgList.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 1 / 1.4,
-                    mainAxisSpacing: 5,
-                    crossAxisSpacing: 5,
-                  ),
-                  itemBuilder: (context, idx) {
-                    return provider.orgImageList.length <= idx ? Center(child: CircularProgressIndicator()) :OrgBox(
+              Consumer<OrganizationProvider>(builder: (context, provider, child) {
+                return Container(
+                  height: height*0.3,
+                  //color: Colors.white,
+                  margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                  // height: height * 0.23,
+                  child:ListView.builder(
+                    physics:NeverScrollableScrollPhysics(),
+                    itemCount: provider.randomOrgList.length,
+                  itemBuilder: (context, idx){
+                    return provider.orgImageList.length <= idx ? Center(child: CircularProgressIndicator()) :OrgList(
                       orgName: provider.randomOrgList[idx].orgName,
                       orgAddress: provider.randomOrgList[idx].orgAddress,
                       imagePath: provider.orgImageList[idx]!="" ? provider.orgImageList[idx] :
-                          "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png",
+                      "https://givoo-org-image.s3.ap-northeast-2.amazonaws.com/mainlogo.png",
                       orgId: provider.randomOrgList[idx].orgId,
                     );
-                  },
+                  },)
+                );
+              }),
+              Divider(thickness: 1, height: mHeight * 3),
+              CarouselSlider(
+                items: [
+                  Image.asset('images/main/a.jpg'),
+                  Image.asset('images/main/b.jpg'),
+                  Image.asset('images/main/c.jpg')
+                ],
+                options: CarouselOptions(
+                  height: height * 0.4,
+                  autoPlay: true,
+                  // enlargeCenterPage: false,=>이미지 크기가 달라서 적용 안됨.
                 ),
-              );
-            }),
-            Divider(thickness: 1, height: mHeight * 3),
-            CarouselSlider(
-              items: [
-                Image.asset('images/main/a.jpg'),
-                Image.asset('images/main/b.jpg'),
-                Image.asset('images/main/c.jpg')
-              ],
-              options: CarouselOptions(
-                height: height * 0.4,
-                autoPlay: true,
-                // enlargeCenterPage: false,=>이미지 크기가 달라서 적용 안됨.
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -51,34 +51,15 @@
                 <i class='bx bxs-chevron-down'></i>
             </a>
         </li>
-
-<%--        추후 추가--%>
-<%--        <li>--%>
-<%--            <a href="#">--%>
-<%--                <i class='bx bx-credit-card-front'></i>--%>
-<%--                <span class="link_name">환불 처리</span>--%>
-<%--                <i class='bx bxs-chevron-down'></i>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li>--%>
-<%--            <a href="#">--%>
-<%--                <i class='bx bx-receipt'></i>--%>
-<%--                <span class="link_name">영수증 목록</span>--%>
-<%--                <i class='bx bxs-chevron-down'></i>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li>--%>
-<%--            <a href="#">--%>
-<%--                <i class='bx bx-cog'></i>--%>
-<%--                <span class="link_name">설정 및 구성</span>--%>
-<%--                <i class='bx bxs-chevron-down'></i>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        여기까지--%>
-
-
         <li>
-            <a href="#">
+            <a href="/admin/inquiry/1">
+                <i class='bx bx-money-withdraw'></i>
+                <span class="link_name">문의 사항</span>
+                <i class='bx bxs-chevron-down'></i>
+            </a>
+        </li>
+        <li>
+            <a href="/members/logout">
                 <i class='bx bx-log-out'></i>
                 <span class="link_name">logout</span>
             </a>

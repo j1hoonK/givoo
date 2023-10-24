@@ -35,4 +35,9 @@ public class OrganizationNoticeServiceImpl implements OrganizationNoticeService 
         }
     }
 
+
+    @Override
+    public void saveNotice(OrganizationNotice orgNotice) {
+        organizationNoticeRepository.save(orgNotice);
+    }
 }

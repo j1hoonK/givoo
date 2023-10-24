@@ -33,10 +33,10 @@ public class RequestEdit {
     @Column(name = "zip")
     private String zip;
 
-    @Column(name = "location_lat", nullable = false)
+    @Column(name = "location_lat")
     private Double locationLat;
 
-    @Column(name = "location_long", nullable = false)
+    @Column(name = "location_long")
     private Double locationLong;
 
     @Column(name = "org_tell", nullable = false)

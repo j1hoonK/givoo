@@ -22,17 +22,16 @@
     <div class="table-container">
         <table>
             <tr>
-                <th>dnt_id</th>
-                <th>dnt_amount</th>
-                <th>dnt_date</th>
-                <th>receipt_result</th>
-                <th>orgId</th>
-                <th>userId</th>
-                <th>type_payment</th>
-                <th>dnt_comment</th>
-                <th>is_regulation</th>
-                <th>dnt_comment_regulation</th>
-                <th>dnt_type</th>
+                <th>기부금번호</th>
+                <th>금액(원)</th>
+                <th>기부날짜</th>
+                <th>영수증처리상태</th>
+                <th>기관번호</th>
+                <th>유저번호</th>
+                <th>기부타입</th>
+                <th>코멘트</th>
+                <th>정기여부</th>
+                <th>코멘트2</th>
 
             </tr>
             <c:forEach items="${donation}" var="donations">
@@ -48,7 +47,6 @@
                     <td>${donations.dntComment}</td>
                     <td>${donations.isRegulation}</td>
                     <td>${donations.dntCommentRegulation}</td>
-                    <td>${donations.dntType}</td>
 
                 </tr>
             </c:forEach>
@@ -57,50 +55,6 @@
 
     <!-- 모달 창 -->
     <div id="userModal" class="modal">
-        <%--        <div class="modal-content">--%>
-        <%--            <span class="close" onclick="closeModal()">&times;</span>--%>
-        <%--            <h2>수정 하기</h2>--%>
-        <%--            <table>--%>
-        <%--                <tr>--%>
-        <%--                    <th>ID</th>--%>
-        <%--                    <td><input class="form-control" id="modalUserId" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--                <tr>--%>
-        <%--                    <th>Name</th>--%>
-        <%--                    <td><input class="form-control" id="modalUserName" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--                <tr>--%>
-        <%--                    <th>Email</th>--%>
-        <%--                    <td><input class="form-control" id="modalUserEmail" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--                <tr>--%>
-        <%--                    <th>Phone Number</th>--%>
-        <%--                    <td><input class="form-control" id="modalUserTell" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--                <tr>--%>
-        <%--                    <th>Address</th>--%>
-        <%--                    <td><input class="form-control" id="modalUserAddress" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--                <tr>--%>
-        <%--                    <th>Nickname</th>--%>
-        <%--                    <td><input class="form-control" id="modalUserNname" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--                <tr>--%>
-        <%--                    <th>Birth</th>--%>
-        <%--                    <td><input class="form-control" id="modalUserNumberFirst" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--                <tr>--%>
-        <%--                    <th>Image</th>--%>
-        <%--                    <td><input class="form-control" id="modalUserImage" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--                <tr>--%>
-        <%--                    <th>Login Type</th>--%>
-        <%--                    <td><input class="form-control" id="modalLoginType" type="text"></td>--%>
-        <%--                </tr>--%>
-        <%--            </table>--%>
-        <%--            <button id="editButton" onclick="openEditForm()">수정</button>--%>
-        <%--            <button id="deleteButton" onclick="deleteUser()">삭제</button>--%>
-        <%--        </div>--%>
     </div>
 
     <!-- 페이징 -->

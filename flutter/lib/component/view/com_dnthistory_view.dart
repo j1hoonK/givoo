@@ -16,7 +16,7 @@ class DntHistory extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var mSize = MediaQuery.of(context).size.width * 0.025;
     var mHeight = MediaQuery.of(context).size.height * 0.013;
-    final dateForm = DateFormat('yyyy-MM-dd').format(dnt.dntDate);
+    final dateForm = dnt.dntDate;
     final orgIdForm = dnt.orgId.toString();
     final amountForm = dnt.dntAmount.toString();
     final provider = Provider.of<DonationProvider>(context);
@@ -40,7 +40,7 @@ class DntHistory extends StatelessWidget {
                     ),SizedBox(
                       height: 10,
                     ),
-                    Text(dnt.dntType,style: TextStyle(
+                    Text(dnt.dntType?? "카카오페이",style: TextStyle(
                       fontWeight: FontWeight.bold,color: Colors.grey,
                       fontSize: 12
                     ),),SizedBox(

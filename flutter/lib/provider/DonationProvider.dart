@@ -10,6 +10,7 @@ class DonationProvider with ChangeNotifier {
   List<Donation> _donation = [];
   List<Donation> selectedDonations = []; // 선택된 카드를 저장할 Set
 
+  final String donationKey="imp34145614";
 
  static var _totalAmount =0;
  static get totalAmount=>_totalAmount;
@@ -24,6 +25,7 @@ class DonationProvider with ChangeNotifier {
     try {
       List<Donation> donationList = await _donationService.loadDonation(userId);
         _totalAmount = 0;
+        print(donationList);
       if(donationList.isNotEmpty) {
         _donation = donationList;
         for (var donation in _donation) {
@@ -32,10 +34,8 @@ class DonationProvider with ChangeNotifier {
         }
         notifyListeners();
       }
-      // else {
-      //   print('Empty');
-      //   _totalAmount = 0;
-      //   }
+      print("@@@@@@@@@0");
+      print(_totalAmount);
       } catch (error) {
       print('Error loading donation: $error');
     }
@@ -67,6 +67,8 @@ class DonationProvider with ChangeNotifier {
     }
     notifyListeners();
   }
-
+  Future<void> sendDonation(userId, orgId,dntAmount,orgName) async {
+    await _donationService.sendDonation(userId, orgId, dntAmount,orgName);
+  }
 
 }

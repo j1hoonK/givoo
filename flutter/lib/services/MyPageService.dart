@@ -10,9 +10,12 @@ class MyOrgService {
   Future<List<MyOrgList>> fetchTodo(userId) async {
     try {
       var response = await http.get(Uri.parse("${CustomUrl.url}/mypage/org/$userId"));
-      print(response.statusCode);
+      print(userId);
+      print(response.body);
       List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
+      print("data : $data");
       List<MyOrgList> result = data.map((e) => MyOrgList.fromJson(e)).toList();
+      print("res : $result");
       print(result[0].orgType);
       return result;
     } catch (error) {

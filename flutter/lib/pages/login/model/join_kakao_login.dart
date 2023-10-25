@@ -11,6 +11,8 @@ class JoinKakaoUser {
   String userName;
   String userImage;
   String userEmail;
+  var userNumberFirst;
+  var userNumberSecond;
   var userAddress;
 
   JoinKakaoUser({
@@ -20,6 +22,8 @@ class JoinKakaoUser {
     required this.userName,
     required this.userImage,
     required this.userEmail,
+    required this.userNumberFirst,
+    required this.userNumberSecond,
     required this.userAddress,
   });
 
@@ -30,6 +34,8 @@ class JoinKakaoUser {
     userName: json["userName"].toString(),
     userImage: json["userImage"].toString(),
     userEmail: json["userEmail"].toString(),
+    userNumberFirst: json["userNumberFirst"],
+    userNumberSecond: json["userNumberSecond"],
     userAddress: json["userAddress"].toString(),
   );
 
@@ -41,5 +47,7 @@ class JoinKakaoUser {
     "userImage": userImage.toString(),
     "userEmail": userEmail.toString(),
     "userAddress": userAddress.toString(),
+    "userNumberFirst": userNumberFirst,
+    "userNumberSecond": userNumberSecond,
   };
 }

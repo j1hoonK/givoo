@@ -15,7 +15,7 @@ public interface DonationService {
     //public String dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation);
 
 
-    String dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation);
+    String dntSend(Long orgId, Long userId, String dntType, int dntAmount, String typePayment, String dntComment, String dntDate, String isRegulation, String dntCommentRegulation);
 
     // 후원전송
     Donation sendDonation(Donation donation);

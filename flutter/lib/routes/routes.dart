@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/config/loading.dart';
+import 'package:givoo/pages/donation/view/DonationPage.dart';
+import 'package:givoo/pages/donation/view/DonationResultPage.dart';
 import 'package:givoo/pages/mypage/view/announcement.dart';
 import 'package:givoo/pages/mypage/view/InquiryDetail.dart';
 import 'package:givoo/pages/mypage/view/dntBillRequest.dart';
@@ -39,6 +42,21 @@ class GivooRouter {
           return const BotNavBar();
         },
       ),
+      GoRoute(
+        path: '/donationresult',
+        builder: (BuildContext context, GoRouterState state) {
+          Object? data = state.extra;
+          return DonationResult(data: data as PaymentResultPayload);
+        },
+      ),
+      GoRoute(
+        path: '/donation',
+        builder: (BuildContext context, GoRouterState state) {
+          Object? data = state.extra;
+          return DonationPage(data: data);
+        },
+      ),
+
       GoRoute(
         path: '/pay/:orgId',
         builder: (BuildContext context, GoRouterState state) {

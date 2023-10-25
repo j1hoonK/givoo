@@ -28,6 +28,7 @@ class OrgBox extends StatelessWidget {
     return InkWell(
       onTap: () {
         Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId,int.parse("${LoginViewModel.userId}"));
+        print("orgId : $orgId LoginView : ${LoginViewModel.userId}");
         context.push('/orginfo/$orgId',extra: orgId);
       },
       child: Card(

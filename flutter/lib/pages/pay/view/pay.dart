@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/com_dnt_type_list.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';
+import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class Pay extends StatefulWidget {
@@ -14,8 +17,7 @@ class Pay extends StatefulWidget {
 }
 
 class _PayState extends State<Pay> {
-
-  final formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
   List<bool> checkboxStates = [];
   bool checkedOnFree = false;
   List<int> checkboxPay=[];
@@ -32,6 +34,8 @@ class _PayState extends State<Pay> {
 
   @override
   Widget build(BuildContext context) {
+    var kakaoProvider= Provider.of<LoginViewModel>(context, listen: false);
+    var donation={};
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
@@ -96,9 +100,13 @@ class _PayState extends State<Pay> {
                           ? () {
                               if (formKey.currentState!.validate()) {
                                 checkboxPay.last=int.parse(FreeDonation.payment);
-                                print("checkboxStates: ${checkboxStates}" );
-                                print("checkboxStates: ${checkboxPay}" );
-                                print("checkboxStates: ${checkboxPay}" );
+                                donation['orgId'] =  widget.orgId;
+                                donation["orgName"] = Provider.of<OrganizationProvider>(context, listen: false).orgInfodata['orgName'];
+                                donation["amount"]=checkboxPay.reduce((value, element) => value + element);
+                                donation['name']=kakaoProvider.kakaoUser[0].userName;
+                                donation['address']=kakaoProvider.kakaoUser[0].userAddress;
+                                donation['email']=kakaoProvider.kakaoUser[0].userEmail;
+                                context.push("/donation", extra:donation);
                               }
                             }
                           : null,

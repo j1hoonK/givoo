@@ -22,6 +22,7 @@ class OrganizationListService {
   }
   Future<Map<String, dynamic>> fetchOrgInfo(orgId,userId) async {
     try {
+      print("orgId: $orgId userId : ${userId}");
       var response = await http.get(Uri.parse("${CustomUrl.url}/info/${orgId}/${userId}"));
       print(response.statusCode);
       Map<String,dynamic> _data = json.decode(utf8.decode(response.bodyBytes));

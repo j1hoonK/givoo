@@ -33,8 +33,9 @@ public class DonationController {
     @PostMapping("/send")
     @Operation(summary = "후원하기", description = "후원하기_관련정보 DB로 전송")
     public Donation sendDonation(@RequestBody Donation donation){
-        return donationService.sendDonation(donation);
+        Donation dnt = new Donation(donation.getUserId(),donation.getOrgId(),donation.getDntAmount(),donation.getOrgName());
+        return donationService.sendDonation(dnt);
     }
 
-    
+
 }

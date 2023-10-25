@@ -13,8 +13,10 @@ class DonationService{
     print(response.bodyBytes);
     try {
       if(response.statusCode == 200){
-        print("OK");
         List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
+        print(body);
+        print("@@@@@@@@@");
+        print(body.map<Donation>((item) => Donation.fromJson(item)).toList());
           return body.map<Donation>((item) => Donation.fromJson(item)).toList();
       }else{
         print("NG");
@@ -43,4 +45,28 @@ class DonationService{
     }
     return null;
   }
+  Future<void> sendDonation(userId,orgId,dntAmount,orgName) async {
+    final url = Uri.parse("${CustomUrl.url}/donation/send");  // 서버의 URL로 변경하세요.
+    final response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({
+        'userId': userId,
+        'orgId': orgId,
+        'dntAmount' :dntAmount,
+        'orgName':orgName,
+      }),
+    );
+    if (response.statusCode == 200) {
+
+      print('요청이 성공했습니다.');
+
+    } else {
+      print('요청이 실패했습니다. 에러 코드: ${response.statusCode}');
+    }
+  }
+
+
 }

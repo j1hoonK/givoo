@@ -8,36 +8,36 @@ class Donation {
   String orgName;
   int dntId;
   int dntAmount;
-  DateTime dntDate;
-  String receiptResult;
+  String dntDate;
+  var receiptResult;
   int orgId;
   int userId;
-  String typePayment;
+  var typePayment;
   //String dntComment;
-  String isRegulation;
-  String? dntCommentRegulation;
-  String dntType;
+  var isRegulation;
+  var dntCommentRegulation;
+  var dntType;
 
   Donation({
     required this.orgName,
     required this.dntId,
     required this.dntAmount,
     required this.dntDate,
-    required this.receiptResult,
+    this.receiptResult,
     required this.orgId,
     required this.userId,
-    required this.typePayment,
+    this.typePayment,
     //required this.dntComment,
-    required this.isRegulation,
-    required this.dntCommentRegulation,
-    required this.dntType,
+    this.isRegulation,
+    this.dntCommentRegulation,
+    this.dntType,
   });
 
   factory Donation.fromJson(Map<String, dynamic> json) => Donation(
     orgName: json["orgName"],
     dntId: json["dntId"],
     dntAmount: json["dntAmount"],
-    dntDate: DateTime.parse(json["dntDate"]),
+    dntDate: json["dntDate"],
     receiptResult: json["receiptResult"],
     orgId: json["orgId"],
     userId: json["userId"],
@@ -52,7 +52,7 @@ class Donation {
     "orgName": orgName,
     "dntId": dntId,
     "dntAmount": dntAmount,
-    "dntDate": dntDate.toIso8601String(),
+    "dntDate": dntDate,
     "receiptResult": receiptResult,
     "orgId": orgId,
     "userId": userId,

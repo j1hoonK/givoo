@@ -33,7 +33,6 @@ class OrgList extends StatelessWidget {
        ),),
        onTap: (){
          Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId, LoginViewModel.userId);
-         print(orgId);
          context.push('/orginfo/$orgId',extra: orgId);
        },
     );

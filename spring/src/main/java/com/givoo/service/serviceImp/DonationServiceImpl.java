@@ -40,7 +40,7 @@ public class DonationServiceImpl implements DonationService {
     }
 
     @Override
-    public String dntSend(Long orgId, Long userId, String dntType, Long dntAmount, String typePayment, String dntComment, Date dntDate, String isRegulation, String dntCommentRegulation){
+    public String dntSend(Long orgId, Long userId, String dntType, int dntAmount, String typePayment, String dntComment, String dntDate, String isRegulation, String dntCommentRegulation){
 
         String orgName = organizationService.findById(orgId).get().getOrgName();
         Donation dnt = new Donation(null,dntAmount,dntDate,null

@@ -3,6 +3,7 @@ import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/donation/view/DonationPage.dart';
 import 'package:givoo/pages/donation/view/DonationResultPage.dart';
+import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/mypage/view/announcement.dart';
 import 'package:givoo/pages/mypage/view/InquiryDetail.dart';
 import 'package:givoo/pages/mypage/view/dntBillRequest.dart';
@@ -150,6 +151,10 @@ class GivooRouter {
               builder: (context, state) => SettingPage(),
             ),
           ]),
+      GoRoute(
+          path: '/kakaologin',
+        builder: (context, state) => logIn(),
+      ),
       GoRoute(
           path: '/login',
           builder: (BuildContext context, GoRouterState state) {

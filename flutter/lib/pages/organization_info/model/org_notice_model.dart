@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+
 List<OrgNoticeModel> orgNoticeModelFromJson(String str) => List<OrgNoticeModel>.from(json.decode(str).map((x) => OrgNoticeModel.fromJson(x)));
 
 String orgNoticeModelToJson(List<OrgNoticeModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -13,7 +14,7 @@ class OrgNoticeModel {
   String subject;
   int orgId;
   String contents;
-  DateTime noticeDate;
+  String noticeDate;
   bool noticeFlag;
 
   OrgNoticeModel({
@@ -30,8 +31,8 @@ class OrgNoticeModel {
     subject: json["subject"],
     orgId: json["orgId"],
     contents: json["contents"],
-    noticeDate: DateTime.parse(json["noticeDate"]),
-    noticeFlag: json["noticeFlag"],
+    noticeDate: json['noticeDate'] ?? '',
+    noticeFlag: json["noticeFlag"] == 1,
   );
 
   Map<String, dynamic> toJson() => {
@@ -39,7 +40,7 @@ class OrgNoticeModel {
     "subject": subject,
     "orgId": orgId,
     "contents": contents,
-    "noticeDate": noticeDate.toIso8601String(),
+    "noticeDate": noticeDate,
     "noticeFlag": noticeFlag,
   };
 }

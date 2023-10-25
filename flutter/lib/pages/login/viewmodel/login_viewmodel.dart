@@ -21,8 +21,8 @@ class LoginViewModel with ChangeNotifier{
   final FindByTokenFirst _findByTokenFirst = FindByTokenFirst();
   static String userId ="0";
   static String userName="";
-  static int userNumberFirst = 0;
-  static int userNumberSecond = 0;
+  static var userNumberFirst = 0;
+  static var userNumberSecond = 0;
 
   // 로그인 완료 => isLogin = true
   Future login() async {
@@ -38,13 +38,11 @@ class LoginViewModel with ChangeNotifier{
     // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
     print('KakoUserData ======= $_kakaoUser');
-    // userId=_kakaoUser[0].userId;
-    // userName=_kakaoUser[0].userName;
-    // userNumberFirst = _kakaoUser[0].userNumberFirst;
-    // userNumberSecond = _kakaoUser[0].userNumberSecond;
-    // Donation 정보 최신화
+     //Donation 정보 최신화
     print('(login_viewmodel.dart) loadDonation Start');
     await _donationProvider.loadDonation(userId);
+    userId=_kakaoUser[0].userId;
+    userName=_kakaoUser[0].userName;
     notifyListeners();
   }
 

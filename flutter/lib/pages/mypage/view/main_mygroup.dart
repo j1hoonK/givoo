@@ -19,6 +19,7 @@ class _MainMyGroupState extends State<MainMyGroup> {
   @override
   void initState(){
     super.initState();
+    print("LoginViewModel.userId : ${LoginViewModel.userId}");
     Provider.of<MyPageProvider>(context, listen: false).fetchTodo(int.parse(LoginViewModel.userId));
   }
 

@@ -28,7 +28,6 @@ class OrgBox extends StatelessWidget {
       onTap: () {
         Provider.of<OrganizationProvider>(context, listen: false).orgInfo(orgId,int.parse("${LoginViewModel.userId}"));
         Provider.of<OrgNoticeProvider>(context, listen: false).loadOrgNotice(orgId);
-        print('orgId == $orgId');
         context.push('/orginfo/$orgId',extra: orgId);
       },
       child: Card(

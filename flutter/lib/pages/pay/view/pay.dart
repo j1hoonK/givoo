@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/view/com_dnt_type_list.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';
+import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class Pay extends StatefulWidget {
@@ -14,9 +17,10 @@ class Pay extends StatefulWidget {
 }
 
 class _PayState extends State<Pay> {
-  final formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
   List<bool> checkboxStates = [];
   bool checkedOnFree = false;
+  List<int> checkboxPay=[];
 
   @override
   void didChangeDependencies() {
@@ -24,16 +28,19 @@ class _PayState extends State<Pay> {
     int typeCount = Provider.of<DonationProvider>(context).typeInfo.length;
     print('typeCount == $typeCount');
     checkboxStates = List.generate(typeCount, (index) => false);
+    checkboxPay=List.generate(typeCount+1, (index) => 0);
     checkedOnFree = false;
   }
 
   @override
   Widget build(BuildContext context) {
+    var kakaoProvider= Provider.of<LoginViewModel>(context, listen: false);
+    var donation={};
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Consumer<DonationProvider>(
-        builder: (context, value, child) => GestureDetector(
+        builder: (context, provider, child) => GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
           },
@@ -42,19 +49,20 @@ class _PayState extends State<Pay> {
               SizedBox(height: height * 0.03),
               Form(
                 key: formKey,
-                child: value.typeInfo.isEmpty
+                child: provider.typeInfo.isEmpty
                     ? FreeDonation(
                         checkedOnFree: checkedOnFree,
                         onChangedOnFree: (valueF) {
                           setState(() {
                             checkedOnFree = valueF ?? false;
+
                           });
                           print('checkedOnFree == $checkedOnFree');
                         })
                     : Column(
                         children: [
                           ListView.builder(
-                            itemCount: value.typeInfo.length,
+                            itemCount: provider.typeInfo.length,
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
@@ -63,10 +71,11 @@ class _PayState extends State<Pay> {
                                 onChanged: (value) {
                                   setState(() {
                                     checkboxStates[index] = value ?? false;
+                                    checkboxPay[index]=value==true?int.parse(provider.typeInfo[index].defaultPay) : 0;
                                   });
                                 },
-                                dntType: value.typeInfo[index].type,
-                                pay: value.typeInfo[index].defaultPay,
+                                dntType: provider.typeInfo[index].type,
+                                pay: provider.typeInfo[index].defaultPay,
                               );
                             },
                           ),
@@ -89,7 +98,16 @@ class _PayState extends State<Pay> {
                   onPressed:
                       checkboxStates.contains(true) || checkedOnFree == true
                           ? () {
-                              if (formKey.currentState!.validate()) {}
+                              if (formKey.currentState!.validate()) {
+                                checkboxPay.last=int.parse(FreeDonation.payment);
+                                donation['orgId'] =  widget.orgId;
+                                donation["orgName"] = Provider.of<OrganizationProvider>(context, listen: false).orgInfodata['orgName'];
+                                donation["amount"]=checkboxPay.reduce((value, element) => value + element);
+                                donation['name']=kakaoProvider.kakaoUser[0].userName;
+                                donation['address']=kakaoProvider.kakaoUser[0].userAddress;
+                                donation['email']=kakaoProvider.kakaoUser[0].userEmail;
+                                context.push("/donation", extra:donation);
+                              }
                             }
                           : null,
                   style: ElevatedButton.styleFrom(

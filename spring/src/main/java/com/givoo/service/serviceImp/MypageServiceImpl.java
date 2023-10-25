@@ -65,18 +65,21 @@ public class MypageServiceImpl implements MypageService {
 
         List<MyOrgDTO> myOrgList = favList.stream()
                 .map(fav -> {
-                    Organization org = organizationRepository.findById(fav.getOrgId()).orElse(null);
-                    if (org != null) {
-                        return new MyOrgDTO(
-                                org.getOrgName(),
-                                org.getImagePath(),
-                                org.getOrgType(),
-                                org.getOrgId(),
-                                org.getOrgAddress()
-                        );
-                    } else {
-                        return null;
+                    if(fav.getFav_flag()==1) {
+                        Organization org = organizationRepository.findById(fav.getOrgId()).orElse(null);
+                        if (org != null) {
+                            return new MyOrgDTO(
+                                    org.getOrgName(),
+                                    org.getImagePath(),
+                                    org.getOrgType(),
+                                    org.getOrgId(),
+                                    org.getOrgAddress()
+                            );
+                        } else {
+                            return null;
+                        }
                     }
+                    return null;
                 })
                 .filter(Objects::nonNull) // null인 항목 제외
                 .collect(Collectors.toList());

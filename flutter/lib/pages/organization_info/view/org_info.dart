@@ -184,11 +184,8 @@ class _OrgInfoState extends State<OrgInfo> {
                                             SizedBox(width: 10.0),
                                             GestureDetector(
                                               onTap: () {
-                                                if (provider
-                                                        .orgInfodata['favId'] ==
-                                                    0) {
-                                                  provider.likeIsert(
-                                                      widget.orgId, LoginViewModel.userId);
+                                                if (provider.orgInfodata['favId'] == 0) {
+                                                  provider.likeIsert(widget.orgId, LoginViewModel.userId);
                                                 } else {
                                                   provider.likeToggle(provider
                                                       .orgInfodata['favId']);

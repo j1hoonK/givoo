@@ -41,13 +41,13 @@ public class OrganizationNotice {
     }
 
     @Column(name ="notice_flag", nullable = false)
-    private String noticeFlag;
+    private boolean noticeFlag;
 
     public OrganizationNotice(String subject, String contents, Long orgId){
         this.subject=subject;
         this.contents=contents;
         this.orgId=orgId;
-        this.noticeFlag="0";
+        this.noticeFlag=false;
     }
 
 }

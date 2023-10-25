@@ -69,13 +69,12 @@ class FreeDonation extends StatefulWidget {
 
   final bool checkedOnFree;
   final ValueChanged onChangedOnFree;
-
+  static String payment = '0';
   @override
   State<FreeDonation> createState() => _FreeDonationState();
 }
 
 class _FreeDonationState extends State<FreeDonation> {
-  String payment = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -116,8 +115,8 @@ class _FreeDonationState extends State<FreeDonation> {
                           return null;
                         }
                       : null,
-                  onSaved: (value) => setState(() {
-                    payment = value!;
+                  onChanged: (value) => setState(() {
+                    FreeDonation.payment=value;
                   }),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.right,

@@ -3,11 +3,9 @@ package com.givoo.entity.donation;
 import com.givoo.entity.Users;
 import com.givoo.entity.organization.Organization;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -15,6 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @AllArgsConstructor
 public class Donation {
     @Id
@@ -23,10 +22,17 @@ public class Donation {
     private Long dntId;
 
     @Column(name = "dnt_amount", nullable = false)
-    private Long dntAmount;
+    private int dntAmount;
 
-    @Column(name = "dnt_date", nullable = false)
-    private Date dntDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dnt_date", updatable = false)
+    private String dntDate;
+    @PrePersist
+    protected void onCreate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        dntDate = dateFormat.format(new Date());
+    }
+
 
     @Column(name = "receipt_result", nullable = false, columnDefinition = "varchar(45) default '진행중'")
     private String receiptResult;
@@ -37,7 +43,7 @@ public class Donation {
     @Column
     private Long userId;
 
-    @Column(name = "type_payment", nullable = false)
+    @Column(name = "type_payment")
     private String typePayment;
 
     @Column(name = "dnt_comment")
@@ -49,11 +55,16 @@ public class Donation {
     @Column(name = "dnt_comment_regulation")
     private String dntCommentRegulation;
 
-    @Column(name = "dnt_type", nullable = false)
+    @Column(name = "dnt_type")
     private String dntType;
     @Column(nullable = false)
     private String orgName;
-    public Donation() {
-
+    public Donation(Long userId,Long orgId, int dntAmount,String orgName) {
+        this.userId=userId;
+        this.orgId=orgId;
+        this.dntAmount=dntAmount;
+        this.isRegulation="0";
+        this.receiptResult="처리중";
+        this.orgName=orgName;
     }
 }

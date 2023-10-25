@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/custom_url.dart';
+import '../pages/login/model/join_kakao_login.dart';
 import '../pages/login/model/kakaoLogin.dart';
 import '../pages/login/viewmodel/kakao_login.dart';
 
@@ -50,8 +51,26 @@ Future<void> updateKakaoUser(userFirstInfo) async {
   }
 }
 
+class FindByTokenFirst {
+  // 회원정보 조회(첫 로그인 이후)
+  Future<List<JoinKakaoUser>> findJoinUserInfo(tokenId) async {
+    var url = "${CustomUrl.url}/login/$tokenId";
+    http.Response response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      print("(LoginService.dart)findUserInfo OK: ${response.body}");
+      List<dynamic> userInfo = jsonDecode(utf8.decode(response.bodyBytes));
+      print("(LoginService.dart)userInfo == $userInfo");
+      return userInfo
+          .map<JoinKakaoUser>((item) => JoinKakaoUser.fromJson(item))
+          .toList();
+    } else {
+      throw Exception("fail to find User Information");
+    }
+  }
+}
+
 class FindByToken {
-  // 회원정보 조회
+  // 회원정보 조회(첫 로그인 이후)
   Future<List<KakaoUser>> findUserInfo(tokenId) async {
     var url = "${CustomUrl.url}/login/$tokenId";
     http.Response response = await http.get(Uri.parse(url));
@@ -69,6 +88,7 @@ class FindByToken {
 }
 
 Future deleteUser(token) async {
+  // 회원 탈퇴
   try {
     print('Delete Start_token: $token');
     var url = "${CustomUrl.url}/login/delete/$token";

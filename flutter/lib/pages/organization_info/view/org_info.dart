@@ -3,6 +3,7 @@ import 'package:givoo/component/view/appbar.dart';
 import 'package:givoo/component/view/com_org_info.dart';
 import 'package:givoo/component/view/togglebutton.dart';
 import 'package:givoo/config/palette.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/organization_info/viewmodel/google_map.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/services/LaunchUrlService.dart';
@@ -181,30 +182,6 @@ class _OrgInfoState extends State<OrgInfo> {
                                               height: 24.0,
                                             ),
                                           ),
-                                          SizedBox(width: 10.0),
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (provider
-                                                      .orgInfodata['favId'] ==
-                                                  0) {
-                                                provider.likeIsert(
-                                                    widget.orgId, 1);
-                                              } else {
-                                                provider.likeToggle(provider
-                                                    .orgInfodata['favId']);
-                                              }
-                                            },
-                                            child: Image.asset(
-                                              provider.isFollowSelected == 1
-                                                  ? 'images/group/follow_y.png' // 선택된 이미지 파일 경로
-                                                  : 'images/group/follow_n.png',
-                                              // 일반 이미지 파일 경로
-                                              width: 24.0,
-                                              height: 24.0,
-                                              // 이미지 색상 설정 (선택 사항)
-                                            ),
-                                          ),
-                                        ],
                                       ),
                                     ),
                                   ],
@@ -373,23 +350,6 @@ class _OrgInfoState extends State<OrgInfo> {
                                                       "${provider.orgInfodata['orgAddress']}")
                                                 ],
                                               ),
-                                              Divider(
-                                                  thickness: 1,
-                                                  height: mHeight * 3),
-                                              Text(
-                                                "공지사항",
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              SizedBox(
-                                                height: mHeight * 1.5,
-                                              ),
-                                              Text(
-                                                  //"${provider.orgInfodata['orgNotice']}"
-                                                  "안녕하세요, 공모사업에 참여해주신 모든 기관 및 청년분들에게 감사인사 드립니다.\n이번 공모사업 진행 시 40여개의 기관, 15분의 개인에게서 문의 및 신청이 있었습니다. 신청하신 모든 청년분들에게 지원해드리고 싶으나 그러하지 못한 점 양해바랍니다."
-                                                  "\n또한 자립준비청년이 가장 많이 독립하는 시기인 내년 2-3월에  동일한 사업을 계획하고 있으니 많은 관심바랍니다.^^"),
                                               Divider(
                                                   thickness: 1,
                                                   height: mHeight * 3),

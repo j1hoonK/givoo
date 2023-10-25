@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/mypage/view/announcement.dart';
+import 'package:givoo/pages/mypage/view/InquiryDetail.dart';
 import 'package:givoo/pages/mypage/view/dntBillRequest.dart';
 import 'package:givoo/pages/mypage/view/dntBillSend.dart';
 import 'package:givoo/pages/mypage/view/inquiry.dart';
@@ -15,6 +16,7 @@ import 'package:givoo/pages/pay/view/pay.dart';
 import 'package:givoo/pages/recommend/view/recommendPage.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:go_router/go_router.dart';
+
 import '../component/view/bottomnavbar.dart';
 import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
@@ -22,7 +24,6 @@ import '../pages/mypage/view/givoo_explanation.dart';
 import '../pages/mypage/view/notice.dart';
 import '../pages/mypage/view/announcement.dart';
 import '../pages/mypage/view/q&a_page.dart';
-import '../pages/mypage/view/mypage_terms.dart';
 import '../pages/mypage/view/terms_condition.dart';
 
 class GivooRouter {
@@ -106,23 +107,34 @@ class GivooRouter {
             GoRoute(
               // QnA
               path: 'qna',
-              builder: (context, state) => faqpage(),
+              builder: (context, state) => QNA(),
             ),
             GoRoute(
               // 약관 및 정책
               path: 'terms',
               builder: (context, state) => Mypage_terms(),
             ),
-            GoRoute(path: 'dntbillsend',
-            builder: (context,state) => DntBillSend(),
+            GoRoute(
+              path: 'dntbillsend',
+              builder: (context, state) => DntBillSend(),
             ),
-            GoRoute(path: 'dntbillrequest',
-              builder: (context,state) => DntBillRequest(),
+            GoRoute(
+              path: 'dntbillrequest',
+              builder: (context, state) => DntBillRequest(),
             ),
-            GoRoute(path: 'inquiry',
-              builder: (context,state) => Inquiry(),
+            GoRoute(
+              path: 'inquiry',
+              builder: (context, state) => Inquiry(),
             ),
-              // 개인 설정
+            GoRoute(
+              // 내 단체
+              path: 'inquiry/:idx',
+              builder: (context, state) {
+                 int idx = int.parse(state.pathParameters['idx']!) ?? -1;
+                return InquiryDetail(idx: idx);
+              },
+            ),
+            // 개인 설정
             GoRoute(
               path: 'settings',
               builder: (context, state) => SettingPage(),

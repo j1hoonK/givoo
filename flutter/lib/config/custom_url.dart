@@ -1,6 +1,4 @@
 class CustomUrl{
-  static String url= "http://10.0.2.2:1000";
-  // 172.30.1.6 : 지훈pc
-  // 172.30.1.49 : 건우pc
-  // 10.0.2.2 : 에뮬레이터
+  // AWS EC2 인스턴스 주소
+  static String url= "http://43.200.85.95:8080";
 }

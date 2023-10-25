@@ -15,7 +15,7 @@ class DntBillSend extends StatelessWidget {
       appBar: BaseAppbar(title: "기부금 영수증 전송",),
        body: SingleChildScrollView(child: Column(
          children: [
-           UserInfo(name: "이건우",resiNumber: "2314214123",),
+           UserInfo(),
            Container(
              height: height*0.08,
              width: width,

@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <title>기부어때 Admin Panel</title>
@@ -35,20 +35,20 @@
                 <th>dnt_type</th>
 
             </tr>
-            <c:forEach items="${donation}" var="donation">
+            <c:forEach items="${donation}" var="donations">
                 <!-- 클릭 이벤트 추가 -->
-                <tr class="org-row" data-user-id="${donation.dntId}" onclick="openModal('${donation.dntId}')">
-                    <td>${donation.dntId}</td>
-                    <td>${donation.dntAmount}</td>
-                    <td>${donation.dntDate}</td>
-                    <td>${donation.receiptResult}</td>
-                    <td>${donation.orgId}</td>
-                    <td>${donation.userId}</td>
-                    <td>${donation.typePayment}</td>
-                    <td>${donation.dntComment}</td>
-                    <td>${donation.isRegulation}</td>
-                    <td>${donation.dntCommentRegulation}</td>
-                    <td>${donation.dntType}</td>
+                <tr class="org-row" data-user-id="${donations.dntId}" onclick="openModal('${donations.dntId}')">
+                    <td>${donations.dntId}</td>
+                    <td>${donations.dntAmount}</td>
+                    <td>${donations.dntDate}</td>
+                    <td>${donations.receiptResult}</td>
+                    <td>${donations.orgId}</td>
+                    <td>${donations.userId}</td>
+                    <td>${donations.typePayment}</td>
+                    <td>${donations.dntComment}</td>
+                    <td>${donations.isRegulation}</td>
+                    <td>${donations.dntCommentRegulation}</td>
+                    <td>${donations.dntType}</td>
 
                 </tr>
             </c:forEach>

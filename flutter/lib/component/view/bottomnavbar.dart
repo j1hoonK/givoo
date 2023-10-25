@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/pages/mainpage/view/main_page.dart';
 import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/search/view/search.dart';
@@ -15,11 +16,13 @@ class BotNavBar extends StatefulWidget {
 
 class _BotNavBarState extends State<BotNavBar> {
   int _currentIndex = 1;
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +33,14 @@ class _BotNavBarState extends State<BotNavBar> {
           setState(() {
             _currentIndex = value;
             if (value == 1) {
-              Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
+              Provider.of<OrganizationProvider>(context, listen: false)
+                  .randomOrg();
             }
-            if(value==2){
-              Provider.of<DonationProvider>(context,listen: false).loadDonation();
+            if (value == 2) {
+              if (Provider.of<LoginViewModel>(context, listen: false).isLogin) {
+                Provider.of<LoginViewModel>(context, listen: false).check();
+                Provider.of<DonationProvider>(context, listen: false).loadDonation(LoginViewModel.userId);
+              }
             }
           });
         },
@@ -61,7 +68,6 @@ class _BotNavBarState extends State<BotNavBar> {
           MyPage(),
         ],
       ),
-
     );
   }
 }

@@ -134,7 +134,6 @@ public class WebOrgController {
                                  @RequestParam("contents") String contents){
 
         OrganizationNotice orgNotice = new OrganizationNotice(subject,contents,id);
-        System.out.println("orgNotice :" + orgNotice );
         organizationNoticeService.saveNotice(orgNotice);
         return "redirect:/auth/org/"+id;
     }

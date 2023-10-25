@@ -14,9 +14,11 @@ class Pay extends StatefulWidget {
 }
 
 class _PayState extends State<Pay> {
+
   final formKey = GlobalKey<FormState>();
   List<bool> checkboxStates = [];
   bool checkedOnFree = false;
+  List<int> checkboxPay=[];
 
   @override
   void didChangeDependencies() {
@@ -24,6 +26,7 @@ class _PayState extends State<Pay> {
     int typeCount = Provider.of<DonationProvider>(context).typeInfo.length;
     print('typeCount == $typeCount');
     checkboxStates = List.generate(typeCount, (index) => false);
+    checkboxPay=List.generate(typeCount+1, (index) => 0);
     checkedOnFree = false;
   }
 
@@ -33,7 +36,7 @@ class _PayState extends State<Pay> {
     double height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Consumer<DonationProvider>(
-        builder: (context, value, child) => GestureDetector(
+        builder: (context, provider, child) => GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
           },
@@ -42,19 +45,20 @@ class _PayState extends State<Pay> {
               SizedBox(height: height * 0.03),
               Form(
                 key: formKey,
-                child: value.typeInfo.isEmpty
+                child: provider.typeInfo.isEmpty
                     ? FreeDonation(
                         checkedOnFree: checkedOnFree,
                         onChangedOnFree: (valueF) {
                           setState(() {
                             checkedOnFree = valueF ?? false;
+
                           });
                           print('checkedOnFree == $checkedOnFree');
                         })
                     : Column(
                         children: [
                           ListView.builder(
-                            itemCount: value.typeInfo.length,
+                            itemCount: provider.typeInfo.length,
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
@@ -63,10 +67,11 @@ class _PayState extends State<Pay> {
                                 onChanged: (value) {
                                   setState(() {
                                     checkboxStates[index] = value ?? false;
+                                    checkboxPay[index]=value==true?int.parse(provider.typeInfo[index].defaultPay) : 0;
                                   });
                                 },
-                                dntType: value.typeInfo[index].type,
-                                pay: value.typeInfo[index].defaultPay,
+                                dntType: provider.typeInfo[index].type,
+                                pay: provider.typeInfo[index].defaultPay,
                               );
                             },
                           ),
@@ -89,7 +94,12 @@ class _PayState extends State<Pay> {
                   onPressed:
                       checkboxStates.contains(true) || checkedOnFree == true
                           ? () {
-                              if (formKey.currentState!.validate()) {}
+                              if (formKey.currentState!.validate()) {
+                                checkboxPay.last=int.parse(FreeDonation.payment);
+                                print("checkboxStates: ${checkboxStates}" );
+                                print("checkboxStates: ${checkboxPay}" );
+                                print("checkboxStates: ${checkboxPay}" );
+                              }
                             }
                           : null,
                   style: ElevatedButton.styleFrom(

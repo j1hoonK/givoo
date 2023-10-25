@@ -23,6 +23,7 @@ import 'package:go_router/go_router.dart';
 import '../component/view/bottomnavbar.dart';
 import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
+import '../pages/mypage/view/givoo_explanation.dart';
 import '../pages/mypage/view/mypage_terms.dart';
 import '../pages/mypage/view/q&a_page.dart';
 import '../pages/mypage/view/terms_condition.dart';
@@ -109,6 +110,11 @@ class GivooRouter {
               // 기부 이력 확인
               path: 'dnthistory',
               builder: (context, state) => DonationHistory(),
+            ),
+            GoRoute(
+              // 기부금 공제란?
+              path: 'tax',
+              builder: (context, state) => Tax(),
             ),
             GoRoute(
               // 공지사항

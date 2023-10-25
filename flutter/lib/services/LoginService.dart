@@ -41,8 +41,6 @@ Future<void> updateKakaoUser(userFirstInfo) async {
     headers: {"Content-Type": 'application/json'},
     body: json.encode(userFirstInfo),
   );
-  print("(LoginService.dart)UpdateUserData: ${json.encode(userFirstInfo)}");
-
   if (response.statusCode == 200) {
     print("(LoginService.dart)Update OK: ${response.body}");
   } else {
@@ -57,9 +55,7 @@ class FindByTokenFirst {
     var url = "${CustomUrl.url}/login/$tokenId";
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      print("(LoginService.dart)findUserInfo OK: ${response.body}");
       List<dynamic> userInfo = jsonDecode(utf8.decode(response.bodyBytes));
-      print("(LoginService.dart)userInfo == $userInfo");
       return userInfo
           .map<JoinKakaoUser>((item) => JoinKakaoUser.fromJson(item))
           .toList();
@@ -75,9 +71,7 @@ class FindByToken {
     var url = "${CustomUrl.url}/login/$tokenId";
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      print("(LoginService.dart)findUserInfo OK: ${response.body}");
       List<dynamic> userInfo = jsonDecode(utf8.decode(response.bodyBytes));
-      print("(LoginService.dart)userInfo == $userInfo");
       return userInfo
           .map<KakaoUser>((item) => KakaoUser.fromJson(item))
           .toList();
@@ -92,7 +86,6 @@ Future deleteUser(token) async {
   try {
     print('Delete Start_token: $token');
     var url = "${CustomUrl.url}/login/delete/$token";
-    print('url ======= $url');
     http.Response response = await http.delete(Uri.parse(url));
     print('Delete 요청완료');
     if (response.statusCode == 200) {

@@ -36,7 +36,6 @@ class OrganizationListService {
   Future<List<Organization>> randomOrg() async {
     try {
       var response = await http.get(Uri.parse("${CustomUrl.url}/mainpage"));
-      print('(OrganizationListService.dart)randomOrg response == ${response.statusCode}');
       List<dynamic> _data = json.decode(utf8.decode(response.bodyBytes));
       List<Organization> _result =
       _data.map((e) => Organization.fromJson(e)).toList();
@@ -49,7 +48,6 @@ class OrganizationListService {
   Future<List<OrgImage>> orgImage(id) async {
     try {
       var response = await http.get(Uri.parse("${CustomUrl.url}/org/images/${id}"));
-      print('(OrganizationListService.dart)randomOrg response == ${response.statusCode}');
       List<dynamic> _data = json.decode(utf8.decode(response.bodyBytes));
       List<OrgImage> _result =
       _data.map((e) => OrgImage.fromJson(e)).toList();

@@ -243,15 +243,20 @@ class MyPage extends StatelessWidget {
                                           thickness: 1,
                                           width: 1,
                                           color: Colors.white),
-                                      Column(
-                                        children: [
-                                          Icon(
-                                            CupertinoIcons.calendar,
-                                            color: Colors.orangeAccent,
-                                          ),
-                                          SizedBox(height: height * 0.005),
-                                          Text("기부금 공제")
-                                        ],
+                                      InkWell(
+                                        onTap: (){
+                                          context.push('/mypage/tax');
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Icon(
+                                              CupertinoIcons.calendar,
+                                              color: Colors.orangeAccent,
+                                            ),
+                                            SizedBox(height: height * 0.005),
+                                            Text("기부금 공제란?")
+                                          ],
+                                        ),
                                       ),
                                       VerticalDivider(
                                           thickness: 1,

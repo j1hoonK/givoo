@@ -10,19 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8ce9f3b-53e8-42a8-a8bf-56be8df5deaa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/givoo.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/lib/pages/mainpage/view/main_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/lib/pages/mainpage/view/main_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/lib/pages/mypage/view/announcement.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/lib/pages/mypage/view/announcement.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter/images/mypage/tax2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter/images/mypage/tax3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter/images/mypage/taxe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter/images/mypage/taxexplanation.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter/lib/pages/mypage/view/givoo_explanation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter/lib/pages/mypage/view/mypage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/lib/pages/mypage/view/mypage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/lib/pages/mypage/view/notice.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/lib/pages/mypage/view/notice.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/lib/pages/organization_info/view/org_info.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/lib/pages/organization_info/view/org_info.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter/lib/routes/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/lib/routes/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring/src/main/java/com/givoo/service/ImageUploadService2.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring/src/main/java/com/givoo/service/ImageUploadService2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +68,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\KIBWA_13\Desktop\givoo\flutter\images\mypage" />
       <recent name="C:\Users\KIBWA_13\Desktop\givoo\flutter\images\main" />
     </key>
   </component>
@@ -141,6 +141,10 @@
       <option name="filePath" value="$PROJECT_DIR$/flutter/lib/pages/mypage/view/announcement.dart" />
       <method v="2" />
     </configuration>
+    <configuration name="givoo_explanation.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/flutter/lib/pages/mypage/view/givoo_explanation.dart" />
+      <method v="2" />
+    </configuration>
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/flutter/lib/main.dart" />
       <method v="2" />
@@ -153,10 +157,6 @@
       <option name="filePath" value="$PROJECT_DIR$/flutter/lib/pages/mypage/view/notice.dart" />
       <method v="2" />
     </configuration>
-    <configuration name="privacy_policy.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
-      <option name="filePath" value="$PROJECT_DIR$/flutter/lib/pages/mypage/view/privacy_policy.dart" />
-      <method v="2" />
-    </configuration>
     <configuration name="terms_condition.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/flutter/lib/pages/mypage/view/terms_condition.dart" />
       <method v="2" />
@@ -164,19 +164,19 @@
     <list>
       <item itemvalue="Android App.Unnamed" />
       <item itemvalue="Flutter.main.dart" />
+      <item itemvalue="Flutter.givoo_explanation.dart" />
       <item itemvalue="Flutter.notice.dart" />
       <item itemvalue="Flutter.announcement.dart" />
       <item itemvalue="Flutter.mypage_terms.dart" />
-      <item itemvalue="Flutter.privacy_policy.dart" />
       <item itemvalue="Flutter.terms_condition.dart" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Flutter.givoo_explanation.dart" />
         <item itemvalue="Flutter.announcement.dart" />
         <item itemvalue="Flutter.notice.dart" />
         <item itemvalue="Flutter.mypage_terms.dart" />
         <item itemvalue="Flutter.terms_condition.dart" />
-        <item itemvalue="Flutter.privacy_policy.dart" />
       </list>
     </recent_temporary>
   </component>

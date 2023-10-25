@@ -28,7 +28,7 @@ public class ImageUploadService2 {
     @Value("${cloud.aws.s3.bucket.url}")
     private String defaultUrl;
 
-    String path= "C:\\Users\\KIBWA_19\\Desktop\\orgimages";
+    String path= "C:\\Users\\KIBWA_13\\Desktop\\orgimages";
     private final AmazonS3Client amazonS3Client;
 
     public ImageUploadService2(OrgImageRepository orgImageRepository, OrganizationService organizationService, AmazonS3Client amazonS3Client) {
@@ -38,7 +38,7 @@ public class ImageUploadService2 {
     }
 
     public void getImagesFromFolder() {
-        Long id = 43L;
+        Long id = 277L;
         List<File> imageFiles = new ArrayList<>();
         File folder = new File(path);
         if (folder.exists() && folder.isDirectory()) {

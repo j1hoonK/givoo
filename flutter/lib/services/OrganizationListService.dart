@@ -27,6 +27,7 @@ class OrganizationListService {
       Map<String,dynamic> _data = json.decode(utf8.decode(response.bodyBytes));
       return _data;
     } catch (error) {
+      print('Fail to fetchOrgInfo: $error');
       throw Exception('Failed to load todo');
     }
   }

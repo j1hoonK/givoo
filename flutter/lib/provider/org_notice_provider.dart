@@ -13,7 +13,8 @@ class OrgNoticeProvider with ChangeNotifier{
 
 
   Future<void> loadOrgNotice(orgId) async {
-    List<OrgNoticeModel>? orgNoticeData = await organizationNoticeService.readOrgNotice(orgId);
+    List<OrgNoticeModel> orgNoticeData = await organizationNoticeService.readOrgNotice(orgId);
+    print('orgNoticeData(prv) == $orgNoticeData');
     _orgNoticeList = orgNoticeData;
     notifyListeners();
   }

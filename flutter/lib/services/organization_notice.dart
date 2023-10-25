@@ -9,7 +9,6 @@ class OrganizationNoticeService{
   Future<List<OrgNoticeModel>> readOrgNotice(orgId) async {
     try {
       var response = await http.get(Uri.parse("${CustomUrl.url}/org/notice/$orgId"));
-      print(response.statusCode);
       List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
       List<OrgNoticeModel> result =
       data.map((e) => OrgNoticeModel.fromJson(e)).toList();

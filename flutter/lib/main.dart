@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:givoo/config/loading.dart';
-import 'package:givoo/pages/login/model/user_info.dart';
 import 'package:givoo/pages/login/viewmodel/kakao_login.dart';
 import 'package:givoo/pages/login/viewmodel/login_viewmodel.dart';
 import 'package:givoo/provider/DonationProvider.dart';
@@ -12,7 +10,7 @@ import 'package:givoo/provider/MyPageProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:givoo/provider/PayCategoryProvider.dart';
 import 'package:givoo/provider/UserProvider.dart';
-import 'package:intl/date_symbol_data_file.dart';
+import 'package:givoo/provider/org_notice_provider.dart';
 import 'package:givoo/routes/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
@@ -77,7 +75,11 @@ class MyApp extends StatelessWidget {
             create: (context) => DropdownProvider(),
           ),
           ChangeNotifierProvider(
-            create: (context) => InquiryProvider(),),
+            create: (context) => InquiryProvider(),
+          ),
+          ChangeNotifierProvider(
+              create: (context) => OrgNoticeProvider(),
+          )
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

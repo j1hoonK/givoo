@@ -23,6 +23,15 @@ public class OrganizationNoticeServiceImpl implements OrganizationNoticeService 
     }
 
     @Override
+    public List<OrganizationNotice> findAllByOrgId(Long orgId) {
+        try {
+            return organizationNoticeRepository.findAllByOrgId(orgId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
     public void saveNotice(OrganizationNotice orgNotice) {
         organizationNoticeRepository.save(orgNotice);
     }

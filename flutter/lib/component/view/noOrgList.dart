@@ -18,16 +18,16 @@ Widget noOrgList() {
             ),
           ),
         ),
-        Text("현재 등록한 내 단체가 없습니다.",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+        Text("등록된 단체가 없습니다.",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
         SizedBox(height: 15),
-        TextButton(
-          child: Text(
-            "등록하러가기",
-            style: TextStyle(color: Palette.mainColor),
-          ),
-          onPressed: (){
-          },
-        )
+        // TextButton(
+        //   child: Text(
+        //     "등록하러가기",
+        //     style: TextStyle(color: Palette.mainColor),
+        //   ),
+        //   onPressed: (){
+        //   },
+        // )
       ],
     ),
   );

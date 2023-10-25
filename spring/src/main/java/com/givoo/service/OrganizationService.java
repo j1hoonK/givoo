@@ -3,6 +3,7 @@ package com.givoo.service;
 
 import com.givoo.dto.organization.DetailOrgDTO;
 import com.givoo.entity.organization.Organization;
+import com.givoo.entity.organization.OrganizationNotice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +22,4 @@ public interface OrganizationService {
     Organization save(Organization org);
 
     Long findByUserName(String username);
-
 }

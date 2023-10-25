@@ -7,6 +7,8 @@ import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
 import 'package:provider/provider.dart';
 
+import '../../config/back_key.dart';
+
 class BotNavBar extends StatefulWidget {
   const BotNavBar({super.key});
 
@@ -58,15 +60,17 @@ class _BotNavBarState extends State<BotNavBar> {
             label: '마이페이지',
           ),
         ],
-        // 다른 설정들도 추가할 수 있습니다. 예를 들어 type, selectedItemColor 등.
       ),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: [
-          Search(),
-          MainPage(),
-          MyPage(),
-        ],
+      body: WillPopScope(
+        onWillPop: onWillPop,
+        child: IndexedStack(
+          index: _currentIndex,
+          children: [
+            Search(),
+            MainPage(),
+            MyPage(),
+          ],
+        ),
       ),
     );
   }

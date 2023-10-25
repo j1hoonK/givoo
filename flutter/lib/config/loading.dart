@@ -5,6 +5,8 @@ import 'package:givoo/component/view/bottomnavbar.dart';
 import 'package:givoo/provider/myLocation.dart';
 import 'package:go_router/go_router.dart';
 
+import 'back_key.dart';
+
 double? myLatitude;
 double? myLongitude;
 
@@ -20,8 +22,9 @@ class _LoadingState extends State<Loading> {
   void initState() {
     super.initState();
     getMyLocation();
-    Timer(Duration(milliseconds: 2000), () {
-      context.go('/main');
+    Timer(Duration(milliseconds: 2500), () {
+      context.go('/kakaologin');
+      // context.go('/main');
     });
   }
 
@@ -33,7 +36,7 @@ class _LoadingState extends State<Loading> {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return WillPopScope(
-        onWillPop: () async => false,
+        onWillPop: onWillPop,
         child: MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
           child: Scaffold(

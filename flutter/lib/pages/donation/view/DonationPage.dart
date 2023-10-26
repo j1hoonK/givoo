@@ -28,7 +28,7 @@ class DonationPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/iamport-logo.png'),
+              CircularProgressIndicator(),
               Padding(padding: EdgeInsets.symmetric(vertical: 15)),
               Text('잠시만 기다려주세요...', style: TextStyle(fontSize: 20)),
             ],
@@ -54,8 +54,8 @@ class DonationPage extends StatelessWidget {
       ),
       /* [필수입력] 콜백 함수 */
       callback: (Map<String, String> result) {
-        result.isSuccessed? Provider.of<DonationProvider>(context,listen:false).sendDonation(LoginViewModel.userId,data['orgId'],data['amount'],data['orgName']): "";
-       context.push("/donationresult",extra: result);
+        result.isSuccessed ? Provider.of<DonationProvider>(context,listen:false).sendDonation(LoginViewModel.userId,data['orgId'],data['amount'],data['orgName']): "";
+       context.push("/main",extra: result);
       },
     );
   }

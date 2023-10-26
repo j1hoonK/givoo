@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  path_provider: ^2.0.4
+  pdf: ^3.6.0
   fluttertoast: ^8.2.2
   dropdown_button2: ^2.3.9
   url_launcher: ^6.1.14
@@ -97,6 +99,12 @@ flutter:
   # example:
 
   fonts:
+    - family: Nanum Gothic
+      fonts:
+        - asset: fonts/NanumGothic-Regular.ttf
+    - family: Nanum Gothic bold
+      fonts:
+        - asset: fonts/NanumGothic-Bold.ttf
     - family: Gyeonggi
       fonts:
         - asset: fonts/Gyeonggi_Bold.ttf

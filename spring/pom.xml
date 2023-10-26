@@ -143,7 +143,11 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-
+		<dependency>
+			<groupId>kr.dogfoot</groupId>
+			<artifactId>hwplib</artifactId>
+			<version>1.0.1</version> <!-- 사용 가능한 최신 버전으로 업데이트 -->
+		</dependency>
     </dependencies>
 
 	<build>

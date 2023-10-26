@@ -9,9 +9,8 @@ class DonationProvider with ChangeNotifier {
   final DonationService _donationService = DonationService();
   List<Donation> _donation = [];
   List<Donation> selectedDonations = []; // 선택된 카드를 저장할 Set
-
   final String donationKey="imp34145614";
-
+ static List<Donation> selectedDonations2 = [];
  static var _totalAmount =0;
  static get totalAmount=>_totalAmount;
   List<Donation> get donation => _donation;
@@ -64,6 +63,7 @@ class DonationProvider with ChangeNotifier {
     } else {
       selectedDonations.add(dnt); // 선택
     }
+    selectedDonations2 = selectedDonations;
     notifyListeners();
   }
   Future<void> sendDonation(userId, orgId,dntAmount,orgName) async {

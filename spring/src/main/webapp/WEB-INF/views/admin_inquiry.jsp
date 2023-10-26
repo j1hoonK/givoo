@@ -49,7 +49,7 @@
             <td>${inquiry.content}</td>
             <td>${inquiry.createdAt}</td>
           <td>${inquiry.status}</td>
-          <td><a href="#"></a></td>
+          <td><a href="/admin/inquiry/answer/${inquiry.inquiryId}">답변</a></td>
           </tr>
         </c:forEach>
         </tbody>

@@ -7,6 +7,7 @@ import com.givoo.entity.organization.Organization;
 import com.givoo.entity.request.RequestEdit;
 import com.givoo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -202,7 +203,22 @@ public class WebAdminController {
         model.addAttribute("totalPages", totalPages); // 전체 페이지 수를 모델에 추가
         model.addAttribute("currentPage", currentPage); // 현재 페이지 번호를 모델에 추가
         model.addAttribute("inquirys", currentPageinquiry); // 현재 페이지의 유저 리스트를 모델에 추가
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@");
         return "admin_inquiry";
+    }
+
+    @GetMapping("/inquiry/answer/{id}")
+    public String answerPage(@PathVariable("id") Long id,Model model){
+
+        Optional inquiry = inquiryService.findById(id);
+        model.addAttribute("inquiry",inquiry);
+        return "admin_answer_inquiry";
+    }
+    @PostMapping("/inquiry/answer/{id}")
+    public String inquiryAnswer(@RequestParam("answer") String answer,@PathVariable("id") Long id,Model model){
+
+        inquiryService.asnwerSave(id,answer);
+        Optional inquiry = inquiryService.findById(id);
+        model.addAttribute("inquiry",inquiry);
+        return main(1,model);
     }
 }

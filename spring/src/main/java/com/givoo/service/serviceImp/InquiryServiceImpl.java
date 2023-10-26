@@ -6,6 +6,8 @@ import com.givoo.service.InquiryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class InquiryServiceImpl implements InquiryService {
 
@@ -19,4 +21,24 @@ public class InquiryServiceImpl implements InquiryService {
     public List<Inquiry> findAll() {
         return inquiryRepository.findAll();
     }
+
+
+
+    @Override
+    public Optional<Inquiry> findById(Long id){
+        return inquiryRepository.findById(id);
+    }
+
+    @Override
+    public void asnwerSave(Long id,String answer) {
+        Optional<Inquiry> inq =inquiryRepository.findById(id);
+        Inquiry inquiry = inq.orElse(null);
+        if (inquiry != null) {
+            inquiry.setStatus("1");
+            inquiry.setAnswer(answer);
+        } else {
+        }
+        inquiryRepository.save(inquiry);
+    }
+
 }

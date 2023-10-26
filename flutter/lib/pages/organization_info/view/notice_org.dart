@@ -35,15 +35,21 @@ class _OrgNoticeState extends State<OrgNotice> {
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.title,
-                    style: TextStyle(color: Colors.black),
+                  Flexible(
+                    flex: 4,
+                    child: Text(
+                      widget.title,
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
-                  Text(
-                    widget.date,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10,
+                  Flexible(
+                    flex:1,
+                    child: Text(
+                      widget.date,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 10,
+                      ),
                     ),
                   ),
                 ],

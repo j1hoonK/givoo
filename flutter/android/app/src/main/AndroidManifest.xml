@@ -33,6 +33,7 @@
             android:label="기부어때"
             android:name="${applicationName}"
             android:icon="@mipmap/ic_launcher"
+            android:requestLegacyExternalStorage="true"
             android:usesCleartextTraffic="true">
         <meta-data android:name="com.google.android.geo.API_KEY"
                    android:value="AIzaSyA85AvjhXtt5jztT-bCcI_VWx0GqoRCUNU"/>

@@ -350,10 +350,10 @@ class PdfService {
                           ),
                         ]),
                       ),
-                      Container(
+                     Container(
                           margin: EdgeInsets.all(10),
                           child: Text('4. 기부내용', style: TextStyle(font: ttf))),
-                      Column(children: [
+                     Column(children: [
                         SizedBox(
                           height: 45,
                           child: Row(children: [
@@ -533,7 +533,7 @@ class PdfService {
                             margin: EdgeInsets.all(10),
                             child: Text(' 위와 같이 기부금을 기부하였음을 증명합니다.',
                                 style: TextStyle(font: ttf))),
-                        SizedBox(
+                      /*  SizedBox(
                           width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -601,7 +601,7 @@ class PdfService {
                               ],
                             ),
                           ],
-                        )
+                        )*/
                       ]),
                     ],
                   ),
@@ -612,7 +612,7 @@ class PdfService {
     }
     Directory externalDirectory = Directory('/storage/emulated/0/Download');
     // Create and save the PDF to the given path
-    final file = File("${externalDirectory.path}/donation2.pdf");
+    final file = File("${externalDirectory.path}/donation24.pdf");
     await file.writeAsBytes(await pdf.save());
     Fluttertoast.showToast(
       msg: "영수증 다운이 완료되었습니다.",

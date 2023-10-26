@@ -26,6 +26,9 @@ class KakaoService {
 
     if (response.statusCode == 200) {
       print("(LoginService.dart)SignUp OK: ${response.body}");
+      if(response.body == "추가정보입력필요"){
+        print(response.body);
+      }
     } else {
       print("(LoginService.dart)SignUp NG: ${response.statusCode}");
       print("(LoginService.dart)SignUp Messege: ${response.body}");

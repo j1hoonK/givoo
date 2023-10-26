@@ -5,6 +5,7 @@ import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/back_key.dart';
@@ -22,6 +23,7 @@ class _BotNavBarState extends State<BotNavBar> {
   @override
   void initState() {
     super.initState();
+    Provider.of<LoginViewModel>(context, listen: false).checkUserId();
     Provider.of<OrganizationProvider>(context, listen: false).randomOrg();
   }
 

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:givoo/component/model/OrgImageModel.dart';
 import 'package:givoo/pages/mypage/model/MyOrgList.dart';
+import 'package:givoo/pages/mypage/model/Notice.dart';
 import 'package:givoo/services/MyPageService.dart';
 import 'package:givoo/services/OrganizationListService.dart';
 
 
 class MyPageProvider extends ChangeNotifier {
+  List<dynamic> _noticeList =[];
+  get noticeList=>_noticeList;
   Map<int, String> _orgImageMap = {};
   get orgImageMap=>_orgImageMap;
   final OrganizationListService _organizationListService =
@@ -37,5 +40,20 @@ class MyPageProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Future<void> noticeListShow() async {
+    List<dynamic>? data = await _myOrgService.showNotice();
+    _noticeList = data;
+    _noticeList.forEach((element) {
+      element['isExpanded']=false;
+    });
+
+    print("_noticeList : ${_noticeList}");
+    notifyListeners();
+  }
+
+
+  bool isExpanded = false;
+
 }
 

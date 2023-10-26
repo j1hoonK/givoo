@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:givoo/pages/mypage/model/MyOrgList.dart';
+import 'package:givoo/pages/mypage/model/Notice.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/custom_url.dart';
@@ -24,16 +25,16 @@ class MyOrgService {
     }
   }
 
-/*  Future<List<Notice>> showNotice() async {
+  Future<List<Notice>> showNotice() async {
     try {
       var response = await http.get(Uri.parse("${CustomUrl.url}/mypage/notice"));
       print(response.body);
       List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
-      List<MyOrgList> result = data.map((e) => MyOrgList.fromJson(e)).toList();
+      List<Notice> result = data.map((e) => Notice.fromJson(e)).toList();
       return result;
     } catch (error) {
       print('error == $error');
       throw Exception('Failed to load todo');
     }
-  }*/
+  }
 }

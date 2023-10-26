@@ -3,9 +3,11 @@ package com.givoo.controller;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
 import com.givoo.entity.Inquiry;
+import com.givoo.entity.Notice;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
 import com.givoo.service.MypageService;
+import com.givoo.service.NoticeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,11 @@ import java.util.List;
 @RequestMapping("/mypage")
 public class MypageController {
     public final MypageService mypageService;
-
+    public final NoticeService noticeService;
     @Autowired
-    public MypageController(MypageService mypageService) {
+    public MypageController(MypageService mypageService, NoticeService noticeService) {
         this.mypageService = mypageService;
+        this.noticeService = noticeService;
     }
 
     @GetMapping("/dntresult/{userid}")
@@ -83,5 +86,9 @@ public class MypageController {
        return mypageService.myInquiry(userId);
     }
 
+    @GetMapping("/notice")
+    public List<Notice> noticeList(){
+        return noticeService.finAll();
+    }
 }
 

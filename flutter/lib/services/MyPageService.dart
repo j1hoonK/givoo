@@ -23,4 +23,17 @@ class MyOrgService {
       throw Exception('Failed to load todo');
     }
   }
+
+/*  Future<List<Notice>> showNotice() async {
+    try {
+      var response = await http.get(Uri.parse("${CustomUrl.url}/mypage/notice"));
+      print(response.body);
+      List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
+      List<MyOrgList> result = data.map((e) => MyOrgList.fromJson(e)).toList();
+      return result;
+    } catch (error) {
+      print('error == $error');
+      throw Exception('Failed to load todo');
+    }
+  }*/
 }

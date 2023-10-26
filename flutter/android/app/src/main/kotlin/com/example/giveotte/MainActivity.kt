@@ -1,4 +1,4 @@
-package com.example.givoo
+package com.example.giveotte
 
 import io.flutter.embedding.android.FlutterActivity
 

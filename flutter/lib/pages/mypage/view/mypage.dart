@@ -26,7 +26,7 @@ class MyPage extends StatelessWidget {
       "/mypage/dntbillsend",
       "/mypage/dntbillrequest",
       "/mypage/inquiry",
-      "/mypage/announcement",
+      "/mypage/notice",
       "/mypage/terms"
     ];
     var mSize = MediaQuery.of(context).size.width * 0.025;
@@ -307,6 +307,10 @@ class MyPage extends StatelessWidget {
                                         Provider.of<InquiryProvider>(context,
                                                 listen: false)
                                             .loadInquiry();
+                                      }else if(idx==3){
+                                        Provider.of<MyPageProvider>(context,
+                                            listen: false)
+                                            .noticeListShow();
                                       }
                                       context.push(pushList[idx]);
                                     },

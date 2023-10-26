@@ -25,6 +25,7 @@ import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
 import '../pages/mypage/view/givoo_explanation.dart';
 import '../pages/mypage/view/mypage_terms.dart';
+import '../pages/mypage/view/notice.dart';
 import '../pages/mypage/view/q&a_page.dart';
 import '../pages/mypage/view/terms_condition.dart';
 
@@ -118,8 +119,8 @@ class GivooRouter {
             ),
             GoRoute(
               // 공지사항
-              path: 'announcement',
-              builder: (context, state) => Announcement(),
+              path: 'notice',
+              builder: (context, state) => Notice(),
             ),
             GoRoute(
               // QnA

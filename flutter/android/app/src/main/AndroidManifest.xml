@@ -9,7 +9,11 @@
     <queries>
         <!-- If your app opens https URLs -->
         <intent>
+            <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
+        </intent>
+        <intent>
             <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="onestore" />
             <data android:scheme="https" />
         </intent>
         <!-- If your app makes calls -->

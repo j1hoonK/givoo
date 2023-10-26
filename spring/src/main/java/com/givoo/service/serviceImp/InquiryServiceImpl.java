@@ -5,6 +5,8 @@ import com.givoo.repository.InquiryRepository;
 import com.givoo.service.InquiryService;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +36,10 @@ public class InquiryServiceImpl implements InquiryService {
         Optional<Inquiry> inq =inquiryRepository.findById(id);
         Inquiry inquiry = inq.orElse(null);
         if (inquiry != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
             inquiry.setStatus("1");
             inquiry.setAnswer(answer);
+            inquiry.setAnswerCreated(dateFormat.format(new Date()));
         } else {
         }
         inquiryRepository.save(inquiry);

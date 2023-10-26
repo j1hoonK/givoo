@@ -9,16 +9,15 @@ class Notice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final noticeModel = Provider.of<MyPageProvider>(context);
-
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: BaseAppbar(title: "공지사항",),
       body: Consumer<MyPageProvider>(builder: (context,provider,child){
         return
           SingleChildScrollView(
             child: Container(
-              height:
-              600,
+              height: height,
               child: ListView.builder(
               itemCount: provider.noticeList.length,
                 itemBuilder:(context,idx){
@@ -34,15 +33,22 @@ class Notice extends StatelessWidget {
                           title: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                provider.noticeList[idx].noticeSubject, // 제목을 여기에 넣으세요
-                                style: TextStyle(color: Colors.black),
+                              Flexible(
+                                flex:4,
+                                child: Text(
+                                  provider.noticeList[idx].noticeSubject, // 제목을 여기에 넣으세요
+                                  style: TextStyle(color: Colors.black,),
+                                  maxLines: 2,
+                                ),
                               ),
-                              Text(
-                                provider.noticeList[idx].noticeDate, // 날짜를 여기에 넣으세요
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 10,
+                              Flexible(
+                                flex:1,
+                                child: Text(
+                                  provider.noticeList[idx].noticeDate, // 날짜를 여기에 넣으세요
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 10,
+                                  ),
                                 ),
                               ),
                             ],

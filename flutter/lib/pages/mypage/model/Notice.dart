@@ -9,6 +9,7 @@ class Notice {
   String noticeBody;
   String noticeSubject;
   String noticeDate;
+  bool isExpanded = false;
 
   Notice({
     required this.noticeId,
@@ -29,5 +30,6 @@ class Notice {
     "noticeBody": noticeBody,
     "noticeSubject": noticeSubject,
     "noticeDate": noticeDate,
+    "isExpanded" : isExpanded,
   };
 }

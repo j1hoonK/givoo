@@ -26,7 +26,7 @@ class Notice extends StatelessWidget {
                     elevation: 1, // 그림자 효과
                     expandedHeaderPadding: EdgeInsets.all(0),
                     expansionCallback: (int index, bool isExpanded) {
-                      provider.noticeList[idx]['isExpanded'] = provider.noticeList[idx]['isExpanded']==false? true:false;
+                     provider.toggleIsExpanded(idx);
                     },
                     children:[ExpansionPanel(
                       headerBuilder: (BuildContext context, bool isExpanded) {
@@ -35,11 +35,11 @@ class Notice extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                provider.noticeList.title, // 제목을 여기에 넣으세요
+                                provider.noticeList[idx].noticeSubject, // 제목을 여기에 넣으세요
                                 style: TextStyle(color: Colors.black),
                               ),
                               Text(
-                                provider.noticeList.date, // 날짜를 여기에 넣으세요
+                                provider.noticeList[idx].noticeDate, // 날짜를 여기에 넣으세요
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 10,
@@ -53,11 +53,11 @@ class Notice extends StatelessWidget {
                         alignment: Alignment.topLeft,
                         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         child: Text(
-                          provider.noticeList.content, // 공지 내용을 여기에 넣으세요
+                          provider.noticeList[idx].noticeBody, // 공지 내용을 여기에 넣으세요
                           style: TextStyle(color: Colors.black),
                         ),
                       ),
-                      isExpanded: provider.noticeList[idx]['isExpanded'],
+                      isExpanded:provider.noticeList[idx].isExpanded,
                     )
                     ]
                 );

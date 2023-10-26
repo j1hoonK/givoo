@@ -44,16 +44,15 @@ class MyPageProvider extends ChangeNotifier {
   Future<void> noticeListShow() async {
     List<dynamic>? data = await _myOrgService.showNotice();
     _noticeList = data;
-    _noticeList.forEach((element) {
-      element['isExpanded']=false;
-    });
 
-    print("_noticeList : ${_noticeList}");
     notifyListeners();
   }
 
+  void toggleIsExpanded(idx){
+    _noticeList[idx].isExpanded=!_noticeList[idx].isExpanded;
+    notifyListeners();
+  }
 
-  bool isExpanded = false;
 
 }
 

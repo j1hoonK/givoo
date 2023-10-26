@@ -163,7 +163,7 @@ class DonationResult extends StatelessWidget {
             ElevatedButton.icon(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                context.pop();
+                context.go("/mypage/dnthistory");
               },
               label: Text(
                 '돌아가기',

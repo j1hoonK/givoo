@@ -5,6 +5,7 @@ import 'package:givoo/pages/mypage/view/mypage.dart';
 import 'package:givoo/pages/search/view/search.dart';
 import 'package:givoo/provider/DonationProvider.dart';
 import 'package:givoo/provider/OrganizationProvider.dart';
+import 'package:givoo/services/PdfService.dart';
 import 'package:provider/provider.dart';
 
 class BotNavBar extends StatefulWidget {

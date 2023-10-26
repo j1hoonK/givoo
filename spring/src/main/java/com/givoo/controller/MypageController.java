@@ -1,13 +1,10 @@
 package com.givoo.controller;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.givoo.dto.mypage.MyOrgDTO;
 import com.givoo.entity.Favorites;
 import com.givoo.entity.Inquiry;
-import com.givoo.entity.Users;
 import com.givoo.entity.donation.Donation;
 import com.givoo.entity.donation.DonationRegular;
-import com.givoo.entity.organization.Organization;
 import com.givoo.service.MypageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -19,6 +19,9 @@ class DntBillRequest extends StatelessWidget {
             width: width,
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: ElevatedButton(onPressed: (){
+
+
+
             }, child: Text("전자기부금영수증 신청하기",style: TextStyle(
               color: Colors.white,fontWeight: FontWeight.bold,
             ),),

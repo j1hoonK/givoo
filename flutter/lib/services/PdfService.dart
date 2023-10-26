@@ -112,7 +112,7 @@ class PdfService {
                                   width: 2.0, // 테두리 두께
                                 ),
                               ),
-                              child: Text("930729-1111111", style: TextStyle(font: ttf)),
+                              child: Text("${LoginViewModel.userNumberFirst}-*******", style: TextStyle(font: ttf)),
                             ),
                           ),
                         ]),
@@ -146,7 +146,7 @@ class PdfService {
                                   width: 2.0, // 테두리 두께
                                 ),
                               ),
-                              child: Text("서울시 송파구 마천1동 170-5호 1층\nㅇㅇㅇㅇ",
+                              child: Text(LoginViewModel.userAddress!=null ? LoginViewModel.userAddress: "-" ,
                                   style: TextStyle(font: ttf)),
                             ),
                           ),
@@ -500,7 +500,7 @@ class PdfService {
                                   ),
                                 ),
                                 child: Text(
-                                    "${NumberFormat.currency(symbol: "", locale: 'ko_KR')}원",
+                                    "${NumberFormat.currency(symbol: "", locale: 'ko_KR').format(dnt.dntAmount)}원",
                                     style: TextStyle(font: ttf)),
                               ),
                             ),
@@ -612,7 +612,7 @@ class PdfService {
     }
     Directory externalDirectory = Directory('/storage/emulated/0/Download');
     // Create and save the PDF to the given path
-    final file = File("${externalDirectory.path}/donation24.pdf");
+    final file = File("${externalDirectory.path}/donation30.pdf");
     await file.writeAsBytes(await pdf.save());
     Fluttertoast.showToast(
       msg: "영수증 다운이 완료되었습니다.",

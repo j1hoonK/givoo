@@ -23,6 +23,7 @@ class LoginViewModel with ChangeNotifier{
   static String userName="";
   static var userNumberFirst = 0;
   static var userNumberSecond = 0;
+  static var userAddress="";
 
   // 로그인 완료 => isLogin = true
   Future login() async {
@@ -68,6 +69,7 @@ class LoginViewModel with ChangeNotifier{
     userName=_kakaoUser[0].userName;
     userNumberFirst = _kakaoUser[0].userNumberFirst;
     userNumberSecond = _kakaoUser[0].userNumberSecond;
+    userAddress=_kakaoUser[0].userAddress;
     User user = await UserApi.instance.me();
 
     notifyListeners();

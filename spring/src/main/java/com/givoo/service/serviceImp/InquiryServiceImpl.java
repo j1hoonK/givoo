@@ -30,7 +30,6 @@ public class InquiryServiceImpl implements InquiryService {
     public Optional<Inquiry> findById(Long id){
         return inquiryRepository.findById(id);
     }
-
     @Override
     public void asnwerSave(Long id,String answer) {
         Optional<Inquiry> inq =inquiryRepository.findById(id);
@@ -44,5 +43,4 @@ public class InquiryServiceImpl implements InquiryService {
         }
         inquiryRepository.save(inquiry);
     }
-
 }

@@ -14,9 +14,6 @@ class DonationService{
     try {
       if(response.statusCode == 200){
         List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
-        print(body);
-        print("@@@@@@@@@");
-        print(body.map<Donation>((item) => Donation.fromJson(item)).toList());
           return body.map<Donation>((item) => Donation.fromJson(item)).toList();
       }else{
         print("NG");
@@ -30,11 +27,9 @@ class DonationService{
 
   Future<List<DonationType>?> loadDonationType(orgId) async {
     http.Response response = await http.get(Uri.parse("${CustomUrl.url}/donation/$orgId"));
-        print('(DonationService) response.body == ${response.body}');
     if(response.body.isNotEmpty) {
       if (response.statusCode == 200) {
         List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
-        print('(DonationService)loadDonationType == \n$body');
         return body.map<DonationType>((item) => DonationType.fromJson(item))
             .toList();
       } else {
@@ -60,9 +55,7 @@ class DonationService{
       }),
     );
     if (response.statusCode == 200) {
-
       print('요청이 성공했습니다.');
-
     } else {
       print('요청이 실패했습니다. 에러 코드: ${response.statusCode}');
     }

@@ -3,6 +3,7 @@ import 'package:givoo/component/model/com_dnthistory_model.dart';
 import 'package:givoo/config/loading.dart';
 import 'package:givoo/pages/donation/view/DonationPage.dart';
 import 'package:givoo/pages/donation/view/DonationResultPage.dart';
+import 'package:givoo/pages/login/view/login.dart';
 import 'package:givoo/pages/mypage/view/announcement.dart';
 import 'package:givoo/pages/mypage/view/InquiryDetail.dart';
 import 'package:givoo/pages/mypage/view/dntBillRequest.dart';
@@ -22,6 +23,7 @@ import 'package:go_router/go_router.dart';
 import '../component/view/bottomnavbar.dart';
 import '../pages/login/view/login_agreement.dart';
 import '../pages/login/view/login_first.dart';
+import '../pages/mypage/view/givoo_explanation.dart';
 import '../pages/mypage/view/mypage_terms.dart';
 import '../pages/mypage/view/q&a_page.dart';
 import '../pages/mypage/view/terms_condition.dart';
@@ -110,6 +112,11 @@ class GivooRouter {
               builder: (context, state) => DonationHistory(),
             ),
             GoRoute(
+              // 기부금 공제란?
+              path: 'tax',
+              builder: (context, state) => Tax(),
+            ),
+            GoRoute(
               // 공지사항
               path: 'announcement',
               builder: (context, state) => Announcement(),
@@ -150,6 +157,10 @@ class GivooRouter {
               builder: (context, state) => SettingPage(),
             ),
           ]),
+      GoRoute(
+          path: '/kakaologin',
+        builder: (context, state) => logIn(),
+      ),
       GoRoute(
           path: '/login',
           builder: (BuildContext context, GoRouterState state) {

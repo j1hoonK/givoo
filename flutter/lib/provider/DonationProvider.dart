@@ -33,7 +33,6 @@ class DonationProvider with ChangeNotifier {
         }
         notifyListeners();
       }
-      print("@@@@@@@@@0");
       print(_totalAmount);
       } catch (error) {
       print('Error loading donation: $error');

@@ -37,12 +37,22 @@ class LoginViewModel with ChangeNotifier{
     List<JoinKakaoUser> nowUserInfo = await _findByTokenFirst.findJoinUserInfo(tokenInfo.id);
     // _kakaoUser에 회원정보 저장
     _kakaoUser = nowUserInfo;
-    print('KakoUserData ======= $_kakaoUser');
      //Donation 정보 최신화
-    print('(login_viewmodel.dart) loadDonation Start');
     await _donationProvider.loadDonation(userId);
+    // userId=_kakaoUser[0].userId;
+    // userName=_kakaoUser[0].userName;
+    notifyListeners();
+  }
+
+  Future checkUserId() async{ // BotNavBar에 기본정보 최초업데이트용
+    // 유저정보 확인
+    AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
+    token = tokenInfo.id.toString();
+    // 확인된 토큰ID를 Api서버로 전송 >> 회원정보 습득
+    List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
+    // _kakaoUser에 회원정보 저장
+    _kakaoUser = nowUserInfo;
     userId=_kakaoUser[0].userId;
-    userName=_kakaoUser[0].userName;
     notifyListeners();
   }
 
@@ -50,7 +60,6 @@ class LoginViewModel with ChangeNotifier{
     // 유저정보 확인
     AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
     token = tokenInfo.id.toString();
-    print('(login_viewmodel.dart)_tokenId == $token');
     // 확인된 토큰ID를 Api서버로 전송 >> 회원정보 습득
     List<KakaoUser> nowUserInfo = await _findByToken.findUserInfo(tokenInfo.id);
     // _kakaoUser에 회원정보 저장
@@ -60,7 +69,6 @@ class LoginViewModel with ChangeNotifier{
     userNumberFirst = _kakaoUser[0].userNumberFirst;
     userNumberSecond = _kakaoUser[0].userNumberSecond;
     User user = await UserApi.instance.me();
-    print('useruseruser == $user');
 
     notifyListeners();
   }

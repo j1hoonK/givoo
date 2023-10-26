@@ -5,8 +5,6 @@ class TokenService {
   findTokenInfo() async {
     try {
       AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
-      print("Token Information == $tokenInfo");
-      print('1');
       FindByToken findByToken = FindByToken();
       var rootToken = findByToken.findUserInfo(tokenInfo.id);
       print('rootToken == $rootToken');

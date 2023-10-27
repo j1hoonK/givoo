@@ -116,7 +116,7 @@ public class MemberController {
         org.setBankName(bankName);
         // org.setImagePath(imagePath);
 
-        //organizationService.save(org);
+        organizationService.save(org);
 
         // 여기에서 회원가입 처리 로직을 구현합니다.
         // 처리 결과에 따라 적절한 응답을 반환하거나 리다이렉트할 수 있습니다.

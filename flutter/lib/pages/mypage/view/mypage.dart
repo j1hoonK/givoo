@@ -303,12 +303,11 @@ class MyPage extends StatelessWidget {
                                   height: height * 0.05,
                                   child: ListTile(
                                     onTap: () {
-                                      if(idx==2){
+                                      if (idx == 2) {
                                         Provider.of<InquiryProvider>(context,
-                                            listen: false)
+                                                listen: false)
                                             .loadInquiry();
-                                      }
-                                      else if(idx==3){
+                                      }else if(idx==3){
                                         Provider.of<MyPageProvider>(context,
                                             listen: false)
                                             .noticeListShow();

@@ -38,13 +38,6 @@
             </a>
         </li>
         <li>
-            <a href="/admin/request/org/1">
-                <i class='bx bx-money-withdraw'></i>
-                <span class="link_name">가입 요청</span>
-                <i class='bx bxs-chevron-down'></i>
-            </a>
-        </li>
-        <li>
             <a href="/admin/request/edit/1">
                 <i class='bx bx-money-withdraw'></i>
                 <span class="link_name">수정 요청</span>

@@ -1,25 +1,22 @@
 # 기부
 # [springboot&flutter]기부 어때
 
-![그림01.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/f466cd57-4754-4961-b0d5-faac4ae4bc44/%EA%B7%B8%EB%A6%BC01.jpg)
-
-![Slide1.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/82dc30c7-ce5f-4961-bb0d-1348a0a674a9/Slide1.jpg)
-
+![그림01](https://github.com/j1hoonK/givoo/assets/90121680/66db6861-fe47-404e-ae4c-d621c05cb237)
+![Slide1](https://github.com/j1hoonK/givoo/assets/90121680/9409ff28-8e47-4a94-a622-8f5ab6eb30cb)
 ## 스킬 및 사용 툴
 
 `flutter` `Springboot`  `aws`  `figma` `mysql` `JSP/Servlet`  `Java`    
 
 ## 🌞  팀원 소개
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/032a1dbe-01e8-40f1-9fff-aa3fc4593c7d/Untitled.png)
-
+![Untitled](https://github.com/j1hoonK/givoo/assets/90121680/bc64b93c-5cc4-46c3-b297-6aeffe2182ff)
 ## 🌞 프로젝트 소개
 
  퍼블릭 클라우드 기반 **공공 API를 활용한 지정기부금 플랫폼 개발 프로젝트**로 한국의 기부문화 활성화를 위해 앱 기반의 간편 기부 플랫폼을 개발하고, **근로소득자의 연말정산 기부금 공제를 간편하게 처리**하며, 비대면 사회와 COVID-19로 인한 어려움을 극복하여 **투명하고 혁신적인 기부문화를 촉진**하는 플랫폼. 
 
 ## 🤩 요구사항 정의서
 
-![image01.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/2ebd85c6-d52f-4c8d-b05f-3e7de13b98a0/image01.png)
+![image01](https://github.com/j1hoonK/givoo/assets/90121680/b2b898a9-442e-44ca-88e3-f452bb2126f4)
 
 ## **1. 사용 스택**
 
@@ -30,43 +27,44 @@
 
 ## **2. ER Diagram**
 
-![erd.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/17fd1a9c-42ea-4473-8b6e-0ecdb3f2581c/erd.jpg)
+![erd](https://github.com/j1hoonK/givoo/assets/90121680/3efc2ea9-1c34-4521-8dca-7f9c212c2741)
 
 ## **3. 구성도**
 
-![image02.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/b2ad5726-37b8-4cd7-9dbf-86f6c7399fa4/image02.png)
 
-![image03.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/9da25b86-6f7c-4fcd-87c6-f6e97272b960/image03.png)
+![image02](https://github.com/j1hoonK/givoo/assets/90121680/10a61402-811f-4616-9448-08ea20d1c97c)
+
+![image03](https://github.com/j1hoonK/givoo/assets/90121680/89c86474-1c4a-4b65-a9f5-cd17680cf9be)
 
 ## **4. 프로젝트 일정**
 
-![개발일정.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/66a7c13d-a2a6-4091-8f48-621169e7faa9/%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A0%95.jpg)
+![개발일정](https://github.com/j1hoonK/givoo/assets/90121680/22ca7ce1-0325-48d0-809b-83560898bac8)
 
 ## 🤔 5. 페이지 설명
 
-![Slide1.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/9c6a82bb-ed91-4b6a-9c16-816fb1b60423/Slide1.jpg)
+![1](https://github.com/j1hoonK/givoo/assets/90121680/fb4b8479-910e-4509-983a-c31c0a67bf28)
 
-![Slide2.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/6830a846-3c5b-4ac5-8abb-c901731f2b43/Slide2.jpg)
+![2](https://github.com/j1hoonK/givoo/assets/90121680/27636e26-9885-48cd-9321-0b5aa6704e33)
 
-![Slide3.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/544310d7-428f-473d-bc47-127c5f9e0d57/Slide3.jpg)
+![3](https://github.com/j1hoonK/givoo/assets/90121680/b1c72d05-82b4-4c23-a491-54c2b5c19cab)
 
 ## 6**. 구현 화면**
 
 ### App
 
-![Slide4.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/e6622b70-10a2-49b9-9a56-61fe06bc4a6b/Slide4.jpg)
+![Slide1](https://github.com/j1hoonK/givoo/assets/90121680/5db616a0-b8ed-419c-aa90-c4acd28df929)
 
-![Slide5.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/2443469d-0b61-4b10-a870-62f45eedf7cc/Slide5.jpg)
+![4](https://github.com/j1hoonK/givoo/assets/90121680/4f58664b-edb7-402e-bac1-331ab6ac61d1)
 
-![Slide6.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/a10f0d0e-8f59-44d1-ac73-c2633534b910/Slide6.jpg)
+![5](https://github.com/j1hoonK/givoo/assets/90121680/5f3e17d7-8848-4990-bb7e-dcb03baced45)
 
 ### Web (관리자)
 
-![Slide2.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/b26224ba-fabd-4c2b-872f-572c7e69611e/Slide2.jpg)
+![Slide2](https://github.com/j1hoonK/givoo/assets/90121680/9fa735f9-4c69-490b-acbd-732cec59ccc8)
 
 ### Web (기관)
 
-![Slide3.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/440181fe-ff21-417a-a309-b05a25317864/bfa888c2-1321-4237-b907-5aa6a239b625/Slide3.jpg)
+![Slide3](https://github.com/j1hoonK/givoo/assets/90121680/ac677d08-c197-471a-9cb6-420a48c46a0e)
 
 <aside>
 💡 경기평가항목은 대표적으로 **경기결과등록**과 경기평가를 하여 **상대방의 팀의 평점과 코멘트를 넣어 상대방에 전적에 기록**되게 하였
